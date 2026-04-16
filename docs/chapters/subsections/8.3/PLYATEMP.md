@@ -1,8 +1,7 @@
 ### PLYATEMP -- Define Polymer Adsorption Table Temperature
 
-+-----------------------------------------+-----------------------------------+-----------------------------------+-------------------------------------+-----------------------------------------+-------------------------------------------+-----------------------------------------+--------------------------------------------+
-| > [RUNSPEC](#3.RUNSPEC SECTION|outline) | > [GRID](#4.GRID SECTION|outline) | > [EDIT](#5.EDIT SECTION|outline) | > [PROPS](#6.PROPS SECTION|outline) | > [REGIONS](#7.REGIONS SECTION|outline) | > [SOLUTION](#8.SOLUTION SECTION|outline) | > [SUMMARY](#9.SUMMARY SECTION|outline) | > [SCHEDULE](#10.SCHEDULE SECTION|outline) |
-+-----------------------------------------+-----------------------------------+-----------------------------------+-------------------------------------+-----------------------------------------+-------------------------------------------+-----------------------------------------+--------------------------------------------+
+| [RUNSPEC](#3.RUNSPEC SECTION|outline) | [GRID](#4.GRID SECTION|outline) | [EDIT](#5.EDIT SECTION|outline) | [PROPS](#6.PROPS SECTION|outline) | [REGIONS](#7.REGIONS SECTION|outline) | [SOLUTION](#8.SOLUTION SECTION|outline) | [SUMMARY](#9.SUMMARY SECTION|outline) | [SCHEDULE](#10.SCHEDULE SECTION|outline) |
+| --- | --- | --- | --- | --- | --- | --- | --- |
 
 #### Description
 
@@ -10,19 +9,12 @@ This keyword defines the polymer adsorption temperature for subsequent polymer a
 
 This keyword is not supported by OPM Flow but would change the results if supported so the simulation will be stopped.
 
-+-------------------------------------------+----------------------------------------------------+--------------------------------------------------------------------------------------------------------------------+-----------+
-| > No.                                     | > Name                                             | > Description                                                                                                      | > Default |
-+-------------------------------------------+----------------------------------------------------+--------------------------------------------------------------------------------------------------------------------+-----------+
-| > Field                                   | > Metric                                           | > Laboratory                                                                                                       |           |
-+-------------------------------------------+----------------------------------------------------+--------------------------------------------------------------------------------------------------------------------+-----------+
-| > 1                                       | > [PLYATEMP](#__RefHeading___Toc787898_2928331029) | > Single real positive value that defines polymer adsorption temperature for subsequent polymer adsorption tables. | > None    |
-+-------------------------------------------+----------------------------------------------------+--------------------------------------------------------------------------------------------------------------------+-----------+
-| > ^o^F                                    | > ^o^C                                             | > ^o^C                                                                                                             |           |
-+-------------------------------------------+----------------------------------------------------+--------------------------------------------------------------------------------------------------------------------+-----------+
-| > Notes:                                  |                                                    |                                                                                                                    |           |
-|                                           |                                                    |                                                                                                                    |           |
-| 1)  The keyword is terminated by a "/".   |                                                    |                                                                                                                    |           |
-+-------------------------------------------+----------------------------------------------------+--------------------------------------------------------------------------------------------------------------------+-----------+
+| No. | Name | Description | Default |
+| --- | --- | --- | --- |
+| Field | Metric | Laboratory |  |
+| 1 | [PLYATEMP](#__RefHeading___Toc787898_2928331029) | Single real positive value that defines polymer adsorption temperature for subsequent polymer adsorption tables. | None |
+| ^o^F | ^o^C | ^o^C |  |
+| Notes:<br>1)  The keyword is terminated by a "/". |  |  |  |
 
 Table 8.101: PLYATEMP Keyword Description
 

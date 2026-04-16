@@ -1,8 +1,7 @@
 ### COMPS -- Activate Compositional Modeling Formulation
 
-+-----------------------------------------+-----------------------------------+-----------------------------------+-------------------------------------+-----------------------------------------+-------------------------------------------+-----------------------------------------+--------------------------------------------+
-| > [RUNSPEC](#3.RUNSPEC SECTION|outline) | > [GRID](#4.GRID SECTION|outline) | > [EDIT](#5.EDIT SECTION|outline) | > [PROPS](#6.PROPS SECTION|outline) | > [REGIONS](#7.REGIONS SECTION|outline) | > [SOLUTION](#8.SOLUTION SECTION|outline) | > [SUMMARY](#9.SUMMARY SECTION|outline) | > [SCHEDULE](#10.SCHEDULE SECTION|outline) |
-+-----------------------------------------+-----------------------------------+-----------------------------------+-------------------------------------+-----------------------------------------+-------------------------------------------+-----------------------------------------+--------------------------------------------+
+| [RUNSPEC](#3.RUNSPEC SECTION|outline) | [GRID](#4.GRID SECTION|outline) | [EDIT](#5.EDIT SECTION|outline) | [PROPS](#6.PROPS SECTION|outline) | [REGIONS](#7.REGIONS SECTION|outline) | [SOLUTION](#8.SOLUTION SECTION|outline) | [SUMMARY](#9.SUMMARY SECTION|outline) | [SCHEDULE](#10.SCHEDULE SECTION|outline) |
+| --- | --- | --- | --- | --- | --- | --- | --- |
 
 #### Description
 
@@ -10,17 +9,10 @@ The [COMPS](#__RefHeading___Toc27871_3671211675 Copy 1) keyword activates the Co
 
 OPM Flow does not currently support the general compositional modeling formulation.
 
-+-------------------------------------------+---------+-------------------------------------------------------------------------------------------+-----------+
-| > No.                                     | > Name  | > Description                                                                             | > Default |
-+-------------------------------------------+---------+-------------------------------------------------------------------------------------------+-----------+
-| > 1                                       | > COMPS | > A positive integer defining the number of compositional components active in the model. | > 2       |
-|                                           |         |                                                                                           |           |
-|                                           |         | > Only the default value of two is currently supported by OPM Flow.                       |           |
-+-------------------------------------------+---------+-------------------------------------------------------------------------------------------+-----------+
-| > Notes:                                  |         |                                                                                           |           |
-|                                           |         |                                                                                           |           |
-| 1)  The keyword is terminated by a "/".   |         |                                                                                           |           |
-+-------------------------------------------+---------+-------------------------------------------------------------------------------------------+-----------+
+| No. | Name | Description | Default |
+| --- | --- | --- | --- |
+| 1 | COMPS | A positive integer defining the number of compositional components active in the model.<br>Only the default value of two is currently supported by OPM Flow. | 2 |
+| Notes:<br>1)  The keyword is terminated by a "/". |  |  |  |
 
 Table 5.7: COMPS Keyword Description
 

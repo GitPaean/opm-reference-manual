@@ -1,8 +1,7 @@
 ### ADSALNOD -- Salt Concentration Based on SATNUM Array
 
-+-----------------------------------------+-----------------------------------+-----------------------------------+-------------------------------------+-----------------------------------------+-------------------------------------------+-----------------------------------------+--------------------------------------------+
-| > [RUNSPEC](#3.RUNSPEC SECTION|outline) | > [GRID](#4.GRID SECTION|outline) | > [EDIT](#5.EDIT SECTION|outline) | > [PROPS](#6.PROPS SECTION|outline) | > [REGIONS](#7.REGIONS SECTION|outline) | > [SOLUTION](#8.SOLUTION SECTION|outline) | > [SUMMARY](#9.SUMMARY SECTION|outline) | > [SCHEDULE](#10.SCHEDULE SECTION|outline) |
-+-----------------------------------------+-----------------------------------+-----------------------------------+-------------------------------------+-----------------------------------------+-------------------------------------------+-----------------------------------------+--------------------------------------------+
+| [RUNSPEC](#3.RUNSPEC SECTION|outline) | [GRID](#4.GRID SECTION|outline) | [EDIT](#5.EDIT SECTION|outline) | [PROPS](#6.PROPS SECTION|outline) | [REGIONS](#7.REGIONS SECTION|outline) | [SOLUTION](#8.SOLUTION SECTION|outline) | [SUMMARY](#9.SUMMARY SECTION|outline) | [SCHEDULE](#10.SCHEDULE SECTION|outline) |
+| --- | --- | --- | --- | --- | --- | --- | --- |
 
 #### Description
 
@@ -10,20 +9,12 @@
 
 The salt concentrations within each data set should be positive and monotonically increasing and each [ADSALNOD](#__RefHeading___Toc4416_421927891) data set is delimited by "/" including the last data set.
 
-+----------------------------------------------------------------------------------------------------------------------------+-----------+---------------+-----------+--------------+--------+
-| > No.                                                                                                                      | > Name    | > Description | > Default |              |        |
-+----------------------------------------------------------------------------------------------------------------------------+-----------+---------------+-----------+--------------+--------+
-| > 1                                                                                                                        | > SALTCON | > Field       | > Metric  | > Laboratory | > None |
-+----------------------------------------------------------------------------------------------------------------------------+-----------+---------------+-----------+--------------+--------+
-| > A real positive columnar vector that sets the salt concentrations for the given relative permeability saturation tables. |           |               |           |              |        |
-|                                                                                                                            |           |               |           |              |        |
-+----------------------------------------------------------------------------------------------------------------------------+-----------+---------------+-----------+--------------+--------+
-| > lb/stb                                                                                                                   | > kg/sm3  | > gm/scc      |           |              |        |
-+----------------------------------------------------------------------------------------------------------------------------+-----------+---------------+-----------+--------------+--------+
-| > Notes:                                                                                                                   |           |               |           |              |        |
-|                                                                                                                            |           |               |           |              |        |
-| 1)  Each data set must be terminated by a "/" including the last data set.                                                 |           |               |           |              |        |
-+----------------------------------------------------------------------------------------------------------------------------+-----------+---------------+-----------+--------------+--------+
+| No. | Name | Description | Default |  |  |
+| --- | --- | --- | --- | --- | --- |
+| 1 | SALTCON | Field | Metric | Laboratory | None |
+| A real positive columnar vector that sets the salt concentrations for the given relative permeability saturation tables. |  |  |  |  |  |
+| lb/stb | kg/sm3 | gm/scc |  |  |  |
+| Notes:<br>1)  Each data set must be terminated by a "/" including the last data set. |  |  |  |  |  |
 
 Table 8.17: ADSALNOD Keyword Description
 

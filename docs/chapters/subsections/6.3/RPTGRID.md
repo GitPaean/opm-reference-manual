@@ -1,8 +1,7 @@
 ### RPTGRID -- Define GRID Section Reporting
 
-+-----------------------------------------+-----------------------------------+-----------------------------------+-------------------------------------+-----------------------------------------+-------------------------------------------+-----------------------------------------+--------------------------------------------+
-| > [RUNSPEC](#3.RUNSPEC SECTION|outline) | > [GRID](#4.GRID SECTION|outline) | > [EDIT](#5.EDIT SECTION|outline) | > [PROPS](#6.PROPS SECTION|outline) | > [REGIONS](#7.REGIONS SECTION|outline) | > [SOLUTION](#8.SOLUTION SECTION|outline) | > [SUMMARY](#9.SUMMARY SECTION|outline) | > [SCHEDULE](#10.SCHEDULE SECTION|outline) |
-+-----------------------------------------+-----------------------------------+-----------------------------------+-------------------------------------+-----------------------------------------+-------------------------------------------+-----------------------------------------+--------------------------------------------+
+| [RUNSPEC](#3.RUNSPEC SECTION|outline) | [GRID](#4.GRID SECTION|outline) | [EDIT](#5.EDIT SECTION|outline) | [PROPS](#6.PROPS SECTION|outline) | [REGIONS](#7.REGIONS SECTION|outline) | [SOLUTION](#8.SOLUTION SECTION|outline) | [SUMMARY](#9.SUMMARY SECTION|outline) | [SCHEDULE](#10.SCHEDULE SECTION|outline) |
+| --- | --- | --- | --- | --- | --- | --- | --- |
 
 #### Description
 
@@ -10,23 +9,14 @@ This keyword defines the data in the [GRID](#__RefHeading___Toc38674_784232322) 
 
 This keyword is not supported by OPM Flow but has no effect on the results so it will be ignored.
 
-+-------------------------------------------+------------------------------------------------+-------------------------------------------+-----------+
-| > No.                                     | > Name                                         | > Description                             | > Default |
-+-------------------------------------------+------------------------------------------------+-------------------------------------------+-----------+
-| > 1                                       | > ALLNCC                                       | > Print all the non-neighbor connections. | > N/A     |
-+-------------------------------------------+------------------------------------------------+-------------------------------------------+-----------+
-| > 2                                       | > [COORD](#__RefHeading___Toc45757_719036256)  | > Print the coordinate lines.             | > N/A     |
-+-------------------------------------------+------------------------------------------------+-------------------------------------------+-----------+
-| > 3                                       | > COORDYS                                      | > Print the coordinate systems.           | > N/A     |
-+-------------------------------------------+------------------------------------------------+-------------------------------------------+-----------+
-| > 4                                       | > [DEPTH](#__RefHeading___Toc58139_3701168388) | > Print grid cells center depths.         | > N/A     |
-+-------------------------------------------+------------------------------------------------+-------------------------------------------+-----------+
-| > ....                                    |                                                | > ....                                    | > N/A     |
-+-------------------------------------------+------------------------------------------------+-------------------------------------------+-----------+
-| > Notes:                                  |                                                |                                           |           |
-|                                           |                                                |                                           |           |
-| 1)  The keyword is terminated by a "/".   |                                                |                                           |           |
-+-------------------------------------------+------------------------------------------------+-------------------------------------------+-----------+
+| No. | Name | Description | Default |
+| --- | --- | --- | --- |
+| 1 | ALLNCC | Print all the non-neighbor connections. | N/A |
+| 2 | [COORD](#__RefHeading___Toc45757_719036256) | Print the coordinate lines. | N/A |
+| 3 | COORDYS | Print the coordinate systems. | N/A |
+| 4 | [DEPTH](#__RefHeading___Toc58139_3701168388) | Print grid cells center depths. | N/A |
+| .... |  | .... | N/A |
+| Notes:<br>1)  The keyword is terminated by a "/". |  |  |  |
 
 Table 6.116: RPTGRID Keyword Description
 

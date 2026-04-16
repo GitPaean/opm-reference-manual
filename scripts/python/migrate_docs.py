@@ -178,7 +178,7 @@ def convert_fodt_to_md(fodt_path: Path, md_path: Path) -> bool:
         cmd = [
             "pandoc",
             "--from=odt",
-            "--to=markdown",
+            "--to=markdown+pipe_tables-grid_tables-multiline_tables-simple_tables",
             "--wrap=none",
             str(odt_path),
             "-o",
@@ -195,7 +195,192 @@ def convert_fodt_to_md(fodt_path: Path, md_path: Path) -> bool:
 
 
 # ---------------------------------------------------------------------------
-# 4.  Post-processing
+# 4.  Grid-table → pipe-table conversion
+# ---------------------------------------------------------------------------
+
+# A grid-table separator line:  +---+---+  or  +===+===+
+_GRID_SEP_RE = re.compile(r"^\+(?:[-=]+\+)+\s*$")
+# A grid-table data row:  | … | … |
+_GRID_DATA_RE = re.compile(r"^\|.*\|\s*$")
+# Fenced code-block markers (``` or ~~~).
+_FENCED_CODE_RE = re.compile(r"^(`{3,}|~{3,})")
+
+
+def _find_col_positions(sep_line: str) -> list[int]:
+    """Return the character positions of ``+`` in a grid-table separator."""
+    return [i for i, ch in enumerate(sep_line.rstrip()) if ch == "+"]
+
+
+def _merge_cell_parts(parts: list[str]) -> str:
+    """Join multi-line cell content.
+
+    Consecutive non-empty lines are joined with a space.  An empty line
+    (from a blank data row) inserts a ``<br>`` to preserve paragraph breaks.
+    """
+    paragraphs: list[str] = []
+    current: list[str] = []
+    for part in parts:
+        if part:
+            current.append(part)
+        else:
+            if current:
+                paragraphs.append(" ".join(current))
+                current = []
+    if current:
+        paragraphs.append(" ".join(current))
+    return "<br>".join(paragraphs) if paragraphs else ""
+
+
+def _grid_table_to_pipe(table_lines: list[str]) -> str:
+    """Convert a grid table (list of raw lines) to a pipe table."""
+    col_pos = _find_col_positions(table_lines[0])
+    if len(col_pos) < 2:
+        return "\n".join(table_lines)
+
+    num_cols = len(col_pos) - 1
+
+    # ---- Collect row groups (data lines between separators) ---------------
+    row_groups: list[list[str]] = []
+    current_group: list[str] = []
+    has_header_sep = False
+    header_row_count = 0
+
+    for line in table_lines:
+        stripped = line.rstrip()
+        if _GRID_SEP_RE.match(stripped):
+            if current_group:
+                row_groups.append(current_group)
+                current_group = []
+            # An '=' separator marks the preceding rows as the header.
+            if "=" in stripped.replace("+", ""):
+                has_header_sep = True
+                header_row_count = len(row_groups)
+        else:
+            current_group.append(line)
+
+    if current_group:
+        row_groups.append(current_group)
+
+    if not row_groups:
+        return "\n".join(table_lines)
+
+    # ---- Extract cell text for each logical row --------------------------
+    def _extract_row(data_lines: list[str]) -> list[str]:
+        cells: list[list[str]] = [[] for _ in range(num_cols)]
+        for dl in data_lines:
+            for ci in range(num_cols):
+                start = col_pos[ci] + 1
+                end = (
+                    col_pos[ci + 1]
+                    if col_pos[ci + 1] <= len(dl)
+                    else len(dl)
+                )
+                raw = dl[start:end].strip() if start < len(dl) else ""
+                # Strip block-quote artifact "> " produced by Pandoc.
+                raw = re.sub(r"^>\s*", "", raw)
+                cells[ci].append(raw)
+        return [_merge_cell_parts(parts) for parts in cells]
+
+    rows = [_extract_row(rg) for rg in row_groups]
+
+    # ---- Build pipe table ------------------------------------------------
+    if not has_header_sep:
+        header_row_count = 1  # treat the first row as the header
+
+    result: list[str] = []
+    for idx, row in enumerate(rows):
+        result.append("| " + " | ".join(row) + " |")
+        if idx == header_row_count - 1:
+            result.append("| " + " | ".join(["---"] * num_cols) + " |")
+
+    return "\n".join(result)
+
+
+def _convert_grid_tables(text: str) -> str:
+    """Find grid tables in *text* and replace them with pipe tables."""
+    lines = text.split("\n")
+    output: list[str] = []
+    i = 0
+    in_code_fence = False
+
+    while i < len(lines):
+        # Track fenced code blocks so we never touch tables inside them.
+        if _FENCED_CODE_RE.match(lines[i]):
+            in_code_fence = not in_code_fence
+            output.append(lines[i])
+            i += 1
+            continue
+
+        if in_code_fence:
+            output.append(lines[i])
+            i += 1
+            continue
+
+        if _GRID_SEP_RE.match(lines[i]):
+            table_lines = [lines[i]]
+            i += 1
+            while i < len(lines) and (
+                _GRID_SEP_RE.match(lines[i]) or _GRID_DATA_RE.match(lines[i])
+            ):
+                table_lines.append(lines[i])
+                i += 1
+
+            # A valid grid table starts and ends with a separator (≥ 3 lines).
+            if (
+                len(table_lines) >= 3
+                and _GRID_SEP_RE.match(table_lines[-1])
+            ):
+                output.append(_grid_table_to_pipe(table_lines))
+            else:
+                output.extend(table_lines)
+        else:
+            output.append(lines[i])
+            i += 1
+
+    return "\n".join(output)
+
+
+# ---------------------------------------------------------------------------
+# 4b. Pipe-table cell clean-up
+# ---------------------------------------------------------------------------
+
+_PIPE_ROW_RE = re.compile(r"^\|.*\|\s*$")
+_PIPE_CELL_BQ_RE = re.compile(r"\| > ")
+
+
+def _clean_pipe_table_blockquotes(text: str) -> str:
+    r"""Strip ``> `` block-quote markers inside pipe-table cells.
+
+    Pandoc sometimes emits ``| > content |`` for styled ODT paragraphs.
+    """
+    out: list[str] = []
+    for line in text.split("\n"):
+        if _PIPE_ROW_RE.match(line):
+            line = _PIPE_CELL_BQ_RE.sub("| ", line)
+        out.append(line)
+    return "\n".join(out)
+
+
+# ---------------------------------------------------------------------------
+# 4c. Caption clean-up
+# ---------------------------------------------------------------------------
+
+_CAPTION_BLOCK_RE = re.compile(
+    r"^::: caption\n(.+?)\n:::\s*$", re.MULTILINE
+)
+# Empty caption blocks left over after a caption has already been converted.
+_EMPTY_CAPTION_RE = re.compile(r"^::: caption\n:::\s*$", re.MULTILINE)
+
+
+def _clean_captions(text: str) -> str:
+    r"""Convert Pandoc ``:::caption … :::`` fenced divs to italic text."""
+    text = _CAPTION_BLOCK_RE.sub(r"*\1*", text)
+    text = _EMPTY_CAPTION_RE.sub("", text)
+    return text
+
+
+# ---------------------------------------------------------------------------
+# 5.  General post-processing
 # ---------------------------------------------------------------------------
 
 # Pandoc wraps ODT output in <div>…</div> — strip those.
@@ -216,6 +401,13 @@ def _postprocess_md(md_path: Path) -> None:
     except OSError:
         return
 
+    # Convert grid tables to pipe tables (must run before block-quote strip).
+    text = _convert_grid_tables(text)
+    # Strip "> " inside pipe-table cells (artifact from ODT paragraph styles).
+    text = _clean_pipe_table_blockquotes(text)
+    # Convert ::: caption ... ::: blocks to italic captions.
+    text = _clean_captions(text)
+
     text = _LEADING_DIV_RE.sub("", text)
     text = _TRAILING_DIV_RE.sub("", text)
     text = _EMPTY_ANCHOR_RE.sub("", text)
@@ -230,7 +422,7 @@ def _postprocess_md(md_path: Path) -> None:
 
 
 # ---------------------------------------------------------------------------
-# 5.  Snippet injection
+# 6.  Snippet injection
 # ---------------------------------------------------------------------------
 
 def _fodt_href_to_md_path(href: str) -> str:
@@ -277,8 +469,25 @@ def inject_snippets(
 
 
 # ---------------------------------------------------------------------------
-# 6.  Orchestration
+# 7.  Orchestration
 # ---------------------------------------------------------------------------
+
+
+def postprocess_existing(docs_dir: Path) -> None:
+    """Re-run post-processing on all existing ``.md`` files in *docs_dir*.
+
+    This is useful for fixing tables and other artefacts in previously
+    converted files without repeating the full FODT → Markdown conversion.
+    """
+    md_files = sorted(docs_dir.rglob("*.md"))
+    if not md_files:
+        logger.warning("No .md files found under %s", docs_dir)
+        return
+
+    logger.info("Post-processing %d .md file(s) under %s", len(md_files), docs_dir)
+    for md_path in md_files:
+        _postprocess_md(md_path)
+    logger.info("Post-processing complete.")
 
 
 def migrate(parts_dir: Path, docs_dir: Path) -> None:
@@ -344,8 +553,17 @@ def main() -> None:
         default=Path("docs"),
         help="Output directory for Markdown files (default: docs)",
     )
+    parser.add_argument(
+        "--postprocess-only",
+        action="store_true",
+        help="Only re-run post-processing on existing .md files in docs-dir "
+        "(skip FODT-to-Markdown conversion).",
+    )
     args = parser.parse_args()
-    migrate(args.parts_dir, args.docs_dir)
+    if args.postprocess_only:
+        postprocess_existing(args.docs_dir)
+    else:
+        migrate(args.parts_dir, args.docs_dir)
 
 
 if __name__ == "__main__":

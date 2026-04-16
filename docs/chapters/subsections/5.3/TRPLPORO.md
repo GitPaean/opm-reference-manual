@@ -1,8 +1,7 @@
 ### TRPLPORO -- Activate the Triple Porosity Model Option
 
-+-----------------------------------------+-----------------------------------+-----------------------------------+-------------------------------------+-----------------------------------------+-------------------------------------------+-----------------------------------------+--------------------------------------------+
-| > [RUNSPEC](#3.RUNSPEC SECTION|outline) | > [GRID](#4.GRID SECTION|outline) | > [EDIT](#5.EDIT SECTION|outline) | > [PROPS](#6.PROPS SECTION|outline) | > [REGIONS](#7.REGIONS SECTION|outline) | > [SOLUTION](#8.SOLUTION SECTION|outline) | > [SUMMARY](#9.SUMMARY SECTION|outline) | > [SCHEDULE](#10.SCHEDULE SECTION|outline) |
-+-----------------------------------------+-----------------------------------+-----------------------------------+-------------------------------------+-----------------------------------------+-------------------------------------------+-----------------------------------------+--------------------------------------------+
+| [RUNSPEC](#3.RUNSPEC SECTION|outline) | [GRID](#4.GRID SECTION|outline) | [EDIT](#5.EDIT SECTION|outline) | [PROPS](#6.PROPS SECTION|outline) | [REGIONS](#7.REGIONS SECTION|outline) | [SOLUTION](#8.SOLUTION SECTION|outline) | [SUMMARY](#9.SUMMARY SECTION|outline) | [SCHEDULE](#10.SCHEDULE SECTION|outline) |
+| --- | --- | --- | --- | --- | --- | --- | --- |
 
 #### Description
 
@@ -10,19 +9,10 @@ The [TRPLPORO](#__RefHeading___Toc1613912_4250154414) keyword activates the Trip
 
 This keyword is not supported by OPM Flow but would change the results if supported so the simulation will be stopped.
 
-+-------------------------------------------+------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+
-| > No.                                     | > Name     | > Description                                                                                                                                                       | > Default |
-+-------------------------------------------+------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+
-| > 1                                       | > TRPLPORO | > A positive integer value that specifies the number of matrix porosity systems in the model. TRPLPORO should be set to either:                                     | > 1       |
-|                                           |            |                                                                                                                                                                     |           |
-|                                           |            | 1)  TRPLPORO set equal to 2, if the vugs are only connected to the fractures, so that the porosity system is matrix and connected vugs, or,                         |           |
-|                                           |            |                                                                                                                                                                     |           |
-|                                           |            | 2)  TRPLPORO set equal to 3, if the vugs are connected to the fractures and the matrix, so that the porosity system is matrix, connected vugs, and isolated vugs.   |           |
-+-------------------------------------------+------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+
-| > Notes:                                  |            |                                                                                                                                                                     |           |
-|                                           |            |                                                                                                                                                                     |           |
-| 1)  The keyword is terminated by a "/".   |            |                                                                                                                                                                     |           |
-+-------------------------------------------+------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+
+| No. | Name | Description | Default |
+| --- | --- | --- | --- |
+| 1 | TRPLPORO | A positive integer value that specifies the number of matrix porosity systems in the model. TRPLPORO should be set to either:<br>1)  TRPLPORO set equal to 2, if the vugs are only connected to the fractures, so that the porosity system is matrix and connected vugs, or,<br>2)  TRPLPORO set equal to 3, if the vugs are connected to the fractures and the matrix, so that the porosity system is matrix, connected vugs, and isolated vugs. | 1 |
+| Notes:<br>1)  The keyword is terminated by a "/". |  |  |  |
 
 Table 5.49: TRPLPORO Keyword Description
 

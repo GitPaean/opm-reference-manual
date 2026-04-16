@@ -1,8 +1,7 @@
 ### SCDPTRAC -- Allocate Sea Water Tracer for Scale Deposition
 
-+-----------------------------------------+-----------------------------------+-----------------------------------+-------------------------------------+-----------------------------------------+-------------------------------------------+-----------------------------------------+--------------------------------------------+
-| > [RUNSPEC](#3.RUNSPEC SECTION|outline) | > [GRID](#4.GRID SECTION|outline) | > [EDIT](#5.EDIT SECTION|outline) | > [PROPS](#6.PROPS SECTION|outline) | > [REGIONS](#7.REGIONS SECTION|outline) | > [SOLUTION](#8.SOLUTION SECTION|outline) | > [SUMMARY](#9.SUMMARY SECTION|outline) | > [SCHEDULE](#10.SCHEDULE SECTION|outline) |
-+-----------------------------------------+-----------------------------------+-----------------------------------+-------------------------------------+-----------------------------------------+-------------------------------------------+-----------------------------------------+--------------------------------------------+
+| [RUNSPEC](#3.RUNSPEC SECTION|outline) | [GRID](#4.GRID SECTION|outline) | [EDIT](#5.EDIT SECTION|outline) | [PROPS](#6.PROPS SECTION|outline) | [REGIONS](#7.REGIONS SECTION|outline) | [SOLUTION](#8.SOLUTION SECTION|outline) | [SUMMARY](#9.SUMMARY SECTION|outline) | [SCHEDULE](#10.SCHEDULE SECTION|outline) |
+| --- | --- | --- | --- | --- | --- | --- | --- |
 
 #### Description
 
@@ -10,18 +9,11 @@ The [SCDPTRAC](#__RefHeading___Toc644103_516898843) keyword is used to allocate 
 
 This keyword is not supported by OPM Flow but would change the results if supported so the simulation will be stopped.
 
-+-------------------------------------------+----------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+
-| > No.                                     | > Name   | > Description                                                                                                                                                                                                        | > Default |
-+-------------------------------------------+----------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+
-| > Field                                   | > Metric | > Laboratory                                                                                                                                                                                                         |           |
-+-------------------------------------------+----------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+
-| > 1                                       | > NAME   | > A three letter character string defining the tracer's name that has previously been defined by the [TRACER](#__RefHeading___Toc121485_83452205) keyword in the [PROPS](#__RefHeading___Toc39329_784232322) section | > None    |
-|                                           |          |                                                                                                                                                                                                                      |           |
-+-------------------------------------------+----------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+
-| > Notes:                                  |          |                                                                                                                                                                                                                      |           |
-|                                           |          |                                                                                                                                                                                                                      |           |
-| 1)  The keyword is terminated by a "/".   |          |                                                                                                                                                                                                                      |           |
-+-------------------------------------------+----------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+
+| No. | Name | Description | Default |
+| --- | --- | --- | --- |
+| Field | Metric | Laboratory |  |
+| 1 | NAME | A three letter character string defining the tracer's name that has previously been defined by the [TRACER](#__RefHeading___Toc121485_83452205) keyword in the [PROPS](#__RefHeading___Toc39329_784232322) section | None |
+| Notes:<br>1)  The keyword is terminated by a "/". |  |  |  |
 
 Table 12.63: SCDPTRAC Keyword Description
 

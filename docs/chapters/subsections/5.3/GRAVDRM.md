@@ -1,8 +1,7 @@
 ### GRAVDRM -- Activate Alternative Gravity Drainage and Imbibition for Dual Porosity Model
 
-+-----------------------------------------+-----------------------------------+-----------------------------------+-------------------------------------+-----------------------------------------+-------------------------------------------+-----------------------------------------+--------------------------------------------+
-| > [RUNSPEC](#3.RUNSPEC SECTION|outline) | > [GRID](#4.GRID SECTION|outline) | > [EDIT](#5.EDIT SECTION|outline) | > [PROPS](#6.PROPS SECTION|outline) | > [REGIONS](#7.REGIONS SECTION|outline) | > [SOLUTION](#8.SOLUTION SECTION|outline) | > [SUMMARY](#9.SUMMARY SECTION|outline) | > [SCHEDULE](#10.SCHEDULE SECTION|outline) |
-+-----------------------------------------+-----------------------------------+-----------------------------------+-------------------------------------+-----------------------------------------+-------------------------------------------+-----------------------------------------+--------------------------------------------+
+| [RUNSPEC](#3.RUNSPEC SECTION|outline) | [GRID](#4.GRID SECTION|outline) | [EDIT](#5.EDIT SECTION|outline) | [PROPS](#6.PROPS SECTION|outline) | [REGIONS](#7.REGIONS SECTION|outline) | [SOLUTION](#8.SOLUTION SECTION|outline) | [SUMMARY](#9.SUMMARY SECTION|outline) | [SCHEDULE](#10.SCHEDULE SECTION|outline) |
+| --- | --- | --- | --- | --- | --- | --- | --- |
 
 #### Description
 
@@ -12,19 +11,10 @@ There is no data required for this keyword.
 
 This keyword is not supported by OPM Flow but would change the results if supported so the simulation will be stopped.
 
-+-------------------------------------------+-----------+------------------------------------------------------------------------------------------------------------------------------------------+-----------+
-| > No.                                     | > Name    | > Description                                                                                                                            | > Default |
-+-------------------------------------------+-----------+------------------------------------------------------------------------------------------------------------------------------------------+-----------+
-| > 1                                       | > OPTION1 | > A defined character string that sets the matrix flow in and out of the matrix block option, and should be set to one of the following: | > YES     |
-|                                           |           |                                                                                                                                          |           |
-|                                           |           | 1)  YES: oil flow is bi-directional, that is oil can flow into and out of the matrix block.                                              |           |
-|                                           |           |                                                                                                                                          |           |
-|                                           |           | 2)  NO: oil flow is uni-directional, that is oil can flow out of the matrix block.                                                       |           |
-+-------------------------------------------+-----------+------------------------------------------------------------------------------------------------------------------------------------------+-----------+
-| > Notes:                                  |           |                                                                                                                                          |           |
-|                                           |           |                                                                                                                                          |           |
-| 1)  The keyword is terminated by a "/".   |           |                                                                                                                                          |           |
-+-------------------------------------------+-----------+------------------------------------------------------------------------------------------------------------------------------------------+-----------+
+| No. | Name | Description | Default |
+| --- | --- | --- | --- |
+| 1 | OPTION1 | A defined character string that sets the matrix flow in and out of the matrix block option, and should be set to one of the following:<br>1)  YES: oil flow is bi-directional, that is oil can flow into and out of the matrix block.<br>2)  NO: oil flow is uni-directional, that is oil can flow out of the matrix block. | YES |
+| Notes:<br>1)  The keyword is terminated by a "/". |  |  |  |
 
 Table 5.17: GRAVDRM Keyword Description
 

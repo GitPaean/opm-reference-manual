@@ -1,8 +1,7 @@
 ### SMRYDIMS -- Define Maximum Number of Summary Vectors to be Written
 
-+-----------------------------------------+-----------------------------------+-----------------------------------+-------------------------------------+-----------------------------------------+-------------------------------------------+-----------------------------------------+--------------------------------------------+
-| > [RUNSPEC](#3.RUNSPEC SECTION|outline) | > [GRID](#4.GRID SECTION|outline) | > [EDIT](#5.EDIT SECTION|outline) | > [PROPS](#6.PROPS SECTION|outline) | > [REGIONS](#7.REGIONS SECTION|outline) | > [SOLUTION](#8.SOLUTION SECTION|outline) | > [SUMMARY](#9.SUMMARY SECTION|outline) | > [SCHEDULE](#10.SCHEDULE SECTION|outline) |
-+-----------------------------------------+-----------------------------------+-----------------------------------+-------------------------------------+-----------------------------------------+-------------------------------------------+-----------------------------------------+--------------------------------------------+
+| [RUNSPEC](#3.RUNSPEC SECTION|outline) | [GRID](#4.GRID SECTION|outline) | [EDIT](#5.EDIT SECTION|outline) | [PROPS](#6.PROPS SECTION|outline) | [REGIONS](#7.REGIONS SECTION|outline) | [SOLUTION](#8.SOLUTION SECTION|outline) | [SUMMARY](#9.SUMMARY SECTION|outline) | [SCHEDULE](#10.SCHEDULE SECTION|outline) |
+| --- | --- | --- | --- | --- | --- | --- | --- |
 
 #### Description
 
@@ -10,15 +9,10 @@ The [SMRYDIMS](#__RefHeading___Toc61766_1778172979) keyword defines the maximum 
 
 OPM Flow uses dynamic memory allocation and therefore the keyword has no effect and is ignored by the simulator, but is documented here for completeness.
 
-+-------------------------------------------+----------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+
-| > No.                                     | > Name   | > Description                                                                                                                                                     | > Default |
-+-------------------------------------------+----------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+
-| > 1                                       | > NSUMMX | > A positive integer that defines the maximum number of summary vectors to be written out to the [SUMMARY](#__RefHeading___Toc43949_784232322) file (\*.SUMMARY). | > 10000   |
-+-------------------------------------------+----------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+
-| > Notes:                                  |          |                                                                                                                                                                   |           |
-|                                           |          |                                                                                                                                                                   |           |
-| 1)  The keyword is terminated by a "/".   |          |                                                                                                                                                                   |           |
-+-------------------------------------------+----------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+
+| No. | Name | Description | Default |
+| --- | --- | --- | --- |
+| 1 | NSUMMX | A positive integer that defines the maximum number of summary vectors to be written out to the [SUMMARY](#__RefHeading___Toc43949_784232322) file (\*.SUMMARY). | 10000 |
+| Notes:<br>1)  The keyword is terminated by a "/". |  |  |  |
 
 Table 5.42: SMRYDIMS Keyword Description
 

@@ -1,8 +1,7 @@
 ### NEXT -- Maximum Next Time Step Size (Alias for NEXTSTEP)
 
-+-----------------------------------------+-----------------------------------+-----------------------------------+-------------------------------------+-----------------------------------------+-------------------------------------------+-----------------------------------------+--------------------------------------------+
-| > [RUNSPEC](#3.RUNSPEC SECTION|outline) | > [GRID](#4.GRID SECTION|outline) | > [EDIT](#5.EDIT SECTION|outline) | > [PROPS](#6.PROPS SECTION|outline) | > [REGIONS](#7.REGIONS SECTION|outline) | > [SOLUTION](#8.SOLUTION SECTION|outline) | > [SUMMARY](#9.SUMMARY SECTION|outline) | > [SCHEDULE](#10.SCHEDULE SECTION|outline) |
-+-----------------------------------------+-----------------------------------+-----------------------------------+-------------------------------------+-----------------------------------------+-------------------------------------------+-----------------------------------------+--------------------------------------------+
+| [RUNSPEC](#3.RUNSPEC SECTION|outline) | [GRID](#4.GRID SECTION|outline) | [EDIT](#5.EDIT SECTION|outline) | [PROPS](#6.PROPS SECTION|outline) | [REGIONS](#7.REGIONS SECTION|outline) | [SOLUTION](#8.SOLUTION SECTION|outline) | [SUMMARY](#9.SUMMARY SECTION|outline) | [SCHEDULE](#10.SCHEDULE SECTION|outline) |
+| --- | --- | --- | --- | --- | --- | --- | --- |
 
 #### Description
 
@@ -10,27 +9,13 @@ This keyword defines the maximum time step size the simulator should take for th
 
 Time steps chops are computationally expensive as the simulator cannot solve the current time step at the given tolerance, and therefore has to reduce the time step size. For example, if the previous completed time step was at day 365 and the current time step ending at 396 days cannot be solved, then the simulator will reduce the current time step to perhaps end at day 370, if this still cannot solved then the time step will be chopped back again to perhaps to less then one day. Using the [NEXT](#__RefHeading___Toc117629_2179381650) or [NEXTSTEP](#__RefHeading___Toc323446_1841740821) keyword, the simulator is instructed to take a small time step in the anticipation that this will avoid time step chops and thus improve computational performance.
 
-+-------------------------------------------+----------+------------------------------------------------------------------------------------------------------------------------------------------------+-----------+
-| > No.                                     | > Name   | > Description                                                                                                                                  | > Default |
-+-------------------------------------------+----------+------------------------------------------------------------------------------------------------------------------------------------------------+-----------+
-| > Field                                   | > Metric | > Laboratory                                                                                                                                   |           |
-+-------------------------------------------+----------+------------------------------------------------------------------------------------------------------------------------------------------------+-----------+
-| > 1                                       | > NSTEP1 | > NSTEP1 is a real positive value that defines the maximum length of the next time step.                                                       | > None    |
-+-------------------------------------------+----------+------------------------------------------------------------------------------------------------------------------------------------------------+-----------+
-| > days                                    | > days   | > hours                                                                                                                                        |           |
-+-------------------------------------------+----------+------------------------------------------------------------------------------------------------------------------------------------------------+-----------+
-| > 2                                       | > NSTEP2 | > NSTEP2 is a character string that should be set to either NO or YES to state if the NSTEP1 should be applied to future reporting time steps. | > NO      |
-|                                           |          |                                                                                                                                                |           |
-|                                           |          | 1)  NO: Means that NSTEP1 should not be applied to subsequent reporting time steps.                                                            |           |
-|                                           |          |                                                                                                                                                |           |
-|                                           |          | 2)  YES: Means that NSTEP1 should be applied to subsequent reporting time steps.                                                               |           |
-|                                           |          |                                                                                                                                                |           |
-|                                           |          | > The default value of NO means that NSTEP1 will only be applied once.                                                                         |           |
-+-------------------------------------------+----------+------------------------------------------------------------------------------------------------------------------------------------------------+-----------+
-| > Notes:                                  |          |                                                                                                                                                |           |
-|                                           |          |                                                                                                                                                |           |
-| 1)  The keyword is terminated by a "/".   |          |                                                                                                                                                |           |
-+-------------------------------------------+----------+------------------------------------------------------------------------------------------------------------------------------------------------+-----------+
+| No. | Name | Description | Default |
+| --- | --- | --- | --- |
+| Field | Metric | Laboratory |  |
+| 1 | NSTEP1 | NSTEP1 is a real positive value that defines the maximum length of the next time step. | None |
+| days | days | hours |  |
+| 2 | NSTEP2 | NSTEP2 is a character string that should be set to either NO or YES to state if the NSTEP1 should be applied to future reporting time steps.<br>1)  NO: Means that NSTEP1 should not be applied to subsequent reporting time steps.<br>2)  YES: Means that NSTEP1 should be applied to subsequent reporting time steps.<br>The default value of NO means that NSTEP1 will only be applied once. | NO |
+| Notes:<br>1)  The keyword is terminated by a "/". |  |  |  |
 
 Table 12.54: NEXT Keyword Description
 

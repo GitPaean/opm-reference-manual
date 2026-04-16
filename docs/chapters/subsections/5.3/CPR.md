@@ -2,29 +2,17 @@
 
 ### CPR -- Activate Constrained Pressure Residual ("CPR") Linear Solver
 
-+-----------------------------------------+-----------------------------------+-----------------------------------+-------------------------------------+-----------------------------------------+-------------------------------------------+-----------------------------------------+--------------------------------------------+
-| > [RUNSPEC](#3.RUNSPEC SECTION|outline) | > [GRID](#4.GRID SECTION|outline) | > [EDIT](#5.EDIT SECTION|outline) | > [PROPS](#6.PROPS SECTION|outline) | > [REGIONS](#7.REGIONS SECTION|outline) | > [SOLUTION](#8.SOLUTION SECTION|outline) | > [SUMMARY](#9.SUMMARY SECTION|outline) | > [SCHEDULE](#10.SCHEDULE SECTION|outline) |
-+-----------------------------------------+-----------------------------------+-----------------------------------+-------------------------------------+-----------------------------------------+-------------------------------------------+-----------------------------------------+--------------------------------------------+
+| [RUNSPEC](#3.RUNSPEC SECTION|outline) | [GRID](#4.GRID SECTION|outline) | [EDIT](#5.EDIT SECTION|outline) | [PROPS](#6.PROPS SECTION|outline) | [REGIONS](#7.REGIONS SECTION|outline) | [SOLUTION](#8.SOLUTION SECTION|outline) | [SUMMARY](#9.SUMMARY SECTION|outline) | [SCHEDULE](#10.SCHEDULE SECTION|outline) |
+| --- | --- | --- | --- | --- | --- | --- | --- |
 
 #### Description
 
 Turns on the Constrained Pressure Residual ("CPR")[^1],^\ [^2]\ ^and [^3] preconditioner linear solver option, and declares how the solver should be applied. The keyword is equivalent to using the OPM Flow command line parameter \--linear-solver= "cprw". Note that if the command line has been used, then this will take precedence over the [CPR](#__RefHeading___Toc27871_3671211675) keyword.
 
-+-------------------------------------------+-----------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------+
-| > No.                                     | > Name    | > Description                                                                                                                                                                                         | > Default  |
-+-------------------------------------------+-----------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------+
-| > 1                                       | > CPROPTN | > A defined character string that determines how the CPR linear solver should be applied, and should be set to one of the following:                                                                  | > ORIGINAL |
-|                                           |           |                                                                                                                                                                                                       |            |
-|                                           |           | 1)  ORIGINAL: Here the solver is applied for the whole of the simulation.                                                                                                                             |            |
-|                                           |           |                                                                                                                                                                                                       |            |
-|                                           |           | 2)  ADAPTIVE: This option applies the more computational demanding CPR linear solver, only in parts of the run that would benefit from its use, for example when linear convergence is challenging.   |            |
-|                                           |           |                                                                                                                                                                                                       |            |
-|                                           |           | > Note that OPM Flow only supports the ORIGINAL option, which is the default value in OPM Flow, whereas the default value in the commercial simulator is ADAPTIVE. .                                  |            |
-+-------------------------------------------+-----------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------+
-| > Notes:                                  |           |                                                                                                                                                                                                       |            |
-|                                           |           |                                                                                                                                                                                                       |            |
-| 1)  The keyword is terminated by a "/".   |           |                                                                                                                                                                                                       |            |
-+-------------------------------------------+-----------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------+
+| No. | Name | Description | Default |
+| --- | --- | --- | --- |
+| 1 | CPROPTN | A defined character string that determines how the CPR linear solver should be applied, and should be set to one of the following:<br>1)  ORIGINAL: Here the solver is applied for the whole of the simulation.<br>2)  ADAPTIVE: This option applies the more computational demanding CPR linear solver, only in parts of the run that would benefit from its use, for example when linear convergence is challenging.<br>Note that OPM Flow only supports the ORIGINAL option, which is the default value in OPM Flow, whereas the default value in the commercial simulator is ADAPTIVE. . | ORIGINAL |
+| Notes:<br>1)  The keyword is terminated by a "/". |  |  |  |
 
 Table 5.8: CPR Keyword Description
 

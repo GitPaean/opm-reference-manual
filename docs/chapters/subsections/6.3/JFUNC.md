@@ -1,8 +1,7 @@
 ### JFUNC -- Activate the Leverett J-function Option
 
-+-----------------------------------------+-----------------------------------+-----------------------------------+-------------------------------------+-----------------------------------------+-------------------------------------------+-----------------------------------------+--------------------------------------------+
-| > [RUNSPEC](#3.RUNSPEC SECTION|outline) | > [GRID](#4.GRID SECTION|outline) | > [EDIT](#5.EDIT SECTION|outline) | > [PROPS](#6.PROPS SECTION|outline) | > [REGIONS](#7.REGIONS SECTION|outline) | > [SOLUTION](#8.SOLUTION SECTION|outline) | > [SUMMARY](#9.SUMMARY SECTION|outline) | > [SCHEDULE](#10.SCHEDULE SECTION|outline) |
-+-----------------------------------------+-----------------------------------+-----------------------------------+-------------------------------------+-----------------------------------------+-------------------------------------------+-----------------------------------------+--------------------------------------------+
+| [RUNSPEC](#3.RUNSPEC SECTION|outline) | [GRID](#4.GRID SECTION|outline) | [EDIT](#5.EDIT SECTION|outline) | [PROPS](#6.PROPS SECTION|outline) | [REGIONS](#7.REGIONS SECTION|outline) | [SOLUTION](#8.SOLUTION SECTION|outline) | [SUMMARY](#9.SUMMARY SECTION|outline) | [SCHEDULE](#10.SCHEDULE SECTION|outline) |
+| --- | --- | --- | --- | --- | --- | --- | --- |
 
 #### Description
 
@@ -10,46 +9,16 @@ The [JFUNC](#__RefHeading___Toc86297_3218818441) keyword activates the Leverett-
 
 The keyword should only be used if end-point scaling is switched on using the [ENDSCALE](#__RefHeading___Toc68146_2267116897) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section.
 
-+-------------------------------------------+------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------+
-| > 1                                       | > JFOPT    | > A character string that defines which capillary data sets the J-Function option should be applied to, based on the following options:                                      | > BOTH |
-|                                           |            |                                                                                                                                                                              |        |
-|                                           |            | 1)  [WATER](#__RefHeading___Toc38611_2267116897): apply the J-Function option to the water-oil capillary pressure data only.                                                 |        |
-|                                           |            |                                                                                                                                                                              |        |
-|                                           |            | 2)  [GAS](#__RefHeading___Toc38607_2267116897): apply the J-Function option to the gas-oil capillary pressure data only.                                                     |        |
-|                                           |            |                                                                                                                                                                              |        |
-|                                           |            | 3)  BOTH: apply the J-Function option to the water-oil and the gas-oil capillary pressure data.                                                                              |        |
-+-------------------------------------------+------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------+
-| > 2                                       | > OWSTEN   | > A positive real number that defines oil-water surface tension used to de-normalized J-Function data entered in the [PROPS](#__RefHeading___Toc39329_784232322) section.    | > None |
-+-------------------------------------------+------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------+
-| > dynes/cm                                | > dynes/cm | > dynes/cm                                                                                                                                                                   |        |
-+-------------------------------------------+------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------+
-| > 3                                       | > OGSTEN   | > A positive real number that defines oil-gas surface tension used to de-normalized J-Function data entered in the [PROPS](#__RefHeading___Toc39329_784232322) section.      | > None |
-+-------------------------------------------+------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------+
-| > dynes/cm                                | > dynes/cm | > dynes/cm                                                                                                                                                                   |        |
-+-------------------------------------------+------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------+
-| > 4                                       | > ALPHA    | > A positive real value that defines an alternative power value for the porosity term in the J-Function equation, that is instead of use instead in the transformation.      | > 0.5  |
-|                                           |            |                                                                                                                                                                              |        |
-+-------------------------------------------+------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------+
-| > 5                                       | > BETA     | > A positive real number that defines an alternative power value for the permeability term in the J-Function equation, that is instead of use instead in the transformation. | > 0.5  |
-|                                           |            |                                                                                                                                                                              |        |
-+-------------------------------------------+------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------+
-| > 6                                       | > PERM     | > PERM is a character string that sets the permeability array to be used in the transform, based on the following options:                                                   | > XY   |
-|                                           |            |                                                                                                                                                                              |        |
-|                                           |            | 1)  X: use the [PERMX](#__RefHeading___Toc45791_719036256) array.                                                                                                            |        |
-|                                           |            |                                                                                                                                                                              |        |
-|                                           |            | 2)  XY: use the average of the [PERMX](#__RefHeading___Toc45791_719036256) and [PERMY](#__RefHeading___Toc45793_719036256) arrays.                                           |        |
-|                                           |            |                                                                                                                                                                              |        |
-|                                           |            | 3)  Y: use the [PERMY](#__RefHeading___Toc45793_719036256) array.                                                                                                            |        |
-|                                           |            |                                                                                                                                                                              |        |
-|                                           |            | 4)  Z: use the [PERMZ](#__RefHeading___Toc45795_719036256) array.                                                                                                            |        |
-|                                           |            |                                                                                                                                                                              |        |
-|                                           |            | 5)  U: use the [PERMJFUN](#__RefHeading___Toc757292_2928331029) array                                                                                                        |        |
-|                                           |            |                                                                                                                                                                              |        |
-+-------------------------------------------+------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------+
-| > Notes:                                  |            |                                                                                                                                                                              |        |
-|                                           |            |                                                                                                                                                                              |        |
-| 1)  The keyword is terminated by a "/".   |            |                                                                                                                                                                              |        |
-+-------------------------------------------+------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------+
+| 1 | JFOPT | A character string that defines which capillary data sets the J-Function option should be applied to, based on the following options:<br>1)  [WATER](#__RefHeading___Toc38611_2267116897): apply the J-Function option to the water-oil capillary pressure data only.<br>2)  [GAS](#__RefHeading___Toc38607_2267116897): apply the J-Function option to the gas-oil capillary pressure data only.<br>3)  BOTH: apply the J-Function option to the water-oil and the gas-oil capillary pressure data. | BOTH |
+| --- | --- | --- | --- |
+| 2 | OWSTEN | A positive real number that defines oil-water surface tension used to de-normalized J-Function data entered in the [PROPS](#__RefHeading___Toc39329_784232322) section. | None |
+| dynes/cm | dynes/cm | dynes/cm |  |
+| 3 | OGSTEN | A positive real number that defines oil-gas surface tension used to de-normalized J-Function data entered in the [PROPS](#__RefHeading___Toc39329_784232322) section. | None |
+| dynes/cm | dynes/cm | dynes/cm |  |
+| 4 | ALPHA | A positive real value that defines an alternative power value for the porosity term in the J-Function equation, that is instead of use instead in the transformation. | 0.5 |
+| 5 | BETA | A positive real number that defines an alternative power value for the permeability term in the J-Function equation, that is instead of use instead in the transformation. | 0.5 |
+| 6 | PERM | PERM is a character string that sets the permeability array to be used in the transform, based on the following options:<br>1)  X: use the [PERMX](#__RefHeading___Toc45791_719036256) array.<br>2)  XY: use the average of the [PERMX](#__RefHeading___Toc45791_719036256) and [PERMY](#__RefHeading___Toc45793_719036256) arrays.<br>3)  Y: use the [PERMY](#__RefHeading___Toc45793_719036256) array.<br>4)  Z: use the [PERMZ](#__RefHeading___Toc45795_719036256) array.<br>5)  U: use the [PERMJFUN](#__RefHeading___Toc757292_2928331029) array | XY |
+| Notes:<br>1)  The keyword is terminated by a "/". |  |  |  |
 
 Table 6.53: JFUNC Keyword Description
 

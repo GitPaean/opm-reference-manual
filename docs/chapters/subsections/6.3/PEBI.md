@@ -1,8 +1,7 @@
 ### PEBI -- Activate and Defined PEBI Grid Options
 
-+-----------------------------------------+-----------------------------------+-----------------------------------+-------------------------------------+-----------------------------------------+-------------------------------------------+-----------------------------------------+--------------------------------------------+
-| > [RUNSPEC](#3.RUNSPEC SECTION|outline) | > [GRID](#4.GRID SECTION|outline) | > [EDIT](#5.EDIT SECTION|outline) | > [PROPS](#6.PROPS SECTION|outline) | > [REGIONS](#7.REGIONS SECTION|outline) | > [SOLUTION](#8.SOLUTION SECTION|outline) | > [SUMMARY](#9.SUMMARY SECTION|outline) | > [SCHEDULE](#10.SCHEDULE SECTION|outline) |
-+-----------------------------------------+-----------------------------------+-----------------------------------+-------------------------------------+-----------------------------------------+-------------------------------------------+-----------------------------------------+--------------------------------------------+
+| [RUNSPEC](#3.RUNSPEC SECTION|outline) | [GRID](#4.GRID SECTION|outline) | [EDIT](#5.EDIT SECTION|outline) | [PROPS](#6.PROPS SECTION|outline) | [REGIONS](#7.REGIONS SECTION|outline) | [SOLUTION](#8.SOLUTION SECTION|outline) | [SUMMARY](#9.SUMMARY SECTION|outline) | [SCHEDULE](#10.SCHEDULE SECTION|outline) |
+| --- | --- | --- | --- | --- | --- | --- | --- |
 
 #### Description
 
@@ -10,13 +9,10 @@
 
 This keyword is not supported by OPM Flow but would change the results if supported so the simulation will be stopped.
 
-+-------+-----------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+
-| > No. | > Name    | > Description                                                                                                                                                                                                                                                 | > Default |
-+-------+-----------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+
-| > 1   | > OPTION1 | > A defined character string that activates or deactivates the checking of negative transmissibility values. OPTION1 should be set to YES to check for negative values, or NO switches off this option.                                                       | > NO      |
-+-------+-----------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+
-| > 2   | > OPTION2 | > A defined character string that activates or deactivates the calculation of pore volumes and transmissibilities. OPTION2 should be set to YES if the pore volumes and transmissibilities are provided, or NO for the values to calculated by the simulator. | > NO      |
-+-------+-----------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+
+| No. | Name | Description | Default |
+| --- | --- | --- | --- |
+| 1 | OPTION1 | A defined character string that activates or deactivates the checking of negative transmissibility values. OPTION1 should be set to YES to check for negative values, or NO switches off this option. | NO |
+| 2 | OPTION2 | A defined character string that activates or deactivates the calculation of pore volumes and transmissibilities. OPTION2 should be set to YES if the pore volumes and transmissibilities are provided, or NO for the values to calculated by the simulator. | NO |
 
 Table 6.101: PEBI Keyword Description
 

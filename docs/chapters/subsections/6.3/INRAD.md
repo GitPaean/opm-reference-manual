@@ -1,26 +1,18 @@
 ### INRAD -- Define the Inner Radius of a Radial Grid
 
-+-----------------------------------------+-----------------------------------+-----------------------------------+-------------------------------------+-----------------------------------------+-------------------------------------------+-----------------------------------------+--------------------------------------------+
-| > [RUNSPEC](#3.RUNSPEC SECTION|outline) | > [GRID](#4.GRID SECTION|outline) | > [EDIT](#5.EDIT SECTION|outline) | > [PROPS](#6.PROPS SECTION|outline) | > [REGIONS](#7.REGIONS SECTION|outline) | > [SOLUTION](#8.SOLUTION SECTION|outline) | > [SUMMARY](#9.SUMMARY SECTION|outline) | > [SCHEDULE](#10.SCHEDULE SECTION|outline) |
-+-----------------------------------------+-----------------------------------+-----------------------------------+-------------------------------------+-----------------------------------------+-------------------------------------------+-----------------------------------------+--------------------------------------------+
+| [RUNSPEC](#3.RUNSPEC SECTION|outline) | [GRID](#4.GRID SECTION|outline) | [EDIT](#5.EDIT SECTION|outline) | [PROPS](#6.PROPS SECTION|outline) | [REGIONS](#7.REGIONS SECTION|outline) | [SOLUTION](#8.SOLUTION SECTION|outline) | [SUMMARY](#9.SUMMARY SECTION|outline) | [SCHEDULE](#10.SCHEDULE SECTION|outline) |
+| --- | --- | --- | --- | --- | --- | --- | --- |
 
 #### Description
 
 [INRAD](#__RefHeading___Toc19324_3701168388) defines the inner radius of the reservoir model for a radial grid geometry. The [RADIAL](#__RefHeading___Toc51752_2905512151) or [SPIDER](#__RefHeading___Toc439805_750232207) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) should be activated to indicate that radial geometry is being used.
 
-+-------------------------------------------+------------------------------------------------+-----------------------------------------------------------------------------+-----------+
-| > No.                                     | > Name                                         | > Description                                                               | > Default |
-+-------------------------------------------+------------------------------------------------+-----------------------------------------------------------------------------+-----------+
-| > Field                                   | > Metric                                       | > Laboratory                                                                |           |
-+-------------------------------------------+------------------------------------------------+-----------------------------------------------------------------------------+-----------+
-| > 1                                       | > [INRAD](#__RefHeading___Toc19324_3701168388) | > A single real positive number defining the inner radius of a radial grid. | > None    |
-+-------------------------------------------+------------------------------------------------+-----------------------------------------------------------------------------+-----------+
-| > feet                                    | > m                                            | > cm                                                                        |           |
-+-------------------------------------------+------------------------------------------------+-----------------------------------------------------------------------------+-----------+
-| > Notes:                                  |                                                |                                                                             |           |
-|                                           |                                                |                                                                             |           |
-| 1)  The keyword is terminated by a "/".   |                                                |                                                                             |           |
-+-------------------------------------------+------------------------------------------------+-----------------------------------------------------------------------------+-----------+
+| No. | Name | Description | Default |
+| --- | --- | --- | --- |
+| Field | Metric | Laboratory |  |
+| 1 | [INRAD](#__RefHeading___Toc19324_3701168388) | A single real positive number defining the inner radius of a radial grid. | None |
+| feet | m | cm |  |
+| Notes:<br>1)  The keyword is terminated by a "/". |  |  |  |
 
 Table 6.51: INRAD Keyword Description
 

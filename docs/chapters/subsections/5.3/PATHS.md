@@ -1,26 +1,17 @@
 ### PATHS -- Define Filename Directory Path Aliases
 
-+-----------------------------------------+-----------------------------------+-----------------------------------+-------------------------------------+-----------------------------------------+-------------------------------------------+-----------------------------------------+--------------------------------------------+
-| > [RUNSPEC](#3.RUNSPEC SECTION|outline) | > [GRID](#4.GRID SECTION|outline) | > [EDIT](#5.EDIT SECTION|outline) | > [PROPS](#6.PROPS SECTION|outline) | > [REGIONS](#7.REGIONS SECTION|outline) | > [SOLUTION](#8.SOLUTION SECTION|outline) | > [SUMMARY](#9.SUMMARY SECTION|outline) | > [SCHEDULE](#10.SCHEDULE SECTION|outline) |
-+-----------------------------------------+-----------------------------------+-----------------------------------+-------------------------------------+-----------------------------------------+-------------------------------------------+-----------------------------------------+--------------------------------------------+
+| [RUNSPEC](#3.RUNSPEC SECTION|outline) | [GRID](#4.GRID SECTION|outline) | [EDIT](#5.EDIT SECTION|outline) | [PROPS](#6.PROPS SECTION|outline) | [REGIONS](#7.REGIONS SECTION|outline) | [SOLUTION](#8.SOLUTION SECTION|outline) | [SUMMARY](#9.SUMMARY SECTION|outline) | [SCHEDULE](#10.SCHEDULE SECTION|outline) |
+| --- | --- | --- | --- | --- | --- | --- | --- |
 
 #### Description
 
 [PATHS](#__RefHeading___Toc92959_4106839650) allows the user to define alias directory filenames to avoid long filenames with the [INCLUDE](#__RefHeading___Toc55749_2479612490), [IMPORT](#__RefHeading___Toc539691_2135714711), [RESTART](#__RefHeading___Toc135629_1317547213) or [GDFILE](#__RefHeading___Toc139346_951517595) keywords. To use the alias with the aforementioned keywords [PATHS](#__RefHeading___Toc92959_4106839650) should be prefixed with the \$ symbol.
 
-+---------------------------------------------------------------------+---------+--------------------------------------------------------------------------+-----------+
-| > No.                                                               | > Name  | > Description                                                            | > Default |
-+---------------------------------------------------------------------+---------+--------------------------------------------------------------------------+-----------+
-| > 1                                                                 | > ALIAS | > A character string enclosed in quotes defining the alias.              | > None    |
-+---------------------------------------------------------------------+---------+--------------------------------------------------------------------------+-----------+
-| > 2                                                                 | > DIRC  | > A character string enclosed in quotes defining the directory filename. | > None    |
-+---------------------------------------------------------------------+---------+--------------------------------------------------------------------------+-----------+
-| > Notes:                                                            |         |                                                                          |           |
-|                                                                     |         |                                                                          |           |
-| 1)  Multiple entries must be on separate lines (see the example).   |         |                                                                          |           |
-|                                                                     |         |                                                                          |           |
-| 2)  The keyword is terminated by a "/".                             |         |                                                                          |           |
-+---------------------------------------------------------------------+---------+--------------------------------------------------------------------------+-----------+
+| No. | Name | Description | Default |
+| --- | --- | --- | --- |
+| 1 | ALIAS | A character string enclosed in quotes defining the alias. | None |
+| 2 | DIRC | A character string enclosed in quotes defining the directory filename. | None |
+| Notes:<br>1)  Multiple entries must be on separate lines (see the example).<br>2)  The keyword is terminated by a "/". |  |  |  |
 
 Table 5.34: PATHS Keyword Description
 

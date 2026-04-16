@@ -1,8 +1,7 @@
 ### MINNPCOL -- Define the Minimum Number of Newton Iterations Used to Update Well Targets
 
-+-----------------------------------------+-----------------------------------+-----------------------------------+-------------------------------------+-----------------------------------------+-------------------------------------------+-----------------------------------------+--------------------------------------------+
-| > [RUNSPEC](#3.RUNSPEC SECTION|outline) | > [GRID](#4.GRID SECTION|outline) | > [EDIT](#5.EDIT SECTION|outline) | > [PROPS](#6.PROPS SECTION|outline) | > [REGIONS](#7.REGIONS SECTION|outline) | > [SOLUTION](#8.SOLUTION SECTION|outline) | > [SUMMARY](#9.SUMMARY SECTION|outline) | > [SCHEDULE](#10.SCHEDULE SECTION|outline) |
-+-----------------------------------------+-----------------------------------+-----------------------------------+-------------------------------------+-----------------------------------------+-------------------------------------------+-----------------------------------------+--------------------------------------------+
+| [RUNSPEC](#3.RUNSPEC SECTION|outline) | [GRID](#4.GRID SECTION|outline) | [EDIT](#5.EDIT SECTION|outline) | [PROPS](#6.PROPS SECTION|outline) | [REGIONS](#7.REGIONS SECTION|outline) | [SOLUTION](#8.SOLUTION SECTION|outline) | [SUMMARY](#9.SUMMARY SECTION|outline) | [SCHEDULE](#10.SCHEDULE SECTION|outline) |
+| --- | --- | --- | --- | --- | --- | --- | --- |
 
 #### Description
 
@@ -14,15 +13,10 @@ Wells under group control may suffer from some dependency with other wells in th
 
 See also section [Running OPM Flow From The Command Line](#running-opm-flow-from-the-command-line) on how to set various other numerical control parameters for OPM Flow.
 
-+-------------------------------------------+------------+--------------------------------------------------------------------------------------------------------------------------------+-----------+
-| > No.                                     | > Name     | > Description                                                                                                                  | > Default |
-+-------------------------------------------+------------+--------------------------------------------------------------------------------------------------------------------------------+-----------+
-| > 1                                       | > MINNPCOL | > A positive integer that defines the minimum number of Newton iterations within a timestep where well targets may be updated. | > 3       |
-+-------------------------------------------+------------+--------------------------------------------------------------------------------------------------------------------------------+-----------+
-| > Notes:                                  |            |                                                                                                                                |           |
-|                                           |            |                                                                                                                                |           |
-| 1)  The keyword is terminated by a "/".   |            |                                                                                                                                |           |
-+-------------------------------------------+------------+--------------------------------------------------------------------------------------------------------------------------------+-----------+
+| No. | Name | Description | Default |
+| --- | --- | --- | --- |
+| 1 | MINNPCOL | A positive integer that defines the minimum number of Newton iterations within a timestep where well targets may be updated. | 3 |
+| Notes:<br>1)  The keyword is terminated by a "/". |  |  |  |
 
 Table 5.20: MINNPCOL Keyword Description
 

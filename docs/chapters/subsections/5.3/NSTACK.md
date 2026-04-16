@@ -1,8 +1,7 @@
 ### NSTACK -- Define the Stack Length for the Iterative Linear Solver
 
-+-----------------------------------------+-----------------------------------+-----------------------------------+-------------------------------------+-----------------------------------------+-------------------------------------------+-----------------------------------------+--------------------------------------------+
-| > [RUNSPEC](#3.RUNSPEC SECTION|outline) | > [GRID](#4.GRID SECTION|outline) | > [EDIT](#5.EDIT SECTION|outline) | > [PROPS](#6.PROPS SECTION|outline) | > [REGIONS](#7.REGIONS SECTION|outline) | > [SOLUTION](#8.SOLUTION SECTION|outline) | > [SUMMARY](#9.SUMMARY SECTION|outline) | > [SCHEDULE](#10.SCHEDULE SECTION|outline) |
-+-----------------------------------------+-----------------------------------+-----------------------------------+-------------------------------------+-----------------------------------------+-------------------------------------------+-----------------------------------------+--------------------------------------------+
+| [RUNSPEC](#3.RUNSPEC SECTION|outline) | [GRID](#4.GRID SECTION|outline) | [EDIT](#5.EDIT SECTION|outline) | [PROPS](#6.PROPS SECTION|outline) | [REGIONS](#7.REGIONS SECTION|outline) | [SOLUTION](#8.SOLUTION SECTION|outline) | [SUMMARY](#9.SUMMARY SECTION|outline) | [SCHEDULE](#10.SCHEDULE SECTION|outline) |
+| --- | --- | --- | --- | --- | --- | --- | --- |
 
 #### Description
 
@@ -12,17 +11,10 @@ OPM Flow uses a different numerical scheme which makes this keyword redundant; s
 
 This keyword is not supported by OPM Flow but has no effect on the results so it will be ignored.
 
-+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------+-----------------------------------------------------------------------------------------------------------------+-----------+
-| > No.                                                                                                                                                                                        | > Name   | > Description                                                                                                   | > Default |
-+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------+-----------------------------------------------------------------------------------------------------------------+-----------+
-| > 1                                                                                                                                                                                          | > NSTACK | > A positive integer that defines the maximum number of previous search directions stored by the linear solver. | > 10      |
-+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------+-----------------------------------------------------------------------------------------------------------------+-----------+
-| > Notes:                                                                                                                                                                                     |          |                                                                                                                 |           |
-|                                                                                                                                                                                              |          |                                                                                                                 |           |
-| 1)  The value of NSTACK and the value of LITMAX on the [TUNING](#__RefHeading___Toc146744_4203985108) keyword are related such that NSTACK should always be less than or equal to LITMAX.    |          |                                                                                                                 |           |
-|                                                                                                                                                                                              |          |                                                                                                                 |           |
-| 2)  The keyword is terminated by a "/".                                                                                                                                                      |          |                                                                                                                 |           |
-+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------+-----------------------------------------------------------------------------------------------------------------+-----------+
+| No. | Name | Description | Default |
+| --- | --- | --- | --- |
+| 1 | NSTACK | A positive integer that defines the maximum number of previous search directions stored by the linear solver. | 10 |
+| Notes:<br>1)  The value of NSTACK and the value of LITMAX on the [TUNING](#__RefHeading___Toc146744_4203985108) keyword are related such that NSTACK should always be less than or equal to LITMAX.<br>2)  The keyword is terminated by a "/". |  |  |  |
 
 Table 5.29: NSTACK Keyword Description
 

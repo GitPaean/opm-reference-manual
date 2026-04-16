@@ -1,8 +1,7 @@
 ### OPTIONS -- Activate Various Program Options
 
-+-----------------------------------------+-----------------------------------+-----------------------------------+-------------------------------------+-----------------------------------------+-------------------------------------------+-----------------------------------------+--------------------------------------------+
-| > [RUNSPEC](#3.RUNSPEC SECTION|outline) | > [GRID](#4.GRID SECTION|outline) | > [EDIT](#5.EDIT SECTION|outline) | > [PROPS](#6.PROPS SECTION|outline) | > [REGIONS](#7.REGIONS SECTION|outline) | > [SOLUTION](#8.SOLUTION SECTION|outline) | > [SUMMARY](#9.SUMMARY SECTION|outline) | > [SCHEDULE](#10.SCHEDULE SECTION|outline) |
-+-----------------------------------------+-----------------------------------+-----------------------------------+-------------------------------------+-----------------------------------------+-------------------------------------------+-----------------------------------------+--------------------------------------------+
+| [RUNSPEC](#3.RUNSPEC SECTION|outline) | [GRID](#4.GRID SECTION|outline) | [EDIT](#5.EDIT SECTION|outline) | [PROPS](#6.PROPS SECTION|outline) | [REGIONS](#7.REGIONS SECTION|outline) | [SOLUTION](#8.SOLUTION SECTION|outline) | [SUMMARY](#9.SUMMARY SECTION|outline) | [SCHEDULE](#10.SCHEDULE SECTION|outline) |
+| --- | --- | --- | --- | --- | --- | --- | --- |
 
 #### Description
 
@@ -10,15 +9,10 @@ The [OPTIONS](#__RefHeading___Toc51266_1640804870) keyword activates various pro
 
 This keyword is not supported by OPM Flow but would change the results if supported so the simulation will be stopped.
 
-+-------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+
-| > No.                                     | > Description                                                                                                                                                                                                                                                                                                | > Default |
-+-------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+
-| > 1 - 273                                 | > Commercial simulator options keyword, used to to switch on or off specific features. The keyword is commonly used to revert the simulator\'s behavior to past functionality that has been depreciated in the current version of the commercial simulator, for backward compatibility with previous models. | > 0       |
-+-------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+
-| > Notes:                                  |                                                                                                                                                                                                                                                                                                              |           |
-|                                           |                                                                                                                                                                                                                                                                                                              |           |
-| 1)  The keyword is terminated by a "/".   |                                                                                                                                                                                                                                                                                                              |           |
-+-------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+
+| No. | Description | Default |
+| --- | --- | --- |
+| 1 - 273 | Commercial simulator options keyword, used to to switch on or off specific features. The keyword is commonly used to revert the simulator\'s behavior to past functionality that has been depreciated in the current version of the commercial simulator, for backward compatibility with previous models. | 0 |
+| Notes:<br>1)  The keyword is terminated by a "/". |  |  |
 
 Table 5.32: OPTIONS Keyword Description
 

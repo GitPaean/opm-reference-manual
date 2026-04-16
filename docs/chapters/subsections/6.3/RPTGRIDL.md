@@ -1,8 +1,7 @@
 ### RPTGRIDL -- Define GRID Section Reporting for LGRs
 
-+-----------------------------------------+-----------------------------------+-----------------------------------+-------------------------------------+-----------------------------------------+-------------------------------------------+-----------------------------------------+--------------------------------------------+
-| > [RUNSPEC](#3.RUNSPEC SECTION|outline) | > [GRID](#4.GRID SECTION|outline) | > [EDIT](#5.EDIT SECTION|outline) | > [PROPS](#6.PROPS SECTION|outline) | > [REGIONS](#7.REGIONS SECTION|outline) | > [SOLUTION](#8.SOLUTION SECTION|outline) | > [SUMMARY](#9.SUMMARY SECTION|outline) | > [SCHEDULE](#10.SCHEDULE SECTION|outline) |
-+-----------------------------------------+-----------------------------------+-----------------------------------+-------------------------------------+-----------------------------------------+-------------------------------------------+-----------------------------------------+--------------------------------------------+
+| [RUNSPEC](#3.RUNSPEC SECTION|outline) | [GRID](#4.GRID SECTION|outline) | [EDIT](#5.EDIT SECTION|outline) | [PROPS](#6.PROPS SECTION|outline) | [REGIONS](#7.REGIONS SECTION|outline) | [SOLUTION](#8.SOLUTION SECTION|outline) | [SUMMARY](#9.SUMMARY SECTION|outline) | [SCHEDULE](#10.SCHEDULE SECTION|outline) |
+| --- | --- | --- | --- | --- | --- | --- | --- |
 
 #### Description
 
@@ -12,37 +11,17 @@ The keyword has two distinct forms, the first of which consists of the keyword f
 
 This keyword is not supported by OPM Flow but has no effect on the results so it will be ignored.
 
-+-------------------------------------------+--------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------+-------+
-| > 1                                       | > ALLNCC                                         | > Print all the non-neighbor connections.                                                                                                                 | > N/A |
-+-------------------------------------------+--------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------+-------+
-| > 2                                       | > [COORD](#__RefHeading___Toc45757_719036256)    | > Print the coordinate lines.                                                                                                                             | > N/A |
-+-------------------------------------------+--------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------+-------+
-| > 3                                       | > COORDYS                                        | > Print the coordinate systems.                                                                                                                           | > N/A |
-+-------------------------------------------+--------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------+-------+
-| > 4                                       | > [DEPTH](#__RefHeading___Toc58139_3701168388)   | > Print grid cells center depths.                                                                                                                         | > N/A |
-+-------------------------------------------+--------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------+-------+
-| > ....                                    |                                                  | > ....                                                                                                                                                    | > N/A |
-|                                           |                                                  |                                                                                                                                                           |       |
-+-------------------------------------------+--------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------+-------+
-| > 24                                      | > ALLNNC                                         | > ALLNNC is a defined positive integer that specifies the type of Non-Neighbor Connections ("NNC") to be printed, and should be set to one of the follow: | > N/A |
-|                                           |                                                  |                                                                                                                                                           |       |
-|                                           |                                                  | 1)  To print the NNCs within the LGRs, and the connections between the local and host cells to the print file (\*.PRT).                                   |       |
-|                                           |                                                  |                                                                                                                                                           |       |
-|                                           |                                                  | 2)  To print the NNCs within the LGRs, and the connections between the local and host cells to the print (\*.PRT) and debug files (\*.DBG).               |       |
-|                                           |                                                  |                                                                                                                                                           |       |
-|                                           |                                                  | 3)  Same as (2) but the data in the debug file (\*.DBG) is written out in an alternative format.                                                          |       |
-+-------------------------------------------+--------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------+-------+
-| > ....                                    |                                                  | > ....                                                                                                                                                    | > N/A |
-+-------------------------------------------+--------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------+-------+
-| > 57                                      | > [EXTHOST](#__RefHeading___Toc269730_803326780) | > EXTHOSTS outputs host cells for Perpendicular Bisector ("PEBI")[^1] and [^2] LGRs.                                                                      |       |
-+-------------------------------------------+--------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------+-------+
-| > ....                                    |                                                  | > ....                                                                                                                                                    | > N/A |
-|                                           |                                                  |                                                                                                                                                           |       |
-+-------------------------------------------+--------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------+-------+
-| > Notes:                                  |                                                  |                                                                                                                                                           |       |
-|                                           |                                                  |                                                                                                                                                           |       |
-| 1)  The keyword is terminated by a "/".   |                                                  |                                                                                                                                                           |       |
-+-------------------------------------------+--------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------+-------+
+| 1 | ALLNCC | Print all the non-neighbor connections. | N/A |
+| --- | --- | --- | --- |
+| 2 | [COORD](#__RefHeading___Toc45757_719036256) | Print the coordinate lines. | N/A |
+| 3 | COORDYS | Print the coordinate systems. | N/A |
+| 4 | [DEPTH](#__RefHeading___Toc58139_3701168388) | Print grid cells center depths. | N/A |
+| .... |  | .... | N/A |
+| 24 | ALLNNC | ALLNNC is a defined positive integer that specifies the type of Non-Neighbor Connections ("NNC") to be printed, and should be set to one of the follow:<br>1)  To print the NNCs within the LGRs, and the connections between the local and host cells to the print file (\*.PRT).<br>2)  To print the NNCs within the LGRs, and the connections between the local and host cells to the print (\*.PRT) and debug files (\*.DBG).<br>3)  Same as (2) but the data in the debug file (\*.DBG) is written out in an alternative format. | N/A |
+| .... |  | .... | N/A |
+| 57 | [EXTHOST](#__RefHeading___Toc269730_803326780) | EXTHOSTS outputs host cells for Perpendicular Bisector ("PEBI")[^1] and [^2] LGRs. |  |
+| .... |  | .... | N/A |
+| Notes:<br>1)  The keyword is terminated by a "/". |  |  |  |
 
 Table 6.117: RPTGRIDL Keyword Description
 
