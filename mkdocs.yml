@@ -1,0 +1,103 @@
+# MkDocs configuration for the OPM Flow Reference Manual
+# =======================================================
+# Build with:  mkdocs build        (HTML)
+#              mkdocs serve         (live preview at http://127.0.0.1:8000)
+#
+# PDF export is handled by the mkdocs-with-pdf plugin.
+
+site_name: OPM Flow Reference Manual
+site_description: >-
+  Reference manual for the OPM Flow reservoir simulator, covering all
+  keywords, input-deck sections, and appendices.
+site_author: OPM Project Contributors
+
+# ---------------------------------------------------------------------------
+# Theme
+# ---------------------------------------------------------------------------
+theme:
+  name: material
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: blue grey
+      accent: teal
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: blue grey
+      accent: teal
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - content.tabs.link
+
+# ---------------------------------------------------------------------------
+# Markdown extensions
+# ---------------------------------------------------------------------------
+markdown_extensions:
+  - abbr
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.details
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.snippets:
+      base_path: docs
+      check_paths: false
+
+# ---------------------------------------------------------------------------
+# Plugins
+# ---------------------------------------------------------------------------
+plugins:
+  - search
+  - macros
+  - with-pdf:
+      author: OPM Project Contributors
+      output_path: pdf/opm-reference-manual.pdf
+      cover_title: OPM Flow Reference Manual
+      cover_subtitle: Docs-as-Code Edition
+      enabled_if_env: ENABLE_PDF_EXPORT
+
+# ---------------------------------------------------------------------------
+# Navigation
+# ---------------------------------------------------------------------------
+nav:
+  - Home: index.md
+  - Chapters:
+      - "1  – Introduction": chapters/1.md
+      - "2  – Tutorial": chapters/2.md
+      - "3  – File Formats": chapters/3.md
+      - "4  – Run-Time Options": chapters/4.md
+      - "5  – RUNSPEC Section": chapters/5.md
+      - "6  – GRID Section": chapters/6.md
+      - "7  – EDIT Section": chapters/7.md
+      - "8  – PROPS Section": chapters/8.md
+      - "9  – REGIONS Section": chapters/9.md
+      - "10 – SOLUTION Section": chapters/10.md
+      - "11 – SUMMARY Section": chapters/11.md
+      - "12 – SCHEDULE Section": chapters/12.md
+  - Appendices:
+      - "A": appendices/A.md
+      - "B": appendices/B.md
+      - "C": appendices/C.md
+      - "D": appendices/D.md
+      - "E": appendices/E.md
+      - "F": appendices/F.md

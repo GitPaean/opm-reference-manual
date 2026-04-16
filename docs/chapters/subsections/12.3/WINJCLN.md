@@ -1,0 +1,69 @@
+### WINJCLN -- Clean a Fraction of a Deposited Filter Cake
+
++-----------------------------------------+-----------------------------------+-----------------------------------+-------------------------------------+-----------------------------------------+-------------------------------------------+-----------------------------------------+--------------------------------------------+
+| > [RUNSPEC](#3.RUNSPEC SECTION|outline) | > [GRID](#4.GRID SECTION|outline) | > [EDIT](#5.EDIT SECTION|outline) | > [PROPS](#6.PROPS SECTION|outline) | > [REGIONS](#7.REGIONS SECTION|outline) | > [SOLUTION](#8.SOLUTION SECTION|outline) | > [SUMMARY](#9.SUMMARY SECTION|outline) | > [SCHEDULE](#10.SCHEDULE SECTION|outline) |
++-----------------------------------------+-----------------------------------+-----------------------------------+-------------------------------------+-----------------------------------------+-------------------------------------------+-----------------------------------------+--------------------------------------------+
+
+#### Description
+
+The [WINJCLN](#REF_HEADING_KEYWORD_WINJCLN) keyword signals that a filter cake should be completely or partially cleaned -- this effectively multiplies the accumulated filter cake skin.
+
++--------------------------------------------------------------------------------------------------------------------------------------------+-----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------+
+| > 1                                                                                                                                        | > WELNAME       | > A character string of up to eight characters in length that defines the well name for which the filter cake properties are being defined.                                                                                            | > None |
+|                                                                                                                                            |                 |                                                                                                                                                                                                                                        |        |
+|                                                                                                                                            |                 | > Note that the well name (WELNAME) must have been declared previously using the [WELSPECS](#__RefHeading___Toc268463_1366622701) keyword in the [SCHEDULE](#__RefHeading___Toc43945_784232322) section, otherwise an error may occur. |        |
++--------------------------------------------------------------------------------------------------------------------------------------------+-----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------+
+| > 2                                                                                                                                        | > FCLNFRAC      | > A real positive value between 0 and 1 that defines the fraction of filter cake permeability (skin factor) to be removed.                                                                                                             | > 1    |
+|                                                                                                                                            |                 |                                                                                                                                                                                                                                        |        |
+|                                                                                                                                            |                 | > The accumulated filter cake skin factor for matching connections will be multiplied by (1 -- FCLNFRAC), so the default value of 1 will completely clean the filter cake.                                                             |        |
++--------------------------------------------------------------------------------------------------------------------------------------------+-----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------+
+| > dimensionless                                                                                                                            | > dimensionless | > dimensionless                                                                                                                                                                                                                        |        |
++--------------------------------------------------------------------------------------------------------------------------------------------+-----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------+
+| > 3                                                                                                                                        | > I             | > An integer that defines the matching connection location in the I-direction.                                                                                                                                                         | > -1   |
+|                                                                                                                                            |                 |                                                                                                                                                                                                                                        |        |
+|                                                                                                                                            |                 | > If set to \< 1 then all connections in the I-direction that also satisfy J and K criteria are selected.                                                                                                                              |        |
++--------------------------------------------------------------------------------------------------------------------------------------------+-----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------+
+| > 4                                                                                                                                        | > J             | > An integer that defines the matching connection location in the J-direction.                                                                                                                                                         | > -1   |
+|                                                                                                                                            |                 |                                                                                                                                                                                                                                        |        |
+|                                                                                                                                            |                 | > If set to \< 1 then all connections in the J-direction that also satisfy I and K criteria are selected.                                                                                                                              |        |
++--------------------------------------------------------------------------------------------------------------------------------------------+-----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------+
+| > 5                                                                                                                                        | > K             | > An integer that defines the matching connection location in the K-direction.                                                                                                                                                         | > -1   |
+|                                                                                                                                            |                 |                                                                                                                                                                                                                                        |        |
+|                                                                                                                                            |                 | > If set to \< 1 then all connections in the K-direction that also satisfy I and J criteria are selected.                                                                                                                              |        |
++--------------------------------------------------------------------------------------------------------------------------------------------+-----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------+
+| > Notes:                                                                                                                                   |                 |                                                                                                                                                                                                                                        |        |
+|                                                                                                                                            |                 |                                                                                                                                                                                                                                        |        |
+| 1)  The keyword is followed by any number of records with each record terminated by a "/" and the keyword should be terminated by a "/".   |                 |                                                                                                                                                                                                                                        |        |
+|                                                                                                                                            |                 |                                                                                                                                                                                                                                        |        |
+| 2)  Repeated occurrences of this keyword will have a multiplicative effect.                                                                |                 |                                                                                                                                                                                                                                        |        |
++--------------------------------------------------------------------------------------------------------------------------------------------+-----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------+
+
+Table 12.3.295.1: WINJCLN Keyword Description
+
+See also the WINJDAN keyword to define the filter cake properties and the [WINJFCNC](#REF_HEADING_KEYWORD_WINJFCNC) keyword to define a well's injected filtrate concentration. All the aforementioned keywords are described in the [SCHEDULE](#__RefHeading___Toc43945_784232322) section.
+
+#### Example
+
+The following example signals the filter cake clean up for water injection wells using [WINJCLN](#REF_HEADING_KEYWORD_WINJCLN):
+
+\--
+
+\-- WELL FILTER CAKE CLEAN UP
+
+\--
+
+\-- WELL CLEAN \--LOCATION\--
+
+\-- NAME FRAC II JJ KK
+
+WINJDAM
+
+INJ-A1 0.4 0 0 3 /
+
+INJ-A1 0.4 0 0 4 /
+
+INJ-B\* 0.9 /
+
+/
+
+In well INJ-A1 forty percent of the filter cake is cleaned up in well connections in layers 3 and 4 (filter cake skin is multiplied by 0.6). In wells matching INJ-B\* ninety percent of the filter cake is cleaned up in all well connections (filter cake skin is multiplied by 0.1).

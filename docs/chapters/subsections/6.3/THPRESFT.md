@@ -1,0 +1,85 @@
+### THPRESFT -- Define Fault Threshold Pressures
+
++-----------------------------------------+-----------------------------------+-----------------------------------+-------------------------------------+-----------------------------------------+-------------------------------------------+-----------------------------------------+--------------------------------------------+
+| > [RUNSPEC](#3.RUNSPEC SECTION|outline) | > [GRID](#4.GRID SECTION|outline) | > [EDIT](#5.EDIT SECTION|outline) | > [PROPS](#6.PROPS SECTION|outline) | > [REGIONS](#7.REGIONS SECTION|outline) | > [SOLUTION](#8.SOLUTION SECTION|outline) | > [SUMMARY](#9.SUMMARY SECTION|outline) | > [SCHEDULE](#10.SCHEDULE SECTION|outline) |
++-----------------------------------------+-----------------------------------+-----------------------------------+-------------------------------------+-----------------------------------------+-------------------------------------------+-----------------------------------------+--------------------------------------------+
+
+#### Description
+
+The [THPRESFT](#__RefHeading___Toc185781_1371377330) keyword defines a fault threshold pressures that prevents fluid flow from occurring across the fault plane until the threshold pressure is exceeded, for when the threshold pressure option has been activated via the THRPRES variable on the [EQLOPTS](#__RefHeading___Toc131554_398689501) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section.
+
+Each row entry in the [THPRESFT](#__RefHeading___Toc185781_1371377330) keyword defines a fault threshold pressure.
+
++-----------------------------------------------------------------------------------------+-----------+----------------------------------------------------------------------------------------------------------------------------------------------------------------+--------+
+| > 1                                                                                     | > FLTNAME | > FLTNAME is a character string enclosed in quotes with a maximum length of eight characters, that defines the name of the fault.                              | > None |
+|                                                                                         |           |                                                                                                                                                                |        |
+|                                                                                         |           | > FLTNAME must have been previously defined using the [FAULTS](#__RefHeading___Toc45779_719036256) keyword in the GROD section, otherwise an error will occur. |        |
++-----------------------------------------------------------------------------------------+-----------+----------------------------------------------------------------------------------------------------------------------------------------------------------------+--------+
+| > 2                                                                                     | > PRESS   | > PRESS is a single positive real value that defines the threshold pressure for the fault (FLTNAME).                                                           | > 0    |
+|                                                                                         |           |                                                                                                                                                                |        |
+|                                                                                         |           | > If PRESS is defaulted then the simulator will set the threshold pressure to zero, that is the fault is open to flow along the fault plane.                   |        |
++-----------------------------------------------------------------------------------------+-----------+----------------------------------------------------------------------------------------------------------------------------------------------------------------+--------+
+| > psia                                                                                  | > barsa   | > atma                                                                                                                                                         |        |
++-----------------------------------------------------------------------------------------+-----------+----------------------------------------------------------------------------------------------------------------------------------------------------------------+--------+
+| > Notes:                                                                                |           |                                                                                                                                                                |        |
+|                                                                                         |           |                                                                                                                                                                |        |
+| 1)  If there are multiple entries for FLTNAME only the last entry is applied.           |           |                                                                                                                                                                |        |
+|                                                                                         |           |                                                                                                                                                                |        |
+| 2)  Each record is terminated by a "/" and the keyword should be terminated by a "/".   |           |                                                                                                                                                                |        |
++-----------------------------------------------------------------------------------------+-----------+----------------------------------------------------------------------------------------------------------------------------------------------------------------+--------+
+
+Table 6.128: THPRESFT Keyword Description
+
+See also the [FAULTS](#__RefHeading___Toc45779_719036256) keyword in the [GRID](#__RefHeading___Toc38674_784232322) section that is used to created named faults. Normally this fault data is automatically generated by pre-processing software that generates the static model.
+
+#### Example
+
+The example below defines two fault traces, 'M_WEST' and 'BC' fault having threshold pressures of 1000.0 and 2000 psis respectively.
+
+\--
+
+\-- DEFINE FAULTS IN THE GRID GEOMETRY
+
+\--
+
+\-- FAULT \-\-\-\-\-\-\-\-\-\-\-- FAULT TRACE \-\-\-\-\-\-\-\-\-\-\-\--
+
+\-- NAME I1 I2 J1 J2 K1 K2 FACE
+
+FAULTS
+
+\'M_WEST\' 5 5 3 3 1 22 \'X\' /
+
+\'M_WEST\' 5 5 4 4 1 22 \'X\' /
+
+\'M_WEST\' 5 5 5 5 1 22 \'X\' /
+
+.....................................................
+
+\'BC\' 43 43 8 8 1 22 \'Y\' /
+
+\'BC\' 42 42 9 9 1 22 \'X\' /
+
+\'BC\' 44 44 8 8 1 22 \'Y\' /
+
+.....................................................
+
+/
+
+\--
+
+\-- DEFINE FAULT THRESHOLD PRESSURES
+
+\--
+
+\-- FAULT THRESHOLD
+
+\-- NAME PRESSURE
+
+THPRESFT
+
+\'M_WEST\' 1000.0 /
+
+\'BC\' 1200.0 /
+
+/
