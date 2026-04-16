@@ -1,0 +1,1581 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Reference manual for the OPM Flow reservoir simulator, covering all keywords, input-deck sections, and appendices.">
+      
+      
+        <meta name="author" content="OPM Project Contributors">
+      
+      
+      
+        <link rel="prev" href="../B/">
+      
+      
+        <link rel="next" href="../D/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>C - OPM Flow Reference Manual</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="teal">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#file-menu-options" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="OPM Flow Reference Manual" class="md-header__button md-logo" aria-label="OPM Flow Reference Manual" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            OPM Flow Reference Manual
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              C
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="teal"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue-grey" data-md-color-accent="teal"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../chapters/1/" class="md-tabs__link">
+          
+  
+  
+  Chapters
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../A/" class="md-tabs__link">
+          
+  
+  
+  Appendices
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="OPM Flow Reference Manual" class="md-nav__button md-logo" aria-label="OPM Flow Reference Manual" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    OPM Flow Reference Manual
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapters
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Chapters
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapters/1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1  – Introduction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapters/2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2  – Tutorial
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapters/3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3  – File Formats
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapters/4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4  – Run-Time Options
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapters/5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5  – RUNSPEC Section
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapters/6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6  – GRID Section
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapters/7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7  – EDIT Section
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapters/8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    8  – PROPS Section
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapters/9/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    9  – REGIONS Section
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapters/10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10 – SOLUTION Section
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapters/11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    11 – SUMMARY Section
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapters/12/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    12 – SCHEDULE Section
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Appendices
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Appendices
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../A/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../B/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    B
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#file-menu-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        File Menu Options
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#edit-menu-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Edit Menu Options
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#view-menu-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        View Menu Options.
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tools-menu-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tools Menu Options
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#keywords-menu-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Keywords: Menu Options
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#keywords-file-imports" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Keywords: File Imports
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#keywords-section-standard-set-of-keywords" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Keywords: Section Standard Set of Keywords
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#keywords-summary-section-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Keywords: SUMMARY Section Variables
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#keywords-schedule-section-keywords-and-date-schedule" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Keywords: SCHEDULE Section Keywords and Date Schedule
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#keywords-data-sets-option" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Keywords: DATA (Sets) Option
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#keywords-model-option" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Keywords: MODEL Option
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#keywords-user-templates-option" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Keywords: USER Templates Option
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../D/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    D
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../E/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    E
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../F/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    F
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#file-menu-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        File Menu Options
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#edit-menu-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Edit Menu Options
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#view-menu-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        View Menu Options.
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tools-menu-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tools Menu Options
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#keywords-menu-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Keywords: Menu Options
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#keywords-file-imports" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Keywords: File Imports
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#keywords-section-standard-set-of-keywords" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Keywords: Section Standard Set of Keywords
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#keywords-summary-section-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Keywords: SUMMARY Section Variables
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#keywords-schedule-section-keywords-and-date-schedule" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Keywords: SCHEDULE Section Keywords and Date Schedule
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#keywords-data-sets-option" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Keywords: DATA (Sets) Option
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#keywords-model-option" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Keywords: MODEL Option
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#keywords-user-templates-option" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Keywords: USER Templates Option
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+  <h1>C</h1>
+
+<p>A.  # OPMRUN -- FLOW JOB SCHEDULER</p>
+<p>A.  1.  ## Introduction</p>
+<p>OPMRUN is graphical user interface to Flow that has similar functionality to the commercial simulator's ECLRUN program. Target audience are Reservoir Engineers in a production environment. Developers and experienced Linux users will already have compatible work flows. The application performs the following:</p>
+<ul>
+<li>
+<p>Allows editing and management of OPM Flow's run time parameters. Default parameters are automatically loaded from OPM Flow, and the user can reset the default parameter set either from a parameter or PRT file. Editing of a job's parameter file is also available.</p>
+</li>
+<li>
+<p>Runs under Linux and Windows 10. For Windows 10 OPM Flow is run via the Windows Subsystem for Linux ("WSL").</p>
+</li>
+<li>
+<p>Allows simulation jobs to be queued and run in either foreground (under OPMRUN), or in background in a xterm terminal session in Lunux or WSL under Windows 10. Jobs in the queue can be set to run in <a href="#__RefHeading___Toc27585_2267116897">NOSIM</a> mode or RUN mode.</p>
+</li>
+<li>
+<p>Foreground jobs can be killed from OPMRUN, with the option of killing all the jobs in the queue.</p>
+</li>
+<li>
+<p>Queues can be edited, saved and loaded.</p>
+</li>
+</ul>
+<p>Various additional simulation input generation and conversion utilities are available including:</p>
+<ul>
+<li>
+<p>Compressing a job to save space (DATA, and all OPM Flow output files) and uncompressing previously compressed jobs,</p>
+</li>
+<li>
+<p>Keywords, a keyword generator based on the Apache Velocity Template Language ("VTL"). The templates can therefore also be used with any editor that supports VTL, jEdit for example. There is one template per keyword, with the formatting the same as the OPM Flow manual. Over 450 templates are currently implemented. One can also customize the existing templates as well as creating User defined templates. The keywords are examples, one still has to edit the resulting deck with the actual required data, but the format with comments should make this a straight forward process.</p>
+</li>
+<li>
+<p>A Production Schedule application that takes a comma delimited CSV file containing historical production and injection data and converts the data to an OPM Flow <a href="#__RefHeading___Toc43945_784232322">SCHEDULE</a> file using the <a href="#__RefHeading___Toc134880_2055188184">WCONHIST</a> series of keywords. Currently only production data is supported.</p>
+</li>
+<li>
+<p>Sensitivities application that generates sensitivity cases based on a \"Base\" case file. The Base file contains \"Factors\" (variable names), \$X01, \$X02, etc., that are substituted with user defined values using the data entered and the type of Sensitivity Scenario selected.</p>
+</li>
+<li>
+<p>A Well Specification application that uses the standard well export files from OPM ResInsight to reformat the data in a more user-friendly manner for the <a href="#__RefHeading___Toc268463_1366622701">WELSPECS</a> and <a href="#__RefHeading___Toc97651_3261743917">COMPDAT</a> keywords. Optionally, the application can generate the <a href="#__RefHeading___Toc97655_3261743917">COMPLUMP</a> keyword based on the OPM ResInsight layers file, with one completion per defined reservoir layer.</p>
+</li>
+<li>
+<p>Calling OPM ResInsight and loading the currently selected job into OPM ResInsight for viewing.</p>
+</li>
+<li>
+<p>A Well Trajectory Conversion application that converts a Schlumberger Petrel exported well trajectory file into an OPM ResInsight file, containing all the wells.</p>
+</li>
+</ul>
+<p>The software can be downloaded from the following link:</p>
+<p><a href="https://github.com/OPM/opm-utilities/tree/master/opmrun">https://github.com/OPM/opm-utilities/tree/master/opmrun</a></p>
+<p>OPMRUN is written in Python 3 and tested under various Ubuntu distributions. Note that only Python 3 is supported and tested, Python2 support has been deprecated.</p>
+<p>The program requires the following standard module Python libraries:</p>
+<ul>
+<li>datetime, getpass, importlib, os, numpy, pkg_resources, pandas, pathlib, platform, psutil, sys, re, subprocess, and tkinter as tk.</li>
+</ul>
+<p>In addition, the following non-standard Python modules are required:</p>
+<ul>
+<li>airspeed, notify-py, pyDOE2, and PySimpleGUI.</li>
+</ul>
+<p>For some Linux systems the relevant package manager may have to be used to install <em>tkinter as tk;</em> whereas for Windows 10 users the tkinter package is pre-installed with Python.</p>
+<p>A.  1.  ## OPMRUN Functionality</p>
+<p>OPMRUN enables the editing and management of OPM Flow's run time parameters, setting up job queues to run a series of simulation jobs sequentially, as well as the management of the job queues. shows the initial display.</p>
+<p>Upon launch the program runs OPM Flow to get a list of command line parameters from the current version of OPM Flow. These default parameters can be edited for each case, or alternative default parameter sets can be loaded from an existing parameter file from another job, or a *.PRT file from a completed simulation.</p>
+<p>As can be seen in the program has upper and lower display elements. The upper element shows a list of simulation jobs that are in the job queue and the lower element consists of two elements, one for the OPM Flow Output (the terminal output from OPM Flow) and a second element (OPM Run Log) that is a session log of the jobs run by OPMRUN. Clicking the OPM Flow Output and OPM Run Log tabs switches the display on the lowered element between two display types.</p>
+<p>A.  1.  1.</p>
+<div class="highlight"><pre><span></span><code>    2.  ### Add Job and Select Run Type
+</code></pre></div>
+<p>To add jobs to the queue use the Add Job button or load an existing job queue using the Load Queue button. Jobs can be edited or deleted from the queue using the Edit Job and Delete Job buttons, and a series of jobs can be saved as a job queue by using the Save Queue button. The Clear Queue button deletes all jobs from the queue.</p>
+<p>Pressing the <em>Add Job</em> button will display the following dialogue box:</p>
+<p>Use the <em>Browse</em> button to select the input file to add to the queue, then select the Run Parameters for this input file, then press the <em>Submit</em> button to add the input file to the job queue ().</p>
+<p>The Overwrite Parameter File Options allow for different default treatments of existing *.PARAM files, which is particularly useful when adding multiple jobs at the same time.</p>
+<p>The reason for this is because different versions of OPM Flow have different parameter sets and if a newer version of OPM Flow runs with a previous version's *.PARAM file then the simulator will stop with an error message for the various invalid parameters for the current version of the simulator. * *</p>
+<p>A.  1.  1.  ### Edit Job Data and Parameter File</p>
+<p>Jobs in the queue can be edited by selecting the <em>Edit Job</em> button that will display two options (): one to edit the input file using the defined editor and the second to edit the OPM Flow Parameter File.</p>
+<p>If the second option is selected OPMRUN will display a dialog box that shows a list of the OPM Flow command line parameters together with the parameter help information ). Selecting a parameter from the list and selecting the Edit button will display the setting for the selected parameter (alternatively one can double click the required entry). One can then edit the parameter as required. Use the Save button to save the change and use the Exit button to save all the changes to the parameter file. The Cancel button will cancel all changes to the parameter file.</p>
+<p>Alternatively one can use the:</p>
+<p>3)  1)  1)  Edit OPM Flow Parameter menu option to edit the parameter file for a job.</p>
+<div class="highlight"><pre><span></span><code>    2)  List OPM Flow Parameters menu option to list the commands in the parameter file for a job.
+
+    3)  Set OPM Flow Default Parameters to set the default parameters for all subsequent jobs added to the queue. This option allows the user to load a default set of parameters from (1) OPM Flow, (2) an OPM Flow Parameter File, or (3) an OPM Flow print file (\*.PRT).
+</code></pre></div>
+<p>One can also right-click on a job and select one of the available options.</p>
+<p>A.  1.  1.  ### Load Previously Saved Queue</p>
+<p>To load a previously saved job queue, press the <em>Load Queue</em> button this will display a dialog box allowing the user to select a queue file (*.que), after pressing the <em>OK</em> button the jobs will be displayed in the Job List E<em>lement</em> as illustrated in .</p>
+<p>Queue files allow for various jobs to be load efficiently, especially for ensemble and sensitivity cases and may contain a large number of cases.</p>
+<p>A.  1.  1.  ### Reset Job Queue Parameters</p>
+<p>Reset Job Queue Parameters allows jobs run under Windows 10 WSL to be renamed for running under Linux, and changing jobs from serial to parallel and vice versa.</p>
+<p>The application will attempt to list or Linux mount points and Windows drives depending on the host operating system, once the two systems mount and drive points have been selected then the files in the queue will be renamed from the previous host system to the current host system. This is only performed for the *.DATA files, included files in the input deck are currently not converted.</p>
+<p>As previously mentioned, one can also change the queue run time parameters from serial to parallel or vice versa.</p>
+<p>A.  1.  1.  ### Run Jobs in Queue with Various Options</p>
+<p>Selecting the Run Jobs button displays the Select Run Option dialog box shown in and .</p>
+<p>On the Select Run Dialog, the Run in No Simulation Mode option is equivalent to setting the <a href="#__RefHeading___Toc27585_2267116897">NOSIM</a> option in the input deck for all jobs in the queue (see section <a href="#5.2.32.NOSIM – Activates the No Simulation Mode for Data File Checking|outline">[5.3.96](#anchor-9)</a><a href="#5.2.32.NOSIM – Activates the No Simulation Mode for Data File Checking|outline"></a><a href="#5.2.32.NOSIM – Activates the No Simulation Mode for Data File Checking|outline">[NOSIM -- Activate the No Simulation Mode for Data File Checking](#anchor-9)</a> and the --enable-dry-run command line parameter in <a href="#anchor-10">Table 2.1</a> in section <a href="#2.2.Running OPM Flow From The Command Line |outline">2.2 Running OPM Flow From The Command Line</a>). This allows for checking all the jobs at once.</p>
+<p>Selecting Run in Standard Simulation Mode will run all the jobs in the queue sequentially, with the OPM Flow terminal output directed to OPM Flow Output Element, as shown in . The terminal output is also directed to a *.LOG file as well, similar to what the commercial simulator does.</p>
+<p>Clicking the OPM Run Log tab displays the OPMRUN's session log file that records the time and date of the major events that have occurred, including the start and end times of each run. Notice also how OPMRUN deletes all the existing output files for a given job, if they exists, before running OPM Flow. as well as creating a Schedule Log for tracking progress ().</p>
+<p>The Kill button will ask the user if the current running job should be killed, and if the job is to killed, the application will prompt as whether or not all the jobs in the queue should be killed.</p>
+<p>The <em>Clear </em>clears the OPM Flow Output Element from the currently displayed tab (<em>Output</em> or <em>Log</em>) and the<em> Copy</em> button copies the data to the clipboard.* *</p>
+<p>A.  1.  1.  ### Menu Options</p>
+<h4 id="file-menu-options">File Menu Options<a class="headerlink" href="#file-menu-options" title="Permanent link">&para;</a></h4>
+<p>Enables open and saving the job queue, switching projects and listing OPMRUN\'s user properties.</p>
+<h4 id="edit-menu-options">Edit Menu Options<a class="headerlink" href="#edit-menu-options" title="Permanent link">&para;</a></h4>
+<p>Lets one add jobs, add jobs recursively (all jobs in the selected directory and below), edit the data file () and the parameter file for the selected job,(see section <a href="#anchor-5">C.2.2</a> <a href="#anchor-5">Edit Job Data and Parameter File</a>) edit, list and set the default parameters for running jobs that will be added to the queue, set OPMRUN options, and set the project's project directories.</p>
+<p>The options are also available by right-clicking a job in the <strong>Job List Element</strong></p>
+<p>The Edit Parameters, List Parameters and Set Parameters relate to the default parameter set, not the parameter set for a particular job. When a new job is added to the queue the application checks if a *.PARAM file exists for the job, if not then the default parameter set is used for the job. Editing the default parameter set is the same as editing a job parameter set (see section <a href="#anchor-5">C.2.2</a> <a href="#anchor-5">Edit Job Data and Parameter File</a> for more information).</p>
+<p>One can also define the default parameter set by using the OPM Flow default values, which is the set created when OPMRUN is first initialized. In addition, one can load an existing parameter set from an existing *.PARAM file or from an OPM Flow *.PRT file ().</p>
+<p>OPMRUN has several configuration options that can be set via the Edit/Options menu option as illustrated in . These include setting:</p>
+<ul>
+<li>
+<p>The location of the OPM Flow manual.</p>
+</li>
+<li>
+<p>The Keyword Generator Template Directory, one of tools supplied with OPMRUN, see section <a href="#anchor-14">C.3.2</a> <a href="#anchor-14">OPMRUN Tools: Simulator Input/Keywords</a> for further information on this application.</p>
+</li>
+<li>
+<p>The location of the ResInsight program, for loading the results of a simulation run for viewing.</p>
+</li>
+<li>
+<p>The editor command to used to edit the input deck and view the resulting simulator output files.</p>
+</li>
+<li>
+<p>The terminal console to be be used for background jobs. WSL ("Windows Subsystem for Linux) should be selected if OPMRUN is running under Windows 10 to enable jobs to be submitted to the installed Linux distribution.</p>
+</li>
+<li>
+<p>The User Information series of fields are used by various supplied tools and in some templates used by the Keyword Generator application (see <a href="#anchor-14">C.3.2</a> <a href="#anchor-14">OPMRUN Tools: Simulator Input/Keywords</a> for more information on this application). Note if a User Information" field is not defined then the template variable will be output instead -- this can easily be deleted in the application.</p>
+</li>
+<li>
+<p>One can also define the main OPMRUN windows configuration parameters define: input (Job List Element) and output panel's (OPM Flow Output Element) size, font and font size.</p>
+</li>
+</ul>
+<p>In addition to the aforementioned options, the Edit/Projects menu item enables the setting of project directories that allows the user to set a default directory for loading and saving files within OPMRUN and the auxiliary applications ().</p>
+<h4 id="view-menu-options">View Menu Options.<a class="headerlink" href="#view-menu-options" title="Permanent link">&para;</a></h4>
+<p>Allows the user to view the results of an OPM Flow simulation run using the default editor. The options are also available by right-clicking a job in the <em>Job List Element</em>.</p>
+<h4 id="tools-menu-options">Tools Menu Options<a class="headerlink" href="#tools-menu-options" title="Permanent link">&para;</a></h4>
+<p>Contains various tool that may be useful in building a simulation model.</p>
+<p>See the section <a href="#anchor-17">C.3</a> <a href="#anchor-17">OPMRUN Tools </a> for further details on the available tools.</p>
+<p>Help Menu Options</p>
+<p>Use the Edit / Options menu option to select the location of the OPM Flow Manual.</p>
+<p>A.  1.  ## OPMRUN Tools</p>
+<div class="highlight"><pre><span></span><code>    1.  ### OPMRUN Tools: Job File Compression Utility for Saving Space and Archiving.
+</code></pre></div>
+<p>Simulation input and output files can be extremely large, especially for large full field models. Running multiple cases in these circumstances can easily use up all available disk space, especially if multiple users are running multiple cases. The Tools/Compression Jobs option allows the user to compress a series of jobs into individual zip files (one zip file per job), as well as uncompressing previously zip job files.</p>
+<p>Note there is a similar application for uncompressing zip files and that the tool uses the Linux zip and unzip programs both on Linux host systems and Windows 10 systems using WSL.</p>
+<p>A.  1.  1.  ### OPMRUN Tools: Simulator Input/Keywords</p>
+<p>The OPMRUN Keyword generator is an application that generates OPM Flow keywords that can be cut and pasted into any editor or saved to a separate file to form the basis of a new input deck (*.DATA files). The application utilizes templates based on the Apache Velocity Template Language ("VTL"), a commonly used template language used by software engineers. The templates can therefore also be used with any editor that supports VTL, jEdit for example, a popular open source Java based editor and PyCharm, a Python integrated development environment used in computer programming, specifically for the Python language.</p>
+<p>There is one template per keyword, with formatting of the keywords being the same as the OPM Flow manual. Currently there are over 450 templates implemented and the intention is for additional keywords to be added as the their usage is implemented within the simulator and documented within the manual. The application allows one to customize the existing templates as well as creating user defined templates by including the templates in the template directory and following the VTL language syntax. One still has to edit the resulting keywords to match the data require, but the structure and comments are provided by the application.</p>
+<p>The application is accessed via the Tool/Simulator Input/Keywords menu item and the tool can generate specific keywords, as well as complete sections ()</p>
+<p>The application consists of several elements, a conventional menu system at the top, a <em>Deck Element Area</em> that will contain the resulting generated keywords, a <em>Keyword Element Area</em> for the user to select the keyword, data, models or user templates, and finally a series of buttons, <em>HEADER</em>, <em>GLOBAL</em>, etc., that are used to select the keywords in a OPM Flow section, specific data sets, models or user defined templates. The selection will appear in the <em>Keyword Element Area</em>.</p>
+<p>Clicking on an item in the <em>Keyword Element Area</em> will generate the data for the item in the <em>Deck Element Area</em>, as shown below for the OPM Flow copyright header in .</p>
+<p>The <em>Deck Element </em>Area is editable by simply clicking anywhere in the element and making changes. Use the <em>Clear</em> button to clear the <em>Deck Element Area</em> display, the <em>Copy</em> button to copy the <em>Deck Element Area</em> data to the clipboard, and the <em>Save</em> button to save the data to a file. The <em>Load</em> button allows one to load an existing file into the <em>Deck Element Area</em> for additional editing.</p>
+<p>Note that the <em>HEADER</em> section is not an OPM Flow section, but a list of various comment block headers used to make the deck more readable.</p>
+<h4 id="keywords-menu-options">Keywords: Menu Options<a class="headerlink" href="#keywords-menu-options" title="Permanent link">&para;</a></h4>
+<p>The various menu options include the File Menu</p>
+<p>Where the <em>Open</em> and <em>Save</em> options load and save a file, and the <em>Properties </em>displays OPMRUN\'s properties.</p>
+<p>The Edit Menu provides some basic standard editing facilities</p>
+<p>Next, the Generate Menu options allows one to generate a complete section of keywords, as described below. These options are equivalent to selecting the equivalent section keyword (<a href="#__RefHeading___Toc55591_1778172979">RUNSPEC</a>, <a href="#__RefHeading___Toc38674_784232322">GRID</a>, etc.) in the <em>Keyword Element Area</em>.</p>
+<p>Finally, the Help Menu option display the Keyword Help information ():</p>
+<p>And the Velocity Template Help ().</p>
+<p>As mentioned previously, the tool uses the Apache Velocity Template Language (\"VTL\") for the templates, and therefore the templates can also be used directly with an editor, provided the editor supports VTL.</p>
+<h4 id="keywords-file-imports">Keywords: File Imports<a class="headerlink" href="#keywords-file-imports" title="Permanent link">&para;</a></h4>
+<p>If a keyword requires a file, for example, the <a href="#__RefHeading___Toc55749_2479612490">INCLUDE</a> and <a href="#__RefHeading___Toc309839_2843394514">LOAD</a> keywords, then a dialog box is presented to enable the file to be selected. The application will also allow one to select the file name format, after the file has been selected.</p>
+<p>Note that COMMENT template is not an actual keyword, but a comment block to make the deck more readable for the user.</p>
+<h4 id="keywords-section-standard-set-of-keywords">Keywords: Section Standard Set of Keywords<a class="headerlink" href="#keywords-section-standard-set-of-keywords" title="Permanent link">&para;</a></h4>
+<p>Selecting a Generate Menu option or a Section keyword (<a href="#__RefHeading___Toc55591_1778172979">RUNSPEC</a>, <a href="#__RefHeading___Toc38674_784232322">GRID</a>, <a href="#__RefHeading___Toc40641_784232322">EDIT</a>, <a href="#__RefHeading___Toc39329_784232322">PROPS</a>, <a href="#__RefHeading___Toc43947_784232322">SOLUTION</a>, <a href="#__RefHeading___Toc43949_784232322">SUMMARY</a>, and <a href="#__RefHeading___Toc43945_784232322">SCHEDULE</a>) in the <em>Keyword Element Area</em> will give an option to generate a representative set of keywords for that section, as per the <a href="#__RefHeading___Toc55591_1778172979">RUNSPEC</a> example in .</p>
+<p>One can therefore generate a complete input deck in a matter of minutes; however, you still have to edit the generated input deck with your actual data.</p>
+<h4 id="keywords-summary-section-variables">Keywords: SUMMARY Section Variables<a class="headerlink" href="#keywords-summary-section-variables" title="Permanent link">&para;</a></h4>
+<p>For the <a href="#__RefHeading___Toc43949_784232322">SUMMARY</a> section keyword, one can also generate various sets of summary variables based on the options being used in the model. Note that not all the variables are currently available in OPM Flow, but additional variables are added at each release.</p>
+<p>For <a href="#__RefHeading___Toc43949_784232322">SUMMARY</a> variables not recognized by OPM Flow, the simulator will issue a warning message and ignore those variables not implemented.</p>
+<h4 id="keywords-schedule-section-keywords-and-date-schedule">Keywords: SCHEDULE Section Keywords and Date Schedule<a class="headerlink" href="#keywords-schedule-section-keywords-and-date-schedule" title="Permanent link">&para;</a></h4>
+<p>For the <a href="#__RefHeading___Toc43945_784232322">SCHEDULE</a> Section keyword, one can also generate a representative set of <a href="#__RefHeading___Toc43945_784232322">SCHEDULE</a> keywords, plus a date schedule from a start year to an end year, using Annual, Quarterly, or Monthly time steps.</p>
+<p>This option also writes a standard report using the <a href="#__RefHeading___Toc268459_1366622701">RPTSCHED</a> keyword at the beginning of each year which is subsequently switch off for the intermediate Quarterly and Monthly time steps. A final report is written at the end of the run.</p>
+<h4 id="keywords-data-sets-option">Keywords: DATA (Sets) Option<a class="headerlink" href="#keywords-data-sets-option" title="Permanent link">&para;</a></h4>
+<p>There is also a <em>DATA</em> option which is not an OPM Flow section, but a series of data sets, as shown in .</p>
+<p>The data sets are complete examples for a given type of data used in OPM Flow, for example a PVT data set for a wet gas reservoir, or three phase relative permeability data set. The data sets are intended to be used as a guide for generating ones own keyword input, or for building models for testing.</p>
+<p>The intention is to expand the collection of data sets over time as more data becomes available.</p>
+<h4 id="keywords-model-option">Keywords: MODEL Option<a class="headerlink" href="#keywords-model-option" title="Permanent link">&para;</a></h4>
+<p>Like the DATA option, the MODEL option is not an OPM Flow section, but is instead a collection of working models, as illustrated in .</p>
+<p>The purpose of the models is to illustrate the functionality of various features implemented in OPM Flow and to act as guide for users in building their own models.</p>
+<p>Additional models will be added when available.</p>
+<h4 id="keywords-user-templates-option">Keywords: USER Templates Option<a class="headerlink" href="#keywords-user-templates-option" title="Permanent link">&para;</a></h4>
+<p>Finally, the <em>USER</em> option is where users can store their own templates. <em>USER </em>templates with the "vm" extension will automatically be listed by the <em>USER </em>button. To use this feature, after selecting a keyword, right clicking on the keyword allows one to load the actual template for the keyword. One can then edit the template and save the changes back to the same template or another template using the <em>Save</em> button.</p>
+<p>The Template Help option displays a brief introduction to VTL for further reference.</p>
+<p>A.  1.  1.  ### OPMRUN Tools: Simulator Input/Production Schedule</p>
+<p>The <em>Tools/Simulator Input/Production Schedule</em> application takes a comma delimited CSV file containing historical production and injection data and converts the data to an OPM Flow <a href="#__RefHeading___Toc43945_784232322">SCHEDULE</a> file using the <a href="#__RefHeading___Toc134880_2055188184">WCONHIST</a> series of keywords. An example input file is shown below:</p>
+<p>The first row in the input file is a header row that declares the data type for a column, the example shows typical Oil Field Manager ("OFM") header variable names, but various variable names can be used to define the data type.</p>
+<p>The tool can convert daily production data to a: daily production schedule, monthly average, or monthly on-stream average production schedule, as shown below:</p>
+<p>Notice that the application checks various variable names for the column headers. For example for the BHP data, the column names can be: bhp, bottom-hole pressure, BHP, or BOTTOM-HOLE <a href="#__RefHeading___Toc135627_1317547213">PRESSURE</a>.</p>
+<p>A sample of the generated output file is shown in .</p>
+<p>A.  1.  1.  ### OPMRUN Tools: Simulator Input/Sensitivities</p>
+<p>The <em>Tools/Simulator Input/Sensitivities</em> option generates sensitivity cases based on a \"Base\" case file. The Base file contains \"Factors\" (variable names), \$X01, \$X02, etc., that are substituted with user defined values using the data entered and the type of Sensitivity Scenario selected. Thus, the first step is to configure the Base file in a text editor by replacing actual values by the variable names, previously mentioned.</p>
+<p>After editing the Base file, the next step is to load the Base file into the application using the <em>Base</em> button, which will prompt the user for the file to load and then display the file in the <em>Base</em> tab, as shown in</p>
+<p>Limited editing of the <em>Base</em> file is supported on the above screen.</p>
+<p>The next step is to define the \"Factors\" and the factor values. A total of 20 factors are available and each factor consist of a Low, Best and High estimates. Note it is not necessary to enter all three estimates, if one wishes just to generate a limited sensitivity case. For example, if on wishes to only run a Low Scenario sensitivity then it is only necessary to enter data for the Low factor values.</p>
+<p>Previously saved factor data can be loaded via the <em>Load</em> button, as shown below:</p>
+<p>Selecting a Factor Description row allows one to define a description for the factor variable, so for \$X01 in the above figure the description is <a href="#__RefHeading___Toc38674_784232322">GRID</a> - <a href="#__RefHeading___Toc45791_719036256">PERMX</a>. When selecting a Factor Description, a popup dialog will be displayed to enter the data, and if one right-clicks on the popup\'s Factor Description field one can select a description for one of the pre-defined descriptions as illustrated in the next figure.</p>
+<p>After the Sensitivity Factors have been entered one can then select the Sensitivity Scenario that one wishes to use generate the sensitivity cases. In the example in figure the <em>Factorial: Low, Best and High Box-Behnken </em>DOE (Design of Experiments) has been selected. Selecting the <em>Generate</em> button, runs a series of checks, and if there are no errors the program will inquire if you wish to generate the set of cases ().</p>
+<p>If the Yes option is selected then the cases will be generated and the application will ask for the name of OPMRUN Queue file to write the jobs to, as depicted in</p>
+<p>This allows the user to load the queue file into OPMRUN and to run all the jobs.</p>
+<p>A.  1.  1.  ### OPMRUN Tools: Simulator Input/Well Specification</p>
+<p>This tool, <em>Tools/Simulator Input/Well Specification</em>, uses the standard well export files from OPM ResInsight to reformat the data in a more user-friendly manner for the <a href="#__RefHeading___Toc268463_1366622701">WELSPECS</a> and <a href="#__RefHeading___Toc97651_3261743917">COMPDAT</a> keywords. Optionally, the application can generate the <a href="#__RefHeading___Toc97655_3261743917">COMPLUMP</a> keyword based on the OPM ResInsight layers file, with one completion per defined reservoir layer.</p>
+<p>An example OPM ResInsight Exported Well Completion File Format(*.exp) is shown in</p>
+<p>And an OPM ResInsight Imported Formation Layer File (.Lyr) example is illustrated in</p>
+<p>The application also can generate a well a OPM ResInsight perforation file with the formation names for cross-checking the perforations.</p>
+<p>The application user interface is shown in . Note that in the <em>Output Header </em>options are used for comments only, no unit conversion is performed.</p>
+<p>In terms of output, the next figure shows the resulting well completion file to be used with OPM Flow, showing the <a href="#__RefHeading___Toc268463_1366622701">WELSPECS</a> and <a href="#__RefHeading___Toc97651_3261743917">COMPDAT</a> keywords (the <a href="#__RefHeading___Toc97655_3261743917">COMPLUMP</a> keyword is not shown in this example)</p>
+<p>The final figure for this tool shows the resulting generated OPM ResInsight perforation file.</p>
+<p>A.  1.  1.  ### OPMRUN Tools: ResInsight</p>
+<p>This option, <em>Tools/ResInsigh</em>t, loads the currently selected job into OPM ResInsight for viewing, this done via a Python sub-process call in OPMRUN, rather than using OPM ResInsight's Python <a href="#__RefHeading___Toc4422_421927891">API</a>.</p>
+<p>A.  1.  1.  ### OPMRUN Tools: Well Trajectory Conversion</p>
+<p>OPM ResInsight can read well trajectories in a given format into the program, the <em>Tools/Well Trajectory Conversion</em> option converts a Schlumberger Petrel exported well trajectory file, as shown , into a OPM ResInsight well trajectory file containing all the wells.</p>
+<p>The utility allows for the multiple wells to be converted at once and for conversion of units.</p>
+<p>Note in some areas of the world it is not uncommon for the areal units to be in UTM and the depth to be in feet. This configuration is also handled by the application.</p>
+<p>An example output file is shown in</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.top", "search.suggest", "search.highlight", "content.tabs.link"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

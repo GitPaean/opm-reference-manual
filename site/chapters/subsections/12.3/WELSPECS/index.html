@@ -1,0 +1,1276 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Reference manual for the OPM Flow reservoir simulator, covering all keywords, input-deck sections, and appendices.">
+      
+      
+        <meta name="author" content="OPM Project Contributors">
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>WELSPECS - OPM Flow Reference Manual</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="teal">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#welspecs-define-well-specifications" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../.." title="OPM Flow Reference Manual" class="md-header__button md-logo" aria-label="OPM Flow Reference Manual" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            OPM Flow Reference Manual
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              WELSPECS
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="teal"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue-grey" data-md-color-accent="teal"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../1/" class="md-tabs__link">
+          
+  
+  
+  Chapters
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../appendices/A/" class="md-tabs__link">
+          
+  
+  
+  Appendices
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="OPM Flow Reference Manual" class="md-nav__button md-logo" aria-label="OPM Flow Reference Manual" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    OPM Flow Reference Manual
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapters
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Chapters
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1  – Introduction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2  – Tutorial
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3  – File Formats
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4  – Run-Time Options
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5  – RUNSPEC Section
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6  – GRID Section
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7  – EDIT Section
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    8  – PROPS Section
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../9/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    9  – REGIONS Section
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10 – SOLUTION Section
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    11 – SUMMARY Section
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../12/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    12 – SCHEDULE Section
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Appendices
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Appendices
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../appendices/A/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../appendices/B/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    B
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../appendices/C/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../appendices/D/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    D
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../appendices/E/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    E
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../appendices/F/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    F
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#welspecs-define-well-specifications" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        WELSPECS -- Define Well Specifications
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="WELSPECS -- Define Well Specifications">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#description" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Description
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+  <h1>WELSPECS</h1>
+
+<p><a id="__RefHeading___Toc268463_1366622701"></a></p>
+<h3 id="welspecs-define-well-specifications">WELSPECS -- Define Well Specifications<a class="headerlink" href="#welspecs-define-well-specifications" title="Permanent link">&para;</a></h3>
+<p>+-----------------------------------------+-----------------------------------+-----------------------------------+-------------------------------------+-----------------------------------------+-------------------------------------------+-----------------------------------------+--------------------------------------------+
+| &gt; <a href="#3.RUNSPEC SECTION|outline">RUNSPEC</a> | &gt; <a href="#4.GRID SECTION|outline">GRID</a> | &gt; <a href="#5.EDIT SECTION|outline">EDIT</a> | &gt; <a href="#6.PROPS SECTION|outline">PROPS</a> | &gt; <a href="#7.REGIONS SECTION|outline">REGIONS</a> | &gt; <a href="#8.SOLUTION SECTION|outline">SOLUTION</a> | &gt; <a href="#9.SUMMARY SECTION|outline">SUMMARY</a> | &gt; <a href="#10.SCHEDULE SECTION|outline">SCHEDULE</a> |
++-----------------------------------------+-----------------------------------+-----------------------------------+-------------------------------------+-----------------------------------------+-------------------------------------------+-----------------------------------------+--------------------------------------------+</p>
+<h4 id="description">Description<a class="headerlink" href="#description" title="Permanent link">&para;</a></h4>
+<p>The <a href="#__RefHeading___Toc268463_1366622701">WELSPECS</a> keyword defines the general well specification data for all well types, and must be used for all wells before any other well specification keywords are used in the input file. The keyword declares the well, the name of the well, the group the well initial belongs to, the wellhead location and other key parameters.</p>
+<p>OPM Flow also supports the use of the <a href="#__RefHeading___Toc268463_1366622701">WELSPECS</a> keyword to change the properties of one or more wells previously specified using the <a href="#__RefHeading___Toc268463_1366622701">WELSPECS</a> keyword. In particular, this supports changing the controlling group (GRPNAME) without affecting any other well properties such as the location of the well head (I, J) or the well reference depth (BHPREF), since defaulted properties are not changed in this case. However, the well reference depth can be re-defaulted by specifying a negative value for BHPREF. The wells to be changed can be specified using a well name, well name pattern or well list (WELNAME).</p>
+<p>+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------+
+| &gt; 1                                                                                                                                                                                                                                                                                                         | &gt; WELNAME                                       | &gt; A character string of up to eight characters in length that defines the well name for which the well specification data are being defined.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                | &gt; None                                                                                                     |
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------+
+| &gt; 2                                                                                                                                                                                                                                                                                                         | &gt; GRPNAME                                       | &gt; A character string of up to eight characters in length that defines the group name for which the well is assigned to.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     | &gt; None                                                                                                     |
+|                                                                                                                                                                                                                                                                                                             |                                                 |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |                                                                                                            |
+|                                                                                                                                                                                                                                                                                                             |                                                 | &gt; The group named FIELD is the top most group. GRPNAME can be set to FIELD although this is discouraged and a warning message will be issued. This is allowed in the commercial compositional simulator but not the commercial black-oil simulator. The FIELD group cannot contain both groups and wells.                                                                                                                                                                                                                                                                                                                   |                                                                                                            |
+|                                                                                                                                                                                                                                                                                                             |                                                 |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |                                                                                                            |
+|                                                                                                                                                                                                                                                                                                             |                                                 | &gt; Note that the group hierarchy should be defined by the <a href="#__RefHeading___Toc118321_1596574740">GRUPTREE</a> keyword when there is more than one level of groups, otherwise all the groups will sit directly under the FIELD group in the group tree hierarchy.                                                                                                                                                                                                                                                                                                                                                                |                                                                                                            |
+|                                                                                                                                                                                                                                                                                                             |                                                 |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |                                                                                                            |
+|                                                                                                                                                                                                                                                                                                             |                                                 | &gt; Secondly, groups defined by the <a href="#__RefHeading___Toc118321_1596574740">GRUPTREE</a> keyword cannot contain other groups and wells; that is, groups must either contain other groups or wells but not both.                                                                                                                                                                                                                                                                                                                                                                                                                   |                                                                                                            |
+|                                                                                                                                                                                                                                                                                                             |                                                 |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |                                                                                                            |
+|                                                                                                                                                                                                                                                                                                             |                                                 | &gt; If necessary, wells can be re-allocated to a different group by re-entering a well\'s <a href="#__RefHeading___Toc268463_1366622701">WELSPECS</a> data together with a new value for GRPNAME.                                                                                                                                                                                                                                                                                                                                                                                                                                        |                                                                                                            |
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------+
+| &gt; 3                                                                                                                                                                                                                                                                                                         | &gt; I                                             | &gt; A positive integer greater than or equal to zero and less than or equal to NX that defines the wellhead location for a vertical or deviated well, or the heel for a horizontal well in the I-direction.                                                                                                                                                                                                                                                                                                                                                                                                                   | &gt; None                                                                                                     |
+|                                                                                                                                                                                                                                                                                                             |                                                 |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |                                                                                                            |
+|                                                                                                                                                                                                                                                                                                             |                                                 | &gt; For wells being specified with the <a href="#__RefHeading___Toc97651_32617439171">COMPTRAJ</a> and <a href="#__RefHeading___Toc268463_13666227011">WELTRAJ</a> keywords in <a href="#__RefHeading___Toc43945_784232322">SCHEDULE</a> section, that allow for an alternative manner to define the well connections to the simulation grid blocks, this parameter should be defaulted with 1*. Since the simulator will calculate the wellhead location from the trajectory data on the <a href="#__RefHeading___Toc268463_13666227011">WELTRAJ</a> keyword.                                                                                                           |                                                                                                            |
+|                                                                                                                                                                                                                                                                                                             |                                                 |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |                                                                                                            |
+|                                                                                                                                                                                                                                                                                                             |                                                 | &gt; Note that the <a href="#__RefHeading___Toc97651_32617439171">COMPTRAJ</a> and <a href="#__RefHeading___Toc268463_13666227011">WELTRAJ</a> keywords are OPM Flow specific keywords, and will cause an error in the commercial simulator.                                                                                                                                                                                                                                                                                                                                                                                                         |                                                                                                            |
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------+
+| &gt; 4                                                                                                                                                                                                                                                                                                         | &gt; J                                             | &gt; A positive integer greater than or equal to zero and less than or equal to NY that defines the wellhead location for a vertical or deviated well, or the heel for a horizontal well in the J-direction.                                                                                                                                                                                                                                                                                                                                                                                                                   | &gt; None                                                                                                     |
+|                                                                                                                                                                                                                                                                                                             |                                                 |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |                                                                                                            |
+|                                                                                                                                                                                                                                                                                                             |                                                 | &gt; For wells being specified with the <a href="#__RefHeading___Toc97651_32617439171">COMPTRAJ</a> and <a href="#__RefHeading___Toc268463_13666227011">WELTRAJ</a> keywords in <a href="#__RefHeading___Toc43945_784232322">SCHEDULE</a> section, that allows for an alternative manner to define the well connections to the simulation grid blocks, this parameter should be defaulted with 1*. Since the simulator will calculate the wellhead location from the trajectory data on the <a href="#__RefHeading___Toc268463_13666227011">WELTRAJ</a> keyword.                                                                                                          |                                                                                                            |
+|                                                                                                                                                                                                                                                                                                             |                                                 |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |                                                                                                            |
+|                                                                                                                                                                                                                                                                                                             |                                                 | &gt; Note that the <a href="#__RefHeading___Toc97651_32617439171">COMPTRAJ</a> and <a href="#__RefHeading___Toc268463_13666227011">WELTRAJ</a> keywords are OPM Flow specific keywords, and will cause an error in the commercial simulator.                                                                                                                                                                                                                                                                                                                                                                                                         |                                                                                                            |
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------+
+| &gt; 5                                                                                                                                                                                                                                                                                                         | &gt; BHPREF                                        | &gt; A real value that defines the reference depth for reporting the bottom-hole pressure for the well. Ideally this value should be set to the midpoint of the perforations as defined by the <a href="#__RefHeading___Toc97651_3261743917">COMPDAT</a> keyword in the <a href="#__RefHeading___Toc43945_784232322">SCHEDULE</a> section.                                                                                                                                                                                                                                                                                                           | &gt; Mid-point of shallowest connection defined by the <a href="#__RefHeading___Toc97651_3261743917">COMPDAT</a> keyword |
+|                                                                                                                                                                                                                                                                                                             |                                                 |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |                                                                                                            |
+|                                                                                                                                                                                                                                                                                                             |                                                 | &gt; If defaulted by 1* or set to a value less than or equal to zero, then the mid-point of shallowest connection defined by the <a href="#__RefHeading___Toc97651_3261743917">COMPDAT</a> keyword will be used.                                                                                                                                                                                                                                                                                                                                                                                                                         |                                                                                                            |
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------+
+| &gt; feet                                                                                                                                                                                                                                                                                                      | &gt; m                                             | &gt; cm                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |                                                                                                            |
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------+
+| &gt; 6                                                                                                                                                                                                                                                                                                         | &gt; TYPE                                          | &gt; A defined character string that defines the "main" phase for the well, and should be set to one of the following character strings:                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       | &gt; None                                                                                                     |
+|                                                                                                                                                                                                                                                                                                             |                                                 |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |                                                                                                            |
+|                                                                                                                                                                                                                                                                                                             |                                                 | 1)  GAS: for a gas well.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |                                                                                                            |
+|                                                                                                                                                                                                                                                                                                             |                                                 |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |                                                                                                            |
+|                                                                                                                                                                                                                                                                                                             |                                                 | 2)  OIL: for an oil well.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |                                                                                                            |
+|                                                                                                                                                                                                                                                                                                             |                                                 |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |                                                                                                            |
+|                                                                                                                                                                                                                                                                                                             |                                                 | 3)  WAT: for a water injection well.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |                                                                                                            |
+|                                                                                                                                                                                                                                                                                                             |                                                 |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |                                                                                                            |
+|                                                                                                                                                                                                                                                                                                             |                                                 | 4)  LIQ: for an oil well when the liquid productivity index is required for the well.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |                                                                                                            |
+|                                                                                                                                                                                                                                                                                                             |                                                 |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |                                                                                                            |
+|                                                                                                                                                                                                                                                                                                             |                                                 | &gt; This parameter defines the phase used to calculate a well's productivity or injectivity index and the type of well, or a well's connection, to close when a group's production constraints, as defined on the <a href="#__RefHeading___Toc146746_4203985108">GCONPROD</a> keyword in the <a href="#__RefHeading___Toc43945_784232322">SCHEDULE</a> section, have been violated. For example, if the well is declared as an oil well, then excessive gas and water connections will be subject to closure.                                                                                                                                       |                                                                                                            |
+|                                                                                                                                                                                                                                                                                                             |                                                 |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |                                                                                                            |
+|                                                                                                                                                                                                                                                                                                             |                                                 | &gt; Note OPM Flow only currently supports options one to three, that is option four (LIQ) is not supported. For producing wells this mostly matters if one plots the WPI summary vector (productivity index for well\'s preferred phase). In the current treatment WPI will not have contributions from the water phase if the declared preferred phase is LIQ. For injecting wells WELSPECS\'s preferred phase does not matter, since the preferred phase is (typically) reset to the injected phase via the <a href="#__RefHeading___Toc146750_4203985108">WCONINJE</a> and <a href="#__RefHeading___Toc146752_4203985108">WCONINJH</a> keywords. |                                                                                                            |
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------+
+| &gt; 7                                                                                                                                                                                                                                                                                                         | &gt; DRADIUS                                       | &gt; A real value that defines the well drainage radius for the well used to calculate a well's productivity or injectivity index.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             | &gt; 0.0                                                                                                      |
+|                                                                                                                                                                                                                                                                                                             |                                                 |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |                                                                                                            |
+|                                                                                                                                                                                                                                                                                                             |                                                 | &gt; A default of zero results in the pressure equivalent radius of the grid blocks containing the well connections are used.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |                                                                                                            |
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------+
+| &gt; feet                                                                                                                                                                                                                                                                                                      | &gt; m                                             | &gt; cm                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |                                                                                                            |
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------+
+| &gt; 8                                                                                                                                                                                                                                                                                                         | &gt; INFLOW                                        | &gt; A defined character string that defines the inflow equation to be used for the well in calculating the well's flow rates. INFLOW should be set to one of the following character strings:                                                                                                                                                                                                                                                                                                                                                                                                                                 | &gt; STD                                                                                                      |
+|                                                                                                                                                                                                                                                                                                             |                                                 |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |                                                                                                            |
+|                                                                                                                                                                                                                                                                                                             |                                                 | 1)  STD: the standard inflow equation will be used. This is normally used for wells that are primary oil or water wells.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |                                                                                                            |
+|                                                                                                                                                                                                                                                                                                             |                                                 |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |                                                                                                            |
+|                                                                                                                                                                                                                                                                                                             |                                                 | 2)  NO: an alias for STD.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |                                                                                                            |
+|                                                                                                                                                                                                                                                                                                             |                                                 |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |                                                                                                            |
+|                                                                                                                                                                                                                                                                                                             |                                                 | 3)  R-G: the Russell Goodrich<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup> pressure square inflow equation will used. This option can be used for dry gas wells.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |                                                                                                            |
+|                                                                                                                                                                                                                                                                                                             |                                                 |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |                                                                                                            |
+|                                                                                                                                                                                                                                                                                                             |                                                 | 4)  YES: an alias for R-G.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |                                                                                                            |
+|                                                                                                                                                                                                                                                                                                             |                                                 |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |                                                                                                            |
+|                                                                                                                                                                                                                                                                                                             |                                                 | 5)  P-P: the general dry gas pseudo pressure inflow equation will be used. Normally used for dry gas wells.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |                                                                                                            |
+|                                                                                                                                                                                                                                                                                                             |                                                 |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |                                                                                                            |
+|                                                                                                                                                                                                                                                                                                             |                                                 | 6)  GPP: the generalized gas pseudo pressure inflow equation used with wet gas wells, that is condensate gas wells. This inflow equation is based on the formulation of Whitson et al.<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup>                                                                                                                                                                                                                                                                                                                                                                                                                                  |                                                                                                            |
+|                                                                                                                                                                                                                                                                                                             |                                                 |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |                                                                                                            |
+|                                                                                                                                                                                                                                                                                                             |                                                 | &gt; For oil and water wells the INFLOW should be set to STD, whereas for dry gas wells INFLOW can be set to either R-G or P-P; however, the P-P option is preferred for dry gas wells due to the more rigorous treatment of gas flow. For wet gas wells, that is gas condensate wells, INFLOW should be set to GPP.                                                                                                                                                                                                                                                                                                           |                                                                                                            |
+|                                                                                                                                                                                                                                                                                                             |                                                 |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |                                                                                                            |
+|                                                                                                                                                                                                                                                                                                             |                                                 | &gt; Only INFLOW equal to STD and NO are currently implemented in OPM Flow.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |                                                                                                            |
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------+
+| &gt; 9                                                                                                                                                                                                                                                                                                         | &gt; AUTO                                          | &gt; A defined character string that specifies the action to be taken if the well is automatically closed/shut by the simulator, and should be set to one of the following:                                                                                                                                                                                                                                                                                                                                                                                                                                                    | &gt; SHUT                                                                                                     |
+|                                                                                                                                                                                                                                                                                                             |                                                 |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |                                                                                                            |
+|                                                                                                                                                                                                                                                                                                             |                                                 | 1)  STOP: the well is "stopped" at the surface and will not produce any fluids to surface; however, if there any open connections then flow may occur within the wellbore and between the open connections depending on a connection's potential with respect to all the other connections. Inter-connection flow (cross flow) can be prevented by setting the XFLOW variable to NO. In this case the well's behavior will be similar to the SHUT option described below.                                                                                                                                                   |                                                                                                            |
+|                                                                                                                                                                                                                                                                                                             |                                                 |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |                                                                                                            |
+|                                                                                                                                                                                                                                                                                                             |                                                 | 2)  SHUT: the well is shut at the surface and downhole, this results in no flow at the surface and no cross flow downhole.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |                                                                                                            |
+|                                                                                                                                                                                                                                                                                                             |                                                 |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |                                                                                                            |
+|                                                                                                                                                                                                                                                                                                             |                                                 | &gt; The corrective action takes places at the end of the time step in which the constraint is violated.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |                                                                                                            |
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------+
+| &gt; 10                                                                                                                                                                                                                                                                                                        | &gt; XFLOW                                         | &gt; A defined character string that defines the if cross flow should occur within the wellbore, and should be set to either:                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  | &gt; YES                                                                                                      |
+|                                                                                                                                                                                                                                                                                                             |                                                 |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |                                                                                                            |
+|                                                                                                                                                                                                                                                                                                             |                                                 | 1)  YES: to allow cross flow in the wellbore through well connections.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |                                                                                                            |
+|                                                                                                                                                                                                                                                                                                             |                                                 |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |                                                                                                            |
+|                                                                                                                                                                                                                                                                                                             |                                                 | 2)  NO: to disallow cross flow within the wellbore, even if the flow potentials in the well connections would allow such flow to occur.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |                                                                                                            |
+|                                                                                                                                                                                                                                                                                                             |                                                 |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |                                                                                                            |
+|                                                                                                                                                                                                                                                                                                             |                                                 | &gt; In some cases numerical issues can occur if this variable is set to YES, and resetting it to NO may resolve the issue; however, the results may not represent the physical down hole process in this case.                                                                                                                                                                                                                                                                                                                                                                                                                |                                                                                                            |
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------+
+| &gt; 11                                                                                                                                                                                                                                                                                                        | &gt; <a href="#__RefHeading___Toc68366_2752266063">PVTNUM</a> | &gt; A positive integer greater than or equal to zero that defines the PVT table used to calculate the wellbore fluid properties that define the relationship between reservoir and surface volume rates.                                                                                                                                                                                                                                                                                                                                                                                                                      | &gt; 0                                                                                                        |
+|                                                                                                                                                                                                                                                                                                             |                                                 |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |                                                                                                            |
+|                                                                                                                                                                                                                                                                                                             |                                                 | &gt; The default value of zero sets <a href="#__RefHeading___Toc68366_2752266063">PVTNUM</a> to be the PVT table of the deepest connection in the well.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |                                                                                                            |
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------+
+| &gt; 12                                                                                                                                                                                                                                                                                                        | &gt; DENOPT                                        | &gt; A defined character string that sets the type of density calculation used in calculating the wellbore hydrostatic head, and should be set to one of the following character strings:                                                                                                                                                                                                                                                                                                                                                                                                                                      | &gt; SEG                                                                                                      |
+|                                                                                                                                                                                                                                                                                                             |                                                 |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |                                                                                                            |
+|                                                                                                                                                                                                                                                                                                             |                                                 | 1)  SEG: sets the hydrostatic head density calculation to segmented. In this cases the density is calculated between neighboring well connections and the volumes flowing from the connections. This is the more accurate calculation if the fluid properties flowing from the well connections are variable. The density calculation itself is explicit, i.e. uses the flowing volumes of the last time step.                                                                                                                                                                                                              |                                                                                                            |
+|                                                                                                                                                                                                                                                                                                             |                                                 |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |                                                                                                            |
+|                                                                                                                                                                                                                                                                                                             |                                                 | 2)  AVG: sets the hydrostatic head density calculation to the average density calculation. Here the density is considered uniform across a given reservoir and is dependent on total inflow rates of each phase and the well's bottom-hole pressure                                                                                                                                                                                                                                                                                                                                                                         |                                                                                                            |
+|                                                                                                                                                                                                                                                                                                             |                                                 |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |                                                                                                            |
+|                                                                                                                                                                                                                                                                                                             |                                                 | &gt; The default option of 1* invokes the SEG option and is the only option implemented in OPM Flow.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |                                                                                                            |
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------+
+| &gt; 13                                                                                                                                                                                                                                                                                                        | &gt; <a href="#__RefHeading___Toc77229_2752266063">FIPNUM</a> | &gt; An integer value defines the <a href="#__RefHeading___Toc77229_2752266063">FIPNUM</a> region used to determine the reservoir conditions in calculating the well's reservoir volumes and is determined by:                                                                                                                                                                                                                                                                                                                                                                                                                            | &gt; 0                                                                                                        |
+|                                                                                                                                                                                                                                                                                                             |                                                 |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |                                                                                                            |
+|                                                                                                                                                                                                                                                                                                             |                                                 | 1)  If set to a negative integer value then the <a href="#__RefHeading___Toc77229_2752266063">FIPNUM</a> region of the deepest connection in the well will be used.                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |                                                                                                            |
+|                                                                                                                                                                                                                                                                                                             |                                                 |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |                                                                                                            |
+|                                                                                                                                                                                                                                                                                                             |                                                 | 2)  If set to zero, the default value, then the average properties for the field will be used.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |                                                                                                            |
+|                                                                                                                                                                                                                                                                                                             |                                                 |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |                                                                                                            |
+|                                                                                                                                                                                                                                                                                                             |                                                 | 3)  If set to an integer value greater than zero, then the <a href="#__RefHeading___Toc77229_2752266063">FIPNUM</a> indicated by this value will be used.                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |                                                                                                            |
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------+
+| &gt; 14                                                                                                                                                                                                                                                                                                        | &gt; STRMLIN1                                      | &gt; Not used and should be defaulted with 1*.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                | &gt; 1*                                                                                                      |
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------+
+| &gt; 15                                                                                                                                                                                                                                                                                                        | &gt; STRMLIN2                                      | &gt; Not used and should be defaulted with 1*.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                | &gt; 1*                                                                                                      |
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------+
+| &gt; 16                                                                                                                                                                                                                                                                                                        | &gt; TYPECOMP                                      | &gt; Commercial compositional simulator well type model option that is not used and should be defaulted with either STD or 1*.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                | &gt; STD                                                                                                      |
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------+
+| &gt; 17                                                                                                                                                                                                                                                                                                        | &gt; POLYTAB                                       | &gt; A positive integer greater than or equal to zero that defines the polymer mixing table, as defined by the <a href="#__RefHeading___Toc93833_3812137098">PLMIXPAR</a> and <a href="#__RefHeading___Toc110214_2939291539">PLYMAX</a> keywords, to be used in calculating the well's well bore properties. The default value of zero means the table allocated via the <a href="#__RefHeading___Toc107258_3812137098">PLMIXNUM</a> array for the deepest connection in the well bore is utilized.                                                                                                                                                             | &gt; 0                                                                                                        |
+|                                                                                                                                                                                                                                                                                                             |                                                 |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |                                                                                                            |
+|                                                                                                                                                                                                                                                                                                             |                                                 | &gt; Only the default value of zero is supported by OPM Flow.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |                                                                                                            |
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------+
+| &gt; Notes:                                                                                                                                                                                                                                                                                                    |                                                 |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |                                                                                                            |
+|                                                                                                                                                                                                                                                                                                             |                                                 |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |                                                                                                            |
+| 1)  The keyword is followed by any number records with each record terminated by a "/" and the keyword should be terminated by a "/".                                                                                                                                                                       |                                                 |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |                                                                                                            |
+|                                                                                                                                                                                                                                                                                                             |                                                 |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |                                                                                                            |
+| 2)  Note that the total number of individual wells declared by the <a href="#__RefHeading___Toc268463_1366622701">WELSPECS</a> cannot exceed the valued entered via the MXWELS variable on the <a href="#__RefHeading___Toc82886_327352552">WELLDIMS</a> keyword in the <a href="#__RefHeading___Toc55591_1778172979">RUNSPEC</a> section.   |                                                 |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |                                                                                                            |
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------+</p>
+<p>Table 12.3.281.1: WELSPECS Keyword Description</p>
+<p>See also the <a href="#__RefHeading___Toc97651_3261743917">COMPDAT</a> keyword to define a well's connections, the <a href="#__RefHeading___Toc146754_4203985108">WCONPROD</a> and <a href="#__RefHeading___Toc146750_4203985108">WCONINJE</a> keywords to define a well's production and injection targets and constraints. All the aforementioned keywords are described in the <a href="#__RefHeading___Toc43945_784232322">SCHEDULE</a> section.</p>
+<h4 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h4>
+<p>The following example defines three wells using the <a href="#__RefHeading___Toc268463_1366622701">WELSPECS</a> keyword</p>
+<p>--</p>
+<p>-- WELL SPECIFICATION DATA</p>
+<p>--</p>
+<p>-- WELL GROUP LOCATION BHP PHASE DRAIN INFLOW OPEN CROSS PVT</p>
+<p>-- NAME NAME I J DEPTH FLUID AREA EQUANS SHUT FLOW TABLE</p>
+<p>WELSPECS</p>
+<p>GI01 PLATFORM 14 13 1* GAS 1* P-P SHUT NO 1* /</p>
+<p>GP01 PLATFORM 64 80 1* GAS 1* GPP SHUT NO 1* /</p>
+<p>OP01 PLATFORM 24 110 1* OIL 1* STD SHUT NO 1* /</p>
+<p>/</p>
+<p>Here, well GI01 is a dry gas injection well that uses the dry gas pseudo inflow equation, GP01 is a gas condensate well that uses the generalized gas pseudo pressure inflow equation, and finally, OP01 is an oil well that uses the standard inflow equation. All wells will be shut if they are required to cease production, all wells disallow cross flow, and the hydrostatic head calculation is defaulted to the segment option for all wells.</p>
+<p>If the same three wells are using the <a href="#__RefHeading___Toc97651_32617439171">COMPTRAJ</a> and <a href="#__RefHeading___Toc268463_13666227011">WELTRAJ</a> keywords to specify the connections to the simulation grid, then the <a href="#__RefHeading___Toc268463_1366622701">WELSPECS</a> keyword should be;</p>
+<p>--</p>
+<p>-- WELL SPECIFICATION DATA</p>
+<p>--</p>
+<p>-- WELL GROUP LOCATION BHP PHASE DRAIN INFLOW OPEN CROSS PVT</p>
+<p>-- NAME NAME I J DEPTH FLUID AREA EQUANS SHUT FLOW TABLE</p>
+<p>WELSPECS</p>
+<p>GI01 PLATFORM 1* 1* 1* GAS 1* P-P SHUT NO 1* /</p>
+<p>GP01 PLATFORM 1* 1* 1* GAS 1* GPP SHUT NO 1* /</p>
+<p>OP01 PLATFORM 1* 1* 1* OIL 1* STD SHUT NO 1* /</p>
+<p>/</p>
+<p>Notice how the well location parameters have been defaulted with 1* in this case.</p>
+<p>The following example illustrates how the <a href="#__RefHeading___Toc268463_1366622701">WELSPECS</a> keyword can be used to change the controlling group for oil production wells previously specified by the <a href="#__RefHeading___Toc268463_1366622701">WELSPECS</a> keyword that have an oil production rate less than 100.</p>
+<p>--</p>
+<p>-- ACTIONX BLOCK</p>
+<p>--</p>
+<p>ACTIONX</p>
+<p>ACT01 1 /</p>
+<p>WOPR \'OP*\' \&lt; 100.0 /</p>
+<p>/</p>
+<p>WELSPECS</p>
+<p>\'?\' \'LOWPRESS\' /</p>
+<p>/</p>
+<p>ENDACTIO</p>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p>Russell, D.G., Goodrich, J.H., Perry, G.E and Bruskotter, J.F \"Methods of Predicting Gas Well Performance\", Transactions of the ASME, Journal of Petroleum Technology (1966) 99-108.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:2">
+<p>Whitson, C. H. and Fevang, Ø. "Generalised Pseudopressure Well Treatment in Reservoir Simulation," Presented at the IBC Technical Services Conference on Optimisation of Gas Condensate Fields, Aberdeen, UK (June 26-27, 1997).&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.top", "search.suggest", "search.highlight", "content.tabs.link"], "search": "../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,1441 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Reference manual for the OPM Flow reservoir simulator, covering all keywords, input-deck sections, and appendices.">
+      
+      
+        <meta name="author" content="OPM Project Contributors">
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>2 - OPM Flow Reference Manual</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="teal">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#data-requirements" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../.." title="OPM Flow Reference Manual" class="md-header__button md-logo" aria-label="OPM Flow Reference Manual" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            OPM Flow Reference Manual
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              2
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="teal"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue-grey" data-md-color-accent="teal"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../1/" class="md-tabs__link">
+          
+  
+  
+  Chapters
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../appendices/A/" class="md-tabs__link">
+          
+  
+  
+  Appendices
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="OPM Flow Reference Manual" class="md-nav__button md-logo" aria-label="OPM Flow Reference Manual" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    OPM Flow Reference Manual
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapters
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Chapters
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1  – Introduction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2  – Tutorial
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3  – File Formats
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4  – Run-Time Options
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5  – RUNSPEC Section
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6  – GRID Section
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7  – EDIT Section
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    8  – PROPS Section
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../9/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    9  – REGIONS Section
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10 – SOLUTION Section
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    11 – SUMMARY Section
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../12/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    12 – SCHEDULE Section
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Appendices
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Appendices
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../appendices/A/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../appendices/B/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    B
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../appendices/C/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../appendices/D/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    D
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../appendices/E/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    E
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../appendices/F/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    F
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#data-requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data Requirements
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Data Requirements">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cartesian-regular-grids" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cartesian Regular Grids
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#irregular-corner-point-grids" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Irregular Corner-Point Grids
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#radial-grids" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Radial Grids
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#spider-grids" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Spider Grids
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rock-properties" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rock Properties
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+  <h1>2</h1>
+
+<h2 id="data-requirements">Data Requirements<a class="headerlink" href="#data-requirements" title="Permanent link">&para;</a></h2>
+<h3 id="cartesian-regular-grids">Cartesian Regular Grids<a class="headerlink" href="#cartesian-regular-grids" title="Permanent link">&para;</a></h3>
+<p>This type of grid defines a regular orthogonal grid based on defining the sizes of all the cells in the x, y, and z directions and is normally employed when a complex structural model is not required. shows the SPE Comparative Solution Project Number 1 ("SPE-CSP01") as documented by Odeh<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>.</p>
+<p>The model consists of a simple 10 x 10 x 3 (NX, NY, NZ) grid and is defined using the following <a href="#__RefHeading___Toc38674_784232322">GRID</a> section keywords to define the grid geometry:</p>
+<p>-- ==============================================================================</p>
+<p>--</p>
+<p>-- GRID SECTION</p>
+<p>--</p>
+<p>-- ==============================================================================</p>
+<p>GRID</p>
+<p>--</p>
+<p>-- DEFINE GRID BLOCK SIZES IN THE X DIRECTION BASED ON NX x NY x NZ = 300)</p>
+<p>-- (There Are In Total 300 Cells With Length 1000ft In X-Direction)</p>
+<p>DX</p>
+<p>300*1000 /</p>
+<p>--</p>
+<p>-- DEFINE GRID BLOCK SIZES IN THE Y DIRECTION (BASED ON NX x NY x NZ = 300)</p>
+<p>-- (There Are In Total 300 Cells With Length 1000ft In Y-Direction)</p>
+<p>DY</p>
+<p>300*1000 /</p>
+<p>--</p>
+<p>-- DEFINE GRID BLOCK SIZES IN THE Z DIRECTION (BASED ON NX x NY x NZ = 300)</p>
+<p>--</p>
+<p>DZ</p>
+<p>100*20.0 100*30.0 100*50.0 /</p>
+<p>--</p>
+<p>-- DEFINE GRID BLOCK TOPS FOR THE TOP LAYER (BASED ON NX = 100, NY = 100)</p>
+<p>-- (Layer 2 and 3 TOPS Calculated by Simulator)</p>
+<p>TOPS</p>
+<p>25*3100 25*3105 25*3110 /</p>
+<p>The rock property data required to complete the <a href="#__RefHeading___Toc38674_784232322">GRID</a> section is as follows:</p>
+<p>--</p>
+<p>-- DEFINE POROSITY DATA FOR ALL CELLS (BASED ON NX x NY x NZ = 300)</p>
+<p>--</p>
+<p>PORO</p>
+<p>300*0.300 /</p>
+<p>--</p>
+<p>-- DEFINE PERMY DATA FOR ALL CELLS (BASED ON NX x NY x NZ = 300)</p>
+<p>--</p>
+<p>PERMX</p>
+<p>100*500.0 100*50.0 100*200.0 / --</p>
+<p>-- DEFINE PERMY DATA FOR ALL CELLS (BASED ON NX x NY x NZ = 300)</p>
+<p>--</p>
+<p>PERMY</p>
+<p>100*500.0 100*50.0 100*200.0 /</p>
+<p>--</p>
+<p>-- DEFINE PERMZ DATA FOR ALL CELLS (BASED ON NX x NY x NZ = 300)</p>
+<p>-- (Not Defined in Original Paper So Assume That PERMX = PERMY = PERMZ)</p>
+<p>PERMZ</p>
+<p>100*500.0 100*50.0 100*200.0 /</p>
+<p>The above keywords define all the properties required for the <a href="#__RefHeading___Toc38674_784232322">GRID</a> section for this type of grid geometry.</p>
+<h3 id="irregular-corner-point-grids">Irregular Corner-Point Grids<a class="headerlink" href="#irregular-corner-point-grids" title="Permanent link">&para;</a></h3>
+<p>This type of grid is an industry standard grid used to represent the structure of complex reservoirs<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup>. Here a static modeling application is used to build the grid which is then exported and imported into a dynamic simulation model. illustrates the skeleton grid for the Norne Field which has dimensions of 46 x 112 x 22 in the x, y, and z dimensions respectively. This results in a total of 113,344 cells although not all of these cells will be active in the model.</p>
+<p>Similar to a Cartesian Regular Grid the grid geometry and properties must be defined for each cell. The formulation of the grid geometry is based on a corner-point geometry, where basically the coordinate lines or pillars are given, then the top and bottom surfaces for the cell are defined by specifying the depth (z-coordinates) of the cell's corner points along each of the four adjacent pillars. The cell then forms an irregular hexahedron as depicted in . Note that the figure shows a corner-point cell which is more or less orthogonal, which is ideally what we want to minimize grid orientation effects.</p>
+<p>The data required to define this type of grid consists of the <a href="#__RefHeading___Toc45797_7190362561">SPECGRID</a> keyword to define the dimensions of the grid, that is:</p>
+<p>-- MAX MAX MAX MAX GRID</p>
+<p>-- NDIVIX NDIVIY NDIVIZ NUMRES TYPE</p>
+<p>SPECGRID</p>
+<p>46 112 22 1 F /</p>
+<p>A portion of the coordinate line data defined by the <a href="#__RefHeading___Toc45757_719036256">COORD</a> keyword from the Norne model is shown on the next page.</p>
+<p>COORD</p>
+<p>-- X1 Y1 Z1 X2 Y2 Z2</p>
+<p>-- --- --- ---- --- --- ----</p>
+<p>453114.000 7319921.000 3037.473 453114.000 7319921.000 3132.831</p>
+<p>453155.031 7319840.000 2983.933 453142.750 7319864.000 3173.572</p>
+<p>453196.094 7319759.000 3005.969 453171.500 7319807.500 3215.836</p>
+<p>453237.156 7319678.000 3000.265 453200.250 7319751.000 3217.250</p>
+<p>453278.188 7319597.000 2989.348 453229.031 7319694.000 3213.951</p>
+<p>453319.250 7319516.500 2995.680 453257.781 7319637.500 3215.323</p>
+<p>453356.250 7319443.500 3000.855 453308.750 7319537.000 3220.549</p>
+<p>453393.250 7319370.500 3005.252 453359.688 7319436.500 3210.393</p>
+<p>453423.969 7319310.000 3030.862 453394.219 7319368.500 3203.438</p>
+<p>453454.688 7319249.500 3036.870 453428.719 7319300.500 3190.770</p>
+<p>453485.406 7319189.000 3038.017 453463.219 7319232.500 3190.660</p>
+<p>453516.125 7319128.000 3045.027 453497.750 7319164.500 3188.813</p>
+<p>453546.844 7319067.500 3055.410 453532.250 7319096.500 3185.966</p>
+<p>453577.562 7319007.000 3066.541 453566.750 7319028.500 3184.325</p>
+<p>453608.281 7318946.500 3076.624 453601.250 7318960.500 3183.584</p>
+<p>453639.000 7318886.000 3086.938 453635.781 7318892.500 3184.057</p>
+<p>453669.719 7318825.500 3096.153 453670.281 7318824.500 3185.988</p>
+<p>453700.438 7318765.000 3104.703 453704.781 7318756.500 3188.598</p>
+<p>453731.156 7318704.500 3097.016 453739.281 7318688.500 3180.484</p>
+<p>453761.875 7318644.000 3088.539 453773.812 7318620.500 3177.091</p>
+<p>453780.000 7318608.000 3098.118 453796.562 7318575.500 3176.401</p>
+<p>453798.125 7318572.500 3096.691 453819.344 7318530.500 3172.299</p>
+<p>...........................................</p>
+<p>/</p>
+<p>The final keyword to define an Irregular Corner-Point geometry grid is the <a href="#__RefHeading___Toc45757_7190362561">ZCORN</a> keyword that defines the depths of the cell corners. A portion of the <a href="#__RefHeading___Toc45757_7190362561">ZCORN</a> data from the Norne model is shown below.</p>
+<p>ZCORN</p>
+<p>3037.473 2983.933 2983.933 3005.969 3005.969 3000.265</p>
+<p>3000.265 2989.348 2989.348 2995.680 2995.680 3000.855</p>
+<p>3000.855 3005.252 3005.252 3030.862 3030.862 3036.870</p>
+<p>3036.870 3038.017 3038.017 3045.027 3045.027 3055.410</p>
+<p>3055.410 3066.541 3066.541 3076.624 3076.624 3086.938</p>
+<p>3086.938 3096.153 3096.153 3104.703 3104.703 3097.016</p>
+<p>3097.016 3088.539 3088.539 3098.118 3098.118 3096.691</p>
+<p>3096.691 3093.886 3093.886 3085.393 3085.393 3081.957</p>
+<p>3081.957 3080.645 3080.645 3115.021 3115.021 3130.474</p>
+<p>3130.474 3204.674 3204.674 3193.187 3193.187 3169.512</p>
+<p>3169.512 3101.928 3101.928 3044.277 3044.277 3023.930</p>
+<p>3023.930 2964.244 2964.244 2900.178 2900.178 2875.715</p>
+<p>2875.715 2864.913 2864.913 2855.256 2855.256 2841.119</p>
+<p>2841.119 2826.261 2826.261 2806.556 2806.556 2781.052</p>
+<p>2781.052 2791.720 2791.720 2817.940 2817.940 2813.308</p>
+<p>2813.308 2788.492</p>
+<p>...............................................................................................................</p>
+<p>/</p>
+<p>The rock property data required to complete the <a href="#__RefHeading___Toc38674_784232322">GRID</a> section is the same as for a Cartesian Regular grid, as defined in section <a href="#6.2.1.Cartesian Regular Grid|outline">[6.2.1](#anchor-1)</a><a href="#6.2.1.Cartesian Regular Grid|outline"></a><a href="#6.2.1.Cartesian Regular Grid|outline">[Cartesian Regular Grids](#anchor-1)</a> <strong>and the data is defined using the same keywords. The resulting Norne model showing the ternary solution variable is displayed in </strong>.**</p>
+<h3 id="radial-grids">Radial Grids<a class="headerlink" href="#radial-grids" title="Permanent link">&para;</a></h3>
+<p>Radial flow exists near the wellbore and linear or Cartesian flow occurs within the reservoir away from the wellbore. For field-wide studies the growth or decay of reservoir volumes activated by unsteady-state flow is small and hence linear flow is modeled via a linear grid, using either a Cartesian Regular Grid or an Irregular Corner-Point Grid, in these type of studies. On the other hand, for converging flow near wells the growth or decay of reservoir volumes activated by unsteady-state flow is large and radial flow should modeled. Thus, radial flow is important in only very localized areas around the wells and linear flow is modeled in most reservoir studies, for example in full field or sector models. Consequently for investigating near well bore effects, radial models are used to investigate the behavior around the wellbore, for example in gas cusping and water conning studies, as one can see from .</p>
+<p>In both Cartesian Regular and Irregular Corner-Point grids the dimension nomenclature is (x, y, z) for the x, y, and z planes. The corresponding nomenclature for Radial Grids is (r, theta, and z) for r or radius plane, theta for the angular plane measured in degrees, and z for the z plane.</p>
+<p>In the radial grid has been labeled as a 2-D Cylindrical grid because there is no flow in the theta direction only in the r and z planes, whereas the 3-D Reservoir grid in the figure has flow in both the x and y planes as well as the z plane. shows a typical 3-D radial grid with dimensions (10, 10, 3) in the (r, theta, z) dimensions taken from Odeh<sup id="fnref:3"><a class="footnote-ref" href="#fn:3">3</a></sup>.</p>
+<p>Radial grids normally have a fine grid near the wellbore which then expands logarithmically away from the wellbore. This is illustrated in where one can clearly see the four most outer rings, but not the inner six. This type of grid makes solving the flow equations more challenging than conventional Cartesian and Irregular Corner-Point grids, where the cell pore volume distribution is relatively similar for neighboring cells, compared with Radial grids. For comparison, a typical conventional grid will have grid blocks size of 300, 300, 3 feet (or approximately 100m x 100m x 1m) spacing in the (x, y, z) plane; whereas a radial grid will utilize an inner most radius of between 0.25 to 1.0 foot in the R direction, and then logarithmically expand from the inner radius. The Odeh example employs 0.25 ft. for the inner radius, and 1.75, 2.32, 5.01, 10.84, 23.39, 50.55, 109.21, 235.92, 509.68, and 1101.08 ft. for the outer radii.</p>
+<p>is based on a 10 x 10 x 3 grid, where NX is the R dimensions, NY the THETA dimensions, and NZ the z dimensions on the <a href="#__RefHeading___Toc20387_2267116897">DIMENS</a> keyword in the <a href="#__RefHeading___Toc55591_1778172979">RUNSPEC</a> section. Thus, in order to fully define this radial grid the following <a href="#__RefHeading___Toc55591_1778172979">RUNSPEC</a> and <a href="#__RefHeading___Toc38674_784232322">GRID</a> section keywords are required:</p>
+<p>-- ==============================================================================</p>
+<p>--</p>
+<p>-- RUNSPEC SECTION</p>
+<p>--</p>
+<p>-- ==============================================================================</p>
+<p>RUNSPEC</p>
+<p>--</p>
+<p>-- MAX MAX MAX</p>
+<p>-- NDIVIX NDIVIY NDIVIZ</p>
+<p>DIMENS</p>
+<p>10 10 3 /</p>
+<p>--</p>
+<p>-- DEFINE RADIAL GRID GEOMETRY</p>
+<p>--</p>
+<p>RADIAL</p>
+<p>-- ==============================================================================</p>
+<p>--</p>
+<p>-- GRID SECTION</p>
+<p>--</p>
+<p>-- ==============================================================================</p>
+<p>GRID</p>
+<p>--</p>
+<p>-- INNER RADIUS OF FIRST GRID BLOCK IN THE RADIAL DIRECTION</p>
+<p>--</p>
+<p>INRAD</p>
+<p>0.25</p>
+<p>/</p>
+<p>--</p>
+<p>-- DEFINE GRID BLOCK SIZES IN THE R DIRECTION</p>
+<p>--</p>
+<p>DRV</p>
+<p>1.75 2.32 5.01 10.84 23.39 50.55 109.21 235.92 509.68 1101.08 /</p>
+<p>--</p>
+<p>-- DEFINE GRID BLOCK SIZES IN THE THETA DIRECTION (BASED ON NY = 10)</p>
+<p>--</p>
+<p>DTHETAV</p>
+<p>10*36 /</p>
+<p>--</p>
+<p>-- DEFINE GRID BLOCK Z DIRECTION CELL SIZE (BASED ON NX x NY x NZ = 300)</p>
+<p>--</p>
+<p>DZ</p>
+<p>100*20.0 100*30.0 100*50.0 /</p>
+<p>--</p>
+<p>-- DEFINE GRID BLOCK TOPS FOR THE TOP LAYER (NX=10,NY=10,and NZ=3)</p>
+<p>--</p>
+<p>TOPS</p>
+<p>100*8325 /</p>
+<p>The rock property data required to complete the <a href="#__RefHeading___Toc38674_784232322">GRID</a> section is as follows:</p>
+<p>--</p>
+<p>-- DEFINE POROSITY DATA FOR ALL CELLS (BASED ON NX x NY x NZ = 300)</p>
+<p>--</p>
+<p>PORO</p>
+<p>300*0.300 /</p>
+<p>--</p>
+<p>-- DEFINE GRID BLOCK PERMR DATA FOR ALL CELLS (BASED ON NR x NY x NZ = 300)</p>
+<p>--</p>
+<p>PERMR</p>
+<p>100*500.0 100*50.0 100*200.0 /</p>
+<p>--</p>
+<p>-- DEFINE GRID BLOCK PERMTHT DATA FOR ALL CELLS (NX x NY x NZ = 300)</p>
+<p>--</p>
+<p>PERMTHT</p>
+<p>100*500.0 100*50.0 100*200.0 /</p>
+<p>--</p>
+<p>-- DEFINE GRID BLOCK Z DIRECTION CELL SIZE (BASED ON NX x NY x NZ = 300)</p>
+<p>--</p>
+<p>PERMZ</p>
+<p>100*500.0 100*50.0 100*200.0 /</p>
+<p>The above keywords define all the properties required for the <a href="#__RefHeading___Toc55591_1778172979">RUNSPEC</a> and <a href="#__RefHeading___Toc38674_784232322">GRID</a> sections for this type of grid geometry.</p>
+<p>OPM ResInsight is the 3D visualization software that is used to view the grid block property data and OPM Flow results (grid block pressures, fluid saturations, etc.). If the radial grid has a low number of angular cells, OPM ResInsight will automatically create a temporary Local Grid Refinement (\"LGR\") with higher angular refinement for improved visualization. shows how the Odeh<sup id="fnref:4"><a class="footnote-ref" href="#fn:4">4</a></sup> radial model is rendered in OPM ResInsight.</p>
+<p>The previous figure () shows how the model would be displayed if the commercial simulator run was loaded into OPM ResInsight. Support for displaying radial grids was added to OPM ResInsight in version 2025.12.</p>
+<p>To overcome the display limitation in versions of OPM ResInsight prior to version 2025.12, OPM Flow converts radial grids to Irregular Corner-Point Grids (Cartesian coordinates) and adjusts the model to reflect radial coordinates. Thus, the OPM Flow radial model has the same pore volumes as the commercial simulator radial model. However, since this conversion is no longer necessary it is anticipated that it will be removed in a future version of OPM Flow.</p>
+<p>shows how the OPM Flow run is displayed in OPM ResInsight. As will be shown in section <a href="#anchor-4">6.2.4</a> <a href="#anchor-4">Spider Grids</a>, both Spider and Radial grids generated by OPM Flow will be displayed the same, as they both use Irregular Corner-Point Grid geometry. The difference is that the radial model's pore volumes are adjusted to match the radial geometry pore volumes, whereas, the Spider grid volumes are not adjusted.</p>
+<h3 id="spider-grids">Spider Grids<a class="headerlink" href="#spider-grids" title="Permanent link">&para;</a></h3>
+<p>Spider Grids have been implemented as an alternative to Radial Grids. They convert standard radial geometry keywords in the grid section into an Irregular Corner-Point Grid, which can then be visualized in OPM ResInsight. The only difference is that in the <a href="#__RefHeading___Toc55591_1778172979">RUNSPEC</a> section the <a href="#__RefHeading___Toc439805_750232207">SPIDER</a> keyword is used instead of the <a href="#__RefHeading___Toc51752_2905512151">RADIAL</a> keyword.</p>
+<p>illustrates the spider grid for the Odeh^^ example, which is not dissimilar to the conventional radial model shown in and is identical to OPM Flow's radial model implementation shown in .</p>
+<p>Naturally, there will be differences in the results between radial and spider grid formulations, but the user should use their own judgement if the differences are relevant.</p>
+<p>Again, is based on a 10 x 10 x 3 grid, where NX is the R dimensions, NY the THETA dimensions and NZ the z dimensions on the <a href="#__RefHeading___Toc20387_2267116897">DIMENS</a> keyword in the <a href="#__RefHeading___Toc55591_1778172979">RUNSPEC</a> section. The only difference between this example and the previous example for radial grids is that the <a href="#__RefHeading___Toc51752_2905512151">RADIAL</a> keyword has been replaced by the <a href="#__RefHeading___Toc439805_750232207">SPIDER</a> keyword in the <a href="#__RefHeading___Toc55591_1778172979">RUNSPEC</a> section, all the other keywords are exactly the same.</p>
+<p>-- ==============================================================================</p>
+<p>--</p>
+<p>-- RUNSPEC SECTION</p>
+<p>--</p>
+<p>-- ==============================================================================</p>
+<p>RUNSPEC</p>
+<p>--</p>
+<p>-- MAX MAX MAX</p>
+<p>-- NDIVIX NDIVIY NDIVIZ</p>
+<p>DIMENS</p>
+<p>10 1 3 /</p>
+<p>--</p>
+<p>-- DEFINE SPIDER GRID GEOMETRY (OPM FLOW RADIAL GRID KEYWORD)</p>
+<p>--</p>
+<p>SPIDER</p>
+<p>-- ==============================================================================</p>
+<p>--</p>
+<p>-- GRID SECTION</p>
+<p>--</p>
+<p>-- ==============================================================================</p>
+<p>GRID</p>
+<p>--</p>
+<p>-- INNER RADIUS OF FIRST GRID BLOCK IN THE RADIAL DIRECTION</p>
+<p>--</p>
+<p>INRAD</p>
+<p>0.25</p>
+<p>/</p>
+<p>--</p>
+<p>-- DEFINE GRID BLOCK SIZES IN THE R DIRECTION</p>
+<p>--</p>
+<p>DRV</p>
+<p>1.75 2.32 5.01 10.84 23.39 50.55 109.21 235.92 509.68 1101.08 /</p>
+<p>--</p>
+<p>-- DEFINE GRID BLOCK SIZES IN THE THETA DIRECTION (BASED ON NY = 10)</p>
+<p>--</p>
+<p>DTHETAV</p>
+<p>1*45 /</p>
+<p>--</p>
+<p>-- DEFINE GRID BLOCK Z DIRECTION CELL SIZE (BASED ON NX x NY x NZ = 30)</p>
+<p>--</p>
+<p>DZ</p>
+<p>10*20.0 10*30.0 10*50.0 /</p>
+<p>--</p>
+<p>-- DEFINE GRID BLOCK TOPS FOR THE TOP LAYER (NX=10,NY=1,and NZ=3)</p>
+<p>--</p>
+<p>TOPS</p>
+<p>10*8325 /</p>
+<p>The rock property data required to complete the <a href="#__RefHeading___Toc38674_784232322">GRID</a> section is as follows:</p>
+<p>--</p>
+<p>-- DEFINE POROSITY DATA FOR ALL CELLS (BASED ON NX x NY x NZ = 30)</p>
+<p>--</p>
+<p>PORO</p>
+<p>30*0.300 /</p>
+<p>--</p>
+<p>-- DEFINE GRID BLOCK PERMR DATA FOR ALL CELLS (BASED ON NR x NY x NZ = 30)</p>
+<p>--</p>
+<p>PERMR</p>
+<p>10*500.0 10*50.0 10*200.0 /</p>
+<p>--</p>
+<p>-- DEFINE GRID BLOCK PERMTHT DATA FOR ALL CELLS (NX x NY x NZ = 30)</p>
+<p>--</p>
+<p>PERMTHT</p>
+<p>10*500.0 10*50.0 10*200.0 /</p>
+<p>--</p>
+<p>-- DEFINE GRID BLOCK Z DIRECTION CELL SIZE (BASED ON NX x NY x NZ = 300)</p>
+<p>--</p>
+<p>PERMZ</p>
+<p>10*500.0 10*50.0 10*200.0 /</p>
+<p>The above keywords define all the properties required for the <a href="#__RefHeading___Toc38674_784232322">GRID</a> section for this type of grid geometry.</p>
+<h3 id="rock-properties">Rock Properties<a class="headerlink" href="#rock-properties" title="Permanent link">&para;</a></h3>
+<p>Regardless of the grid type used to define the structural component of the model, certain static properties must be specified to complete the grid definition. These include identifying active and inactive grid blocks, porosity, permeability, and reservoir quality through the net-to-gross fraction ("NTG"). These parameters must be set for each cell in the model</p>
+<p>+-----------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------+-------------------------------------------------+
+| &gt; Active and Inactive cells | &gt; Defines if a cell in the model is active by setting the <a href="#__RefHeading___Toc4410_421927891">ACTNUM</a> property for a cell to either one or inactive by setting the value to zero.                                                                                                                                                                                                                                   | &gt; <a href="#__RefHeading___Toc4410_421927891">ACTNUM</a> |                                                 |
+|                             |                                                                                                                                                                                                                                                                                                                                                                                                                     |                                               |                                                 |
+|                             | &gt; Cells that are inactive in the model are ignored computationally and can act as barriers to flow. Thus, a shale in a conventional reservoir is normally treated as non-reservoir and is made inactive either by setting the <a href="#__RefHeading___Toc4410_421927891">ACTNUM</a>, <a href="#__RefHeading___Toc45797_719036256">PORO</a>, or <a href="#__RefHeading___Toc33334_784232322">NTG</a> to zero for the cells representing the shale.   |                                               |                                                 |
++-----------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------+-------------------------------------------------+
+| &gt; Porosity                  | &gt; Porosity is a measure of the space in a reservoir rock. It is defined as the fraction of the total bulk volume of the rock not occupied by solids, that is it is the fraction of the cell that is porous and contains the reservoir fluids.                                                                                                                                                                       | &gt; <a href="#__RefHeading___Toc45797_719036256">PORO</a>  |                                                 |
++-----------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------+-------------------------------------------------+
+| &gt; Reservoir Quality         | &gt; Reservoir quality of the cell in terms of the gross volume derived from the structural grid and the net volume available for fluid flow in the model is expressed as a fraction from zero to one. A zero values means the cell does not contribute to flow and therefore is made inactive. A value of one means the gross and net volumes are identical for the cell                                              | &gt; <a href="#__RefHeading___Toc33334_784232322">NTG</a>   |                                                 |
++-----------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------+-------------------------------------------------+
+| &gt; Permeability              | &gt; Permeability is a measure of the ease with which a fluid will flow through a porous medium. In numerical models permeability is dependent on the direction of flow, that is x, y, and z directions in Cartesian and Irregular Corner-Point Grids, and the radial, theta, and z directions in radial grids.                                                                                                        | &gt; <a href="#__RefHeading___Toc45791_719036256">PERMX</a> | &gt; <a href="#__RefHeading___Toc19328_3701168388">PERMR</a>  |
+|                             |                                                                                                                                                                                                                                                                                                                                                                                                                     |                                               |                                                 |
+|                             | &gt; There are various formulations for permeability, absolute permeability, effective permeability, gas permeability, liquid permeability, etc., and the values are saturation dependent.                                                                                                                                                                                                                             | &gt; <a href="#__RefHeading___Toc45793_719036256">PERMY</a> | &gt; <a href="#__RefHeading___Toc114309_23127940">PERMTHT</a> |
+|                             |                                                                                                                                                                                                                                                                                                                                                                                                                     |                                               |                                                 |
+|                             | &gt; Thus, values entered should be consistent with the relative permeability entered in the <a href="#__RefHeading___Toc39329_784232322">PROPS</a> section. Normally Kair (Sg=1.0) should be entered for the cell permeability and the values may or not be corrected for overburden or humidity drying effects. Correcting for liquid flow and saturation end points etc., is accomplished by the relative permeability curves. | &gt; <a href="#__RefHeading___Toc45795_719036256">PERMZ</a> | &gt; <a href="#__RefHeading___Toc45795_719036256">PERMZ</a>   |
+|                             |                                                                                                                                                                                                                                                                                                                                                                                                                     |                                               |                                                 |
+|                             | &gt; For example, if Kair (Sg=1.0) has been entered for the cell permeability when Krg (Sg=1-Swc) should be less than one.                                                                                                                                                                                                                                                                                             |                                               |                                                 |
++-----------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------+-------------------------------------------------+</p>
+<p>Table 6.1: Key Static Grid Properties</p>
+<p>Pore volume and transmissibility are common terms in the reservoir simulation vernacular. Pore volume is self-explanatory, that is, given the grid property data the pore volume for each cell is calculated using:</p>
+<p>Where</p>
+<p>PV = the pore volume of a cell,</p>
+<p>Cell Gross Volume = the gross volume (or bulk volume) calculated from the structural</p>
+<p>parameters of the cell,</p>
+<p>PORO = cell porosity,</p>
+<p>NTG = cell net-to-gross ratio, and</p>
+<p>ACTNUM = active and inactive cell indicator.</p>
+<p>Any cell with a pore volume equal to zero is made inactive automatically in the model. However, there may be some cells that have small pore volumes that may negatively impact computational performance of the model. If this is the case then the <a href="#__RefHeading___Toc569208_3181922006">MINPV</a> and <a href="#__RefHeading___Toc77711_2479612490">MINPORV</a> keywords in the <a href="#__RefHeading___Toc38674_784232322">GRID</a> section can be used to make these cells inactive.</p>
+<p>There has been a trend in the industry in recent years to not apply petrophysical cut-offs to determine net volumes in static models. This results in large models with numerous cells with very low porosity values (less than 0.01 for example) and corresponding very low permeabilities. The theory behind this approach is that the numerical model will determine the effective (or net) reservoir. However, the approach is questionable as by not applying net pay cut-offs, the in-place and recoverable volumes may not satisfy Reserve reporting requirements and guidelines to various agencies. Secondly, although this may be appropriate in unconventional reservoirs, as all the cells in the model will have similar values of porosity and permeability, but in conventional reservoirs this methodology will lead to severe computational issues when attempting to run the model, due to very tight cells being next to relative high permeability cells. Again, the <a href="#__RefHeading___Toc569208_3181922006">MINPV</a> and <a href="#__RefHeading___Toc77711_2479612490">MINPORV</a> keywords can be used to resolve this issue.</p>
+<p>Transmissibility on the other hand is more complex as it relates the flow from one cell face to another cell face and is a function of the area open to flow, the direction of flow, the permeability, saturation, and viscosity of the phases flowing between the cells. For single phase flow in a Cartesian grid the x-direction transmissibility is of the form:</p>
+<p>As transmissibility is a property of the flow between two cell faces, not a block centered grid cell property like porosity or permeability, then the nomenclature for transmissibility is different. In OPM Flow, the transmissible of cell face T~x~(i, j, k) is the transmissibility between cells (i, j, k) and (i+1, j, k). In some simulators it would be between (i, j, k) and (i-1, j, k). This is important to note if manual modifications to cell connections are to be made in the model.</p>
+<p>Modifications to basic grid property data (porosity, permeability, etc.) can only be done in the <a href="#__RefHeading___Toc38674_784232322">GRID</a> section, thereafter only the calculated pore volumes and transmissibilities are available for adjustment in the <a href="#__RefHeading___Toc40641_784232322">EDIT</a> section. Some engineers use the <a href="#__RefHeading___Toc38674_784232322">GRID</a> section for the basic model formulation, and the <a href="#__RefHeading___Toc40641_784232322">EDIT</a> section to document the changes to the "base" model using the <a href="#__RefHeading___Toc96547_718313858">PORV</a>, <a href="#__RefHeading___Toc93085_718313858">TRANX</a>, <a href="#__RefHeading___Toc93087_718313858">TRANY</a>, <a href="#__RefHeading___Toc93089_718313858">TRANZ</a>, etc. keywords.</p>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p>Odeh, A. "Comparison of Solutions to a Three Dimensional Black‐Oil Reservoir Simulation Problem." JPT 33 (1981):13‐25.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:2">
+<p>K. Ponting, D, Corner Point Geometry in Reservoir Simulation, Conference Proceedings, ECMOR I - 1st European Conference on the Mathematics of Oil Recovery, Jul 1989, cp-234-00003 dDOI= \"https://doi.org/10.3997/2214-4609.201411305\", European Association of Geoscientists &amp; Engineers.&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+<li id="fn:3">
+<p>Comparison of Solutions to a Three-Dimensional Black-Oil Reservoir Simulation Problem by Aziz S. Odeh,-- Journal of Petroleum Technology, January 1981.&#160;<a class="footnote-backref" href="#fnref:3" title="Jump back to footnote 3 in the text">&#8617;</a></p>
+</li>
+<li id="fn:4">
+<p>Comparison of Solutions to a Three-Dimensional Black-Oil Reservoir Simulation Problem by Aziz S. Odeh,-- Journal of Petroleum Technology, January 1981.&#160;<a class="footnote-backref" href="#fnref:4" title="Jump back to footnote 4 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.top", "search.suggest", "search.highlight", "content.tabs.link"], "search": "../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

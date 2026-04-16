@@ -4623,7 +4623,7 @@ The wells keywords are IWEL, SWEL, XWEL, and ZWEL and below describes these keyw
 +---------+----------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------+--------+------------+
 
 ::: caption
-[]{#REF_TABLE_RESTART_DATA___G__KEYWORDS_F_7}Table A.24: RESTART Data -- Group, Well, and Connection Keywords (Wells)
+<a id="REF_TABLE_RESTART_DATA___G__KEYWORDS_F_7"></a>Table A.24: RESTART Data -- Group, Well, and Connection Keywords (Wells)
 :::
 
 The well connection keywords are specified in and consist of the ICON, SCON, and XCON keywords.

@@ -1,0 +1,1376 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Reference manual for the OPM Flow reservoir simulator, covering all keywords, input-deck sections, and appendices.">
+      
+      
+        <meta name="author" content="OPM Project Contributors">
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>ACTIONW - OPM Flow Reference Manual</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="teal">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#actionw-define-action-conditions-and-command-processing-wells" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../.." title="OPM Flow Reference Manual" class="md-header__button md-logo" aria-label="OPM Flow Reference Manual" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            OPM Flow Reference Manual
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              ACTIONW
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="teal"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue-grey" data-md-color-accent="teal"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../1/" class="md-tabs__link">
+          
+  
+  
+  Chapters
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../appendices/A/" class="md-tabs__link">
+          
+  
+  
+  Appendices
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="OPM Flow Reference Manual" class="md-nav__button md-logo" aria-label="OPM Flow Reference Manual" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    OPM Flow Reference Manual
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapters
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Chapters
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1  – Introduction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2  – Tutorial
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3  – File Formats
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4  – Run-Time Options
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5  – RUNSPEC Section
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6  – GRID Section
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7  – EDIT Section
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    8  – PROPS Section
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../9/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    9  – REGIONS Section
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10 – SOLUTION Section
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    11 – SUMMARY Section
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../12/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    12 – SCHEDULE Section
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Appendices
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Appendices
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../appendices/A/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../appendices/B/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    B
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../appendices/C/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../appendices/D/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    D
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../appendices/E/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    E
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../appendices/F/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    F
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#actionw-define-action-conditions-and-command-processing-wells" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ACTIONW -- Define Action Conditions and Command Processing (Wells)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ACTIONW -- Define Action Conditions and Command Processing (Wells)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#description" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Description
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Examples
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+  <h1>ACTIONW</h1>
+
+<h3 id="actionw-define-action-conditions-and-command-processing-wells">ACTIONW -- Define Action Conditions and Command Processing (Wells)<a class="headerlink" href="#actionw-define-action-conditions-and-command-processing-wells" title="Permanent link">&para;</a></h3>
+<p>+-----------------------------------------+-----------------------------------+-----------------------------------+-------------------------------------+-----------------------------------------+-------------------------------------------+-----------------------------------------+--------------------------------------------+
+| &gt; <a href="#3.RUNSPEC SECTION|outline">RUNSPEC</a> | &gt; <a href="#4.GRID SECTION|outline">GRID</a> | &gt; <a href="#5.EDIT SECTION|outline">EDIT</a> | &gt; <a href="#6.PROPS SECTION|outline">PROPS</a> | &gt; <a href="#7.REGIONS SECTION|outline">REGIONS</a> | &gt; <a href="#8.SOLUTION SECTION|outline">SOLUTION</a> | &gt; <a href="#9.SUMMARY SECTION|outline">SUMMARY</a> | &gt; <a href="#10.SCHEDULE SECTION|outline">SCHEDULE</a> |
++-----------------------------------------+-----------------------------------+-----------------------------------+-------------------------------------+-----------------------------------------+-------------------------------------------+-----------------------------------------+--------------------------------------------+</p>
+<h4 id="description">Description<a class="headerlink" href="#description" title="Permanent link">&para;</a></h4>
+<p>This keyword starts the definition of an <a href="#__RefHeading___Toc152225_2992482751">ACTIONW</a> section that stipulates the Boolean conditions to test the nominated well parameters, and the resulting <a href="#__RefHeading___Toc43945_784232322">SCHEDULE</a> keywords to be executed, if the Boolean condition evaluates to true. An <a href="#__RefHeading___Toc152225_2992482751">ACTIONW</a> Definition Section is terminated by an <a href="#__RefHeading___Toc109407_332691817">ENDACTIO</a> keyword on a separate line. Here, the keyword defines a series of conditions applied to wells only, that invoke run time processing of <a href="#__RefHeading___Toc148342_63720426">ACTION</a> functions, and is similar to executing a run time script for conditions and variables at the well level. The <a href="#__RefHeading___Toc148342_63720426">ACTION</a> series of keywords (<a href="#__RefHeading___Toc148342_63720426">ACTION</a>, <a href="#__RefHeading___Toc152219_2992482751">ACTIONG</a>, <a href="#__RefHeading___Toc152221_2992482751">ACTIONR</a>, <a href="#__RefHeading___Toc152223_2992482751">ACTIONS</a> and <a href="#__RefHeading___Toc152225_2992482751">ACTIONW</a>) can apply Boolean conditional tests to variables at the field, group, region, well segment and well levels.</p>
+<p>Note that one should use caution when using this facility as it may result in the simulator aborting, because the <a href="#__RefHeading___Toc152225_2992482751">ACTIONW</a> keyword enables the user to implement complex functionality and therefore it is advisable to start with simple expressions before adding the desired complexity.</p>
+<p>See also the <a href="#__RefHeading___Toc393199_4211536922">PYACTION</a> keyword in the <a href="#__RefHeading___Toc43945_784232322">SCHEDULE</a> that implements OPM Flow's Python scripting facility using the Python scripting language.</p>
+<p>This keyword is not supported by OPM Flow but would change the results if supported so the simulation will be stopped; use the <a href="#__RefHeading___Toc152227_2992482751">ACTIONX</a> keyword instead.</p>
+<p>+-------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------+
+| &gt; <a href="#__RefHeading___Toc152225_2992482751">ACTIONW</a>                                                                                               | &gt; Defines the start of an <a href="#__RefHeading___Toc152225_2992482751">ACTIONW</a> Definition Section. This is followed on a new line by the <a href="#__RefHeading___Toc152225_2992482751">ACTIONW</a> record that stipulates the conditions for which the defined action will be executed, and then this is followed by the various operations to be performed if the condition is satisfied. |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |                  |
++-------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------+
+| &gt; 1-1                                                                                                                                           | &gt; ACTNAME                                                                                                                                                                                                                                                                                                                                                                   | &gt; A character sting of up to eight characters in length that defines the name of this action definition.                                                                                                                                                                                                                                                                                                                                                                                                                 | &gt; None           |
+|                                                                                                                                                 |                                                                                                                                                                                                                                                                                                                                                                             |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |                  |
+|                                                                                                                                                 |                                                                                                                                                                                                                                                                                                                                                                             | &gt; If ACTNAME has previously been used by any <a href="#__RefHeading___Toc148342_63720426">ACTION</a> series keyword, then the previous <a href="#__RefHeading___Toc148342_63720426">ACTION</a> definitions will be replaced by the definition declared by this <a href="#__RefHeading___Toc152225_2992482751">ACTIONW</a> Definition Section.                                                                                                                                                                                                             |                  |
++-------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------+
+| &gt; 1-2                                                                                                                                           | &gt; ACTWELL                                                                                                                                                                                                                                                                                                                                                                   | &gt; A character string of up to eight characters in length that defines the well name for which the <a href="#__RefHeading___Toc152225_2992482751">ACTIONW</a> Definition Section is being defined.                                                                                                                                                                                                                                                                                                                                   | &gt; None           |
+|                                                                                                                                                 |                                                                                                                                                                                                                                                                                                                                                                             |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |                  |
+|                                                                                                                                                 |                                                                                                                                                                                                                                                                                                                                                                             | &gt; Note that the well name (ACTWELL) must have been declared previously using the <a href="#__RefHeading___Toc268463_1366622701">WELSPECS</a> keyword in the <a href="#__RefHeading___Toc43945_784232322">SCHEDULE</a> section, otherwise an error may occur.                                                                                                                                                                                                                                                                                   |                  |
++-------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------+
+| &gt; 1-3                                                                                                                                           | &gt; ACTLHS                                                                                                                                                                                                                                                                                                                                                                    | &gt; A character string of up to eight characters in length that stipulates a well <a href="#__RefHeading___Toc43949_784232322">SUMMARY</a> variable on the left hand side of a Boolean conditional test. For example, WOPR that stands for the Well Oil Production Rate.                                                                                                                                                                                                                                                              | &gt; Not Applicable |
+|                                                                                                                                                 |                                                                                                                                                                                                                                                                                                                                                                             |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |                  |
+|                                                                                                                                                 |                                                                                                                                                                                                                                                                                                                                                                             | &gt; In addition, ACTLHS can also be a well User Defined Quantity ("UDQ") defined by the <a href="#12.3.59.UDQ - Declare User Define Quantities (“UDQ”)|outline">[UDQ - Declare User Define Quantities ("UDQ")](#anchor-1)</a> keyword in the <a href="#__RefHeading___Toc43945_784232322">SCHEDULE</a> section. In this case, the first two characters of ACTLHS must be set to WU and the <a href="#__RefHeading___Toc161095_2932703077">UDQ</a> variable must have previously been declared with the <a href="#__RefHeading___Toc161095_2932703077">UDQ</a> keyword. |                  |
+|                                                                                                                                                 |                                                                                                                                                                                                                                                                                                                                                                             |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |                  |
+|                                                                                                                                                 |                                                                                                                                                                                                                                                                                                                                                                             | &gt; A complete list of well <a href="#__RefHeading___Toc43949_784232322">SUMMARY</a> vectors that can be used with <a href="#__RefHeading___Toc152225_2992482751">ACTIONW</a> keyword by OPM Flow and the commercial black-oil simulator is summarized in .                                                                                                                                                                                                                                                                                      |                  |
++-------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------+
+| &gt; 1-4                                                                                                                                           | &gt; ACTTEST                                                                                                                                                                                                                                                                                                                                                                   | &gt; A defined character string that the defines the Boolean operator and must be set to one of the following Boolean conditionals:                                                                                                                                                                                                                                                                                                                                                                                         | &gt; Not Applicable |
+|                                                                                                                                                 |                                                                                                                                                                                                                                                                                                                                                                             |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |                  |
+|                                                                                                                                                 |                                                                                                                                                                                                                                                                                                                                                                             | 1)  &gt;: Greater than.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |                  |
+|                                                                                                                                                 |                                                                                                                                                                                                                                                                                                                                                                             |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |                  |
+|                                                                                                                                                 |                                                                                                                                                                                                                                                                                                                                                                             | 2)  \&lt;: Less than.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |                  |
+|                                                                                                                                                 |                                                                                                                                                                                                                                                                                                                                                                             |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |                  |
+|                                                                                                                                                 |                                                                                                                                                                                                                                                                                                                                                                             | 3)  &gt;=: Greater than or equal to.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |                  |
+|                                                                                                                                                 |                                                                                                                                                                                                                                                                                                                                                                             |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |                  |
+|                                                                                                                                                 |                                                                                                                                                                                                                                                                                                                                                                             | 4)  \&lt;=: Less than or equal to.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |                  |
+|                                                                                                                                                 |                                                                                                                                                                                                                                                                                                                                                                             |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |                  |
+|                                                                                                                                                 |                                                                                                                                                                                                                                                                                                                                                                             | 5)  =: Equals to.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |                  |
+|                                                                                                                                                 |                                                                                                                                                                                                                                                                                                                                                                             |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |                  |
+|                                                                                                                                                 |                                                                                                                                                                                                                                                                                                                                                                             | 6)  !=: Not equal to                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |                  |
+|                                                                                                                                                 |                                                                                                                                                                                                                                                                                                                                                                             |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |                  |
+|                                                                                                                                                 |                                                                                                                                                                                                                                                                                                                                                                             | &gt; Note that the OPM Flow implementation of ACTTEST has been enhanced to support all of the above conditions. Whereas, the commercial simulator only supports (1) and (2). Thus, one should be mindful of this fact if the input deck is to be run by both OPM Flow and the commercial simulator.                                                                                                                                                                                                                         |                  |
++-------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------+
+| &gt; 1-5                                                                                                                                           | &gt; ACTRHS                                                                                                                                                                                                                                                                                                                                                                    | &gt; A numeric value that defines the constant on the right hand side of the Boolean conditional test.                                                                                                                                                                                                                                                                                                                                                                                                                      | &gt; Not Applicable |
+|                                                                                                                                                 |                                                                                                                                                                                                                                                                                                                                                                             |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |                  |
+|                                                                                                                                                 |                                                                                                                                                                                                                                                                                                                                                                             | &gt; The set of wells for which the Boolean condition is true, is captured and can be used as a general \"well list\" with the symbol \'?\' in subsequent well keywords. For example, to shut wells with a gas production rate less than 5 MMscf/d, one would use:                                                                                                                                                                                                                                                          |                  |
+|                                                                                                                                                 |                                                                                                                                                                                                                                                                                                                                                                             |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |                  |
+|                                                                                                                                                 |                                                                                                                                                                                                                                                                                                                                                                             | &gt; ACTIONW                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |                  |
+|                                                                                                                                                 |                                                                                                                                                                                                                                                                                                                                                                             |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |                  |
+|                                                                                                                                                 |                                                                                                                                                                                                                                                                                                                                                                             | &gt; ACT01 \'GP*\' WGPR \&lt; 5000.0 10000 /                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |                  |
+|                                                                                                                                                 |                                                                                                                                                                                                                                                                                                                                                                             |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |                  |
+|                                                                                                                                                 |                                                                                                                                                                                                                                                                                                                                                                             | &gt; WELOPEN                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |                  |
+|                                                                                                                                                 |                                                                                                                                                                                                                                                                                                                                                                             |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |                  |
+|                                                                                                                                                 |                                                                                                                                                                                                                                                                                                                                                                             | &gt; \'?\' SHUT /                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |                  |
+|                                                                                                                                                 |                                                                                                                                                                                                                                                                                                                                                                             |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |                  |
+|                                                                                                                                                 |                                                                                                                                                                                                                                                                                                                                                                             | &gt; /                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |                  |
+|                                                                                                                                                 |                                                                                                                                                                                                                                                                                                                                                                             |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |                  |
+|                                                                                                                                                 |                                                                                                                                                                                                                                                                                                                                                                             | &gt; ...                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |                  |
+|                                                                                                                                                 |                                                                                                                                                                                                                                                                                                                                                                             |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |                  |
+|                                                                                                                                                 |                                                                                                                                                                                                                                                                                                                                                                             | &gt; ENDACTIO                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |                  |
+|                                                                                                                                                 |                                                                                                                                                                                                                                                                                                                                                                             |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |                  |
++-------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------+
+| &gt; 1-6                                                                                                                                           | &gt; ACTNSTEP                                                                                                                                                                                                                                                                                                                                                                  | &gt; A positive integer that defines the maximum number times that the ACTNAME action is to be executed. The <a href="#__RefHeading___Toc152225_2992482751">ACTIONW</a> action is excuted at the end of each time step if at least one well satisfies the Boolean condition until the action has been executed the specified number of times. The default value of one means that the definition will be executed only once. One can use a large value, for example 10,000 for the definition to be executed at every time step.       | &gt; 1              |
+|                                                                                                                                                 |                                                                                                                                                                                                                                                                                                                                                                             |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |                  |
+|                                                                                                                                                 |                                                                                                                                                                                                                                                                                                                                                                             | &gt; Note that the counter only affects successful evaluations; i.e. if ACTNSTEP is set equal to one (the default), then the simulator will test the action at the end of every time step until it evaluates to true.                                                                                                                                                                                                                                                                                                       |                  |
++-------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------+
+| &gt; 1-3                                                                                                                                           | &gt; ACTINCR                                                                                                                                                                                                                                                                                                                                                                   | &gt; ACTINCR is a real negative or positive value that specifies a value to increment ACTRHS every time the Boolean condition evaluates to true.                                                                                                                                                                                                                                                                                                                                                                            | &gt; 0.0            |
+|                                                                                                                                                 |                                                                                                                                                                                                                                                                                                                                                                             |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |                  |
+|                                                                                                                                                 |                                                                                                                                                                                                                                                                                                                                                                             | &gt; For example, if ACTINCR is set to 500.0:                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |                  |
+|                                                                                                                                                 |                                                                                                                                                                                                                                                                                                                                                                             |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |                  |
+|                                                                                                                                                 |                                                                                                                                                                                                                                                                                                                                                                             | &gt; ACTIONW                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |                  |
+|                                                                                                                                                 |                                                                                                                                                                                                                                                                                                                                                                             |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |                  |
+|                                                                                                                                                 |                                                                                                                                                                                                                                                                                                                                                                             | &gt; ACT02 \'GP*\' WGPR \&lt; 5000.0 10000 500.0 /                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |                  |
+|                                                                                                                                                 |                                                                                                                                                                                                                                                                                                                                                                             |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |                  |
+|                                                                                                                                                 |                                                                                                                                                                                                                                                                                                                                                                             | &gt; WELOPEN                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |                  |
+|                                                                                                                                                 |                                                                                                                                                                                                                                                                                                                                                                             |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |                  |
+|                                                                                                                                                 |                                                                                                                                                                                                                                                                                                                                                                             | &gt; \'?\' SHUT /                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |                  |
+|                                                                                                                                                 |                                                                                                                                                                                                                                                                                                                                                                             |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |                  |
+|                                                                                                                                                 |                                                                                                                                                                                                                                                                                                                                                                             | &gt; /                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |                  |
+|                                                                                                                                                 |                                                                                                                                                                                                                                                                                                                                                                             |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |                  |
+|                                                                                                                                                 |                                                                                                                                                                                                                                                                                                                                                                             | &gt; ...                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |                  |
+|                                                                                                                                                 |                                                                                                                                                                                                                                                                                                                                                                             |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |                  |
+|                                                                                                                                                 |                                                                                                                                                                                                                                                                                                                                                                             | &gt; ENDACTIO                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |                  |
+|                                                                                                                                                 |                                                                                                                                                                                                                                                                                                                                                                             |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |                  |
+|                                                                                                                                                 |                                                                                                                                                                                                                                                                                                                                                                             | &gt; Then after the third time the Boolean conditional has evaluated to true, the condition would effectively be:                                                                                                                                                                                                                                                                                                                                                                                                           |                  |
+|                                                                                                                                                 |                                                                                                                                                                                                                                                                                                                                                                             |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |                  |
+|                                                                                                                                                 |                                                                                                                                                                                                                                                                                                                                                                             | &gt; ACTIONW                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |                  |
+|                                                                                                                                                 |                                                                                                                                                                                                                                                                                                                                                                             |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |                  |
+|                                                                                                                                                 |                                                                                                                                                                                                                                                                                                                                                                             | &gt; ACT02 \'GP*\' WGPR \&lt; 6500.0 10000 500.0 /                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |                  |
+|                                                                                                                                                 |                                                                                                                                                                                                                                                                                                                                                                             |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |                  |
+|                                                                                                                                                 |                                                                                                                                                                                                                                                                                                                                                                             | &gt; ...                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |                  |
+|                                                                                                                                                 |                                                                                                                                                                                                                                                                                                                                                                             |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |                  |
+|                                                                                                                                                 |                                                                                                                                                                                                                                                                                                                                                                             | &gt; ENDACTIO                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |                  |
+|                                                                                                                                                 |                                                                                                                                                                                                                                                                                                                                                                             |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |                  |
++-------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------+
+| &gt; 1-4                                                                                                                                           | &gt; /                                                                                                                                                                                                                                                                                                                                                                         | &gt; Record terminated by a "/"                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             | &gt; Not Applicable |
++-------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------+
+|                                                                                                                                                 |                                                                                                                                                                                                                                                                                                                                                                             | &gt; The next section contains any number of standard <a href="#__RefHeading___Toc43945_784232322">SCHEDULE</a> keywords that will be executed if the Boolean expression evaluates to true. For example, to reduce the tubing head pressure constraint when any of the oil producers' oil rate drop below 100 stb/d then one could use:                                                                                                                                                                                                | &gt; Not Applicable |
+|                                                                                                                                                 |                                                                                                                                                                                                                                                                                                                                                                             |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |                  |
+|                                                                                                                                                 |                                                                                                                                                                                                                                                                                                                                                                             | &gt; ACTIONW                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |                  |
+|                                                                                                                                                 |                                                                                                                                                                                                                                                                                                                                                                             |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |                  |
+|                                                                                                                                                 |                                                                                                                                                                                                                                                                                                                                                                             | &gt; ACT03 \'OP*\' WOPR \&lt; 100.0 10000 /                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |                  |
+|                                                                                                                                                 |                                                                                                                                                                                                                                                                                                                                                                             |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |                  |
+|                                                                                                                                                 |                                                                                                                                                                                                                                                                                                                                                                             | &gt; --                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |                  |
+|                                                                                                                                                 |                                                                                                                                                                                                                                                                                                                                                                             |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |                  |
+|                                                                                                                                                 |                                                                                                                                                                                                                                                                                                                                                                             | &gt; -- FLOW WELLS THROUGH LOW PRESSURE SEPARATOR                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |                  |
+|                                                                                                                                                 |                                                                                                                                                                                                                                                                                                                                                                             |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |                  |
+|                                                                                                                                                 |                                                                                                                                                                                                                                                                                                                                                                             | &gt; --                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |                  |
+|                                                                                                                                                 |                                                                                                                                                                                                                                                                                                                                                                             |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |                  |
+|                                                                                                                                                 |                                                                                                                                                                                                                                                                                                                                                                             | &gt; -- WELL WELL TARGET                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |                  |
+|                                                                                                                                                 |                                                                                                                                                                                                                                                                                                                                                                             |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |                  |
+|                                                                                                                                                 |                                                                                                                                                                                                                                                                                                                                                                             | &gt; -- NAME TARG VALUE                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |                  |
+|                                                                                                                                                 |                                                                                                                                                                                                                                                                                                                                                                             |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |                  |
+|                                                                                                                                                 |                                                                                                                                                                                                                                                                                                                                                                             | &gt; WELTARG                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |                  |
+|                                                                                                                                                 |                                                                                                                                                                                                                                                                                                                                                                             |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |                  |
+|                                                                                                                                                 |                                                                                                                                                                                                                                                                                                                                                                             | &gt; \'OP*\' THP 150 /                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |                  |
+|                                                                                                                                                 |                                                                                                                                                                                                                                                                                                                                                                             |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |                  |
+|                                                                                                                                                 |                                                                                                                                                                                                                                                                                                                                                                             | &gt; /                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |                  |
+|                                                                                                                                                 |                                                                                                                                                                                                                                                                                                                                                                             |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |                  |
+|                                                                                                                                                 |                                                                                                                                                                                                                                                                                                                                                                             | &gt; ENDACTIO                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |                  |
+|                                                                                                                                                 |                                                                                                                                                                                                                                                                                                                                                                             |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |                  |
+|                                                                                                                                                 |                                                                                                                                                                                                                                                                                                                                                                             | &gt; In theory, most <a href="#__RefHeading___Toc43945_784232322">SCHEDULE</a> keywords can be used in an <a href="#__RefHeading___Toc152225_2992482751">ACTIONW</a> Definition Section here, except for the time stepping keywords, i.e, <a href="#__RefHeading___Toc118323_1596574740">TSTEP</a> and <a href="#__RefHeading___Toc117621_2179381650">DATES</a>.                                                                                                                                                                                                        |                  |
+|                                                                                                                                                 |                                                                                                                                                                                                                                                                                                                                                                             |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |                  |
+|                                                                                                                                                 |                                                                                                                                                                                                                                                                                                                                                                             | &gt; See the <a href="#__RefHeading___Toc152227_2992482751">ACTIONX</a> keyword for a list of the <a href="#__RefHeading___Toc43945_784232322">SCHEDULE</a> keywords that are known to work with the <a href="#__RefHeading___Toc148342_63720426">ACTION</a> series of keywords.                                                                                                                                                                                                                                                                             |                  |
++-------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------+
+| &gt; <a href="#__RefHeading___Toc109407_332691817">ENDACTIO</a>                                                                                               | &gt; Define the end of <a href="#__RefHeading___Toc152225_2992482751">ACTIONW</a> Definition Section.                                                                                                                                                                                                                                                                                     | &gt; Not Applicable                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |                  |
++-------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------+
+| &gt; Notes:                                                                                                                                        |                                                                                                                                                                                                                                                                                                                                                                             |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |                  |
+|                                                                                                                                                 |                                                                                                                                                                                                                                                                                                                                                                             |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |                  |
+| 1)  There is no terminating "/" for this keyword, instead the <a href="#__RefHeading___Toc109407_332691817">ENDACTIO</a> keyword terminates the keyword.   |                                                                                                                                                                                                                                                                                                                                                                             |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |                  |
++-------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------------------+</p>
+<p>Table 12.4: ACTIONW Keyword Description</p>
+<p>The well <a href="#__RefHeading___Toc43949_784232322">SUMMARY</a> vectors that can be used with the <a href="#__RefHeading___Toc152225_2992482751">ACTIONW</a> keyword by OPM Flow and the commercial black-oil simulator are outlined in .</p>
+<p>+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------+------------+
+| &gt; 1                                                                                                                                                                                                            | &gt; Bottom-Hole Pressure                                                  | &gt; WBHP     |
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------+------------+
+| &gt; 2                                                                                                                                                                                                            | &gt; Gas Injection Rate                                                    | &gt; WGIR     |
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------+------------+
+| &gt; 3                                                                                                                                                                                                            | &gt; Gas Injection Total                                                   | &gt; WGIT     |
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------+------------+
+| &gt; 4                                                                                                                                                                                                            | &gt; Gas-Liquid Ratio                                                      | &gt; WGLR     |
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------+------------+
+| &gt; 5                                                                                                                                                                                                            | &gt; Gas-Liquid Ratio (Bottom Hole)                                        | &gt; WBGLR    |
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------+------------+
+| &gt; 6                                                                                                                                                                                                            | &gt; Gas-Oil Ratio                                                         | &gt; WGOR     |
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------+------------+
+| &gt; 7                                                                                                                                                                                                            | &gt; Gas Production Rate                                                   | &gt; WGPR     |
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------+------------+
+| &gt; 8                                                                                                                                                                                                            | &gt; Gas Production Total                                                  | &gt; WGPT     |
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------+------------+
+| &gt; 9                                                                                                                                                                                                            | &gt; Liquid Production Rate                                                | &gt; WLPR     |
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------+------------+
+| &gt; 10                                                                                                                                                                                                           | &gt; Liquid Production Rate                                                | &gt; WLPT     |
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------+------------+
+| &gt; 11                                                                                                                                                                                                           | &gt; Oil Injection Rate                                                    | &gt; WOIR     |
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------+------------+
+| &gt; 12                                                                                                                                                                                                           | &gt; Oil Injection Total                                                   | &gt; WOIT     |
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------+------------+
+| &gt; 13                                                                                                                                                                                                           | &gt; Oil Production Rate                                                   | &gt; WOPR     |
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------+------------+
+| &gt; 14                                                                                                                                                                                                           | &gt; Oil Production Total                                                  | &gt; WOPT     |
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------+------------+
+| &gt; 15                                                                                                                                                                                                           | &gt; Polymer Production Concentration                                      | &gt; WCPC     |
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------+------------+
+| &gt; 16                                                                                                                                                                                                           | &gt; Polymer Production Rate                                               | &gt; WCPR     |
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------+------------+
+| &gt; 17                                                                                                                                                                                                           | &gt; Salt Production Concentration                                         | &gt; WSPC     |
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------+------------+
+| &gt; 18                                                                                                                                                                                                           | &gt; Salt Production Rate                                                  | &gt; WSPR     |
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------+------------+
+| &gt; 19                                                                                                                                                                                                           | &gt; Tracer Production Concentration (Tracer name should be added to WTPC) | &gt; WTPC     |
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------+------------+
+| &gt; 20                                                                                                                                                                                                           | &gt; Tracer Production Rate (Tracer name should be added to WTPC)          | &gt; WTPR     |
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------+------------+
+| &gt; 21                                                                                                                                                                                                           | &gt; Tubing Head Pressure                                                  | &gt; WTHP     |
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------+------------+
+| &gt; 22                                                                                                                                                                                                           | &gt; Voidage Injection Rate                                                | &gt; WVIR     |
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------+------------+
+| &gt; 23                                                                                                                                                                                                           | &gt; Voidage Injection Total                                               | &gt; WVIT     |
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------+------------+
+| &gt; 24                                                                                                                                                                                                           | &gt; Voidage Production Rate                                               | &gt; WVPR     |
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------+------------+
+| &gt; 25                                                                                                                                                                                                           | &gt; Voidage Production Total                                              | &gt; WVPT     |
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------+------------+
+| &gt; 26                                                                                                                                                                                                           | &gt; Water Cut                                                             | &gt; WWCT     |
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------+------------+
+| &gt; 27                                                                                                                                                                                                           | &gt; Water Injection Rate                                                  | &gt; WWIR     |
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------+------------+
+| &gt; 28                                                                                                                                                                                                           | &gt; Water Injection Total                                                 | &gt; WWIT     |
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------+------------+
+| &gt; 29                                                                                                                                                                                                           | &gt; Water Production Rate                                                 | &gt; WWPR     |
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------+------------+
+| &gt; 30                                                                                                                                                                                                           | &gt; Water Production Total                                                | &gt; WWPT     |
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------+------------+
+| &gt; 31                                                                                                                                                                                                           | &gt; Water-Gas Ratio                                                       | &gt; WWGR     |
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------+------------+
+| &gt; 32                                                                                                                                                                                                           | &gt; User Defined Quantity                                                 | &gt; WUXXXXXX |
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------+------------+
+| &gt; Notes:                                                                                                                                                                                                       |                                                                         |            |
+|                                                                                                                                                                                                                |                                                                         |            |
+| 3)  Cells under the No. column not colored show that the <a href="#__RefHeading___Toc43949_784232322">SUMMARY</a> vector is functional within an <a href="#__RefHeading___Toc152225_2992482751">ACTIONW</a> block.                   |                                                                         |            |
+|                                                                                                                                                                                                                |                                                                         |            |
+| 4)  Cells under the No. column colored orange show that the <a href="#__RefHeading___Toc43949_784232322">SUMMARY</a> vector is currently not supported within an <a href="#__RefHeading___Toc152225_2992482751">ACTIONW</a> block.   |                                                                         |            |
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------+------------+</p>
+<p>Table 12.5: <a href="#__RefHeading___Toc152225_2992482751">ACTIONW</a> Supported Well <a href="#__RefHeading___Toc43949_784232322">SUMMARY</a> Variables</p>
+<p>See also the <a href="#__RefHeading___Toc4408_421927891">ACTDIMS</a> and <a href="#__RefHeading___Toc65914_1778172979">UDADIMS</a> keywords in the <a href="#__RefHeading___Toc55591_1778172979">RUNSPEC</a> section to define the dimensions for the <a href="#__RefHeading___Toc148342_63720426">ACTION</a> series of keywords and associated variables. In addition, the <a href="#__RefHeading___Toc627737_1466963378">EXIT</a> keyword in the <a href="#__RefHeading___Toc43945_784232322">SCHEDULE</a> section that allows for terminating the simulation for when a condition within an <a href="#__RefHeading___Toc152225_2992482751">ACTIONW</a> definition is satisfied</p>
+<p>Although most <a href="#__RefHeading___Toc43945_784232322">SCHEDULE</a> section keywords should work with the <a href="#__RefHeading___Toc152225_2992482751">ACTIONW</a> keyword, <a href="#anchor-2">Table 12.8</a> under the description of <a href="#12.3.6.ACTIONX – Define ACTION Conditions and Command Processing|outline">[ACTIONX -- Define Action Conditions and Command Processing](#anchor-3)</a> shows the status of keywords that have been tested and known to work, together with keywords that are currently planned to be implemented.</p>
+<p>As mentioned previously, the <a href="#__RefHeading___Toc161095_2932703077">UDQ</a> keyword stipulates the variables and operations used to access the User Defined Quantities features in OPM Flow. <a href="#__RefHeading___Toc161095_2932703077">UDQ</a> variables can be constants, <a href="#__RefHeading___Toc43949_784232322">SUMMARY</a> variables, as defined in the <a href="#__RefHeading___Toc43949_784232322">SUMMARY</a> section, or a formula using various mathematical functions together with constants and <a href="#__RefHeading___Toc43949_784232322">SUMMARY</a> variables.</p>
+<p>User Defined Quantities can also be used as User Defined Arguments ("UDA") in the <a href="#__RefHeading___Toc43945_784232322">SCHEDULE</a> section with various group, well, and connection keywords. In this case, the UDA variables are used to replace numerical values on these keywords by UDA variables that have been defined by the <a href="#__RefHeading___Toc161095_2932703077">UDQ</a> keyword. For example, if we wish to make the oil rate for certain wells to be a function of their water cut, then one can define the function using the <a href="#__RefHeading___Toc161095_2932703077">UDQ</a> keyword that results in a <a href="#__RefHeading___Toc161095_2932703077">UDQ</a> variable, WU_WOPR say, and then use WU_WOPR as a UDA variable on the <a href="#__RefHeading___Toc146754_4203985108">WCONPROD</a> keyword for the ORAT parameter. See <a href="#anchor-4">Table 12.76</a> for a list of keywords that can be used with UDA variables in the <a href="#12.3.59.UDQ - Declare User Define Quantities (“UDQ”)|outline">[UDQ - Declare User Define Quantities ("UDQ")](#anchor-1)</a> keyword section.</p>
+<h4 id="examples">Examples<a class="headerlink" href="#examples" title="Permanent link">&para;</a></h4>
+<p>The first example uses the <a href="#__RefHeading___Toc152225_2992482751">ACTIONW</a> keyword to re-complete a gas injection well, GI01, when the well's bottom-hole pressure exceeds the fracture pressure of the formation, and to open up a structurally higher zone in the well. The keyword <a href="#__RefHeading___Toc323446_1841740821">NEXTSTEP</a> is used to set the next step to 0.1 days to avoid convergence issues due to a well event.</p>
+<p>--</p>
+<p>-- ACTIONW WELL COMMANDS</p>
+<p>--</p>
+<p>ACTIONW</p>
+<p>-- ACTION WELL ACTION ACTION ACTION MAX INCREMENT</p>
+<p>-- NAME NAME LHS TEST RHS ACTIONS RHS</p>
+<p>ACTW-1 GI01 WBHP &gt; 6800.0 /</p>
+<p>--</p>
+<p>-- ACTION COMMANDS TO BE EXECUTED</p>
+<p>--</p>
+<p>-- NEXT ALL</p>
+<p>-- STEP TIME</p>
+<p>NEXTSTEP</p>
+<p>0.1 \'NO\' /</p>
+<p>--</p>
+<p>-- WELL PRODUCTION STATUS</p>
+<p>--</p>
+<p>-- WELL WELL --LOCATION-- COMPLETION</p>
+<p>-- NAME STAT I J K FIRST LAST</p>
+<p>WELOPEN</p>
+<p>GI01 SHUT /</p>
+<p>GI01 SHUT 0 0 0 2 2 /</p>
+<p>GI01 OPEN /</p>
+<p>GI01 OPEN 0 0 0 1 1 /</p>
+<p>/</p>
+<p>ENDACTIO</p>
+<p>The second example shows how to reduce a producing well\'s deliverability due to water production. Here, well OP01's productivity index is reduced by 2% when the well's liquid production total is greater than 100,000 stb. The reduction is repeated 300 times and each time the action is executed the ACTRHS constant is increased by 10,000 stb.</p>
+<p>--</p>
+<p>-- ACTIONW WELL COMMANDS</p>
+<p>--</p>
+<p>ACTIONW</p>
+<p>-- ACTION WELL ACTION ACTION ACTION MAX ICREMENT</p>
+<p>-- NAME NAME LHS TEST RHS ACTIONS RHS</p>
+<p>ACTW-01 OP01 WLPT &gt; 100E3 300 10E3 /</p>
+<p>--</p>
+<p>-- DEFINE WELL CONNECTION MULTIPLIERS</p>
+<p>--</p>
+<p>-- WELL PI --LOCATION-- COMPLETION</p>
+<p>-- NAME MULT I J K FIRST LAST</p>
+<p>WPIMULT</p>
+<p>OP01 0.980 1* 1* 1* 1* 1* /</p>
+<p>/</p>
+<p>ENDACTIO</p>
+<p>The final example is similar to the previous example, and shows how to nest <a href="#__RefHeading___Toc152225_2992482751">ACTIONW</a> blocks and how to apply <a href="#__RefHeading___Toc152225_2992482751">ACTIONW</a> to all the oil producers when the Boolean condition are satisfied.</p>
+<p>--</p>
+<p>-- ACTIONW WELL COMMANDS</p>
+<p>--</p>
+<p>ACTIONW</p>
+<p>-- ACTION WELL ACTION ACTION ACTION MAX ICREMENT</p>
+<p>-- NAME NAME LHS TEST RHS ACTIONS RHS</p>
+<p>ACTW-01A \'OP*\' WLPT &gt; 100E3 300 10E3 /</p>
+<p>--</p>
+<p>-- ACTIONW WELL COMMANDS</p>
+<p>--</p>
+<p>ACTIONW</p>
+<p>-- ACTION WELL ACTION ACTION ACTION MAX ICREMENT</p>
+<p>-- NAME NAME LHS TEST RHS ACTIONS RHS</p>
+<p>ACTW-01B \'OP*\' WPI &gt; 5.0 1 0.0 /</p>
+<p>--</p>
+<p>-- DEFINE WELL CONNECTION MULTIPLIERS</p>
+<p>--</p>
+<p>-- WELL PI --LOCATION-- COMPLETION</p>
+<p>-- NAME MULT I J K FIRST LAST</p>
+<p>WPIMULT</p>
+<p>\'?\' 0.980 1* 1* 1* 1* 1* /</p>
+<p>/</p>
+<p>ENDACTIO</p>
+<p>ENDACTIO</p>
+<p>In this case the outer <a href="#__RefHeading___Toc152225_2992482751">ACTIONW</a> checks if the liquid production for each OP* well is great than the calculated ACTRHS constant, if it is, then inner <a href="#__RefHeading___Toc152225_2992482751">ACTIONW</a> reduces all the selected wells' productivity indices by 2%, provided the well's productivity index is greater than five.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.top", "search.suggest", "search.highlight", "content.tabs.link"], "search": "../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

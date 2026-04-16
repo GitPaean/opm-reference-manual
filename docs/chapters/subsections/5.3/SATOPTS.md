@@ -108,7 +108,7 @@ For clarity the following table outlines the keywords that should be used in all
 | 2)  Keywords colored orange indicate keywords that are not currently supported in OPM Flow.                                                                                                                                            |                                                     |                                                    |                                                    |                                                   |
 +----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------+----------------------------------------------------+----------------------------------------------------+---------------------------------------------------+
 
-[]{#REF_TABLE_SATOPS_RELATIVE___KEYWORDS_5_3}Table 5.40: SATOPTS Relative Permeability Function Allocation Keywords
+<a id="REF_TABLE_SATOPS_RELATIVE___KEYWORDS_5_3"></a>Table 5.40: SATOPTS Relative Permeability Function Allocation Keywords
 
 #### Examples
 

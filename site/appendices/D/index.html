@@ -1,0 +1,1277 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Reference manual for the OPM Flow reservoir simulator, covering all keywords, input-deck sections, and appendices.">
+      
+      
+        <meta name="author" content="OPM Project Contributors">
+      
+      
+      
+        <link rel="prev" href="../C/">
+      
+      
+        <link rel="next" href="../E/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>D - OPM Flow Reference Manual</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="teal">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#usrbinenv-python3" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="OPM Flow Reference Manual" class="md-header__button md-logo" aria-label="OPM Flow Reference Manual" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            OPM Flow Reference Manual
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              D
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="teal"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue-grey" data-md-color-accent="teal"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../chapters/1/" class="md-tabs__link">
+          
+  
+  
+  Chapters
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../A/" class="md-tabs__link">
+          
+  
+  
+  Appendices
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="OPM Flow Reference Manual" class="md-nav__button md-logo" aria-label="OPM Flow Reference Manual" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    OPM Flow Reference Manual
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapters
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Chapters
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapters/1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1  – Introduction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapters/2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2  – Tutorial
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapters/3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3  – File Formats
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapters/4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4  – Run-Time Options
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapters/5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5  – RUNSPEC Section
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapters/6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6  – GRID Section
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapters/7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7  – EDIT Section
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapters/8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    8  – PROPS Section
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapters/9/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    9  – REGIONS Section
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapters/10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10 – SOLUTION Section
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapters/11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    11 – SUMMARY Section
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapters/12/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    12 – SCHEDULE Section
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Appendices
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Appendices
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../A/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../B/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    B
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../C/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    D
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../E/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    E
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../F/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    F
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<p>A.</p>
+<p>B.  # PYTHON INTERFACE TO OPM FLOW</p>
+<p>A.  1.  ## Introduction</p>
+<p>Some of the C++ code in OPM Flow has been "wrapped" in Python which means that one can invoke the simulator's C++ code from one's own Python programs. At the moment the wrappers for the input layer and the code for working with the result files is quite complete and usable. For a python class documentation and for further documentation and examples, please refer to the <a href="https://opm.github.io/opm-python-documentation/index.html">OPM Online Python Documentation</a>. There is also the option to interact with running simulations from within Python using the <a href="#__RefHeading___Toc393199_4211536922">PYACTION</a> keyword.</p>
+<p>The goal is for the Python code to be structured like a native Python API, but some design decisions are certainly influenced by the underlying C++ implementation, and to get a deeper understanding of what is possible and how to achieve specialized tasks one might need to consult the simulator's C++ code.</p>
+<p>A.  1.  ## Working with the Input Deck</p>
+<p>The reading of the input deck in OPM Flow is a two step process, first a data structure called a <em>"Deck"</em> is created - the<em> "Deck"</em> is essentially a collection of keywords where all elements have been converted to the correct type and default values have been injected into the keyword. The <em>"Deck"</em> is a quite low level data structure, and the actual simulation is based on higher level data structures where the origin in "keywords" from a *.DATA file is no longer so apparent. The most notable high level objects are the <em>"EclipseState"</em> and <em>"Schedule"</em> classes. Large parts of this functionality is available from Python.</p>
+<p>A.  1.  1.  ### The Parser Object</p>
+<p>The initial building block in the parsing process is the <em>"Parser"</em> object which knows how to interpret the input keywords and create data structures. Virtually all scripts working with the input files will start with creating a Parser object:</p>
+<h1 id="usrbinenv-python3">!/usr/bin/env python3<a class="headerlink" href="#usrbinenv-python3" title="Permanent link">&para;</a></h1>
+<p>from opm.io.parser import Parser</p>
+<p># Create a parser object which can be used to parse a string or input files</p>
+<p>parser = Parser()</p>
+<p>In most cases one will just create a default parser object and be done with it, but it is possible to both add your own keyword definitions to the parser and alternatively create a custom parser which only accepts a subset of keywords. These features will be demonstrated briefly in section <a href="#4.2.4.Special Parsing|outline">[Special Parsing](#anchor-4)</a>.</p>
+<p>A.  1.  1.  ### Loading an Input Deck</p>
+<p>The <em>"Deck" </em>data structure is essentially a list of keywords which have been loaded as <em>"DeckKeyword"</em> instances. The Deck can either be loaded from an input data file or from a string. The following example shows how to load two <a href="#__RefHeading___Toc43945_784232322">SCHEDULE</a> section keywords: <a href="#__RefHeading___Toc268463_1366622701">WELSPECS</a> and <a href="#__RefHeading___Toc97651_3261743917">COMPDAT</a>:</p>
+<h1 id="usrbinenv-python3_1">!/usr/bin/env python3<a class="headerlink" href="#usrbinenv-python3_1" title="Permanent link">&para;</a></h1>
+<p>from opm.io.parser import Parser</p>
+<p>deck_string = \"\"\"</p>
+<p>WELSPECS</p>
+<p>\'W1\' \'G1\' 19 4 1* WATER 1* 1* SHUT 1* 1* 1* /</p>
+<p>/</p>
+<p>COMPDAT</p>
+<p>\'W1\' 11 3 1 5 OPEN 1* 1* 0.216 1* 0 1* Z 1* /</p>
+<p>/</p>
+<p>\"\"\"</p>
+<p>parser = Parser()</p>
+<p>deck = parser.parseString( deck_string )</p>
+<p>After running this small script the deck variable will contain the two keywords <a href="#__RefHeading___Toc268463_1366622701">WELSPECS</a> and <a href="#__RefHeading___Toc97651_3261743917">COMPDAT</a>. For these keywords the \'*\' have been replaced with the correct default value and the items have been converted to the correct type. In addition, all numerical values have been converted to SI units, more about units can be found in section<strong> </strong><a href="#4.2.3.Units|outline"><em><a href="#anchor-6">Units</a></em></a>. Alternatively you can use the Parser.parseFile() method to parse an entire input file. In this case <a href="#__RefHeading___Toc55749_2479612490">INCLUDE</a> and <a href="#__RefHeading___Toc539691_2135714711">IMPORT</a> keywords will be resolved and everything will be coalesced into one large <em>"Deck</em>Keyword" data structure:</p>
+<h1 id="usrbinenv-python3_2">!/usr/bin/env python3<a class="headerlink" href="#usrbinenv-python3_2" title="Permanent link">&para;</a></h1>
+<p>import os.path</p>
+<p>import sys</p>
+<p>from opm.io.parser import Parser</p>
+<p>data_file = sys.argv[1]</p>
+<p>print(f\"Loading deck from {data_file}\")</p>
+<p>parser = Parser()</p>
+<p>deck = parser.parseFile( data_file )</p>
+<p>The code above loads a *.DATA file given by calling the Python script. For example, if the name of the input deck, that may contain a complete input deck or just a selection of keywords, is called NORNE.DATA, and the name of the above script is LoadDeck.py, then:</p>
+<p>python LoadDeck NORNE.DATA</p>
+<p>would load the NORNE.DATA into the simulator.</p>
+<p>A.  1.  1.  ### Units</p>
+<p>Internally in OPM Flow all quantities are managed as SI units, whereas input decks use the unit systems <a href="#__RefHeading___Toc70639_2267116897">METRIC</a>, <a href="#__RefHeading___Toc71850_2267116897">FIELD</a>, or <a href="#__RefHeading___Toc72458_2267116897">LAB</a> (laboratory). The <a href="#__RefHeading___Toc70639_2267116897">METRIC</a> unit system is comparable to SI units, the most notable difference is that time is expressed in days instead of seconds, the <a href="#__RefHeading___Toc71850_2267116897">FIELD</a> unit system is based on historical units like barrels of oil (stb) and feet for length.</p>
+<p>The important point is that when you access the elements in the Deck the values you will get are in SI units, whereas the input you provided has been in one of other set of units. Consider the example:</p>
+<h1 id="usrbinenv-python3_3">!/usr/bin/env python3<a class="headerlink" href="#usrbinenv-python3_3" title="Permanent link">&para;</a></h1>
+<p>from opm.io.parser import Parser</p>
+<p>deck_string = \"\"\"</p>
+<p>WCONPROD</p>
+<p>\'W1\' \'OPEN\' \'ORAT\' 86400 /</p>
+<p>/</p>
+<p>\"\"\"</p>
+<p>parser = Parser()</p>
+<p>deck = parser.parseString( deck_string )</p>
+<p>kw = deck[0]</p>
+<p>record0 = kw[0]</p>
+<p>orat = record0[\"ORAT\"].value</p>
+<p>well = record0[\"WELL\"].value</p>
+<p>print(\"==&gt; The Oil rate in well:{} is {} m3/s\".format(orat, well))</p>
+<p>When this script is run it will print:</p>
+<p>==&gt; The Oil rate in well:W1 is 1.0 m3/s</p>
+<p>because the input value of 86,400 m3/day is internally converted to 1.0 m3/second.</p>
+<p>The default input unit system is <a href="#__RefHeading___Toc70639_2267116897">METRIC</a>, that means that if the input is to be interpreted in either <a href="#__RefHeading___Toc71850_2267116897">FIELD</a> or <a href="#__RefHeading___Toc72458_2267116897">LAB</a> units, then one needs to add a keyword to declare the units before entering the data. Thus, to interpret the <a href="#__RefHeading___Toc146754_4203985108">WCONPROD</a> keyword's oil rate as stb/d in the previous example, the <a href="#__RefHeading___Toc71850_2267116897">FIELD</a> keyword needs to be added to the example, that is:</p>
+<h1 id="usrbinenv-python3_4">!/usr/bin/env python3<a class="headerlink" href="#usrbinenv-python3_4" title="Permanent link">&para;</a></h1>
+<p>from opm.io.parser import Parser</p>
+<p>deck_string = \"\"\"</p>
+<p><a href="#__RefHeading___Toc71850_2267116897">FIELD</a></p>
+<p><a href="#__RefHeading___Toc146754_4203985108">WCONPROD</a></p>
+<p>\'W1\' \'OPEN\' \'ORAT\' 86400 /</p>
+<p>/</p>
+<p>\"\"\"</p>
+<p>A.  1.  1.  ### Accessing the Input Deck</p>
+<p>After you have loaded a Deck you can query it with normal Python functions:</p>
+<p># Check if deck has keyword:</p>
+<p>if \"GRID\" in deck:</p>
+<p>print(\"Deck contains \'GRID\' keyword\")</p>
+<p>else</p>
+<p>print(\"Deck does not have \'GRID\' keyword\")</p>
+<p># Loop through all the keywords:</p>
+<p>for kw in deck:</p>
+<p>print(\"kw: {}\".format(kw.name)</p>
+<p>To get a keyword from the deck you can access it with index, name, or a combination of name and occurrence index:</p>
+<p># Get keyword 10</p>
+<p>kw10 = deck[10]</p>
+<p># Get the last DATES keyword</p>
+<p>last_dates = deck[\"DATES\"]</p>
+<p># Get the third WELSPECS keyword</p>
+<p>welspecs3 = deck[(\"WELSPECS\", 3)]</p>
+<p>A deck keyword is composed of <em>"records"</em>, which are again composed of <em>"items"</em>. The example below shows how one can iterate through the wells in a <a href="#__RefHeading___Toc268463_1366622701">WELSPECS</a> keyword:</p>
+<p>kw = deck[\"WELSPECS\"]</p>
+<p>print(f\"Keyword has {len(kw)} records\")</p>
+<p>for record in kw:</p>
+<p>well = record[\"WELL\"].get_str()</p>
+<p>group = record[1].get_str()</p>
+<p>print(f\"Well {num}: {well} is part of group{group})</p>
+<p>A.  1.  1.  ### Special Parsing</p>
+<p>The keywords that OPM Flow recognizes are configured via JSON files which are embedded in the source distribution. The JSON keywords for the simulator are in the following public GitHub repository:</p>
+<p><a href="https://github.com/OPM/opm-common/tree/master/opm/input/eclipse/share/keywords"><em>https://github.com/OPM/opm-common/tree/master/opm/input/eclipse/share/keywords</em></a></p>
+<p>By default the Parser class will recognize all the keywords which are known to OPM Flow, but one can create your own custom parser with only a subset of keywords:</p>
+<p>from opm.io.parser import Builtin</p>
+<p># Create a special parser which only recognizes the corner point grid # keywords</p>
+<p>parser = Parser(add_default = False)</p>
+<p>builtin = Builtin()</p>
+<p>parser.add_keyword( builtin.COORD )</p>
+<p>parser.add_keyword( builtin.ZCORN )</p>
+<p>parser.add_keyword( builtin.ACTNUM )</p>
+<p>The opposite is also possible, here is how one can add a special keyword GCLOSE which could be used to close all the wells in the group:</p>
+<p># Create a fictitious home mode keyword GCLOSE:</p>
+<p>GCLOSE = {\"name\" : \"GCLOSE\",</p>
+<p>\"sections\" : [\"SCHEDULE\"],</p>
+<p>\"items\" : [</p>
+<p>{\"name\" : \"GROUP\", \"value_type\" : \"STRING\"}</p>
+<p>]}</p>
+<p>parser = Parser()</p>
+<p># Add the keyword description via a JSON string</p>
+<p>parser.add_keyword(json.dumps(GCLOSE))</p>
+<p>By default the parser used in OPM Flow is quite strict - a tad stricter than the one used by the commercial simulator. However, one can configure how the parser should react to certain error conditions. By default the parser will fail with an exception if an <a href="#__RefHeading___Toc55749_2479612490">INCLUDE</a> file is not found, but one can for instance change this behavior to ignore that error condition, for example:</p>
+<p>parse_context = ParseContext([(\'PARSE_MISSING_INCLUDE\',</p>
+<p>opm.io.action.ignore)])</p>
+<p>parser = Parser()</p>
+<p>deck = parser.parseFile(self.norne_fname, parse_context)</p>
+<p>A.  1.  1.  ### Creating EclipseState and Grid Objects</p>
+<p>The <em>"Deck"</em> is a quite raw structure and not very user friendly. Before actually used in the simulator the properties from the <em>"Deck"</em> are coalesced to a form more easily usable format. Consider, for example the <a href="#__RefHeading___Toc45797_719036256">PORO</a> array configured below where the configuration is given in three steps:</p>
+<p>-- GRID Dimensions 10 x 10 x 3</p>
+<p>DIMENS</p>
+<p>10 10 3 /</p>
+<p>--</p>
+<p>-- Set A Global Value 0.10 For All Of The Grid</p>
+<p>--</p>
+<p>PORO</p>
+<p>300*0.10 /</p>
+<p>--</p>
+<p>-- Set A Value Of 0.15 For All The Cells In The Middle Layer</p>
+<p>--</p>
+<p>BOX</p>
+<p>1 10 1 10 2 2 /</p>
+<p>PORO</p>
+<p>100*0.15 /</p>
+<p>ENDBOX</p>
+<p>--</p>
+<p>-- Scale The Bottom Layer By A Factor OF Two</p>
+<p>--</p>
+<p>MULTIPLY</p>
+<p>PORO 2 1 10 1 10 3 3 /</p>
+<p>/</p>
+<p>In the deck representation this will be a collection of five different keywords: {\"PORO\", \"BOX\", \"PORO\", \"ENDBOX\", \"MULTIPLY\"}, whereas in the <em>"EclipseState"</em> this will be one property \"PORO\" where all the modifications have been completed. In addition to the grid properties like \"PERMX\" and \"PORO\" the <em>"EclipseState"</em> object contains numerous other objects like the fault properties, PVT tables, and more.</p>
+<h1 id="usrbinenv-python3_5">!/usr/bin/env python3<a class="headerlink" href="#usrbinenv-python3_5" title="Permanent link">&para;</a></h1>
+<p>import syshe</p>
+<p>form opm.io.parser import Parser</p>
+<p>from opm.io.ecl_state import EclipseState</p>
+<p>parser = Parser()</p>
+<p>data_file = sys.argv[1]</p>
+<p>deck = parser.parseFile( data_file )</p>
+<p>es = EclipseState( deck )</p>
+<p>#</p>
+<p># Get the FieldPropsManager from the EclipseState. The FieldPropsManager</p>
+<p># is then used to query and look up grid properties like PERMX and PORO.</p>
+<p># Observe that the properties you get from the FieldPropsManager only have</p>
+<p># the active cells only.</p>
+<p>#</p>
+<p>fp = es.field_props()</p>
+<p>poro = fp[\"PORO\"]</p>
+<p>satnum = fp[\"SATNUM\"]</p>
+<p>#</p>
+<p># Get the input grid from the EclipseState:</p>
+<p>#</p>
+<p>grid = es.grid()</p>
+<p># Get a manager for all the tables</p>
+<p>tables = es.tables()</p>
+<p>A.  1.  1.  ### Creating a Schedule</p>
+<p>The Schedule object contains all the dynamic information in the model, in particular that includes all information about wells and groups. The Schedule object is constructed from the <em>"Deck"</em> and the "<em>EclipseState"</em> objects.:</p>
+<h1 id="usrbinenv-python3_6">!/usr/bin/env python3<a class="headerlink" href="#usrbinenv-python3_6" title="Permanent link">&para;</a></h1>
+<p>import sys</p>
+<p>from opm.io.parser import Parser</p>
+<p>from opm.io.ecl_state import EclipseState</p>
+<p>parser = Parser()</p>
+<p>data_file = sys.argv[1]</p>
+<p>deck = parser.parseFile( data_file )</p>
+<p>es = EclipseState( deck )</p>
+<p>schedule = Schedule(deck, es)</p>
+<p>print(f\"Schedule file has {len(schedule)} report steps\")\'</p>
+<p>print(\"List of wells\")</p>
+<p>for well in schedule.well_names():</p>
+<p>print(well)</p>
+<p>The example above prints the number of report time steps and all the well names in the <a href="#__RefHeading___Toc43945_784232322">SCHEDULE</a> section.</p>
+<p>A.  1.  ## Working with the Result Files</p>
+<p>In addition to the functionality to load and inspect the input deck, OPM Flow also has a Python interface to load and inspect the various result files, <a href="#__RefHeading___Toc43949_784232322">SUMMARY</a> and <a href="#__RefHeading___Toc135629_1317547213">RESTART</a> files. There is also some functionality to create files with the correct formatting.</p>
+<p>A.  1.  1.  ### Loading a Grid File</p>
+<p>Using the class <em>"EclipseGrid"</em> one can load a grid representation from a *.EGRID file on disk:</p>
+<h1 id="usrbinenv-python3_7">!/usr/bin/env python3<a class="headerlink" href="#usrbinenv-python3_7" title="Permanent link">&para;</a></h1>
+<p>import sys</p>
+<p>from opm.io.ecl import EGrid</p>
+<p>grid_file = sys.argv[1]</p>
+<p>grid = EGrid(grid_file)</p>
+<p>The return value from <em>"EclipseState.ecl_grid()</em>" is also of this type.</p>
+<p>A.  1.  1.  ### Loading a Summary Case of Results</p>
+<p>Using the class <em>"ESMry"</em> one can load the Extended <a href="#__RefHeading___Toc43949_784232322">SUMMARY</a> file for a simulations that contains all the <a href="#__RefHeading___Toc43949_784232322">SUMMARY</a> vectors.</p>
+<h1 id="usrbinenv-python3_8">!/usr/bin/env python3<a class="headerlink" href="#usrbinenv-python3_8" title="Permanent link">&para;</a></h1>
+<p>import sys</p>
+<p>from opm.io.ecl import ESMry</p>
+<p>case = sys.argv[1]</p>
+<p>summary = Esmry(case)</p>
+<p>A.  1.  1.  ### Loading a Restart File</p>
+<p>Finally, one load the solution arrays stored in the *.RESTART file using the Erst class, as shown below.</p>
+<h1 id="usrbinenv-python">!/usr/bin/env python<a class="headerlink" href="#usrbinenv-python" title="Permanent link">&para;</a></h1>
+<p>import sys</p>
+<p>from opm.io.ecl import ERst</p>
+<p>rst_file = sys.argv[1]</p>
+<p>rst = Erst(rst_file)</p>
+<p>Note that a restart file can be large, so care must be taken on how these type of files are loaded into Python.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.top", "search.suggest", "search.highlight", "content.tabs.link"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

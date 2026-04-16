@@ -1,0 +1,1483 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Reference manual for the OPM Flow reservoir simulator, covering all keywords, input-deck sections, and appendices.">
+      
+      
+        <meta name="author" content="OPM Project Contributors">
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>AQUTAB - OPM Flow Reference Manual</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="teal">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#aqutab-define-carter-tracy-aquifer-influence-functions" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../.." title="OPM Flow Reference Manual" class="md-header__button md-logo" aria-label="OPM Flow Reference Manual" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            OPM Flow Reference Manual
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              AQUTAB
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="teal"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue-grey" data-md-color-accent="teal"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../1/" class="md-tabs__link">
+          
+  
+  
+  Chapters
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../appendices/A/" class="md-tabs__link">
+          
+  
+  
+  Appendices
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="OPM Flow Reference Manual" class="md-nav__button md-logo" aria-label="OPM Flow Reference Manual" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    OPM Flow Reference Manual
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapters
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Chapters
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1  – Introduction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2  – Tutorial
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3  – File Formats
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4  – Run-Time Options
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5  – RUNSPEC Section
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6  – GRID Section
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7  – EDIT Section
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    8  – PROPS Section
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../9/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    9  – REGIONS Section
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10 – SOLUTION Section
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    11 – SUMMARY Section
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../12/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    12 – SCHEDULE Section
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Appendices
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Appendices
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../appendices/A/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../appendices/B/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    B
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../appendices/C/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../appendices/D/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    D
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../appendices/E/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    E
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../appendices/F/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    F
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#aqutab-define-carter-tracy-aquifer-influence-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AQUTAB -- Define Carter-Tracy Aquifer Influence Functions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="AQUTAB -- Define Carter-Tracy Aquifer Influence Functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#description" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Description
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+  <h1>AQUTAB</h1>
+
+<h3 id="aqutab-define-carter-tracy-aquifer-influence-functions">AQUTAB -- Define Carter-Tracy Aquifer Influence Functions<a class="headerlink" href="#aqutab-define-carter-tracy-aquifer-influence-functions" title="Permanent link">&para;</a></h3>
+<p>+-----------------------------------------+-----------------------------------+-----------------------------------+-------------------------------------+-----------------------------------------+-------------------------------------------+-----------------------------------------+--------------------------------------------+
+| &gt; <a href="#3.RUNSPEC SECTION|outline">RUNSPEC</a> | &gt; <a href="#4.GRID SECTION|outline">GRID</a> | &gt; <a href="#5.EDIT SECTION|outline">EDIT</a> | &gt; <a href="#6.PROPS SECTION|outline">PROPS</a> | &gt; <a href="#7.REGIONS SECTION|outline">REGIONS</a> | &gt; <a href="#8.SOLUTION SECTION|outline">SOLUTION</a> | &gt; <a href="#9.SUMMARY SECTION|outline">SUMMARY</a> | &gt; <a href="#10.SCHEDULE SECTION|outline">SCHEDULE</a> |
++-----------------------------------------+-----------------------------------+-----------------------------------+-------------------------------------+-----------------------------------------+-------------------------------------------+-----------------------------------------+--------------------------------------------+</p>
+<h4 id="description">Description<a class="headerlink" href="#description" title="Permanent link">&para;</a></h4>
+<p>The <a href="#__RefHeading___Toc110746_846947960">AQUTAB</a> keyword defines additional Carter-Tracy<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup> aquifer functions to be used in the model. Carter-Tracy representation of the aquifer influx is via a qw term in the non-linear aquifer influence function Q(t). It allows the water influx from the aquifer to be represented in the simulator by assuming that there is a constant water influx rate over finite time periods. It is derived from the superposition methods of van Everdingen and Hurst<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup>, whose superposition methods are not suitable for implementation in reservoir simulation software, although they are very useful in interpreting aquifer response. The storage requirements and calculation complexity of handling the resulting superposition formulae can be largely eliminated by use of the Carter-Tracy approximate water influx method.</p>
+<p>+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------+--------------------------+-----------+
+| &gt; No.                                                                                                                                                                                                                                                                                                                                                                   | &gt; Name          | &gt; Description            | &gt; Default |
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------+--------------------------+-----------+
+| &gt; Field                                                                                                                                                                                                                                                                                                                                                                 | &gt; Metric        | &gt; Laboratory             |           |
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------+--------------------------+-----------+
+| &gt; 1                                                                                                                                                                                                                                                                                                                                                                     | &gt; TD            | &gt; Dimensionless Time     | &gt; None    |
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------+--------------------------+-----------+
+| &gt; dimensionless                                                                                                                                                                                                                                                                                                                                                         | &gt; dimensionless | &gt; dimensionless          |           |
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------+--------------------------+-----------+
+| &gt; 2                                                                                                                                                                                                                                                                                                                                                                     | &gt; PD            | &gt; Dimensionless Pressure | &gt; None    |
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------+--------------------------+-----------+
+| &gt; dimensionless                                                                                                                                                                                                                                                                                                                                                         | &gt; dimensionless | &gt; dimensionless          |           |
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------+--------------------------+-----------+
+| &gt; Notes:                                                                                                                                                                                                                                                                                                                                                                |                 |                          |           |
+|                                                                                                                                                                                                                                                                                                                                                                         |                 |                          |           |
+| 1)  The keyword is followed by NIFTBL tables as declared on the <a href="#__RefHeading___Toc10103_3701168388">AQUDIMS</a> keyword in the <a href="#__RefHeading___Toc55591_1778172979">RUNSPEC</a> section.                                                                                                                                                                                   |                 |                          |           |
+|                                                                                                                                                                                                                                                                                                                                                                         |                 |                          |           |
+| 2)  Each table must contain at least two complete rows with a maximum of NRIFTB rows as declared on the <a href="#__RefHeading___Toc10103_3701168388">AQUDIMS</a> keyword in the <a href="#__RefHeading___Toc55591_1778172979">RUNSPEC</a> section. Note that NRIFTB must not be less than 36 in order to accommodate the default infinite acting Carter-Tracy aquifer influence function.    |                 |                          |           |
+|                                                                                                                                                                                                                                                                                                                                                                         |                 |                          |           |
+| 3)  Each table is terminated by a "/" and there is no "/" terminator for the keyword.                                                                                                                                                                                                                                                                                   |                 |                          |           |
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------+--------------------------+-----------+</p>
+<p>Table 8.18: AQUTAB Keyword Description</p>
+<p>to outline the standard finite tables derived by van Everdingen and Hurst that are used for the Carter-Tracy analytical aquifers and are taken from Bradely<sup id="fnref:3"><a class="footnote-ref" href="#fn:3">3</a></sup> table 38-6 on page 38-12. In the tables rD is defined as the ratio of the aquifer external radius divided by hydrocarbon radius, that is:.</p>
+<p>+--------+----------+----------+----------+----------+----------+----------+----------+----------+
+| &gt; t~D~ | &gt; p~D~   | &gt; t~D~   | &gt; p~D~   | &gt; t~D~   | &gt; p~D~   | &gt; t~D~   | &gt; p~D~   |          |
++--------+----------+----------+----------+----------+----------+----------+----------+----------+
+| &gt; 1    | &gt; 0.0600 | &gt; 0.2510 | &gt; 0.2200 | &gt; 0.4430 | &gt; 0.4000 | &gt; 0.5650 | &gt; 0.5200 | &gt; 0.6270 |
++--------+----------+----------+----------+----------+----------+----------+----------+----------+
+| &gt; 2    | &gt; 0.0800 | &gt; 0.2880 | &gt; 0.2400 | &gt; 0.4590 | &gt; 0.4200 | &gt; 0.5760 | &gt; 0.5400 | &gt; 0.6360 |
++--------+----------+----------+----------+----------+----------+----------+----------+----------+
+| &gt; 3    | &gt; 0.1000 | &gt; 0.3220 | &gt; 0.2600 | &gt; 0.4760 | &gt; 0.4400 | &gt; 0.5870 | &gt; 0.5600 | &gt; 0.6450 |
++--------+----------+----------+----------+----------+----------+----------+----------+----------+
+| &gt; 4    | &gt; 0.1200 | &gt; 0.3550 | &gt; 0.2800 | &gt; 0.4920 | &gt; 0.4600 | &gt; 0.5980 | &gt; 0.6000 | &gt; 0.6620 |
++--------+----------+----------+----------+----------+----------+----------+----------+----------+
+| &gt; 5    | &gt; 0.1400 | &gt; 0.3870 | &gt; 0.3000 | &gt; 0.5070 | &gt; 0.4800 | &gt; 0.6080 | &gt; 0.6500 | &gt; 0.6830 |
++--------+----------+----------+----------+----------+----------+----------+----------+----------+
+| &gt; 6    | &gt; 0.1600 | &gt; 0.4200 | &gt; 0.3200 | &gt; 0.5220 | &gt; 0.5000 | &gt; 0.6180 | &gt; 0.7000 | &gt; 0.7030 |
++--------+----------+----------+----------+----------+----------+----------+----------+----------+
+| &gt; 7    | &gt; 0.1800 | &gt; 0.4520 | &gt; 0.3400 | &gt; 0.5360 | &gt; 0.5200 | &gt; 0.6280 | &gt; 0.7500 | &gt; 0.7210 |
++--------+----------+----------+----------+----------+----------+----------+----------+----------+
+| &gt; 8    | &gt; 0.2000 | &gt; 0.4840 | &gt; 0.3600 | &gt; 0.5510 | &gt; 0.5400 | &gt; 0.6380 | &gt; 0.8000 | &gt; 0.7400 |
++--------+----------+----------+----------+----------+----------+----------+----------+----------+
+| &gt; 9    | &gt; 0.2200 | &gt; 0.5160 | &gt; 0.3800 | &gt; 0.5650 | &gt; 0.5600 | &gt; 0.6470 | &gt; 0.8500 | &gt; 0.7580 |
++--------+----------+----------+----------+----------+----------+----------+----------+----------+
+| &gt; 10   | &gt; 0.2400 | &gt; 0.5480 | &gt; 0.4000 | &gt; 0.5790 | &gt; 0.5800 | &gt; 0.6570 | &gt; 0.9000 | &gt; 0.7760 |
++--------+----------+----------+----------+----------+----------+----------+----------+----------+
+| &gt; 11   | &gt; 0.2600 | &gt; 0.5800 | &gt; 0.4200 | &gt; 0.5930 | &gt; 0.6000 | &gt; 0.6660 | &gt; 0.9500 | &gt; 0.7910 |
++--------+----------+----------+----------+----------+----------+----------+----------+----------+
+| &gt; 12   | &gt; 0.2800 | &gt; 0.6120 | &gt; 0.4400 | &gt; 0.6070 | &gt; 0.6500 | &gt; 0.6880 | &gt; 1.0000 | &gt; 0.8060 |
++--------+----------+----------+----------+----------+----------+----------+----------+----------+
+| &gt; 13   | &gt; 0.3000 | &gt; 0.6440 | &gt; 0.4600 | &gt; 0.6210 | &gt; 0.7000 | &gt; 0.7100 | &gt; 1.2000 | &gt; 0.8650 |
++--------+----------+----------+----------+----------+----------+----------+----------+----------+
+| &gt; 14   | &gt; 0.3500 | &gt; 0.7240 | &gt; 0.4800 | &gt; 0.6340 | &gt; 0.7500 | &gt; 0.7310 | &gt; 1.4000 | &gt; 0.9200 |
++--------+----------+----------+----------+----------+----------+----------+----------+----------+
+| &gt; 15   | &gt; 0.4000 | &gt; 0.8040 | &gt; 0.5000 | &gt; 0.6480 | &gt; 0.8000 | &gt; 0.7520 | &gt; 1.6000 | &gt; 0.9730 |
++--------+----------+----------+----------+----------+----------+----------+----------+----------+
+| &gt; 16   | &gt; 0.4500 | &gt; 0.8840 | &gt; 0.6000 | &gt; 0.7150 | &gt; 0.8500 | &gt; 0.7720 | &gt; 2.0000 | &gt; 1.0760 |
++--------+----------+----------+----------+----------+----------+----------+----------+----------+
+| &gt; 17   | &gt; 0.5000 | &gt; 0.9640 | &gt; 0.7000 | &gt; 0.7820 | &gt; 0.9000 | &gt; 0.7920 | &gt; 3.0000 | &gt; 1.3280 |
++--------+----------+----------+----------+----------+----------+----------+----------+----------+
+| &gt; 18   | &gt; 0.5500 | &gt; 1.0440 | &gt; 0.8000 | &gt; 0.8490 | &gt; 0.9500 | &gt; 0.8120 | &gt; 4.0000 | &gt; 1.5780 |
++--------+----------+----------+----------+----------+----------+----------+----------+----------+
+| &gt; 19   | &gt; 0.6000 | &gt; 1.1240 | &gt; 0.9000 | &gt; 0.9150 | &gt; 1.0000 | &gt; 0.8320 | &gt; 5.0000 | &gt; 1.8280 |
++--------+----------+----------+----------+----------+----------+----------+----------+----------+
+| &gt; 20   |          |          | &gt; 1.0000 | &gt; 0.9820 | &gt; 2.0000 | &gt; 1.2150 |          |          |
++--------+----------+----------+----------+----------+----------+----------+----------+----------+
+| &gt; 21   |          |          | &gt; 2.0000 | &gt; 1.6490 | &gt; 3.0000 | &gt; 1.5960 |          |          |
++--------+----------+----------+----------+----------+----------+----------+----------+----------+
+| &gt; 22   |          |          | &gt; 3.0000 | &gt; 2.3160 | &gt; 4.0000 | &gt; 1.9770 |          |          |
++--------+----------+----------+----------+----------+----------+----------+----------+----------+
+| &gt; 23   |          |          | &gt; 5.0000 | &gt; 3.6490 | &gt; 5.0000 | &gt; 2.3580 |          |          |
++--------+----------+----------+----------+----------+----------+----------+----------+----------+</p>
+<p>Table 8.19: Carter-Tracy Aquifer Influence Functions (RD =1.5, 2.0, 2.5 and 3.0)</p>
+<p>+--------+----------+----------+-----------+----------+-----------+----------+-----------+----------+
+| &gt; t~D~ | &gt; p~D~   | &gt; t~D~   | &gt; p~D~    | &gt; t~D~   | &gt; p~D~    | &gt; t~D~   | &gt; p~D~    |          |
++--------+----------+----------+-----------+----------+-----------+----------+-----------+----------+
+| &gt; 1    | &gt; 1.0000 | &gt; 0.8020 | &gt; 1.5000  | &gt; 0.9270 | &gt; 2.0000  | &gt; 1.0230 | &gt; 3.0000  | &gt; 1.1670 |
++--------+----------+----------+-----------+----------+-----------+----------+-----------+----------+
+| &gt; 2    | &gt; 1.1000 | &gt; 0.8300 | &gt; 1.6000  | &gt; 0.9480 | &gt; 2.1000  | &gt; 1.0400 | &gt; 3.1000  | &gt; 1.1800 |
++--------+----------+----------+-----------+----------+-----------+----------+-----------+----------+
+| &gt; 3    | &gt; 1.2000 | &gt; 0.8570 | &gt; 1.7000  | &gt; 0.9680 | &gt; 2.2000  | &gt; 1.0560 | &gt; 3.2000  | &gt; 1.1920 |
++--------+----------+----------+-----------+----------+-----------+----------+-----------+----------+
+| &gt; 4    | &gt; 1.3000 | &gt; 0.8820 | &gt; 1.8000  | &gt; 0.9880 | &gt; 2.3000  | &gt; 1.0720 | &gt; 3.3000  | &gt; 1.2040 |
++--------+----------+----------+-----------+----------+-----------+----------+-----------+----------+
+| &gt; 5    | &gt; 1.4000 | &gt; 0.9060 | &gt; 1.9000  | &gt; 1.0070 | &gt; 2.4000  | &gt; 1.0870 | &gt; 3.4000  | &gt; 1.2150 |
++--------+----------+----------+-----------+----------+-----------+----------+-----------+----------+
+| &gt; 6    | &gt; 1.5000 | &gt; 0.9290 | &gt; 2.0000  | &gt; 1.0250 | &gt; 2.5000  | &gt; 1.1020 | &gt; 3.5000  | &gt; 1.2270 |
++--------+----------+----------+-----------+----------+-----------+----------+-----------+----------+
+| &gt; 7    | &gt; 1.6000 | &gt; 0.9510 | &gt; 2.2000  | &gt; 1.0590 | &gt; 2.6000  | &gt; 1.1160 | &gt; 3.6000  | &gt; 1.2380 |
++--------+----------+----------+-----------+----------+-----------+----------+-----------+----------+
+| &gt; 8    | &gt; 1.7000 | &gt; 0.9730 | &gt; 2.4000  | &gt; 1.0920 | &gt; 2.7000  | &gt; 1.1300 | &gt; 3.7000  | &gt; 1.2490 |
++--------+----------+----------+-----------+----------+-----------+----------+-----------+----------+
+| &gt; 9    | &gt; 1.8000 | &gt; 0.9940 | &gt; 2.6000  | &gt; 1.1230 | &gt; 2.8000  | &gt; 1.1440 | &gt; 3.8000  | &gt; 1.2590 |
++--------+----------+----------+-----------+----------+-----------+----------+-----------+----------+
+| &gt; 10   | &gt; 1.9000 | &gt; 1.0140 | &gt; 2.8000  | &gt; 1.1540 | &gt; 2.9000  | &gt; 1.1580 | &gt; 3.9000  | &gt; 1.2700 |
++--------+----------+----------+-----------+----------+-----------+----------+-----------+----------+
+| &gt; 11   | &gt; 2.0000 | &gt; 1.0340 | &gt; 3.0000  | &gt; 1.1840 | &gt; 3.0000  | &gt; 1.1710 | &gt; 4.0000  | &gt; 1.2810 |
++--------+----------+----------+-----------+----------+-----------+----------+-----------+----------+
+| &gt; 12   | &gt; 2.2500 | &gt; 1.0830 | &gt; 3.5000  | &gt; 1.2550 | &gt; 3.2000  | &gt; 1.1970 | &gt; 4.2000  | &gt; 1.3010 |
++--------+----------+----------+-----------+----------+-----------+----------+-----------+----------+
+| &gt; 13   | &gt; 2.5000 | &gt; 1.1300 | &gt; 4.0000  | &gt; 1.3240 | &gt; 3.4000  | &gt; 1.2220 | &gt; 4.4000  | &gt; 1.3210 |
++--------+----------+----------+-----------+----------+-----------+----------+-----------+----------+
+| &gt; 14   | &gt; 2.7500 | &gt; 1.1760 | &gt; 4.5000  | &gt; 1.3920 | &gt; 3.6000  | &gt; 1.2460 | &gt; 4.6000  | &gt; 1.3400 |
++--------+----------+----------+-----------+----------+-----------+----------+-----------+----------+
+| &gt; 15   | &gt; 3.0000 | &gt; 1.2210 | &gt; 5.0000  | &gt; 1.4600 | &gt; 3.8000  | &gt; 1.2690 | &gt; 4.8000  | &gt; 1.3600 |
++--------+----------+----------+-----------+----------+-----------+----------+-----------+----------+
+| &gt; 16   | &gt; 4.0000 | &gt; 1.4010 | &gt; 5.5000  | &gt; 1.5270 | &gt; 4.0000  | &gt; 1.2920 | &gt; 5.0000  | &gt; 1.3780 |
++--------+----------+----------+-----------+----------+-----------+----------+-----------+----------+
+| &gt; 17   | &gt; 5.0000 | &gt; 1.5790 | &gt; 6.0000  | &gt; 1.5940 | &gt; 4.5000  | &gt; 1.3490 | &gt; 5.5000  | &gt; 1.4240 |
++--------+----------+----------+-----------+----------+-----------+----------+-----------+----------+
+| &gt; 18   | &gt; 6.0000 | &gt; 1.7570 | &gt; 6.5000  | &gt; 1.6600 | &gt; 5.0000  | &gt; 1.4030 | &gt; 6.0000  | &gt; 1.4690 |
++--------+----------+----------+-----------+----------+-----------+----------+-----------+----------+
+| &gt; 19   |          |          | &gt; 7.0000  | &gt; 1.7270 | &gt; 5.5000  | &gt; 1.4570 | &gt; 6.5000  | &gt; 1.5130 |
++--------+----------+----------+-----------+----------+-----------+----------+-----------+----------+
+| &gt; 20   |          |          | &gt; 8.0000  | &gt; 1.8610 | &gt; 6.0000  | &gt; 1.5100 | &gt; 7.0000  | &gt; 1.5560 |
++--------+----------+----------+-----------+----------+-----------+----------+-----------+----------+
+| &gt; 21   |          |          | &gt; 9.0000  | &gt; 1.9940 | &gt; 7.0000  | &gt; 1.6150 | &gt; 7.5000  | &gt; 1.5980 |
++--------+----------+----------+-----------+----------+-----------+----------+-----------+----------+
+| &gt; 22   |          |          | &gt; 10.0000 | &gt; 2.1270 | &gt; 8.0000  | &gt; 1.7190 | &gt; 8.0000  | &gt; 1.6410 |
++--------+----------+----------+-----------+----------+-----------+----------+-----------+----------+
+| &gt; 23   |          |          |           |          | &gt; 9.0000  | &gt; 1.8230 | &gt; 9.0000  | &gt; 1.7250 |
++--------+----------+----------+-----------+----------+-----------+----------+-----------+----------+
+| &gt; 24   |          |          |           |          | &gt; 10.0000 | &gt; 1.9270 | &gt; 10.0000 | &gt; 1.8080 |
++--------+----------+----------+-----------+----------+-----------+----------+-----------+----------+
+| &gt; 25   |          |          |           |          | &gt; 11.0000 | &gt; 2.0310 | &gt; 11.0000 | &gt; 1.8920 |
++--------+----------+----------+-----------+----------+-----------+----------+-----------+----------+
+| &gt; 26   |          |          |           |          | &gt; 12.0000 | &gt; 2.1350 | &gt; 12.0000 | &gt; 1.9750 |
++--------+----------+----------+-----------+----------+-----------+----------+-----------+----------+
+| &gt; 27   |          |          |           |          | &gt; 13.0000 | &gt; 2.2390 | &gt; 13.0000 | &gt; 2.0590 |
++--------+----------+----------+-----------+----------+-----------+----------+-----------+----------+
+| &gt; 28   |          |          |           |          | &gt; 14.0000 | &gt; 2.3430 | &gt; 14.0000 | &gt; 2.1420 |
++--------+----------+----------+-----------+----------+-----------+----------+-----------+----------+
+| &gt; 29   |          |          |           |          | &gt; 15.0000 | &gt; 2.4470 | &gt; 15.0000 | &gt; 2.2250 |
++--------+----------+----------+-----------+----------+-----------+----------+-----------+----------+</p>
+<p>Table 8.20: Carter-Tracy Aquifer Influence Functions (RD =3.5, 4.0, 4.5 and 5.0)</p>
+<p>+--------+-----------+----------+-----------+----------+-----------+----------+-----------+----------+
+| &gt; t~D~ | &gt; p~D~    | &gt; t~D~   | &gt; p~D~    | &gt; t~D~   | &gt; p~D~    | &gt; t~D~   | &gt; p~D~    |          |
++--------+-----------+----------+-----------+----------+-----------+----------+-----------+----------+
+| &gt; 1    | &gt; 4.0000  | &gt; 1.2750 | &gt; 6.0000  | &gt; 1.4360 | &gt; 8.0000  | &gt; 1.5560 | &gt; 10.0000 | &gt; 1.6510 |
++--------+-----------+----------+-----------+----------+-----------+----------+-----------+----------+
+| &gt; 2    | &gt; 4.5000  | &gt; 1.3220 | &gt; 6.5000  | &gt; 1.4700 | &gt; 8.5000  | &gt; 1.5820 | &gt; 10.5000 | &gt; 1.6730 |
++--------+-----------+----------+-----------+----------+-----------+----------+-----------+----------+
+| &gt; 3    | &gt; 5.0000  | &gt; 1.3640 | &gt; 7.0000  | &gt; 1.5010 | &gt; 9.0000  | &gt; 1.6070 | &gt; 11.0000 | &gt; 1.6930 |
++--------+-----------+----------+-----------+----------+-----------+----------+-----------+----------+
+| &gt; 4    | &gt; 5.5000  | &gt; 1.4040 | &gt; 7.5000  | &gt; 1.5310 | &gt; 9.5000  | &gt; 1.6310 | &gt; 11.5000 | &gt; 1.7130 |
++--------+-----------+----------+-----------+----------+-----------+----------+-----------+----------+
+| &gt; 5    | &gt; 6.0000  | &gt; 1.4410 | &gt; 8.0000  | &gt; 1.5590 | &gt; 10.0000 | &gt; 1.6530 | &gt; 12.0000 | &gt; 1.7320 |
++--------+-----------+----------+-----------+----------+-----------+----------+-----------+----------+
+| &gt; 6    | &gt; 6.5000  | &gt; 1.4770 | &gt; 8.5000  | &gt; 1.5860 | &gt; 10.5000 | &gt; 1.6750 | &gt; 12.5000 | &gt; 1.7500 |
++--------+-----------+----------+-----------+----------+-----------+----------+-----------+----------+
+| &gt; 7    | &gt; 7.0000  | &gt; 1.5110 | &gt; 9.0000  | &gt; 1.6130 | &gt; 11.0000 | &gt; 1.6970 | &gt; 13.0000 | &gt; 1.7680 |
++--------+-----------+----------+-----------+----------+-----------+----------+-----------+----------+
+| &gt; 8    | &gt; 7.5000  | &gt; 1.5440 | &gt; 9.5000  | &gt; 1.6380 | &gt; 11.5000 | &gt; 1.7170 | &gt; 13.5000 | &gt; 1.7860 |
++--------+-----------+----------+-----------+----------+-----------+----------+-----------+----------+
+| &gt; 9    | &gt; 8.0000  | &gt; 1.5760 | &gt; 10.0000 | &gt; 1.6630 | &gt; 12.0000 | &gt; 1.7370 | &gt; 14.0000 | &gt; 1.8030 |
++--------+-----------+----------+-----------+----------+-----------+----------+-----------+----------+
+| &gt; 10   | &gt; 8.5000  | &gt; 1.6070 | &gt; 11.0000 | &gt; 1.7110 | &gt; 12.5000 | &gt; 1.7570 | &gt; 14.5000 | &gt; 1.8190 |
++--------+-----------+----------+-----------+----------+-----------+----------+-----------+----------+
+| &gt; 11   | &gt; 9.0000  | &gt; 1.6380 | &gt; 12.0000 | &gt; 1.7570 | &gt; 13.0000 | &gt; 1.7760 | &gt; 15.0000 | &gt; 1.8350 |
++--------+-----------+----------+-----------+----------+-----------+----------+-----------+----------+
+| &gt; 12   | &gt; 9.5000  | &gt; 1.6680 | &gt; 13.0000 | &gt; 1.8010 | &gt; 13.5000 | &gt; 1.7950 | &gt; 15.5000 | &gt; 1.8510 |
++--------+-----------+----------+-----------+----------+-----------+----------+-----------+----------+
+| &gt; 13   | &gt; 10.0000 | &gt; 1.6980 | &gt; 14.0000 | &gt; 1.8450 | &gt; 14.0000 | &gt; 1.8130 | &gt; 16.0000 | &gt; 1.8670 |
++--------+-----------+----------+-----------+----------+-----------+----------+-----------+----------+
+| &gt; 14   | &gt; 11.0000 | &gt; 1.7570 | &gt; 15.0000 | &gt; 1.8880 | &gt; 14.5000 | &gt; 1.8310 | &gt; 17.0000 | &gt; 1.8970 |
++--------+-----------+----------+-----------+----------+-----------+----------+-----------+----------+
+| &gt; 15   | &gt; 12.0000 | &gt; 1.8150 | &gt; 16.0000 | &gt; 1.9310 | &gt; 15.0000 | &gt; 1.8490 | &gt; 18.0000 | &gt; 1.9260 |
++--------+-----------+----------+-----------+----------+-----------+----------+-----------+----------+
+| &gt; 16   | &gt; 13.0000 | &gt; 1.8730 | &gt; 17.0000 | &gt; 1.9740 | &gt; 17.0000 | &gt; 1.9190 | &gt; 19.0000 | &gt; 1.9550 |
++--------+-----------+----------+-----------+----------+-----------+----------+-----------+----------+
+| &gt; 17   | &gt; 14.0000 | &gt; 1.9310 | &gt; 18.0000 | &gt; 2.0160 | &gt; 19.0000 | &gt; 1.9860 | &gt; 20.0000 | &gt; 1.9830 |
++--------+-----------+----------+-----------+----------+-----------+----------+-----------+----------+
+| &gt; 18   | &gt; 15.0000 | &gt; 1.9880 | &gt; 19.0000 | &gt; 2.0580 | &gt; 21.0000 | &gt; 2.0510 | &gt; 22.0000 | &gt; 2.0370 |
++--------+-----------+----------+-----------+----------+-----------+----------+-----------+----------+
+| &gt; 19   | &gt; 16.0000 | &gt; 2.0450 | &gt; 20.0000 | &gt; 2.1000 | &gt; 23.0000 | &gt; 2.1160 | &gt; 24.0000 | &gt; 2.0900 |
++--------+-----------+----------+-----------+----------+-----------+----------+-----------+----------+
+| &gt; 20   | &gt; 17.0000 | &gt; 2.1030 | &gt; 22.0000 | &gt; 2.1840 | &gt; 25.0000 | &gt; 2.1800 | &gt; 26.0000 | &gt; 2.1420 |
++--------+-----------+----------+-----------+----------+-----------+----------+-----------+----------+
+| &gt; 21   | &gt; 18.0000 | &gt; 2.1600 | &gt; 24.0000 | &gt; 2.2670 | &gt; 30.0000 | &gt; 2.3400 | &gt; 28.0000 | &gt; 2.1930 |
++--------+-----------+----------+-----------+----------+-----------+----------+-----------+----------+
+| &gt; 22   | &gt; 19.0000 | &gt; 2.2170 | &gt; 26.0000 | &gt; 2.3510 | &gt; 35.0000 | &gt; 2.4990 | &gt; 30.0000 | &gt; 2.2440 |
++--------+-----------+----------+-----------+----------+-----------+----------+-----------+----------+
+| &gt; 23   | &gt; 20.0000 | &gt; 2.2740 | &gt; 28.0000 | &gt; 2.4340 | &gt; 40.0000 | &gt; 2.6580 | &gt; 34.0000 | &gt; 2.3450 |
++--------+-----------+----------+-----------+----------+-----------+----------+-----------+----------+
+| &gt; 24   | &gt; 25.0000 | &gt; 2.5600 | &gt; 30.0000 | &gt; 2.5170 | &gt; 45.0000 | &gt; 2.8170 | &gt; 38.0000 | &gt; 2.4460 |
++--------+-----------+----------+-----------+----------+-----------+----------+-----------+----------+
+| &gt; 25   | &gt; 30.0000 | &gt; 2.8460 |           |          |           |          | &gt; 40.0000 | &gt; 2.4960 |
++--------+-----------+----------+-----------+----------+-----------+----------+-----------+----------+
+| &gt; 26   |           |          |           |          |           |          | &gt; 45.0000 | &gt; 2.6210 |
++--------+-----------+----------+-----------+----------+-----------+----------+-----------+----------+
+| &gt; 27   |           |          |           |          |           |          | &gt; 50.0000 | &gt; 2.7460 |
++--------+-----------+----------+-----------+----------+-----------+----------+-----------+----------+</p>
+<p>Table 8.21: Carter-Tracy Aquifer Influence Functions (RD =6.0, 7.0, 8.0 and 9.0)</p>
+<p>+--------+-----------+----------+----------+----------+
+| &gt; t~D~ | &gt; p~D~    | &gt; t~D~   | &gt; p~D~   |          |
++--------+-----------+----------+----------+----------+
+| &gt; 1    | &gt; 12.0000 | &gt; 1.7320 | &gt; 0.0050 | &gt; 0.0798 |
++--------+-----------+----------+----------+----------+
+| &gt; 2    | &gt; 12.5000 | &gt; 1.7500 | &gt; 0.0100 | &gt; 0.1130 |
++--------+-----------+----------+----------+----------+
+| &gt; 3    | &gt; 13.0000 | &gt; 1.7680 | &gt; 0.0200 | &gt; 0.1596 |
++--------+-----------+----------+----------+----------+
+| &gt; 4    | &gt; 13.5000 | &gt; 1.7840 | &gt; 0.0600 | &gt; 0.2764 |
++--------+-----------+----------+----------+----------+
+| &gt; 5    | &gt; 14.0000 | &gt; 1.8010 | &gt; 0.0800 | &gt; 0.3192 |
++--------+-----------+----------+----------+----------+
+| &gt; 6    | &gt; 14.5000 | &gt; 1.8170 | &gt; 0.1000 | &gt; 0.3568 |
++--------+-----------+----------+----------+----------+
+| &gt; 7    | &gt; 15.0000 | &gt; 1.8320 | &gt; 0.1200 | &gt; 0.3909 |
++--------+-----------+----------+----------+----------+
+| &gt; 8    | &gt; 15.5000 | &gt; 1.8470 | &gt; 0.1600 | &gt; 0.4515 |
++--------+-----------+----------+----------+----------+
+| &gt; 9    | &gt; 16.0000 | &gt; 1.8620 | &gt; 0.2000 | &gt; 0.5052 |
++--------+-----------+----------+----------+----------+
+| &gt; 10   | &gt; 17.0000 | &gt; 1.8900 | &gt; 0.2400 | &gt; 0.5544 |
++--------+-----------+----------+----------+----------+
+| &gt; 11   | &gt; 18.0000 | &gt; 1.9170 | &gt; 0.3000 | &gt; 0.6228 |
++--------+-----------+----------+----------+----------+
+| &gt; 12   | &gt; 19.0000 | &gt; 1.9430 | &gt; 0.4000 | &gt; 0.7294 |
++--------+-----------+----------+----------+----------+
+| &gt; 13   | &gt; 20.0000 | &gt; 1.9680 | &gt; 0.6000 | &gt; 0.9328 |
++--------+-----------+----------+----------+----------+
+| &gt; 14   | &gt; 22.0000 | &gt; 2.0170 | &gt; 0.8000 | &gt; 1.1333 |
++--------+-----------+----------+----------+----------+
+| &gt; 15   | &gt; 24.0000 | &gt; 2.0630 | &gt; 1.0000 | &gt; 1.3333 |
++--------+-----------+----------+----------+----------+
+| &gt; 16   | &gt; 26.0000 | &gt; 2.1080 |          |          |
++--------+-----------+----------+----------+----------+
+| &gt; 17   | &gt; 28.0000 | &gt; 2.1510 |          |          |
++--------+-----------+----------+----------+----------+
+| &gt; 18   | &gt; 30.0000 | &gt; 2.1940 |          |          |
++--------+-----------+----------+----------+----------+
+| &gt; 19   | &gt; 32.0000 | &gt; 2.2360 |          |          |
++--------+-----------+----------+----------+----------+
+| &gt; 20   | &gt; 34.0000 | &gt; 2.2780 |          |          |
++--------+-----------+----------+----------+----------+
+| &gt; 21   | &gt; 36.0000 | &gt; 2.3190 |          |          |
++--------+-----------+----------+----------+----------+
+| &gt; 22   | &gt; 38.0000 | &gt; 2.3600 |          |          |
++--------+-----------+----------+----------+----------+
+| &gt; 23   | &gt; 40.0000 | &gt; 2.4010 |          |          |
++--------+-----------+----------+----------+----------+
+| &gt; 24   | &gt; 50.0000 | &gt; 2.6040 |          |          |
++--------+-----------+----------+----------+----------+
+| &gt; 25   | &gt; 60.0000 | &gt; 2.8060 |          |          |
++--------+-----------+----------+----------+----------+
+| &gt; 26   | &gt; 70.0000 | &gt; 3.0080 |          |          |
++--------+-----------+----------+----------+----------+</p>
+<p>Table 8.22: Carter-Tracy Aquifer Influence Functions (RD =10 and Finite Linear)</p>
+<p>For the finite linear Carter-Tracy influence function in set the inner radius of the aquifer to the length of linear aquifer and the angle of influence toon the <a href="#__RefHeading___Toc179876_3429068809">AQUCT</a> keyword in the grid section.</p>
+<p>For reference, outlines the content terminal rate case for an infinite aquifer derived by van Everdingen and Hurst, that is the default table number one used for the Carter-Tracy analytical aquifers, as implemented in OPM Flow.</p>
+<p>+--------+----------------+----------+--------+------------+----------+
+| &gt; t~D~ | &gt; p~D~         | &gt; t      | &gt; p~D~ |            |          |
++--------+----------------+----------+--------+------------+----------+
+| &gt; 1    | &gt; 1.0 x 10^-2^ | &gt; 0,1120 | &gt; 27   | &gt; 20,00    | &gt; 1.9600 |
++--------+----------------+----------+--------+------------+----------+
+| &gt; 2    | &gt; 5.0 x 10^-2^ | &gt; 0,2290 | &gt; 28   | &gt; 25,00    | &gt; 2.0670 |
++--------+----------------+----------+--------+------------+----------+
+| &gt; 3    | &gt; 1.0 x 10^-1^ | &gt; 0,3150 | &gt; 29   | &gt; 30,00    | &gt; 2.1470 |
++--------+----------------+----------+--------+------------+----------+
+| &gt; 4    | &gt; 1.5 x 10^-1^ | &gt; 0,3760 | &gt; 30   | &gt; 40,00    | &gt; 2.2820 |
++--------+----------------+----------+--------+------------+----------+
+| &gt; 5    | &gt; 2.0 x 10^-1^ | &gt; 0,4240 | &gt; 31   | &gt; 50,00    | &gt; 2.3880 |
++--------+----------------+----------+--------+------------+----------+
+| &gt; 6    | &gt; 2.5 x 10^-1^ | &gt; 0,4690 | &gt; 32   | &gt; 60,00    | &gt; 2.4760 |
++--------+----------------+----------+--------+------------+----------+
+| &gt; 7    | &gt; 3.0 x 10^-1^ | &gt; 0,5030 | &gt; 33   | &gt; 70,00    | &gt; 2.5500 |
++--------+----------------+----------+--------+------------+----------+
+| &gt; 8    | &gt; 4.0 x 10^-1^ | &gt; 0,5640 | &gt; 34   | &gt; 80,00    | &gt; 2.6150 |
++--------+----------------+----------+--------+------------+----------+
+| &gt; 9    | &gt; 5.0 x 10^-1^ | &gt; 0,6160 | &gt; 35   | &gt; 90,00    | &gt; 2.6720 |
++--------+----------------+----------+--------+------------+----------+
+| &gt; 10   | &gt; 6.0 x 10^-1^ | &gt; 0,6590 | &gt; 36   | &gt; 100,00   | &gt; 2.7230 |
++--------+----------------+----------+--------+------------+----------+
+| &gt; 11   | &gt; 7.0 x 10^-1^ | &gt; 0,7020 | &gt; 37   | &gt; 150,00   | &gt; 2.9210 |
++--------+----------------+----------+--------+------------+----------+
+| &gt; 12   | &gt; 8.0 x 10^-1^ | &gt; 0,7350 | &gt; 38   | &gt; 200,00   | &gt; 3.0640 |
++--------+----------------+----------+--------+------------+----------+
+| &gt; 13   | &gt; 9.0 x 10^-1^ | &gt; 0,7720 | &gt; 39   | &gt; 250,00   | &gt; 3.1730 |
++--------+----------------+----------+--------+------------+----------+
+| &gt; 14   | &gt; 1.0          | &gt; 0,8020 | &gt; 40   | &gt; 300,00   | &gt; 3.2630 |
++--------+----------------+----------+--------+------------+----------+
+| &gt; 15   | &gt; 1.5          | &gt; 0,9270 | &gt; 41   | &gt; 400,00   | &gt; 3.4060 |
++--------+----------------+----------+--------+------------+----------+
+| &gt; 16   | &gt; 2.0          | &gt; 1,0200 | &gt; 42   | &gt; 500,00   | &gt; 3.5160 |
++--------+----------------+----------+--------+------------+----------+
+| &gt; 17   | &gt; 2.5          | &gt; 1,1010 | &gt; 43   | &gt; 600,00   | &gt; 3.6080 |
++--------+----------------+----------+--------+------------+----------+
+| &gt; 18   | &gt; 3.0          | &gt; 1,1690 | &gt; 44   | &gt; 700,00   | &gt; 3.6840 |
++--------+----------------+----------+--------+------------+----------+
+| &gt; 19   | &gt; 4.0          | &gt; 1,2750 | &gt; 45   | &gt; 800,00   | &gt; 3.7500 |
++--------+----------------+----------+--------+------------+----------+
+| &gt; 20   | &gt; 5.0          | &gt; 1,3620 | &gt; 46   | &gt; 900,00   | &gt; 3.8090 |
++--------+----------------+----------+--------+------------+----------+
+| &gt; 21   | &gt; 6.0          | &gt; 1,4360 | &gt; 47   | &gt; 1000,00  | &gt; 3.8600 |
++--------+----------------+----------+--------+------------+----------+
+| &gt; 22   | &gt; 7.0          | &gt; 1,5000 | &gt; 48   | &gt; 2000,00  | &gt; 4.1801 |
++--------+----------------+----------+--------+------------+----------+
+| &gt; 23   | &gt; 8.0          | &gt; 1,5560 | &gt; 49   | &gt; 5000,00  | &gt; 4.6350 |
++--------+----------------+----------+--------+------------+----------+
+| &gt; 24   | &gt; 9.0          | &gt; 1,6040 | &gt; 50   | &gt; 8000,00  | &gt; 4.8732 |
++--------+----------------+----------+--------+------------+----------+
+| &gt; 25   | &gt; 10.0         | &gt; 1,6510 | &gt; 51   | &gt; 10000,00 | &gt; 4.9815 |
++--------+----------------+----------+--------+------------+----------+
+| &gt; 26   | &gt; 15.0         | &gt; 1,8290 |        |            |          |
++--------+----------------+----------+--------+------------+----------+</p>
+<p>Table 8.23: Carter-Tracy Infinite Radial Aquifer Influence Function (Default)</p>
+<p>For an overview of analytical aquifers see Dake<sup id="fnref:4"><a class="footnote-ref" href="#fn:4">4</a></sup>.</p>
+<h4 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h4>
+<p>--</p>
+<p>-- CARTER-TRACY AQUIFER INFLUENCE TABLES</p>
+<p>-- (STARTS FROM TABLE NO. 2, AS DEFAULT IS TABLE NO. 1)</p>
+<p>--</p>
+<p>AQUTAB</p>
+<p>--</p>
+<p>-- TD PD</p>
+<p>-- ------- ---------</p>
+<p>0.06 0.251</p>
+<p>0.08 0.288</p>
+<p>0.10 0.322</p>
+<p>0.12 0.355</p>
+<p>0.14 0.387</p>
+<p>0.16 0.420</p>
+<p>0.18 0.452</p>
+<p>0.20 0.484</p>
+<p>0.22 0.516</p>
+<p>0.24 0.548</p>
+<p>0.26 0.580</p>
+<p>0.28 0.612</p>
+<p>0.30 0.644</p>
+<p>0.35 0.724</p>
+<p>0.40 0.804</p>
+<p>0.45 0.884</p>
+<p>0.50 0.964</p>
+<p>0.55 1.044</p>
+<p>0.60 1.124 / RD=1.5 TABLE NO. 02</p>
+<p>--</p>
+<p>-- TD PD</p>
+<p>-- ------- ---------</p>
+<p>0.22 0.443</p>
+<p>0.24 0.459</p>
+<p>0.26 0.476</p>
+<p>0.28 0.492</p>
+<p>0.30 0.507</p>
+<p>0.32 0.522</p>
+<p>0.34 0.536</p>
+<p>0.36 0.551</p>
+<p>0.38 0.565</p>
+<p>0.40 0.579</p>
+<p>0.42 0.593</p>
+<p>0.44 0.607</p>
+<p>0.46 0.621</p>
+<p>0.48 0.634</p>
+<p>0.50 0.648</p>
+<p>0.6 0.715</p>
+<p>0.7 0.782</p>
+<p>0.8 0.849</p>
+<p>0.9 0.915</p>
+<p>1.0 0.982</p>
+<p>2.0 1.649</p>
+<p>3.0 2.316</p>
+<p>5.0 3.649 / RD=2.0 TABLE NO. 03</p>
+<p>The above example defines tables two and three Carter-Tracy aquifer influence tables.</p>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p>Carter, R. D., and Tracy, G. W. "An Improved Method for Calculating Water Influx." Transactions of AIME, Vol. 219 (1060), pp 415-417.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:2">
+<p>Van Everdingen, A. F., and Hurst, W. "The Application of the Laplace Transform to Flow Problems in Reservoirs." Transactions of AIME, Vol. 186 (1949), pp. 305-324.&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+<li id="fn:3">
+<p>Bradley Howard B., et al., Petroleum Engineering Handbook, Society of Petroleum Engineers (June 1989), ISBN:9781555630102.&#160;<a class="footnote-backref" href="#fnref:3" title="Jump back to footnote 3 in the text">&#8617;</a></p>
+</li>
+<li id="fn:4">
+<p>Dake, L.P. Fundamentals of Reservoir Engineering, Amsterdam, The Netherlands, Elsevier Science BV (1978) Chapter 9.&#160;<a class="footnote-backref" href="#fnref:4" title="Jump back to footnote 4 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.top", "search.suggest", "search.highlight", "content.tabs.link"], "search": "../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

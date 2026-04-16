@@ -1,0 +1,1325 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Reference manual for the OPM Flow reservoir simulator, covering all keywords, input-deck sections, and appendices.">
+      
+      
+        <meta name="author" content="OPM Project Contributors">
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>WSEGSICD - OPM Flow Reference Manual</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="teal">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#wsegsicd-define-multi-segment-well-spiral-icd-connections" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../.." title="OPM Flow Reference Manual" class="md-header__button md-logo" aria-label="OPM Flow Reference Manual" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            OPM Flow Reference Manual
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              WSEGSICD
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="teal"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue-grey" data-md-color-accent="teal"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../1/" class="md-tabs__link">
+          
+  
+  
+  Chapters
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../appendices/A/" class="md-tabs__link">
+          
+  
+  
+  Appendices
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="OPM Flow Reference Manual" class="md-nav__button md-logo" aria-label="OPM Flow Reference Manual" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    OPM Flow Reference Manual
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapters
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Chapters
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1  – Introduction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2  – Tutorial
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3  – File Formats
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4  – Run-Time Options
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5  – RUNSPEC Section
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6  – GRID Section
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7  – EDIT Section
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    8  – PROPS Section
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../9/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    9  – REGIONS Section
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10 – SOLUTION Section
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    11 – SUMMARY Section
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../12/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    12 – SCHEDULE Section
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Appendices
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Appendices
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../appendices/A/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../appendices/B/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    B
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../appendices/C/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../appendices/D/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    D
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../appendices/E/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    E
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../appendices/F/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    F
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#wsegsicd-define-multi-segment-well-spiral-icd-connections" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        WSEGSICD -- Define Multi-Segment Well Spiral ICD Connections
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="WSEGSICD -- Define Multi-Segment Well Spiral ICD Connections">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#description" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Description
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+  <h1>WSEGSICD</h1>
+
+<h3 id="wsegsicd-define-multi-segment-well-spiral-icd-connections">WSEGSICD -- Define Multi-Segment Well Spiral ICD Connections<a class="headerlink" href="#wsegsicd-define-multi-segment-well-spiral-icd-connections" title="Permanent link">&para;</a></h3>
+<p>+-----------------------------------------+-----------------------------------+-----------------------------------+-------------------------------------+-----------------------------------------+-------------------------------------------+-----------------------------------------+--------------------------------------------+
+| &gt; <a href="#3.RUNSPEC SECTION|outline">RUNSPEC</a> | &gt; <a href="#4.GRID SECTION|outline">GRID</a> | &gt; <a href="#5.EDIT SECTION|outline">EDIT</a> | &gt; <a href="#6.PROPS SECTION|outline">PROPS</a> | &gt; <a href="#7.REGIONS SECTION|outline">REGIONS</a> | &gt; <a href="#8.SOLUTION SECTION|outline">SOLUTION</a> | &gt; <a href="#9.SUMMARY SECTION|outline">SUMMARY</a> | &gt; <a href="#10.SCHEDULE SECTION|outline">SCHEDULE</a> |
++-----------------------------------------+-----------------------------------+-----------------------------------+-------------------------------------+-----------------------------------------+-------------------------------------------+-----------------------------------------+--------------------------------------------+</p>
+<h4 id="description">Description<a class="headerlink" href="#description" title="Permanent link">&para;</a></h4>
+<p>The <a href="#__RefHeading___Toc124296_23127940">WSEGSICD</a> keyword defines a multi-segment well segment to be a spiral Inflow Control Device ("ICD") as part of a completion for a multi-segment well. Note that the well must have been previously defined by the <a href="#__RefHeading___Toc268463_1366622701">WELSPECS</a> and <a href="#__RefHeading___Toc97661_3261743917">WELSEGS</a> keywords in the <a href="#__RefHeading___Toc43945_784232322">SCHEDULE</a> section and that the data for the keyword should be repeated for each multi-segment completion that contains a spiral ICD.</p>
+<p>An ICD is a well completion component usually installed along the producing section of a well to minimize the unwanted water and gas breakthrough in an oil well, or early water production in a gas well, due to an uneven flow profile over the completed interval. Permeability variations over the producing interval cause the high permeability zones to produce higher quantities of fluids than the lower permeability zones and this uneven producing fluid profile may result in bypassed hydrocarbons. Secondly, for horizontal wells, the pressure loss from the "toe" to the "heel" of the well again results in an uneven fluid profile over the producing interval. In order to rectify this ICDs can be installed so that the well fluids have to flow through an ICD before entering the tubing; thus, creating an additional "designed" pressure loss.</p>
+<p>A spiral ICD is a type of frictional ICD that adds an additional pressure loss by directing the fluid along a "channel" (spiral/helix) before entering the tubing. The channel flow path is designed in such a manner as to create the desired pressure loss for a given ICD. By placing various ICD's over the production interval one can design a completion that results in a more uniform producing fluid profile throughout the length of the producing interval.</p>
+<p>+--------------------------------------------------------------------------------------------------------------------------------------------+--------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+
+| &gt; 1                                                                                                                                        | &gt; WELNAME          | &gt; A character string of up to eight characters in length that defines the well name for which a multi-segment well is being defined.                                                                                                                                                                                                                                                           | &gt; None    |
+|                                                                                                                                            |                    |                                                                                                                                                                                                                                                                                                                                                                                                |           |
+|                                                                                                                                            |                    | &gt; Note that the well name (WELNAME) must have been declared previously using both the <a href="#__RefHeading___Toc268463_1366622701">WELSPECS</a> and <a href="#__RefHeading___Toc97661_3261743917">WELSEGS</a> keywords in the <a href="#__RefHeading___Toc43945_784232322">SCHEDULE</a> section, otherwise an error may occur.                                                                                                |           |
++--------------------------------------------------------------------------------------------------------------------------------------------+--------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+
+| &gt; 2                                                                                                                                        | &gt; ISEG1            | &gt; A positive integer greater than or equal to two and less than or equal to MXSEGS on the <a href="#__RefHeading___Toc104259_3115110868">WSEGDIMS</a> keyword in the <a href="#__RefHeading___Toc55591_1778172979">RUNSPEC</a> section that defines the start of a segment                                                                                                                                           | &gt; None    |
++--------------------------------------------------------------------------------------------------------------------------------------------+--------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+
+| &gt; 3                                                                                                                                        | &gt; ISEG2            | &gt; A positive integer greater than or equal to two and not less then ISEG1 on this record and less than or equal to MXSEGS on the <a href="#__RefHeading___Toc104259_3115110868">WSEGDIMS</a> keyword in the <a href="#__RefHeading___Toc55591_1778172979">RUNSPEC</a> section, that defines the end of a segment                                                                                                     | &gt; None    |
++--------------------------------------------------------------------------------------------------------------------------------------------+--------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+
+| &gt; 4                                                                                                                                        | &gt; ICDSTREN         | &gt; A real positive value greater than zero that defines an empirical constant for the strength of the given ICD as determined from measurements using the calibrated fluid.                                                                                                                                                                                                                     | &gt; None    |
++--------------------------------------------------------------------------------------------------------------------------------------------+--------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+
+| &gt; psia(rft3/day)2                                                                                                                          | &gt; barsa/(rm3/day)2 | &gt; atma/(rcc/hr)2                                                                                                                                                                                                                                                                                                                                                                               |           |
++--------------------------------------------------------------------------------------------------------------------------------------------+--------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+
+| &gt; 5                                                                                                                                        | &gt; ICDLEN           | &gt; A real value that defines the length of the ICD used in conjunction with NSCALFAC to calculate a scaling factor to be applied to the reservoir flow to adjust the flow through each ICD, that is:                                                                                                                                                                                            | &gt; Defined |
+|                                                                                                                                            |                    |                                                                                                                                                                                                                                                                                                                                                                                                |           |
+|                                                                                                                                            |                    | 1)  If NSCALFAC equals zero: then the scale factor is equal to the length of the ICD (ICDLEN) divided by the length of the tubing section, that is the parent of the ICDs, then this allows for the case when the ICD segment may represent a number of ICDs in parallel.                                                                                                                      |           |
+|                                                                                                                                            |                    |                                                                                                                                                                                                                                                                                                                                                                                                |           |
+|                                                                                                                                            |                    | 2)  If NSCALFAC equals one: then the scale factor is equal to the absolute value of ICDLEN.                                                                                                                                                                                                                                                                                                    |           |
+|                                                                                                                                            |                    |                                                                                                                                                                                                                                                                                                                                                                                                |           |
+|                                                                                                                                            |                    | 3)  If NSCALFAC equals two: then the scale factor is equal to the length of ICDLEN, divided by the total length of the completions which supply the ICD.                                                                                                                                                                                                                                       |           |
+|                                                                                                                                            |                    |                                                                                                                                                                                                                                                                                                                                                                                                |           |
+|                                                                                                                                            |                    | &gt; NSCALFAC explicitly sets which of the above three options is used. If NSCALFAC is defaulted, then option 1) is used whenever ICDLEN is positive and option 2) when ICDLEN is negative.                                                                                                                                                                                                       |           |
++--------------------------------------------------------------------------------------------------------------------------------------------+--------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+
+| &gt; feet                                                                                                                                     | &gt; m                | &gt; cm                                                                                                                                                                                                                                                                                                                                                                                           |           |
+|                                                                                                                                            |                    |                                                                                                                                                                                                                                                                                                                                                                                                |           |
+| &gt; 39.37                                                                                                                                    | &gt; 12.00            | &gt; 1,2000                                                                                                                                                                                                                                                                                                                                                                                       |           |
++--------------------------------------------------------------------------------------------------------------------------------------------+--------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+
+| &gt; 6                                                                                                                                        | &gt; CALDEN           | &gt; CALDEN is a real positive value greater than zero that defines the density of the calibrating fluid at surface conditions.                                                                                                                                                                                                                                                                   | &gt; Defined |
++--------------------------------------------------------------------------------------------------------------------------------------------+--------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+
+| &gt; lb/ft^3^                                                                                                                                 | &gt; kg/m^3^          | &gt; gm/cc                                                                                                                                                                                                                                                                                                                                                                                        |           |
+|                                                                                                                                            |                    |                                                                                                                                                                                                                                                                                                                                                                                                |           |
+| &gt; 62.416                                                                                                                                   | &gt; 1000.25          | &gt; 1.00025                                                                                                                                                                                                                                                                                                                                                                                      |           |
++--------------------------------------------------------------------------------------------------------------------------------------------+--------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+
+| &gt; 7                                                                                                                                        | &gt; CALVISC          | &gt; CALVISC is a real positive value greater than zero that defines the viscosity of the calibrating fluid at surface conditions.                                                                                                                                                                                                                                                                | &gt; 1.45    |
++--------------------------------------------------------------------------------------------------------------------------------------------+--------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+
+| &gt; cP                                                                                                                                       | &gt; cP               | &gt; cP                                                                                                                                                                                                                                                                                                                                                                                           |           |
++--------------------------------------------------------------------------------------------------------------------------------------------+--------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+
+| &gt; 8                                                                                                                                        | &gt; EMLCRT           | &gt; EMLCRT is a real positive value greater than zero that defines the "local water" in liquid fraction used to determine whether the "water-in-oil" or "oil-in-water" viscosity emulation equation should be applied.                                                                                                                                                                           | &gt; 0.5     |
++--------------------------------------------------------------------------------------------------------------------------------------------+--------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+
+| &gt; dimensionless                                                                                                                            | &gt; dimensionless    | &gt; dimensionless                                                                                                                                                                                                                                                                                                                                                                                |           |
++--------------------------------------------------------------------------------------------------------------------------------------------+--------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+
+| &gt; 9                                                                                                                                        | &gt; EMLTRANS         | &gt; EMLTRANS is a real positive value greater than zero that defines the width of the transition zone around EMLCRT and is used to ensure that the calculated viscosity forms a continuous function of water in liquid fraction. Within this region, the emulsion viscosity is a linear interpolation between the "water-in-oil" and "oil-in-water" viscosity values either side of the region.  | &gt; 0.05    |
++--------------------------------------------------------------------------------------------------------------------------------------------+--------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+
+| &gt; dimensionless                                                                                                                            | &gt; dimensionless    | &gt; dimensionless                                                                                                                                                                                                                                                                                                                                                                                |           |
++--------------------------------------------------------------------------------------------------------------------------------------------+--------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+
+| &gt; 10                                                                                                                                       | &gt; EMLMAX           | &gt; EMLMAX is a real positive value greater than zero that defines the maximum emulsion viscosity to continuous phase viscosity (oil or water) ratio.                                                                                                                                                                                                                                            | &gt; 5.0     |
++--------------------------------------------------------------------------------------------------------------------------------------------+--------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+
+| &gt; dimensionless                                                                                                                            | &gt; dimensionless    | &gt; dimensionless                                                                                                                                                                                                                                                                                                                                                                                |           |
++--------------------------------------------------------------------------------------------------------------------------------------------+--------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+
+| &gt; 11                                                                                                                                       | &gt; NSCALFAC         | &gt; NSCALFAC is a positive integer value that is greater than or equal to zero, that sets the method to be used when applying the scaling factor and should be set to one of the following:                                                                                                                                                                                                      | &gt; -1      |
+|                                                                                                                                            |                    |                                                                                                                                                                                                                                                                                                                                                                                                |           |
+|                                                                                                                                            |                    | 1)  If NSCALFAC equals zero: then the scale factor is equal to the length of the ICD (ICDLEN) divided by the length of the tubing section, that is the parent of the ICDs, then this allows for the case when the ICD segment may represent a number of ICDs in parallel.                                                                                                                      |           |
+|                                                                                                                                            |                    |                                                                                                                                                                                                                                                                                                                                                                                                |           |
+|                                                                                                                                            |                    | 2)  If NSCALFAC equals one: then the scale factor is equal to the absolute value of ICDLEN.                                                                                                                                                                                                                                                                                                    |           |
+|                                                                                                                                            |                    |                                                                                                                                                                                                                                                                                                                                                                                                |           |
+|                                                                                                                                            |                    | 3)  If NSCALFAC equals two: then the scale factor is equal to the length of ICDLEN, divided by the total length of the completions which supply the ICD.                                                                                                                                                                                                                                       |           |
+|                                                                                                                                            |                    |                                                                                                                                                                                                                                                                                                                                                                                                |           |
+|                                                                                                                                            |                    | &gt; NSCALFAC explicitly sets which of the above three options is used. If NSCALFAC is defaulted, then option 1) is used whenever ICDLEN is positive and option 2) when ICDLEN is negative.                                                                                                                                                                                                       |           |
++--------------------------------------------------------------------------------------------------------------------------------------------+--------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+
+| &gt; dimensionless                                                                                                                            | &gt; dimensionless    | &gt; dimensionless                                                                                                                                                                                                                                                                                                                                                                                |           |
++--------------------------------------------------------------------------------------------------------------------------------------------+--------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+
+| &gt; 12                                                                                                                                       | &gt; CALRATE          | &gt; A real positive value that defines the maximum surface flow rate for which the ICD was calibrated.                                                                                                                                                                                                                                                                                           | &gt; None    |
++--------------------------------------------------------------------------------------------------------------------------------------------+--------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+
+| &gt; scf/d                                                                                                                                    | &gt; sm^3^/day        | &gt; scc/hour                                                                                                                                                                                                                                                                                                                                                                                     |           |
++--------------------------------------------------------------------------------------------------------------------------------------------+--------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+
+| &gt; 13                                                                                                                                       | &gt; STATUS           | &gt; A defined character string of length four that defines the ICD's operational status, STATUS should be set to one of the following character strings:                                                                                                                                                                                                                                         | &gt; OPEN    |
+|                                                                                                                                            |                    |                                                                                                                                                                                                                                                                                                                                                                                                |           |
+|                                                                                                                                            |                    | 1)  OPEN: the ICD connections are are open to flow.                                                                                                                                                                                                                                                                                                                                            |           |
+|                                                                                                                                            |                    |                                                                                                                                                                                                                                                                                                                                                                                                |           |
+|                                                                                                                                            |                    | 2)  SHUT: the ICD connections are closed to flow (shut-in).                                                                                                                                                                                                                                                                                                                                    |           |
++--------------------------------------------------------------------------------------------------------------------------------------------+--------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+
+| &gt; Notes:                                                                                                                                   |                    |                                                                                                                                                                                                                                                                                                                                                                                                |           |
+|                                                                                                                                            |                    |                                                                                                                                                                                                                                                                                                                                                                                                |           |
+| 1)  The keyword is followed by any number of records with each record terminated by a "/" and the keyword should be terminated by a "/".   |                    |                                                                                                                                                                                                                                                                                                                                                                                                |           |
++--------------------------------------------------------------------------------------------------------------------------------------------+--------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------+</p>
+<p>Table 12.120: WSEGSICD Keyword Description</p>
+<p>The total number of wells should be defined via the <a href="#__RefHeading___Toc82886_327352552">WELLDIMS</a> keyword and the number of multi-segment wells should be declared on the <a href="#__RefHeading___Toc104259_3115110868">WSEGDIMS</a> keyword, both keywords are in the <a href="#__RefHeading___Toc55591_1778172979">RUNSPEC</a> section. In addition, the <a href="#__RefHeading___Toc268463_1366622701">WELSPECS</a> keyword should be used to define wells, the <a href="#__RefHeading___Toc97651_3261743917">COMPDAT</a> keyword to define the well completions for both ordinary wells and multi-segment wells, and the <a href="#__RefHeading___Toc316604_3519154785">COMPSEGS</a> keyword to define a multi-segment segment completions. Finally, the <a href="#__RefHeading___Toc124296_23127940">WSEGSICD</a> keyword can then be use to define ICD connections for the well. All the aforementioned keywords are described in the <a href="#__RefHeading___Toc43945_784232322">SCHEDULE</a> section.</p>
+<p>The equations used to calculate the pressure drop across the ICD are given below and illustrate how the pressure reduction is dependent on the density and viscosity of the fluid flowing through the device.</p>
+<p>Where:</p>
+<p>ΔP = the pressure drop across the device.</p>
+<p>ρmixture = the density of the mixture, as per:</p>
+<p>ρ~calibrated~ = CALDEN, the density of the calibrating fluid at surface conditions.</p>
+<p>μcalibrated = CALVISC, the viscosity of the calibrating fluid at surface conditions.</p>
+<p>μmixture = the viscosity of the mixture, as per:</p>
+<p>μemulsion = the viscosity of the oil-water emulsion at local conditions.</p>
+<p>β = ICDSTREN, the strength of the ICD as measured using the calibrated fluid.</p>
+<p>q = the local flow rate through the ICD at local conditions adjusted for scaling</p>
+<p>based on ICDLEN and NSCALFAC parameters in .</p>
+<p>In equation , αi represents the volume fraction of oil, water and gas at local conditions and ρi the density of the three phases. Similarity for equation , αi represents the volume fraction of oil, water and gas at local conditions and μi the viscosity of the three phases.</p>
+<p>See also the <a href="#__RefHeading___Toc971419_4263943340">WSEGAICD</a> keyword in the <a href="#__RefHeading___Toc43945_784232322">SCHEDULE</a> section for autonomous ICDs, that work in a similar fashion to how sprial ICDs work.</p>
+<h4 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h4>
+<p>The following example defines one producing well segment oil well (OP01) using the <a href="#__RefHeading___Toc268463_1366622701">WELSPECS</a>, <a href="#__RefHeading___Toc97661_3261743917">WELSEGS</a> <a href="#__RefHeading___Toc97651_3261743917">COMPDAT</a> and <a href="#__RefHeading___Toc316604_3519154785">COMPSEGS</a> keywords, followed by the <a href="#__RefHeading___Toc124296_23127940">WSEGSICD</a> keyword to define the spiral inflow control devices for the well.</p>
+<p>--</p>
+<p>-- WELL SPECIFICATION DATA</p>
+<p>--</p>
+<p>-- WELL GROUP LOCATION BHP PHASE DRAIN INFLOW OPEN CROSS PVT</p>
+<p>-- NAME NAME I J DEPTH FLUID AREA EQUANS SHUT FLOW TABLE</p>
+<p>WELSPECS</p>
+<p>OP01 PLATFORM 10 10 1* OIL /</p>
+<p>/</p>
+<p>--</p>
+<p>-- WELL CONNECTION DATA</p>
+<p>--</p>
+<p>-- WELL --- LOCATION --- OPEN SAT CONN WELL KH SKIN D DIR</p>
+<p>-- NAME II JJ K1 K2 SHUT TAB FACT DIA FACT FACT FACT PEN</p>
+<p>COMPDAT</p>
+<p>OP01 10 10 1 1 OPEN 1* 200. 0.5 /</p>
+<p>OP01 10 10 2 2 OPEN 1* 200. 0.5 /</p>
+<p>OP01 10 10 3 3 OPEN 1* 200. 0.4 /</p>
+<p>OP01 10 10 4 4 OPEN 1* 200. 0.4 /</p>
+<p>OP01 10 10 5 5 OPEN 1* 200. 0.4 /</p>
+<p>OP01 10 10 6 6 OPEN 1* 200. 0.4 /</p>
+<p>OP01 9 10 2 2 OPEN 1* 200. 0.4 /</p>
+<p>OP01 8 10 2 2 OPEN 1* 200. 0.4 /</p>
+<p>OP01 7 10 2 2 OPEN 1* 200. 0.4 /</p>
+<p>OP01 6 10 2 2 OPEN 1* 200. 0.4 /</p>
+<p>OP01 5 10 2 2 OPEN 1* 200. 0.4 /</p>
+<p>OP01 10 9 3 3 OPEN 1* 200. 0.4 /</p>
+<p>OP01 10 8 3 3 OPEN 1* 200. 0.4 /</p>
+<p>OP01 10 7 3 3 OPEN 1* 200. 0.4 /</p>
+<p>OP01 10 6 3 3 OPEN 1* 200. 0.4 /</p>
+<p>OP01 10 5 3 3 OPEN 1* 200. 0.4 /</p>
+<p>OP01 9 10 5 5 OPEN 1* 200. 0.4 /</p>
+<p>OP01 8 10 5 5 OPEN 1* 200. 0.4 /</p>
+<p>OP01 7 10 5 5 OPEN 1* 200. 0.4 /</p>
+<p>OP01 6 10 5 5 OPEN 1* 200. 0.4 /</p>
+<p>OP01 5 10 5 5 OPEN 1* 200. 0.4 /</p>
+<p>OP01 10 9 6 6 OPEN 1* 200. 0.4 /</p>
+<p>OP01 10 8 6 6 OPEN 1* 200. 0.4 /</p>
+<p>OP01 10 7 6 6 OPEN 1* 200. 0.4 /</p>
+<p>OP01 10 6 6 6 OPEN 1* 200. 0.4 /</p>
+<p>OP01 10 5 6 6 OPEN 1* 200. 0.4 /</p>
+<p>/</p>
+<p>--</p>
+<p>-- WELL SEGMENT SPECIFICATION DATA</p>
+<p>--</p>
+<p>-- WELL NODAL LEN WELL DEPH PRESS FLOW</p>
+<p>-- NAME DEPTH TUBING VOLM OPTN CALC MODEL</p>
+<p>WELSEGS</p>
+<p>OP01 2512.5 2512.5 1.0E-5 ABS HFA HO /</p>
+<p>--</p>
+<p>-- SEG SEG BRAN SEG TUBING NODAL TUBE TUBE XSEC VOL</p>
+<p>-- ISTR IEND NO NO LENGTH DEPTH ID ROUGH AREA SEG</p>
+<p>2 2 1 1 2537.5 2534.5 0.3 0.00010 /</p>
+<p>3 3 1 2 2562.5 2560.5 0.3 0.00010 /</p>
+<p>4 4 1 3 2587.5 2593.5 0.3 0.00010 /</p>
+<p>5 5 1 4 2612.5 2614.5 0.3 0.00010 /</p>
+<p>6 6 1 5 2637.5 2635.5 0.3 0.00010 /</p>
+<p>7 7 2 2 2737.5 2538.5 0.2 0.00010 /</p>
+<p>8 8 2 7 2937.5 2537.5 0.2 0.00010 /</p>
+<p>9 9 2 8 3137.5 2539.5 0.2 0.00010 /</p>
+<p>10 10 2 9 3337.5 2535.5 0.2 0.00010 /</p>
+<p>11 11 2 10 3537.5 2536.5 0.2 0.00010 /</p>
+<p>12 12 3 3 2762.5 2563.5 0.2 0.00010 /</p>
+<p>13 13 3 12 2962.5 2562.5 0.1 0.00010 /</p>
+<p>14 14 3 13 3162.5 2562.5 0.1 0.00010 /</p>
+<p>15 15 3 14 3362.5 2564.5 0.1 0.00010 /</p>
+<p>16 16 3 15 3562.5 2562.5 0.1 0.00010 /</p>
+<p>17 17 4 5 2812.5 2613.5 0.2 0.00010 /</p>
+<p>18 18 4 17 3012.5 2612.5 0.1 0.00010 /</p>
+<p>19 19 4 18 3212.5 2612.5 0.1 0.00010 /</p>
+<p>20 20 4 19 3412.5 2612.5 0.1 0.00010 /</p>
+<p>21 21 4 20 3612.5 2613.5 0.1 0.00010 /</p>
+<p>22 22 5 6 2837.5 2634.5 0.2 0.00010 /</p>
+<p>23 23 5 22 3037.5 2637.5 0.2 0.00010 /</p>
+<p>24 24 5 23 3237.5 2638.5 0.2 0.00010 /</p>
+<p>25 25 5 24 3437.5 2639.5 0.1 0.00010 /</p>
+<p>26 26 5 25 3637.5 2639.5 0.1 0.00010 /</p>
+<p>/</p>
+<p>--</p>
+<p>-- COMPLETION SEGMENT SPECIFICATION DATA</p>
+<p>--</p>
+<p>-- WELL</p>
+<p>-- NAME</p>
+<p>COMPSEGS</p>
+<p>OP01 /</p>
+<p>--</p>
+<p>-- --LOCATION-- BRAN TUBING NODAL DIR LOC MID COMP ISEG</p>
+<p>-- II JJ K1 NO LENGTH DEPTH PEN I,J,K PERFS LENGTH NO.</p>
+<p>10 10 1 1 2512.5 2525.0 /</p>
+<p>10 10 2 1 2525.0 2550.0 /</p>
+<p>10 10 3 1 2550.0 2575.0 /</p>
+<p>10 10 4 1 2575.0 2600.0 /</p>
+<p>10 10 5 1 2600.0 2625.0 /</p>
+<p>10 10 6 1 2625.0 2650.0 /</p>
+<p>9 10 2 2 2637.5 2837.5 /</p>
+<p>8 10 2 2 2837.5 3037.5 /</p>
+<p>7 10 2 2 3037.5 3237.5 /</p>
+<p>6 10 2 2 3237.5 3437.5 /</p>
+<p>5 10 2 2 3437.5 3637.5 /</p>
+<p>10 9 3 3 2662.5 2862.5 /</p>
+<p>10 8 3 3 2862.5 3062.5 /</p>
+<p>10 7 3 3 3062.5 3262.5 /</p>
+<p>10 6 3 3 3262.5 3462.5 /</p>
+<p>10 5 3 3 3462.5 3662.5 /</p>
+<p>9 10 5 4 2712.5 2912.5 /</p>
+<p>8 10 5 4 2912.5 3112.5 /</p>
+<p>7 10 5 4 3112.5 3312.5 /</p>
+<p>6 10 5 4 3312.5 3512.5 /</p>
+<p>5 10 5 4 3512.5 3712.5 /</p>
+<p>10 9 6 5 2737.5 2937.5 /</p>
+<p>10 8 6 5 2937.5 3137.5 /</p>
+<p>10 7 6 5 3137.5 3337.5 /</p>
+<p>10 6 6 5 3337.5 3537.5 /</p>
+<p>10 5 6 5 3537.5 3737.5 /</p>
+<p>--</p>
+<p>-- MULTI-SEGMENT WELL ICD SEGMENT SPECIFICATION DATA</p>
+<p>--</p>
+<p>-- WELL SEG SEG ICD ICD CAL CAL EML EML EML SCAL CAL OPEN</p>
+<p>-- NAME ISTR IEND STRNEN LEN DEN VISC CRIT TRANS MAX FAC RATE CLOSE</p>
+<p>WSEGSICD</p>
+<p>OP01 7 10 0.00025 1* 1.0 0.45 0.50 0.05 5.0 2 1* OPEN /</p>
+<p>OP01 12 15 0.00025 1* 1.0 0.45 0.50 0.05 5.0 2 1* OPEN /</p>
+<p>OP01 17 20 0.00025 1* 1.0 0.45 0.50 0.05 5.0 2 1* OPEN /</p>
+<p>OP01 22 22 0.00025 1* 1.0 0.45 0.50 0.05 5.0 2 1* OPEN /</p>
+<p>OP01 23 23 0.00025 1* 1.0 0.45 0.50 0.05 5.0 2 1* OPEN /</p>
+<p>OP01 24 24 0.00025 1* 1.0 0.45 0.50 0.05 5.0 2 1* OPEN /</p>
+<p>OP01 25 25 0.00050 10.0 1.0 0.45 0.50 0.05 5.0 2 1* OPEN /</p>
+<p>/</p>
+<p>Branch number two uses one ICD for segments seven to ten, branch number three again uses only one ICD for segments 12 to 15 and similarly branch number three uses one ICD. The fifth and final branch has a total of four ICDs with the last interval having a 10 foot length. Since NSCALFAC equals two for the ICDs, then the scale factor is equal to the length of ICDLEN, divided by the total length of the completions which supply the ICD. Where ICDLEN is defaulted, the default value of 39.37 ft will be used for field units and 12 m for SI units.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.top", "search.suggest", "search.highlight", "content.tabs.link"], "search": "../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
