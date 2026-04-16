@@ -10,7 +10,7 @@ The [IMPES](#__RefHeading___Toc53039_4106839650) keyword activates the Implicit 
 
 There is no data required for this keyword and there is no terminating "/" for this keyword.
 
-See section [[2.2](#anchor-2)](#2.2.Running OPM Flow 2018-10 |outline)[](#2.2.Running OPM Flow 2018-10 |outline)[[Running OPM Flow 2023-04 From The Command Line](#anchor-2)](#2.2.Running OPM Flow 2018-10 |outline) on how to invoke various numerical schemes via the OPM Flow command line interface.
+See section [Running OPM Flow From The Command Line](#running-opm-flow-from-the-command-line) on how to invoke various numerical schemes via the OPM Flow command line interface.
 
 #### Example
 

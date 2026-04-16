@@ -12,7 +12,7 @@ There is no data required for this keyword and there is no terminating "/" for t
 
 OPM Flow is an open source project and therefore there is no license management of the various implemented options or the number of cores/threads that can be utilized; hence this keyword is not supported by OPM Flow but would change the results if supported so the simulation will be stopped.
 
-See section [[2.2](#anchor-2)](#2.2.Running OPM Flow 2018-10 |outline)[](#2.2.Running OPM Flow 2018-10 |outline)[[Running OPM Flow 2023-04 From The Command Line](#anchor-2)](#2.2.Running OPM Flow 2018-10 |outline) on how to run OPM Flow in parallel mode.
+See section [Running OPM Flow From The Command Line](#running-opm-flow-from-the-command-line) on how to run OPM Flow in parallel mode.
 
 #### Example
 

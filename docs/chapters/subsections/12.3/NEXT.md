@@ -36,7 +36,7 @@ Table 12.54: NEXT Keyword Description
 
 See also the [DATES](#__RefHeading___Toc117621_2179381650) and [TSTEP](#__RefHeading___Toc118323_1596574740) keywords in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section that are used to advance the simulation through time.
 
-This keyword is not supported by OPM Flow but has no effect on the results so it will be ignored. See section [[2.2](#anchor-2)](#2.2.Running OPM Flow 2018-10 |outline)[](#2.2.Running OPM Flow 2018-10 |outline)[[Running OPM Flow 2023-04 From The Command Line](#anchor-2)](#2.2.Running OPM Flow 2018-10 |outline) on how to control time stepping for OPM Flow.
+This keyword is not supported by OPM Flow but has no effect on the results so it will be ignored. See section [Running OPM Flow From The Command Line](#running-opm-flow-from-the-command-line) on how to control time stepping for OPM Flow.
 
 #### Example
 

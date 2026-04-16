@@ -34,7 +34,7 @@ Table 12.56: NEXTSTPL Keyword Description
 
 See also the [NEXT](#__RefHeading___Toc117629_2179381650) and [NEXTSTEP](#__RefHeading___Toc323446_1841740821) keywords in the [SCHEDULE](#__RefHeading___Toc43945_784232322) section that are used to control the global grid's next time step.
 
-This keyword is not supported by OPM Flow but would change the results if supported so the simulation will be stopped. See section [[2.2](#anchor-2)](#2.2.Running OPM Flow 2018-10 |outline)[](#2.2.Running OPM Flow 2018-10 |outline)[[Running OPM Flow 2023-04 From The Command Line](#anchor-2)](#2.2.Running OPM Flow 2018-10 |outline) on how to control time stepping for OPM Flow.
+This keyword is not supported by OPM Flow but would change the results if supported so the simulation will be stopped. See section [Running OPM Flow From The Command Line](#running-opm-flow-from-the-command-line) on how to control time stepping for OPM Flow.
 
 #### Example
 

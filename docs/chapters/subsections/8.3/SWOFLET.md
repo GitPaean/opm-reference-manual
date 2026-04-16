@@ -1,3 +1,5 @@
+<a id="__RefHeading___Toc398954_3017686537"></a>
+
 ### SWOFLET -- Water-Oil LET Relative Permeability Functions
 
 +-----------------------------------------+-----------------------------------+-----------------------------------+-------------------------------------+-----------------------------------------+-------------------------------------------+-----------------------------------------+--------------------------------------------+
@@ -6,7 +8,7 @@
 
 #### Description
 
-[SWOFLET](#__RefHeading___Toc398954_3017686537) defines the relative permeability and capillary pressure parameters for the water-oil LET family of models. Both the oil and water phases should be made active in the model via the [OIL](#__RefHeading___Toc97439_1778172979) and [WATER](#__RefHeading___Toc38611_2267116897) keywords in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section. See section [[8.2.6](#anchor-2)](#8.2.6.Saturation Table Generation - LET Functions|outline)[[Saturation Table Generation - LET Functions](#anchor-2)](#8.2.6.Saturation Table Generation - LET Functions|outline) and Lomeland et al.[^1],[^2] [^3] and [^4] for further information on the model.
+[SWOFLET](#__RefHeading___Toc398954_3017686537) defines the relative permeability and capillary pressure parameters for the water-oil LET family of models. Both the oil and water phases should be made active in the model via the [OIL](#__RefHeading___Toc97439_1778172979) and [WATER](#__RefHeading___Toc38611_2267116897) keywords in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section. See section [Saturation Table Generation - LET Functions](#saturation-table-generation---let-functions) and Lomeland et al.[^1],[^2] [^3] and [^4] for further information on the model.
 
 The keyword is used as a replacement for the [SWOF](#__RefHeading___Toc45811_7190362561) keyword for three-phase oil-gas-water systems, and the LET series of keywords cannot be combined with the standard set of relative permeability keywords.
 
@@ -92,7 +94,7 @@ Note there a two versions of the LET functions, LET for two-phase flowing condit
 
 The functions are dependent on the drainage and imbibition cycle of the wetting phase as well as drainage and inhibition cycle number, since a reservoir may undergo several flooding events. To account for this the system defines the flooding event using the three saturations: Sw, So, and Sg together with the state of the three saturations during the flooding event. The saturation state can be Increasing, Decreasing, or Constant, for a given flooding event cycle number (n). Thus, Sw(D), So(I), Sg(C)1or DIC1, means the water phase is decreasing, the oil phase is increasing and the gas phase is constant for the primary or first cycle (n equals one). This is case for when oil is migrating into the reservoir rock and displacing the initial water contained with the reservoir.
 
-See also the [[SGOFLET-- Gas-Oil LET Relative Permeability Functions](#anchor-3)](#8.3.269.SGOFLET– Gas-Oil Saturation Relative Permeability LET Functions|outline), and the [[SGWFLET -- Gas-Water LET Relative Permeability Functions](#anchor-4)](#8.3.321.SWGFLET – Water-Gas LET Relative Permeability Functions |outline) keywords in this section.
+See also the [SGOFLET](#__RefHeading___Toc398952_3017686537), and the [SGWFLET](#__RefHeading___Toc548127_947687768) keywords in this section.
 
 #### Example
 
