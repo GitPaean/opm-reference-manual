@@ -1,0 +1,11 @@
+### ROCKTABW -- Rock Compaction Tables (Water Induced)
+
++-----------------------------------------+-----------------------------------+-----------------------------------+-------------------------------------+-----------------------------------------+-------------------------------------------+-----------------------------------------+--------------------------------------------+
+| > [RUNSPEC](#3.RUNSPEC SECTION|outline) | > [GRID](#4.GRID SECTION|outline) | > [EDIT](#5.EDIT SECTION|outline) | > [PROPS](#6.PROPS SECTION|outline) | > [REGIONS](#7.REGIONS SECTION|outline) | > [SOLUTION](#8.SOLUTION SECTION|outline) | > [SUMMARY](#9.SUMMARY SECTION|outline) | > [SCHEDULE](#10.SCHEDULE SECTION|outline) |
++-----------------------------------------+-----------------------------------+-----------------------------------+-------------------------------------+-----------------------------------------+-------------------------------------------+-----------------------------------------+--------------------------------------------+
+
+#### Description
+
+The [ROCKTABW](#__RefHeading___Toc266648_516898843) keyword defines the rock compaction tables induced by increasing water saturation within a grid cell due to water invasion, for when the rock compaction option has been invoked by the [ROCKCOMP](#__RefHeading___Toc55593_1778172979) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section. [ROCKTABW](#__RefHeading___Toc266648_516898843) defines pore volume and transmissibility multipliers versus water saturation that are used in the compaction calculations. The keyword should be used together with the [ROCK](#__RefHeading___Toc45809_719036256), [ROCKTAB](#__RefHeading___Toc107256_3812137098) or [ROCKTABH](#__RefHeading___Toc266641_516898843) keywords that specify the pore volume and transmissibility multipliers as functions of pressure. Alternatively the [ROCKWNOD](#__RefHeading___Toc189921_4194303431), [ROCK2D](#__RefHeading___Toc174483_4194303431) and [ROCK2DTR](#__RefHeading___Toc180656_4194303431) keywords can be used to enter two dimensional tables of the data. All keywords are in the [PROPS](#__RefHeading___Toc39329_784232322) section.
+
+This keyword is not supported by OPM Flow but would change the results if supported so the simulation will be stopped.

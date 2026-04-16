@@ -1,0 +1,13 @@
+### PLYVSCST -- Define Polymer-Salt-Temperature Viscosity Scaling Factors
+
++-----------------------------------------+-----------------------------------+-----------------------------------+-------------------------------------+-----------------------------------------+-------------------------------------------+-----------------------------------------+--------------------------------------------+
+| > [RUNSPEC](#3.RUNSPEC SECTION|outline) | > [GRID](#4.GRID SECTION|outline) | > [EDIT](#5.EDIT SECTION|outline) | > [PROPS](#6.PROPS SECTION|outline) | > [REGIONS](#7.REGIONS SECTION|outline) | > [SOLUTION](#8.SOLUTION SECTION|outline) | > [SUMMARY](#9.SUMMARY SECTION|outline) | > [SCHEDULE](#10.SCHEDULE SECTION|outline) |
++-----------------------------------------+-----------------------------------+-----------------------------------+-------------------------------------+-----------------------------------------+-------------------------------------------+-----------------------------------------+--------------------------------------------+
+
+#### Description
+
+[PLYVSCST](#__RefHeading___Toc270351_501926209) defines the polymer-salt-temperature viscosity scaling factor tables applied to pure water that are used to determine the viscosity of the polymer at a given salt concentration and for a given temperature, with respect to increasing polymer concentration within a grid block. Both the polymer option must be activated by the [POLYMER](#__RefHeading___Toc38609_2267116897) keyword and the temperature option invoked by the [TEMP](#__RefHeading___Toc146397_3544483072) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section in order to use this keyword. In addition, the [BRINE](#__RefHeading___Toc162083_289573908) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) must also be invoked. The keyword is used in conjunction with the [SALTNODE](#__RefHeading___Toc13101_421927891) keyword to define the various salt concentrations and the [TEMPNODE](#__RefHeading___Toc1219579_4250154414) keyword to define the various reservoir temperatures. Both keywords are in the [PROPS](#__RefHeading___Toc39329_784232322) section.
+
+See also the [PLYVISCS](#__RefHeading___Toc270347_501926209) keyword in the [PROPS](#__RefHeading___Toc39329_784232322) section to enter polymer viscosity scaling factor data that is dependent just salt concentration and the [PLYVISCT](#__RefHeading___Toc270349_501926209) keyword in the [PROPS](#__RefHeading___Toc39329_784232322) section to enter polymer viscosity scaling factor data that is dependent just on reservoir temperature.
+
+This keyword is not supported by OPM Flow but would change the results if supported so the simulation will be stopped.
