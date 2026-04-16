@@ -1,3 +1,5 @@
+<a id="__RefHeading___Toc27871_3671211675"></a>
+
 ### CPR -- Activate Constrained Pressure Residual ("CPR") Linear Solver
 
 +-----------------------------------------+-----------------------------------+-----------------------------------+-------------------------------------+-----------------------------------------+-------------------------------------------+-----------------------------------------+--------------------------------------------+
@@ -26,7 +28,7 @@ Turns on the Constrained Pressure Residual ("CPR")[^1],^\ [^2]\ ^and [^3] precon
 
 Table 5.8: CPR Keyword Description
 
-See section [[2.2](#anchor-2)](#2.2.Running OPM Flow 2018-10 |outline)[](#2.2.Running OPM Flow 2018-10 |outline)[[Running OPM Flow 2023-04 From The Command Line](#anchor-2)](#2.2.Running OPM Flow 2018-10 |outline) on how to invoke various numerical schemes via the OPM Flow command line interface.
+See section [Running OPM Flow From The Command Line](#running-opm-flow-from-the-command-line) on how to invoke various numerical schemes via the OPM Flow command line interface.
 
 #### Example
 

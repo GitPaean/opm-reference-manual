@@ -10,4 +10,4 @@ The [PARAOPTS](#__RefHeading___Toc258883_2928331029) keyword defines various opt
 
 This keyword is not supported by OPM Flow but has no effect on the results so it will be ignored.
 
-See section [[2.2](#anchor-2)](#2.2.Running OPM Flow 2018-10 |outline)[](#2.2.Running OPM Flow 2018-10 |outline)[[Running OPM Flow 2023-04 From The Command Line](#anchor-2)](#2.2.Running OPM Flow 2018-10 |outline) on how to run OPM Flow in parallel mode.
+See section [Running OPM Flow From The Command Line](#running-opm-flow-from-the-command-line) on how to run OPM Flow in parallel mode.

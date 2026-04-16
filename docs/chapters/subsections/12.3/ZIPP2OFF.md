@@ -10,4 +10,4 @@ The [ZIPP2OFF](#__RefHeading___Toc456991_2026549522) keyword deactivates the com
 
 This keyword is not supported by OPM Flow but has no effect on the results so it will be ignored.
 
-See section [[2.2](#anchor-2)](#2.2.Running OPM Flow 2018-10 |outline)[](#2.2.Running OPM Flow 2018-10 |outline)[[Running OPM Flow 2023-04 From The Command Line](#anchor-2)](#2.2.Running OPM Flow 2018-10 |outline) on how to control time stepping for OPM Flow.
+See section [Running OPM Flow From The Command Line](#running-opm-flow-from-the-command-line) on how to control time stepping for OPM Flow.

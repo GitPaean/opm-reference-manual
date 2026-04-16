@@ -8,7 +8,7 @@
 
 The [NSTACK](#__RefHeading___Toc34963_1640804870) keyword defines the maximum number of previous search directions stored by the linear solver. Increasing the value of NSTACK may improve the efficiency of the solver on difficult problems, but will increase the memory requirements of the simulator. The default value of 10 should be sufficient for most problems; however, if OPM Flow is having issues with the convergence of the linear questions then increasing NSTACK and the value of LITMAX on the [TUNING](#__RefHeading___Toc146744_4203985108) keyword may improve performance.
 
-OPM Flow uses a different numerical scheme which makes this keyword redundant; see section [[2.2](#anchor-2)](#2.2.Running OPM Flow 2018-10 |outline)[](#2.2.Running OPM Flow 2018-10 |outline)[[Running OPM Flow 2023-04 From The Command Line](#anchor-2)](#2.2.Running OPM Flow 2018-10 |outline) on how to invoke various numerical schemes via the OPM Flow command line interface.
+OPM Flow uses a different numerical scheme which makes this keyword redundant; see section [Running OPM Flow From The Command Line](#running-opm-flow-from-the-command-line) on how to invoke various numerical schemes via the OPM Flow command line interface.
 
 This keyword is not supported by OPM Flow but has no effect on the results so it will be ignored.
 

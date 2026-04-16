@@ -10,4 +10,4 @@ The [DOMAINS](#__RefHeading___Toc189519_1772380413) keyword defines the parallel
 
 This keyword is not supported by OPM Flow but would change the results if supported so the simulation will be stopped.
 
-See section [[2.2](#anchor-2)](#2.2.Running OPM Flow 2018-10 |outline)[](#2.2.Running OPM Flow 2018-10 |outline)[[Running OPM Flow 2023-04 From The Command Line](#anchor-2)](#2.2.Running OPM Flow 2018-10 |outline) on how to run OPM Flow in parallel mode.
+See section [Running OPM Flow From The Command Line](#running-opm-flow-from-the-command-line) on how to run OPM Flow in parallel mode.
