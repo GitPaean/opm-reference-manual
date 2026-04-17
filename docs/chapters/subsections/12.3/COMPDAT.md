@@ -1,5 +1,3 @@
-<a id="__RefHeading___Toc97651_3261743917"></a>
-
 ### COMPDAT -- Define Well Connections to the Grid
 
 | RUNSPEC | GRID | EDIT | PROPS | REGIONS | SOLUTION | SUMMARY | SCHEDULE |

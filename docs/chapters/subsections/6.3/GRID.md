@@ -1,5 +1,3 @@
-<a id="__RefHeading___Toc38674_784232322"></a>
-
 ### GRID -- Define the Start of the GRID Section of Keywords
 
 | RUNSPEC | GRID | EDIT | PROPS | REGIONS | SOLUTION | SUMMARY | SCHEDULE |

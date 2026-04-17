@@ -1,5 +1,3 @@
-<a id="__RefHeading___Toc398954_3017686537"></a>
-
 ### SWOFLET -- Water-Oil LET Relative Permeability Functions
 
 | RUNSPEC | GRID | EDIT | PROPS | REGIONS | SOLUTION | SUMMARY | SCHEDULE |

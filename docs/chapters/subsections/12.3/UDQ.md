@@ -1,5 +1,3 @@
-<a id="__RefHeading___Toc161095_2932703077"></a>
-
 ### UDQ -- Declare User Define Quantities ("UDQ")
 
 | RUNSPEC | GRID | EDIT | PROPS | REGIONS | SOLUTION | SUMMARY | SCHEDULE |
@@ -97,7 +95,7 @@ User Defined Quantities can also be used as User Defined Arguments ("UDA") in th
 | 1 |  | WSEGTABL | WSEGVALV |  |  |
 | Notes:<br>3)  Cells not colored show that the keyword has been tested and is functional within an ACTIONX block using a User Defined Argument.<br>4)  Cells colored in gray indicate that the keyword has not been tested in OPM Flow.<br>5)  Cells colored orange show keywords currently unavailable in OPM Flow because the underlying feature is not available; either because the keyword is a compositional keyword in the commercial simulator, or the keyword has not been implemented in OPM Flow. |  |  |  |  |  |
 
-<a id="REF_TABLE_ACTIONX_USER_DEF__KEYWORDS_12_3"></a>Table 12.72: UDQ - User Defined Argument Supported Keywords
+<a id="REF_TABLE_ACTIONX_USER_DEF_KEYWORDS_12_3"></a>Table 12.72: UDQ - User Defined Argument Supported Keywords
 
 #### Examples
 

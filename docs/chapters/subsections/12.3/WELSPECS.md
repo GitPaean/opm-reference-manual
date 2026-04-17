@@ -1,5 +1,3 @@
-<a id="__RefHeading___Toc268463_1366622701"></a>
-
 ### WELSPECS -- Define Well Specifications
 
 | RUNSPEC | GRID | EDIT | PROPS | REGIONS | SOLUTION | SUMMARY | SCHEDULE |

@@ -1,5 +1,3 @@
-<a id="__RefHeading___Toc569208_3181922006"></a>
-
 ### MINPV -- Set a Minimum Grid Block Pore Volume Threshold for All Cells
 
 | RUNSPEC | GRID | EDIT | PROPS | REGIONS | SOLUTION | SUMMARY | SCHEDULE |

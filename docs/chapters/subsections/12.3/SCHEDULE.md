@@ -1,5 +1,3 @@
-<a id="__RefHeading___Toc43945_784232322"></a>
-
 ### SCHEDULE -- Define the Start of the SCHEDULE Section of Keywords
 
 | RUNSPEC | GRID | EDIT | PROPS | REGIONS | SOLUTION | SUMMARY | SCHEDULE |

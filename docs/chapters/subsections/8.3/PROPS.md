@@ -1,5 +1,3 @@
-<a id="__RefHeading___Toc39329_784232322"></a>
-
 ### PROPS -- Define the Start of the PROPS Section of Keywords
 
 | RUNSPEC | GRID | EDIT | PROPS | REGIONS | SOLUTION | SUMMARY | SCHEDULE |

@@ -1,5 +1,3 @@
-<a id="__RefHeading___Toc55591_1778172979"></a>
-
 ### RUNSPEC -- Define the Start of the RUNSPEC Section of Keywords
 
 | RUNSPEC | GRID | EDIT | PROPS | REGIONS | SOLUTION | SUMMARY | SCHEDULE |

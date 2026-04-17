@@ -1,5 +1,3 @@
-<a id="__RefHeading___Toc134880_2055188184"></a>
-
 ### WCONHIST -- Define Well Historical Production Rates and Pressures
 
 | RUNSPEC | GRID | EDIT | PROPS | REGIONS | SOLUTION | SUMMARY | SCHEDULE |

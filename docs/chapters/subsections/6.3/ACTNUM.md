@@ -1,5 +1,3 @@
-<a id="__RefHeading___Toc4410_421927891"></a>
-
 ### ACTNUM -- Set the Status of a Grid Block To Active or Inactive
 
 | RUNSPEC | GRID | EDIT | PROPS | REGIONS | SOLUTION | SUMMARY | SCHEDULE |

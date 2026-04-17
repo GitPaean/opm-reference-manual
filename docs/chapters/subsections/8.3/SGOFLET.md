@@ -1,5 +1,3 @@
-<a id="__RefHeading___Toc398952_3017686537"></a>
-
 ### SGOFLET -- Gas-Oil LET Relative Permeability Functions
 
 | RUNSPEC | GRID | EDIT | PROPS | REGIONS | SOLUTION | SUMMARY | SCHEDULE |

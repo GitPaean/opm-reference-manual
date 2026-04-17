@@ -407,6 +407,14 @@ _REFHEADING_KW_LINK_RE = re.compile(
 # Standalone empty-text anchors pointing nowhere: [](#anchor-N)
 _EMPTY_ANCHOR_LINK_RE = re.compile(r"\[]\(#anchor(?:-\d+)?\)")
 
+# Empty HTML anchor tags from FODT cross-references: <a id="__RefHeading___..."></a>
+_EMPTY_HTML_ANCHOR_RE = re.compile(r'<a id="__RefHeading___[^"]*"></a>\s*')
+
+# Consecutive underscores (2+) in HTML anchor IDs trigger Jinja2 "Missing end
+# of comment tag" errors in the MkDocs macros plugin.  Replace them with a
+# single underscore so the anchor still works but doesn't confuse Jinja.
+_DOUBLE_UNDERSCORE_ANCHOR_RE = re.compile(r'(<a id="[^"]*?)__+([^"]*")', re.DOTALL)
+
 
 def _strip_outline_links(text: str) -> str:
     r"""Remove ``[text](#…|outline)`` links, keeping only the display text.
@@ -474,6 +482,16 @@ def _clean_broken_links(text: str) -> str:
     text = _REFHEADING_KW_LINK_RE.sub(r"\1", text)
     text = _strip_outline_links(text)
     text = _EMPTY_ANCHOR_LINK_RE.sub("", text)
+    # Remove empty HTML anchor tags from FODT cross-references.
+    text = _EMPTY_HTML_ANCHOR_RE.sub("", text)
+    # Collapse double/triple underscores in remaining HTML anchor IDs so the
+    # MkDocs macros plugin (Jinja2) does not interpret them as comment markers.
+    prev = text
+    while True:
+        text = _DOUBLE_UNDERSCORE_ANCHOR_RE.sub(r"\1_\2", text)
+        if text == prev:
+            break
+        prev = text
     return text
 
 

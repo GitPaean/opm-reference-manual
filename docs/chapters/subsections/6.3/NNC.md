@@ -1,5 +1,3 @@
-<a id="__RefHeading___Toc63285_718313858"></a>
-
 ### NNC -- Define Non-Neighbor Connections Between Cells Manually
 
 | RUNSPEC | GRID | EDIT | PROPS | REGIONS | SOLUTION | SUMMARY | SCHEDULE |

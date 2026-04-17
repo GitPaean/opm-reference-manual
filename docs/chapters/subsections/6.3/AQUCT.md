@@ -1,5 +1,3 @@
-<a id="__RefHeading___Toc179876_3429068809"></a>
-
 ### AQUCT -- Define Carter-Tracy Analytical Aquifers
 
 | RUNSPEC | GRID | EDIT | PROPS | REGIONS | SOLUTION | SUMMARY | SCHEDULE |

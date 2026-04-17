@@ -1,5 +1,3 @@
-<a id="__RefHeading___Toc210172_2884651453"></a>
-
 ### VAPPARS -- Oil Vaporization Parameters
 
 | RUNSPEC | GRID | EDIT | PROPS | REGIONS | SOLUTION | SUMMARY | SCHEDULE |

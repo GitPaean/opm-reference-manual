@@ -42,7 +42,7 @@ For clarity the following table outlines the keywords that should be used in all
 | DIRECT, IRREVERS and HYSTER<br>Flow in the i to i +1 directions.<br>Flow in the i to i -1 directions. | Drainage<br>KRNUMX<br>KRNUMY<br>KRNUMZ<br>KRNUMX-,<br>KRNUMY-<br>KRNUMZ- | Imbibition<br>IMBNUMX<br>IMBNUMY<br>IMBNUMZ<br>IMBNUMX-<br>IMBNUMY-<br>IMBNUMZ- | Drainage<br>KRNUMR<br>KRNUMT<br>KRNUMZ<br>KRNUMR-<br>KRNUMT-<br>KRNUMZ- | Imbibition<br>IMBNUMR<br>IMBNUMT<br>IMBNUMZ<br>IMBNUMR-<br>IMBNUMT-<br>IMBNUMZ- |
 | Notes:<br>1)  Note the drainage and imbibition classification is related to the wetting phase, that may be either oil or water; however, water is normally assumed in most cases but there are exceptions to this, especially for heavy oils.<br>2)  Keywords colored orange indicate keywords that are not currently supported in OPM Flow. |  |  |  |  |
 
-<a id="REF_TABLE_SATOPS_RELATIVE___KEYWORDS_5_3"></a>Table 5.40: SATOPTS Relative Permeability Function Allocation Keywords
+<a id="REF_TABLE_SATOPS_RELATIVE_KEYWORDS_5_3"></a>Table 5.40: SATOPTS Relative Permeability Function Allocation Keywords
 
 #### Examples
 

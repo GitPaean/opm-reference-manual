@@ -1,5 +1,3 @@
-<a id="__RefHeading___Toc27871_3671211675"></a>
-
 ### CPR -- Activate Constrained Pressure Residual ("CPR") Linear Solver
 
 | RUNSPEC | GRID | EDIT | PROPS | REGIONS | SOLUTION | SUMMARY | SCHEDULE |

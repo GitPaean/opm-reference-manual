@@ -1,5 +1,3 @@
-<a id="__RefHeading___Toc4428_421927891"></a>
-
 ### AQUFETP -- Define Fetkovich Analytical Aquifers
 
 | RUNSPEC | GRID | EDIT | PROPS | REGIONS | SOLUTION | SUMMARY | SCHEDULE |

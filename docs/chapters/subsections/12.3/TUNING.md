@@ -1,5 +1,3 @@
-<a id="__RefHeading___Toc146744_4203985108"></a>
-
 ### TUNING -- Numerical Tuning Control
 
 | RUNSPEC | GRID | EDIT | PROPS | REGIONS | SOLUTION | SUMMARY | SCHEDULE |

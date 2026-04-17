@@ -1,5 +1,3 @@
-<a id="__RefHeading___Toc97655_3261743917"></a>
-
 ### COMPLUMP -- Assign Well Connections to Completions
 
 | RUNSPEC | GRID | EDIT | PROPS | REGIONS | SOLUTION | SUMMARY | SCHEDULE |

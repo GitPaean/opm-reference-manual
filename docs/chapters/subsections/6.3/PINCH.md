@@ -1,5 +1,3 @@
-<a id="__RefHeading___Toc74261_2479612490"></a>
-
 ### PINCH -- Define Pinch-Out Layer Options
 
 | RUNSPEC | GRID | EDIT | PROPS | REGIONS | SOLUTION | SUMMARY | SCHEDULE |

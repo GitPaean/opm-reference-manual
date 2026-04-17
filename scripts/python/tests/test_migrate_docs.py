@@ -302,3 +302,19 @@ class TestCleanBrokenLinks:
         )
         result = _clean_broken_links(text)
         assert result == "The FOO keyword in the RUNSPEC section."
+
+    def test_empty_html_refheading_anchor_stripped(self):
+        text = '<a id="__RefHeading___Toc548127_947687768"></a>\nHello'
+        assert _clean_broken_links(text) == "Hello"
+
+    def test_double_underscore_in_anchor_id_collapsed(self):
+        text = '<a id="REF_TABLE_OPM_FLOW_2025_04___APPENDIX_E"></a>'
+        result = _clean_broken_links(text)
+        assert "__" not in result
+        assert '<a id="REF_TABLE_OPM_FLOW_2025_04_APPENDIX_E"></a>' == result
+
+    def test_multiple_double_underscores_collapsed(self):
+        text = '<a id="REF_TABLE_RESTART_DATA___G__KEYWORDS_F_7"></a>'
+        result = _clean_broken_links(text)
+        assert "__" not in result
+        assert '<a id="REF_TABLE_RESTART_DATA_G_KEYWORDS_F_7"></a>' == result

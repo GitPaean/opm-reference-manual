@@ -1,5 +1,3 @@
-<a id="__RefHeading___Toc548127_947687768"></a>
-
 ### SGWFLET -- Gas-Water LET Relative Permeability Functions
 
 | RUNSPEC | GRID | EDIT | PROPS | REGIONS | SOLUTION | SUMMARY | SCHEDULE |

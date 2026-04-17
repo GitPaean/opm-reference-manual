@@ -2669,7 +2669,7 @@ The wells keywords are IWEL, SWEL, XWEL, and ZWEL and below describes these keyw
 | 2-2 | Data | Defines the name of the Well List the well belongs to, set to "blank" for the well does not belong to Well List (NXWELZ = 2), that is the ACTIONX name. |  |  |  |
 | 2-3 | Data | Defines the end of time step action for the well (NXWELZ = 3). |  |  |  |
 
-*<a id="REF_TABLE_RESTART_DATA___G__KEYWORDS_F_7"></a>Table A.24: RESTART Data -- Group, Well, and Connection Keywords (Wells)*
+*<a id="REF_TABLE_RESTART_DATA_G_KEYWORDS_F_7"></a>Table A.24: RESTART Data -- Group, Well, and Connection Keywords (Wells)*
 The well connection keywords are specified in and consist of the ICON, SCON, and XCON keywords.
 
 |  | ICON | Connection integer data array ICON(NICONZ, NCWMAX, NWELLS) where NICONZ, NCWMAX, and NWELLS are defined on the INTEHEAD keyword.<br>Data keywords are required for each completion in the well and the number of data items, N, should be NICONZ x NCWMAX x NWELLS.<br>Undefined values should be set to zero. |  |  |  |
