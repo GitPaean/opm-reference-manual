@@ -19,6 +19,8 @@ from migrate_docs import (
     _merge_cell_parts,
     _find_col_positions,
     _strip_outline_links,
+    _MD_ANCHOR_TO_HTML_RE,
+    _EMPTY_ANCHOR_RE,
 )
 
 
@@ -318,3 +320,39 @@ class TestCleanBrokenLinks:
         result = _clean_broken_links(text)
         assert "__" not in result
         assert '<a id="REF_TABLE_RESTART_DATA_G_KEYWORDS_F_7"></a>' == result
+
+
+class TestMdAnchorToHtml:
+    """Tests for markdown []{#id} → <a id="id"></a> conversion."""
+
+    def test_basic_conversion(self):
+        text = "[]{#my_anchor}Some text"
+        result = _MD_ANCHOR_TO_HTML_RE.sub(r'<a id="\1"></a>', text)
+        assert result == '<a id="my_anchor"></a>Some text'
+
+    def test_ref_table_anchor_in_caption(self):
+        text = "*[]{#REF_TABLE_OPM_FLOW_2025_04___APPENDIX_E}Table A.1: Options*"
+        result = _MD_ANCHOR_TO_HTML_RE.sub(r'<a id="\1"></a>', text)
+        assert "{#" not in result
+        assert '<a id="REF_TABLE_OPM_FLOW_2025_04___APPENDIX_E"></a>' in result
+
+    def test_anchor_then_double_underscore_collapse(self):
+        """Full pipeline: md→html conversion then double-underscore collapse."""
+        text = "*[]{#REF_TABLE_OPM_FLOW_2025_04___APPENDIX_E}Table A.1*"
+        text = _MD_ANCHOR_TO_HTML_RE.sub(r'<a id="\1"></a>', text)
+        text = _clean_broken_links(text)
+        assert "{#" not in text
+        assert "__" not in text
+        assert '*<a id="REF_TABLE_OPM_FLOW_2025_04_APPENDIX_E"></a>Table A.1*' == text
+
+    def test_empty_anchor_stripped_after_conversion(self):
+        """[]{#anchor-5} is converted to HTML then stripped by EMPTY_ANCHOR_RE."""
+        text = "[]{#anchor-5} following text"
+        text = _MD_ANCHOR_TO_HTML_RE.sub(r'<a id="\1"></a>', text)
+        text = _EMPTY_ANCHOR_RE.sub("", text)
+        assert text == "following text"
+
+    def test_no_match_on_non_anchor(self):
+        text = "Normal text without anchors"
+        result = _MD_ANCHOR_TO_HTML_RE.sub(r'<a id="\1"></a>', text)
+        assert result == text

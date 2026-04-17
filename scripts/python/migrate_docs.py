@@ -503,8 +503,14 @@ def _clean_broken_links(text: str) -> str:
 _LEADING_DIV_RE = re.compile(r"^<div>\s*\n?", re.MULTILINE)
 _TRAILING_DIV_RE = re.compile(r"\n?</div>\s*$", re.MULTILINE)
 
-# Empty anchor spans: []{#anchor} or []{#anchor-1} etc.
-_EMPTY_ANCHOR_RE = re.compile(r"\[]\{#anchor(?:-\d+)?}\s*")
+# Convert Pandoc markdown-style anchors ``[]{#id}`` to HTML ``<a id="id"></a>``.
+# The ``{#`` sequence triggers Jinja2 comment parsing in the MkDocs macros
+# plugin, causing "Missing end of comment tag" errors.
+_MD_ANCHOR_TO_HTML_RE = re.compile(r"\[]\{#([^}]+)\}")
+
+# Empty anchor spans: <a id="anchor"></a> or <a id="anchor-1"></a> etc.
+# (These were ``[]{#anchor-N}`` before the markdown→HTML anchor conversion.)
+_EMPTY_ANCHOR_RE = re.compile(r'<a id="anchor(?:-\d+)?"></a>\s*')
 
 # Block-quote markers on lines that are really normal paragraphs.
 _BLOCK_QUOTE_RE = re.compile(r"^> ", re.MULTILINE)
@@ -523,6 +529,9 @@ def _postprocess_md(md_path: Path) -> None:
     text = _clean_pipe_table_blockquotes(text)
     # Convert ::: caption ... ::: blocks to italic captions.
     text = _clean_captions(text)
+    # Convert []{#id} anchors to <a id="id"></a> so the {# sequence does not
+    # trigger Jinja2 comment parsing in the MkDocs macros plugin.
+    text = _MD_ANCHOR_TO_HTML_RE.sub(r'<a id="\1"></a>', text)
     # Strip broken FODT cross-reference links (must run before anchor strip).
     text = _clean_broken_links(text)
 
