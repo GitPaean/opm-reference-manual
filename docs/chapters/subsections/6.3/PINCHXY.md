@@ -1,11 +1,11 @@
 ### PINCHXY -- Define Pinch-Out Areal Options
 
-| [RUNSPEC](#3.RUNSPEC SECTION|outline) | [GRID](#4.GRID SECTION|outline) | [EDIT](#5.EDIT SECTION|outline) | [PROPS](#6.PROPS SECTION|outline) | [REGIONS](#7.REGIONS SECTION|outline) | [SOLUTION](#8.SOLUTION SECTION|outline) | [SUMMARY](#9.SUMMARY SECTION|outline) | [SCHEDULE](#10.SCHEDULE SECTION|outline) |
+| RUNSPEC | GRID | EDIT | PROPS | REGIONS | SOLUTION | SUMMARY | SCHEDULE |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 
 #### Description
 
-The [PINCHXY](#__RefHeading___Toc775709_2928331029) keyword defines the x-direction and y-direction threshold thickness used to control the generation of Non-Neighbor Connections ("NNCs") in the x- and y- directions for missing cells in the areal plane.
+The PINCHXY keyword defines the x-direction and y-direction threshold thickness used to control the generation of Non-Neighbor Connections ("NNCs") in the x- and y- directions for missing cells in the areal plane.
 
 This keyword is not supported by OPM Flow but would change the results if supported so the simulation will be stopped.
 

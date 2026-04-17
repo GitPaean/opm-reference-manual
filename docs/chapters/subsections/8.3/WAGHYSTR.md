@@ -1,11 +1,11 @@
 ### WAGHYSTR -- Define Water-Alternating-Gas Hysteresis Parameters
 
-| [RUNSPEC](#3.RUNSPEC SECTION|outline) | [GRID](#4.GRID SECTION|outline) | [EDIT](#5.EDIT SECTION|outline) | [PROPS](#6.PROPS SECTION|outline) | [REGIONS](#7.REGIONS SECTION|outline) | [SOLUTION](#8.SOLUTION SECTION|outline) | [SUMMARY](#9.SUMMARY SECTION|outline) | [SCHEDULE](#10.SCHEDULE SECTION|outline) |
+| RUNSPEC | GRID | EDIT | PROPS | REGIONS | SOLUTION | SUMMARY | SCHEDULE |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 
 #### Description
 
-This keyword defines the parameters for the Water-Alternating-Gas ("WAG") hysteresis option, for when the hysteresis option has been activated by the [WAGHYSTR](#__RefHeading___Toc207827_2026549522) variable on the [SATOPTS](#__RefHeading___Toc37029_327352552) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section.
+This keyword defines the parameters for the Water-Alternating-Gas ("WAG") hysteresis option, for when the hysteresis option has been activated by the WAGHYSTR variable on the SATOPTS keyword in the RUNSPEC section.
 
 The WAG recovery mechanism is an Enhanced Oil Recovery ("EOR") process to optimize oil recovery by improving volumetric sweep efficiency. It was originally proposed as a method to improve the sweep efficiency of gas by using water to control the mobility ratio and to stabilize the front (Caudle and Dyes, 1958[^1]; Christensen et al., 1998[^2]; and Christensen et al., 2001[^3]). WAG injection can lead to improved oil recovery by combining better mobility control and contacting upswept zones, and by leading to improved microscopic displacement. Although initially the injected gas was immiscible with respect to the oil (WAG Immiscible) the more common process is WAG Miscible, with alternating different types of hydrocarbon gases and non-hydrocarbon gases, such as N2 and CO2 Gases. WAG flooding has been successfully applied to various fields worldwide.
 
@@ -17,21 +17,21 @@ Only the gas phase relative permeability WAG hysteresis model has been implement
 | 2 | SECONDARY_DRAINAGE_REDUCTION | A real value greater than or equal to zero that defines the secondary drainage reduction factor, alpha.<br>As alpha increases the reduction in gas mobility on secondary drainage increases. | 0.0 |
 | dimensionless | dimensionless | dimensionless |  |
 | 3 | GAS_MODEL | A defined character string that defines whether the gas hysteresis model should be used, and should be set to one of the following character strings:<br>1)  YES: Use the WAG hysteresis model for the gas phase relative permeability.<br>2)  NO: Turn off the WAG hysteresis model and use the drainage curve.<br>Only the YES option is currently supported by the simulator. | YES |
-| 4 | RES_OIL | A defined character string that defines whether the residual oil model should be used, and should be set to one of the following character strings:<br>1)  YES: Use the trapped gas to modify the residual oil saturation (SOM) in the [STONE](#__RefHeading___Toc157687_1371377330) 1 three-phase oil relative permeability model. No action is taken unless the [STONE1](#__RefHeading___Toc210162_2884651453) keyword has been entered.<br>2)  NO: Do not modify the residual oil saturation.<br>Only the NO option is currently supported by the simulator. | YES |
-| 5 | WATER_MODEL | A defined character string that defines whether the water hysteresis model should be used, and should be set to one of the following character strings:<br>1)  YES: Use the WAG hysteresis model for the water phase relative permeability<br>2)  NO: Turn off the WAG hysteresis model. Note that the hysteresis model specified in [EHYSTR](#__RefHeading___Toc67396_621662414) keyword applies.<br>Only the NO option is currently supported by the simulator. | YES |
+| 4 | RES_OIL | A defined character string that defines whether the residual oil model should be used, and should be set to one of the following character strings:<br>1)  YES: Use the trapped gas to modify the residual oil saturation (SOM) in the STONE 1 three-phase oil relative permeability model. No action is taken unless the STONE1 keyword has been entered.<br>2)  NO: Do not modify the residual oil saturation.<br>Only the NO option is currently supported by the simulator. | YES |
+| 5 | WATER_MODEL | A defined character string that defines whether the water hysteresis model should be used, and should be set to one of the following character strings:<br>1)  YES: Use the WAG hysteresis model for the water phase relative permeability<br>2)  NO: Turn off the WAG hysteresis model. Note that the hysteresis model specified in EHYSTR keyword applies.<br>Only the NO option is currently supported by the simulator. | YES |
 | 6 | IMB_LINEAR_FRACTION | A real value greater than zero that defines the imbibtion curve linear fraction.<br>This is the fraction of the curve between Sgm and Sgtrap that uses a linear transformation. A non-zero value for the linear fraction prevents the potential infinite gradient in the imbibition curve when using the Carlson analytic model. | 0.1 |
 | dimensionless | dimensionless | dimensionless |  |
 | 7 | THREEPHASE_SAT_LIMIT | A real value between zero and one that defines the three-phase model threshold saturation.<br>When the water saturation exceeds this threshold above the connate water saturation the gas (non-wetting) phase hysteresis switches from the two-phase model to the three-phase model. In the two-phase model a secondary drainage process follows the imbibition curve. However, if the water saturation exceeds the connate saturation by the given threshold, at the beginning of the secondary drainage process a three-phase secondary drainage curve is followed.<br>This value also defines the minimum percentage change in gas saturation to allow switching from drainage to imbibition curve and vice-versa. This threshold allows better control of the numerical sensitivity of the system, preventing it from being too unstable. | 0.001 |
 | dimensionless | dimensionless | dimensionless |  |
-| 8 | RES_OIL_MOD_FRACTION | A real value between zero and one that defines the residual oil modification fraction.<br>This is the fraction of the trapped gas saturation subtracted from the residual oil (SOM) in the [STONE](#__RefHeading___Toc157687_1371377330) 1 three-phase oil relative permeability model.<br>This is not supported and will be ignored by the simulator. | 1.0 |
+| 8 | RES_OIL_MOD_FRACTION | A real value between zero and one that defines the residual oil modification fraction.<br>This is the fraction of the trapped gas saturation subtracted from the residual oil (SOM) in the STONE 1 three-phase oil relative permeability model.<br>This is not supported and will be ignored by the simulator. | 1.0 |
 | dimensionless | dimensionless | dimensionless |  |
-| Notes:<br>1)  The keyword is followed by one record for each saturation table region with each record terminated by a "/".<br>2)  The number of saturation table regions NTSFUN is specified by the [TABDIMS](#__RefHeading___Toc89327_327352552) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section. |  |  |  |
+| Notes:<br>1)  The keyword is followed by one record for each saturation table region with each record terminated by a "/".<br>2)  The number of saturation table regions NTSFUN is specified by the TABDIMS keyword in the RUNSPEC section. |  |  |  |
 
 Table 8.3.364.1: WAGHYSTR Keyword Description
 
 #### Example
 
-The following example defines the WAG hysteresis model parameters using the [WAGHYSTR](#__RefHeading___Toc207827_2026549522) keyword for a case with three saturation table regions
+The following example defines the WAG hysteresis model parameters using the WAGHYSTR keyword for a case with three saturation table regions
 
 \--
 

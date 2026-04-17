@@ -1,11 +1,11 @@
 ### TUNINGH -- Numerical Tuning Control for History Match Gradient Calculations
 
-| [RUNSPEC](#3.RUNSPEC SECTION|outline) | [GRID](#4.GRID SECTION|outline) | [EDIT](#5.EDIT SECTION|outline) | [PROPS](#6.PROPS SECTION|outline) | [REGIONS](#7.REGIONS SECTION|outline) | [SOLUTION](#8.SOLUTION SECTION|outline) | [SUMMARY](#9.SUMMARY SECTION|outline) | [SCHEDULE](#10.SCHEDULE SECTION|outline) |
+| RUNSPEC | GRID | EDIT | PROPS | REGIONS | SOLUTION | SUMMARY | SCHEDULE |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 
 #### Description
 
-Defines the parameters used for controlling the commercial simulator's numerical convergence parameters. The keyword is similar to the [TUNING](#__RefHeading___Toc146744_4203985108) keyword in the [SCHEDULE](#__RefHeading___Toc43945_784232322) section, but the defaults on this keyword are optimized for high throughput runs. See section [Running OPM Flow From The Command Line](#running-opm-flow-from-the-command-line) on how to invoke various numerical schemes via the OPM Flow command line interface.
+Defines the parameters used for controlling the commercial simulator's numerical convergence parameters. The keyword is similar to the TUNING keyword in the SCHEDULE section, but the defaults on this keyword are optimized for high throughput runs. See section [Running OPM Flow From The Command Line](#running-opm-flow-from-the-command-line) on how to invoke various numerical schemes via the OPM Flow command line interface.
 
 This keyword is not supported by OPM Flow but has no effect on the results so it will be ignored.
 

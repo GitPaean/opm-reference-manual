@@ -1,11 +1,11 @@
 ### PVDG -- Gas PVT Properties for Dry Gas
 
-| [RUNSPEC](#3.RUNSPEC SECTION|outline) | [GRID](#4.GRID SECTION|outline) | [EDIT](#5.EDIT SECTION|outline) | [PROPS](#6.PROPS SECTION|outline) | [REGIONS](#7.REGIONS SECTION|outline) | [SOLUTION](#8.SOLUTION SECTION|outline) | [SUMMARY](#9.SUMMARY SECTION|outline) | [SCHEDULE](#10.SCHEDULE SECTION|outline) |
+| RUNSPEC | GRID | EDIT | PROPS | REGIONS | SOLUTION | SUMMARY | SCHEDULE |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 
 #### Description
 
-[PVDG](#__RefHeading___Toc104056_57619843) defines the gas PVT properties for dry gas[^1]. If the gas has a constant and uniform vaporized oil concentration, Condensate-Gas Ratio ("CGR"), and if the reservoir pressure never drops below the saturation pressure (dew point pressure), then the model can be run more efficiently by omitting the [OIL](#__RefHeading___Toc97439_1778172979) and [VAPOIL](#__RefHeading___Toc56610_2267116897) keywords from the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section, treating the gas as a dry gas, and defining a constant Rv (CGR) value with keyword [RVCONST](#__RefHeading___Toc329587_516898843) or [RVCONSTT](#__RefHeading___Toc138400_3326918171) in the [PROPS](#__RefHeading___Toc39329_784232322) section. This results in the model being run with as a dry gas problem with no active oil (condensate) phase. However, OPM Flow takes into account the constant Rv in the calculations and reporting.
+PVDG defines the gas PVT properties for dry gas[^1]. If the gas has a constant and uniform vaporized oil concentration, Condensate-Gas Ratio ("CGR"), and if the reservoir pressure never drops below the saturation pressure (dew point pressure), then the model can be run more efficiently by omitting the OIL and VAPOIL keywords from the RUNSPEC section, treating the gas as a dry gas, and defining a constant Rv (CGR) value with keyword RVCONST or RVCONSTT in the PROPS section. This results in the model being run with as a dry gas problem with no active oil (condensate) phase. However, OPM Flow takes into account the constant Rv in the calculations and reporting.
 
 | No. | Name | Description | Default |
 | --- | --- | --- | --- |
@@ -16,17 +16,17 @@
 | rb/Mscf | rm^3^/sm^3^ | rcc/scc |  |
 | 3 | GVISC | A columnar vector of real increasing down the column values that defines the corresponding gas phase viscosity. | None |
 | cP | cP | cP |  |
-| Notes:<br>1)  The keyword is followed by NTPVT tables as declared on the [TABDIMS](#__RefHeading___Toc89327_327352552) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section.<br>2)  Each table must contain a minimum of two rows and a maximum of NPPVT rows as declared on the [TABDIMS](#__RefHeading___Toc89327_327352552) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section.<br>3)  Each table is terminated by a "/" and there is no "/" terminator for the keyword. |  |  |  |
+| Notes:<br>1)  The keyword is followed by NTPVT tables as declared on the TABDIMS keyword in the RUNSPEC section.<br>2)  Each table must contain a minimum of two rows and a maximum of NPPVT rows as declared on the TABDIMS keyword in the RUNSPEC section.<br>3)  Each table is terminated by a "/" and there is no "/" terminator for the keyword. |  |  |  |
 
 Table 8.114: PVDG Keyword Description
 
 Note that provided the first table has been entered, subsequent tables may be defaulted, in this case the prior table is copied to the current table. See the second example for an illustration on how to use this feature.
 
-See also the [RVCONST](#__RefHeading___Toc329587_516898843) and [RVCONSTT](#__RefHeading___Toc138400_3326918171) keywords to define the constant Rv for dry gas.
+See also the RVCONST and RVCONSTT keywords to define the constant Rv for dry gas.
 
 #### Example
 
-The first example below defines two dry gas PVT tables assuming NTPVT equals two and NPPVT is greater than or equal to 22 on the [TABDIMS](#__RefHeading___Toc89327_327352552) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section.
+The first example below defines two dry gas PVT tables assuming NTPVT equals two and NPPVT is greater than or equal to 22 on the TABDIMS keyword in the RUNSPEC section.
 
 \--
 
@@ -134,7 +134,7 @@ PVDG
 
 6000.0 0.5837 0.0285 / TABLE N0. 02
 
-The second example defines four dry gas PVT tables assuming NTPVT equals four and NPPVT is greater than or equal to 22 on the [TABDIMS](#__RefHeading___Toc89327_327352552) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section. Here table two defaults to table one, and table four defaults to table three.
+The second example defines four dry gas PVT tables assuming NTPVT equals four and NPPVT is greater than or equal to 22 on the TABDIMS keyword in the RUNSPEC section. Here table two defaults to table one, and table four defaults to table three.
 
 \--
 

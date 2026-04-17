@@ -1,24 +1,24 @@
 ### SOF2 -- Oil Saturation Tables with Respect to Gas or Water (Format Type 2)
 
-| [RUNSPEC](#3.RUNSPEC SECTION|outline) | [GRID](#4.GRID SECTION|outline) | [EDIT](#5.EDIT SECTION|outline) | [PROPS](#6.PROPS SECTION|outline) | [REGIONS](#7.REGIONS SECTION|outline) | [SOLUTION](#8.SOLUTION SECTION|outline) | [SUMMARY](#9.SUMMARY SECTION|outline) | [SCHEDULE](#10.SCHEDULE SECTION|outline) |
+| RUNSPEC | GRID | EDIT | PROPS | REGIONS | SOLUTION | SUMMARY | SCHEDULE |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 
 #### Description
 
-The [SOF2](#__RefHeading___Toc106876_335817223) keyword defines the oil relative permeability versus oil saturation tables for when oil and gas or oil and water are present in the input deck. The keyword is also used to define the relative permeability of the miscible hydrocarbon phase in [SOLVENT](#__RefHeading___Toc62787_1778172979) runs. This keyword should only be used if oil is present in the run.
+The SOF2 keyword defines the oil relative permeability versus oil saturation tables for when oil and gas or oil and water are present in the input deck. The keyword is also used to define the relative permeability of the miscible hydrocarbon phase in SOLVENT runs. This keyword should only be used if oil is present in the run.
 
 | No. | Name | Description | Default |
 | --- | --- | --- | --- |
 | Field | Metric | Laboratory |  |
-| 1 | [SOIL](#__RefHeading___Toc137371_1317547213) | A columnar vector of real monotonically increasing down the column values starting from zero and terminating at one, that defines the oil or the hydrocarbon solvent saturation.<br>For two phase runs the oil saturation should be entered and for when the [SOLVENT](#__RefHeading___Toc62787_1778172979) option has been activated in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section the total hydrocarbon phase (including the solvent) should be entered, that is [SOIL](#__RefHeading___Toc137371_1317547213) = So + Sg + Ss. | None |
+| 1 | SOIL | A columnar vector of real monotonically increasing down the column values starting from zero and terminating at one, that defines the oil or the hydrocarbon solvent saturation.<br>For two phase runs the oil saturation should be entered and for when the SOLVENT option has been activated in the RUNSPEC section the total hydrocarbon phase (including the solvent) should be entered, that is SOIL = So + Sg + Ss. | None |
 | dimensionless | dimensionless | dimensionless |  |
-| 3 | [KRO](#__RefHeading___Toc97395_621662414) | A columnar vector of real values that are either equal or increasing down the column and that are greater than or equal to zero and less than or equal to one that defines the oil relative permeability with respect to gas and connate water saturation.<br>For two phase runs the oil relative permeability should be entered and for when the [SOLVENT](#__RefHeading___Toc62787_1778172979) option has been activated in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section the relative permeability of the miscible hydrocarbon phase with respect to water.<br>The last value in the column should be zero. | None |
+| 3 | KRO | A columnar vector of real values that are either equal or increasing down the column and that are greater than or equal to zero and less than or equal to one that defines the oil relative permeability with respect to gas and connate water saturation.<br>For two phase runs the oil relative permeability should be entered and for when the SOLVENT option has been activated in the RUNSPEC section the relative permeability of the miscible hydrocarbon phase with respect to water.<br>The last value in the column should be zero. | None |
 | dimensionless | dimensionless | dimensionless |  |
-| Notes:<br>1)  The keyword is followed by NTSFUN tables as declared on the [TABDIMS](#__RefHeading___Toc89327_327352552) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section.<br>2)  Each table must contain a minimum of two rows and a maximum of NSSFUN rows as declared on the [TABDIMS](#__RefHeading___Toc89327_327352552) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section.<br>3)  Each table is terminated by a "/" and there is no "/" terminator for the keyword. |  |  |  |
+| Notes:<br>1)  The keyword is followed by NTSFUN tables as declared on the TABDIMS keyword in the RUNSPEC section.<br>2)  Each table must contain a minimum of two rows and a maximum of NSSFUN rows as declared on the TABDIMS keyword in the RUNSPEC section.<br>3)  Each table is terminated by a "/" and there is no "/" terminator for the keyword. |  |  |  |
 
 Table 8.165: SOF2 Keyword Description
 
-Note this keyword should only be used for when the [SOLVENT](#__RefHeading___Toc62787_1778172979) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section has been activated. It should not be use for two-phase oil-water runs.
+Note this keyword should only be used for when the SOLVENT keyword in the RUNSPEC section has been activated. It should not be use for two-phase oil-water runs.
 
 #### Example
 
@@ -110,4 +110,4 @@ SOF2
 
 0.85 1.000000 / TABLE NO. 02
 
-The example defines two [SOF2](#__RefHeading___Toc106876_335817223) tables for when oil and gas or oil and water are present in the input deck.
+The example defines two SOF2 tables for when oil and gas or oil and water are present in the input deck.

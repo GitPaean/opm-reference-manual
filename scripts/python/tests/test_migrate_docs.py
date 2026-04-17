@@ -12,11 +12,13 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from migrate_docs import (
     _convert_grid_tables,
+    _clean_broken_links,
     _clean_captions,
     _clean_pipe_table_blockquotes,
     _grid_table_to_pipe,
     _merge_cell_parts,
     _find_col_positions,
+    _strip_outline_links,
 )
 
 
@@ -215,3 +217,88 @@ class TestCleanCaptions:
         assert "Before" in result
         assert "After" in result
         assert "*Table 1: Title*" in result
+
+
+# ---------------------------------------------------------------------------
+# _strip_outline_links
+# ---------------------------------------------------------------------------
+
+class TestStripOutlineLinks:
+    def test_simple_outline_link(self):
+        text = "[RUNSPEC](#3.RUNSPEC SECTION|outline)"
+        assert _strip_outline_links(text) == "RUNSPEC"
+
+    def test_nested_brackets_in_display(self):
+        text = "[[text](#anchor)](#url|outline)"
+        assert _strip_outline_links(text) == "[text](#anchor)"
+
+    def test_parens_in_url(self):
+        text = (
+            "[[HWKRO -- Kro(Swl) (High Salinity)](#a-391)]"
+            "(#8.3.67.HWKRO – Kro(Swl) (High Salinity)|outline)"
+        )
+        result = _strip_outline_links(text)
+        assert "|outline" not in result
+        assert "HWKRO" in result
+
+    def test_no_outline(self):
+        text = "no outline here"
+        assert _strip_outline_links(text) == text
+
+    def test_empty_display(self):
+        text = "[](#empty|outline)"
+        assert _strip_outline_links(text) == ""
+
+    def test_multiple_outline_links(self):
+        text = "[A](#x|outline) and [B](#y|outline)"
+        assert _strip_outline_links(text) == "A and B"
+
+    def test_no_backtracking_on_pipe_table(self):
+        """Ensure that pipe tables with many [text](#anchor) links are fast."""
+        row = "| " + " | ".join(
+            f"[KW{i}](#anchor-{i})" for i in range(50)
+        ) + " |"
+        import time
+        start = time.time()
+        result = _strip_outline_links(row)
+        elapsed = time.time() - start
+        assert elapsed < 1.0  # must not cause catastrophic backtracking
+        assert result == row  # no |outline → unchanged
+
+
+# ---------------------------------------------------------------------------
+# _clean_broken_links  (integration-level)
+# ---------------------------------------------------------------------------
+
+class TestCleanBrokenLinks:
+    def test_refheading_stripped(self):
+        text = "[WAGHYSTR](#__RefHeading___Toc207827_2026549522)"
+        assert _clean_broken_links(text) == "WAGHYSTR"
+
+    def test_refheading_html_stripped(self):
+        text = '<a href="#__RefHeading___Toc27871_3671211675">CPR</a>'
+        assert _clean_broken_links(text) == "CPR"
+
+    def test_ref_heading_keyword_stripped(self):
+        text = "[H2STORE](#REF_HEADING_KEYWORD_H2STORE)"
+        assert _clean_broken_links(text) == "H2STORE"
+
+    def test_outline_stripped(self):
+        text = "[RUNSPEC](#3.RUNSPEC SECTION|outline)"
+        assert _clean_broken_links(text) == "RUNSPEC"
+
+    def test_empty_anchor_link_stripped(self):
+        text = "section [](#anchor-2)"
+        assert _clean_broken_links(text) == "section "
+
+    def test_normal_links_preserved(self):
+        text = "[Google](https://google.com)"
+        assert _clean_broken_links(text) == text
+
+    def test_mixed_content(self):
+        text = (
+            "The [FOO](#__RefHeading___Toc123_456) keyword "
+            "in the [RUNSPEC](#3.RUNSPEC SECTION|outline) section."
+        )
+        result = _clean_broken_links(text)
+        assert result == "The FOO keyword in the RUNSPEC section."

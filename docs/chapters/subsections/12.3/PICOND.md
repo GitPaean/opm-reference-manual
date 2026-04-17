@@ -1,11 +1,11 @@
 ### PICOND -- Define the Generalized Pseudo Pressure Parameters
 
-| [RUNSPEC](#3.RUNSPEC SECTION|outline) | [GRID](#4.GRID SECTION|outline) | [EDIT](#5.EDIT SECTION|outline) | [PROPS](#6.PROPS SECTION|outline) | [REGIONS](#7.REGIONS SECTION|outline) | [SOLUTION](#8.SOLUTION SECTION|outline) | [SUMMARY](#9.SUMMARY SECTION|outline) | [SCHEDULE](#10.SCHEDULE SECTION|outline) |
+| RUNSPEC | GRID | EDIT | PROPS | REGIONS | SOLUTION | SUMMARY | SCHEDULE |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 
 #### Description
 
-The [PICOND](#__RefHeading___Toc763537_2928331029) keyword defines the Generalized Pseudo Pressure ("GPP")[^1] and [^2] parameters used in a gas condensate well connection inflow equations. GPP accounts for both the impact of condensate drop out and compressibility in the mobility inflow term . If the keyword is absent from the input deck then the default values are applied.
+The PICOND keyword defines the Generalized Pseudo Pressure ("GPP")[^1] and [^2] parameters used in a gas condensate well connection inflow equations. GPP accounts for both the impact of condensate drop out and compressibility in the mobility inflow term . If the keyword is absent from the input deck then the default values are applied.
 
 This keyword is not supported by OPM Flow but would change the results if supported so the simulation will be stopped.
 

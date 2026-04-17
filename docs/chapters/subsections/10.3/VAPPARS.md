@@ -2,12 +2,12 @@
 
 ### VAPPARS -- Oil Vaporization Parameters
 
-| [RUNSPEC](#3.RUNSPEC SECTION|outline) | [GRID](#4.GRID SECTION|outline) | [EDIT](#5.EDIT SECTION|outline) | [PROPS](#6.PROPS SECTION|outline) | [REGIONS](#7.REGIONS SECTION|outline) | [SOLUTION](#8.SOLUTION SECTION|outline) | [SUMMARY](#9.SUMMARY SECTION|outline) | [SCHEDULE](#10.SCHEDULE SECTION|outline) |
+| RUNSPEC | GRID | EDIT | PROPS | REGIONS | SOLUTION | SUMMARY | SCHEDULE |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 
 #### Description
 
-[VAPPARS](#__RefHeading___Toc210172_2884651453) defines the rate of oil vaporization in the presence of undersaturated gas and the rate at which the remaining oil gets "heavier" via the reduction in the solution gas-oil ratio ("Rs"). This keyword should only be used if the [OIL](#__RefHeading___Toc97439_1778172979), [GAS](#__RefHeading___Toc38607_2267116897), [DISGAS](#__RefHeading___Toc39767_2267116897) and [VAPOIL](#__RefHeading___Toc56610_2267116897) keywords in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section have been invoked to allow oil, gas, dissolved gas and vaporized oil to be present in the model.
+VAPPARS defines the rate of oil vaporization in the presence of undersaturated gas and the rate at which the remaining oil gets "heavier" via the reduction in the solution gas-oil ratio ("Rs"). This keyword should only be used if the OIL, GAS, DISGAS and VAPOIL keywords in the RUNSPEC section have been invoked to allow oil, gas, dissolved gas and vaporized oil to be present in the model.
 
 | No. | Name | Description | Default |
 | --- | --- | --- | --- |
@@ -22,7 +22,7 @@ Table 10.63: VAPPARS Keyword Description
 
 Note this keyword is normally used in history matching field performance to control the availability of the vaporized oil phase.
 
-See also the [DRSDT](#__RefHeading___Toc117623_2179381650) and [DRVDT](#__RefHeading___Toc117625_2179381650) keywords in the [SCHEDULE](#__RefHeading___Toc43945_784232322) section that control the rate at which the solution gas-oil ratio and the vaporized oil-gas ratio increase within a grid block, respectively.
+See also the DRSDT and DRVDT keywords in the SCHEDULE section that control the rate at which the solution gas-oil ratio and the vaporized oil-gas ratio increase within a grid block, respectively.
 
 #### Examples
 

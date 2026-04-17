@@ -2,12 +2,12 @@
 
 ### CPR -- Activate Constrained Pressure Residual ("CPR") Linear Solver
 
-| [RUNSPEC](#3.RUNSPEC SECTION|outline) | [GRID](#4.GRID SECTION|outline) | [EDIT](#5.EDIT SECTION|outline) | [PROPS](#6.PROPS SECTION|outline) | [REGIONS](#7.REGIONS SECTION|outline) | [SOLUTION](#8.SOLUTION SECTION|outline) | [SUMMARY](#9.SUMMARY SECTION|outline) | [SCHEDULE](#10.SCHEDULE SECTION|outline) |
+| RUNSPEC | GRID | EDIT | PROPS | REGIONS | SOLUTION | SUMMARY | SCHEDULE |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 
 #### Description
 
-Turns on the Constrained Pressure Residual ("CPR")[^1],^\ [^2]\ ^and [^3] preconditioner linear solver option, and declares how the solver should be applied. The keyword is equivalent to using the OPM Flow command line parameter \--linear-solver= "cprw". Note that if the command line has been used, then this will take precedence over the [CPR](#__RefHeading___Toc27871_3671211675) keyword.
+Turns on the Constrained Pressure Residual ("CPR")[^1],^\ [^2]\ ^and [^3] preconditioner linear solver option, and declares how the solver should be applied. The keyword is equivalent to using the OPM Flow command line parameter \--linear-solver= "cprw". Note that if the command line has been used, then this will take precedence over the CPR keyword.
 
 | No. | Name | Description | Default |
 | --- | --- | --- | --- |

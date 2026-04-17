@@ -1,11 +1,11 @@
 ### PIMULTAB -- Define Well Productivity Index versus Water Cut Tables
 
-| [RUNSPEC](#3.RUNSPEC SECTION|outline) | [GRID](#4.GRID SECTION|outline) | [EDIT](#5.EDIT SECTION|outline) | [PROPS](#6.PROPS SECTION|outline) | [REGIONS](#7.REGIONS SECTION|outline) | [SOLUTION](#8.SOLUTION SECTION|outline) | [SUMMARY](#9.SUMMARY SECTION|outline) | [SCHEDULE](#10.SCHEDULE SECTION|outline) |
+| RUNSPEC | GRID | EDIT | PROPS | REGIONS | SOLUTION | SUMMARY | SCHEDULE |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 
 #### Description
 
-[PIMULTAB](#__RefHeading___Toc121637_2412586160) defines productivity index multiplier versus water cut tables that are used to scaled a well's connection factors based on connection's current producing water cut. The tables are used for modeling the productivity decline due to increasing water cut. Allocation of the tables to a well is via the [WPITAB](#__RefHeading___Toc121649_2412586160) keyword in the [SCHEDULE](#__RefHeading___Toc43945_784232322) section.
+PIMULTAB defines productivity index multiplier versus water cut tables that are used to scaled a well's connection factors based on connection's current producing water cut. The tables are used for modeling the productivity decline due to increasing water cut. Allocation of the tables to a well is via the WPITAB keyword in the SCHEDULE section.
 
 | No. | Name | Description | Default |
 | --- | --- | --- | --- |
@@ -14,17 +14,17 @@
 | dimensionless | dimensionless | dimensionless |  |
 | 2 | PIMULT | A real positive decreasing columnar vector that defines the productivity index multiplier used to scale a well's connection factors, for the corresponding WCUT vector. | None |
 | dimensionless | dimensionless | dimensionless |  |
-| Notes:<br>1)  The keyword is followed by NTPIMT tables as stated on the [PIMTDIMS](#__RefHeading___Toc31215_1640804870) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section.<br>2)  Each table must contain a minimum of two rows and a maximum of NRPIMT rows as declared on the [PIMTDIMS](#__RefHeading___Toc31215_1640804870) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section.<br>3)  Each table is terminated by a "/" and there is no "/" terminator for the keyword. |  |  |  |
+| Notes:<br>1)  The keyword is followed by NTPIMT tables as stated on the PIMTDIMS keyword in the RUNSPEC section.<br>2)  Each table must contain a minimum of two rows and a maximum of NRPIMT rows as declared on the PIMTDIMS keyword in the RUNSPEC section.<br>3)  Each table is terminated by a "/" and there is no "/" terminator for the keyword. |  |  |  |
 
 Table 12.58: PIMULTAB Keyword Description
 
-See also the [WPITAB](#__RefHeading___Toc121649_2412586160) keyword that allocates the tables to the wells, and also the [WPIMULT](#__RefHeading___Toc121645_2412586160) keyword that scales a well's productivity index by a constant value, both of which are in the [SCHEDULE](#__RefHeading___Toc43945_784232322) section.
+See also the WPITAB keyword that allocates the tables to the wells, and also the WPIMULT keyword that scales a well's productivity index by a constant value, both of which are in the SCHEDULE section.
 
 This keyword is not supported by OPM Flow but would change the results if supported so the simulation will be stopped.
 
 #### Examples
 
-Given NTPIMT equals two and NRPIMT equals four on [PIMTDIMS](#__RefHeading___Toc31215_1640804870) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section, then:
+Given NTPIMT equals two and NRPIMT equals four on PIMTDIMS keyword in the RUNSPEC section, then:
 
 \-- DEFINE WELL PRODUCTIVITY INDEX VERSUS WATER CUT TABLES
 
@@ -58,7 +58,7 @@ PIMULTAB
 
 0.7500 0.7500 /
 
-The next example is summarized from the Norne model with NTPIMT equals one and NRPIMT equals to 51 on the [PIMTDIMS](#__RefHeading___Toc31215_1640804870) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section.
+The next example is summarized from the Norne model with NTPIMT equals one and NRPIMT equals to 51 on the PIMTDIMS keyword in the RUNSPEC section.
 
 \--
 

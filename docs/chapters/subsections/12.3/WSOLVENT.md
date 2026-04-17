@@ -1,27 +1,27 @@
 ### WSOLVENT -- Define Gas Injection Well Solvent Fraction
 
-| [RUNSPEC](#3.RUNSPEC SECTION|outline) | [GRID](#4.GRID SECTION|outline) | [EDIT](#5.EDIT SECTION|outline) | [PROPS](#6.PROPS SECTION|outline) | [REGIONS](#7.REGIONS SECTION|outline) | [SOLUTION](#8.SOLUTION SECTION|outline) | [SUMMARY](#9.SUMMARY SECTION|outline) | [SCHEDULE](#10.SCHEDULE SECTION|outline) |
+| RUNSPEC | GRID | EDIT | PROPS | REGIONS | SOLUTION | SUMMARY | SCHEDULE |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 
 #### Description
 
-[WSOLVENT](#__RefHeading___Toc121647_2412586160) defines a gas injection well's solvent fraction in the injection stream that is to be used when the Solvent option has been activated by the [SOLVENT](#__RefHeading___Toc62787_1778172979) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section.
+WSOLVENT defines a gas injection well's solvent fraction in the injection stream that is to be used when the Solvent option has been activated by the SOLVENT keyword in the RUNSPEC section.
 
-| 1 | WELNAME | A character string of up to eight characters in length that defines the well name of a gas injection well for which the solvent fraction data is being defined.<br>Note that the well name (WELNAME) must have been declared previously using the [WELSPECS](#__RefHeading___Toc268463_1366622701) keyword in the [SCHEDULE](#__RefHeading___Toc43945_784232322) section, otherwise an error may occur. | None |
+| 1 | WELNAME | A character string of up to eight characters in length that defines the well name of a gas injection well for which the solvent fraction data is being defined.<br>Note that the well name (WELNAME) must have been declared previously using the WELSPECS keyword in the SCHEDULE section, otherwise an error may occur. | None |
 | --- | --- | --- | --- |
 | 4 | SOLFRA | A real positive value greater than or equal to zero and less than or equal to one that defines the fraction of solvent in the gas well's injection stream.<br>This value may be specified using a User Defined Argument (UDA). | None |
 | fraction | fraction | fraction |  |
-| Notes:<br>1)  User Defined Quantities (\"UDQ\") can be used as User Defined Arguments (\"UDA\") for various group, well, and connection keywords in the [SCHEDULE](#__RefHeading___Toc43945_784232322) section. User Defined Arguments are activated using the [UDADIMS](#__RefHeading___Toc65914_1778172979) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section, and defined by the [UDQ](#__RefHeading___Toc161095_2932703077) keyword in the [SCHEDULE](#__RefHeading___Toc43945_784232322) section.<br>2)  The keyword is followed by any number of records with each record terminated by a "/" and the keyword should be terminated by a "/". |  |  |  |
+| Notes:<br>1)  User Defined Quantities (\"UDQ\") can be used as User Defined Arguments (\"UDA\") for various group, well, and connection keywords in the SCHEDULE section. User Defined Arguments are activated using the UDADIMS keyword in the RUNSPEC section, and defined by the UDQ keyword in the SCHEDULE section.<br>2)  The keyword is followed by any number of records with each record terminated by a "/" and the keyword should be terminated by a "/". |  |  |  |
 
 Table 12.124: WSOLVENT Keyword Description
 
 Gas injection wells that are not declared via this keyword have their solvent fractions set to zero.
 
-See also the [GCONINJE](#__RefHeading___Toc134874_2055188184) keyword to define a group's injection targets and constraints, and the [WCONINJE](#__RefHeading___Toc146750_4203985108) keyword to define an injection well's targets and constraints. All the aforementioned keywords are described in the [SCHEDULE](#__RefHeading___Toc43945_784232322) section.
+See also the GCONINJE keyword to define a group's injection targets and constraints, and the WCONINJE keyword to define an injection well's targets and constraints. All the aforementioned keywords are described in the SCHEDULE section.
 
 #### Example
 
-The following example defines the solvent fractions for three gas injection wells for when the solvent option has been activated by the [SOLVENT](#__RefHeading___Toc62787_1778172979) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section.
+The following example defines the solvent fractions for three gas injection wells for when the solvent option has been activated by the SOLVENT keyword in the RUNSPEC section.
 
 \--
 

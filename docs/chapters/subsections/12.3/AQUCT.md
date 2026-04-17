@@ -1,7 +1,7 @@
 ### AQUCT -- Define Carter-Tracy Analytical Aquifers
 
-The [AQUCT](#__RefHeading___Toc179876_3429068809) keyword defines Carter-Tracy[^1] analytical aquifers, the properties of the aquifer, including the Carter-Tracy aquifer influence function associated with the aquifer, defined by the [AQUTAB](#__RefHeading___Toc110746_846947960) keyword in the [PROPS](#__RefHeading___Toc39329_784232322) section.
+The AQUCT keyword defines Carter-Tracy[^1] analytical aquifers, the properties of the aquifer, including the Carter-Tracy aquifer influence function associated with the aquifer, defined by the AQUTAB keyword in the PROPS section.
 
-See [[AQUCT -- Define Carter-Tracy Analytical Aquifers](#anchor-1)](#6.3.5.AQUCT – Define Carter-Tracy Analytical Aquifers|outline) in the [GRID](#__RefHeading___Toc38674_784232322) section.
+See [AQUCT -- Define Carter-Tracy Analytical Aquifers](#anchor-1) in the GRID section.
 
 [^1]: Carter, R. D. and Tracy, G. W. "An Improved Method for Calculating Water Influx," Transactions of AIME (1960) 219, 215-417.

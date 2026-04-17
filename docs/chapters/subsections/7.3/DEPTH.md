@@ -1,26 +1,26 @@
 ### DEPTH -- Edits the Depth at the Center of Each Cell
 
-| [RUNSPEC](#3.RUNSPEC SECTION|outline) | [GRID](#4.GRID SECTION|outline) | [EDIT](#5.EDIT SECTION|outline) | [PROPS](#6.PROPS SECTION|outline) | [REGIONS](#7.REGIONS SECTION|outline) | [SOLUTION](#8.SOLUTION SECTION|outline) | [SUMMARY](#9.SUMMARY SECTION|outline) | [SCHEDULE](#10.SCHEDULE SECTION|outline) |
+| RUNSPEC | GRID | EDIT | PROPS | REGIONS | SOLUTION | SUMMARY | SCHEDULE |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 
 #### Description
 
-The [DEPTH](#__RefHeading___Toc58139_3701168388) keywords modifies the depth at the center of selected cells in the model. The cells [DEPTH](#__RefHeading___Toc58139_3701168388) are calculated by OPM Flow at the end of the [GRID](#__RefHeading___Toc38674_784232322) section and this keyword allows the user to adjust the calculated depths in the [EDIT](#__RefHeading___Toc40641_784232322) section. The area to be modified can be defined via the various grid selection keywords, [ADD](#__RefHeading___Toc4412_421927891), [BOX](#__RefHeading___Toc42110_3671211675), [EQUALS](#__RefHeading___Toc296597_1576177388), etc., and areas that are not selected remain unchanged.
+The DEPTH keywords modifies the depth at the center of selected cells in the model. The cells DEPTH are calculated by OPM Flow at the end of the GRID section and this keyword allows the user to adjust the calculated depths in the EDIT section. The area to be modified can be defined via the various grid selection keywords, ADD, BOX, EQUALS, etc., and areas that are not selected remain unchanged.
 
 | No. | Name | Description | Default |
 | --- | --- | --- | --- |
 | Field | Metric | Laboratory |  |
-| 1 | [DEPTH](#__RefHeading___Toc58139_3701168388) | [DEPTH](#__RefHeading___Toc58139_3701168388) is an array of real numbers defining the depth at the center of each cell in the model. Only the values in the currently defined input [BOX](#__RefHeading___Toc42110_3671211675) needed be entered.<br>Repeat counts may be used, for example 30\*5201.0. | None |
+| 1 | DEPTH | DEPTH is an array of real numbers defining the depth at the center of each cell in the model. Only the values in the currently defined input BOX needed be entered.<br>Repeat counts may be used, for example 30\*5201.0. | None |
 | feet | m | cm |  |
 | Notes:<br>1)  The keyword is terminated by a "/". |  |  |  |
 
 Table 7.2: Depth Keyword Description
 
-See also the [TOPS](#__RefHeading___Toc55283_3701168388) keyword to define the top structural depth for the cells.
+See also the TOPS keyword to define the top structural depth for the cells.
 
 #### Examples
 
-The example below modifies the [DEPTH](#__RefHeading___Toc58139_3701168388) of the cells for a selection of 10 cells from an NX = 10, NY = 11 and NZ = 20 model.
+The example below modifies the DEPTH of the cells for a selection of 10 cells from an NX = 10, NY = 11 and NZ = 20 model.
 
 \--
 
@@ -54,7 +54,7 @@ DEPTH 10\*3500.0 /
 
 ENDBOX
 
-Alternatively the [EQUALS](#__RefHeading___Toc296597_1576177388) keyword can be used to perform the same edit.
+Alternatively the EQUALS keyword can be used to perform the same edit.
 
 \--
 

@@ -1,11 +1,11 @@
 ### GRAVDRM -- Activate Alternative Gravity Drainage and Imbibition for Dual Porosity Model
 
-| [RUNSPEC](#3.RUNSPEC SECTION|outline) | [GRID](#4.GRID SECTION|outline) | [EDIT](#5.EDIT SECTION|outline) | [PROPS](#6.PROPS SECTION|outline) | [REGIONS](#7.REGIONS SECTION|outline) | [SOLUTION](#8.SOLUTION SECTION|outline) | [SUMMARY](#9.SUMMARY SECTION|outline) | [SCHEDULE](#10.SCHEDULE SECTION|outline) |
+| RUNSPEC | GRID | EDIT | PROPS | REGIONS | SOLUTION | SUMMARY | SCHEDULE |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 
 #### Description
 
-This keyword switches on the alternative gravity drainage and imbibition modeling between the matrix and the fracture grid blocks in dual porosity and dual permeability runs. Either the [GRAVDRM](#__RefHeading___Toc471678_1414963541) or [GRAVDR](#__RefHeading___Toc455285_1414963541) keywords should be used to activate this standard or alternative type of formulation.
+This keyword switches on the alternative gravity drainage and imbibition modeling between the matrix and the fracture grid blocks in dual porosity and dual permeability runs. Either the GRAVDRM or GRAVDR keywords should be used to activate this standard or alternative type of formulation.
 
 There is no data required for this keyword.
 

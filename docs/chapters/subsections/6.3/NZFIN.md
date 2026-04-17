@@ -1,24 +1,24 @@
 ### NZFIN -- Define the Number of LGR Grid Blocks in the Z-Direction
 
-| [RUNSPEC](#3.RUNSPEC SECTION|outline) | [GRID](#4.GRID SECTION|outline) | [EDIT](#__RefHeading___Toc40641_784232322) | [PROPS](#6.PROPS SECTION|outline) | [REGIONS](#7.REGIONS SECTION|outline) | [SOLUTION](#8.SOLUTION SECTION|outline) | [SUMMARY](#9.SUMMARY SECTION|outline) | [SCHEDULE](#10.SCHEDULE SECTION|outline) |
+| RUNSPEC | GRID | EDIT | PROPS | REGIONS | SOLUTION | SUMMARY | SCHEDULE |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 
 #### Description
 
-[NZFIN](#__RefHeading___Toc228759_2928331029) defines the number of Local Grid Refinement ("LGR") cells within a global or host cell in the z-direction via a vector, as opposed to defining the size for each cell for a Cartesian [LGR](#__RefHeading___Toc55049_4106839650) Grid. The [LGR](#__RefHeading___Toc55049_4106839650) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section should be activated to indicate an [LGR](#__RefHeading___Toc55049_4106839650) is being used, and the keyword [NXFIN](#__RefHeading___Toc228755_2928331029) should be placed in between the [CARFIN](#__RefHeading___Toc150726_63720426) and [ENDFIN](#__RefHeading___Toc111797_332691817) keywords in the [GRID](#__RefHeading___Toc38674_784232322) section.
+NZFIN defines the number of Local Grid Refinement ("LGR") cells within a global or host cell in the z-direction via a vector, as opposed to defining the size for each cell for a Cartesian LGR Grid. The LGR keyword in the RUNSPEC section should be activated to indicate an LGR is being used, and the keyword NXFIN should be placed in between the CARFIN and ENDFIN keywords in the GRID section.
 
 This keyword is not supported by OPM Flow but would change the results if supported so the simulation will be stopped.
 
 | No. | Name | Description | Default |
 | --- | --- | --- | --- |
 | Field | Metric | Laboratory |  |
-| 1 | [NZFIN](#__RefHeading___Toc228759_2928331029) | [NZFIN](#__RefHeading___Toc228759_2928331029) is a vector of integer numbers describing the number of [LGR](#__RefHeading___Toc55049_4106839650) cells within each defined global or host grid block in the x-direction in a Cartesian [LGR](#__RefHeading___Toc55049_4106839650) grid.<br>Repeat counts may be used, for example 2\*2.0. | None |
+| 1 | NZFIN | NZFIN is a vector of integer numbers describing the number of LGR cells within each defined global or host grid block in the x-direction in a Cartesian LGR grid.<br>Repeat counts may be used, for example 2\*2.0. | None |
 | dimensionless | dimensionless | dimensionless |  |
-| Notes:<br>1)  The number of entries should correspond to the NX parameter on the [CARFIN](#__RefHeading___Toc150726_63720426) keyword in the [GRID](#__RefHeading___Toc38674_784232322) section.<br>2)  The keyword is terminated by a "/". |  |  |  |
+| Notes:<br>1)  The number of entries should correspond to the NX parameter on the CARFIN keyword in the GRID section.<br>2)  The keyword is terminated by a "/". |  |  |  |
 
 Table 6.93: NZFIN Keyword Description
 
-See also the [CARFIN](#__RefHeading___Toc150726_63720426), [ENDFIN](#__RefHeading___Toc111797_332691817), [NXFIN](#__RefHeading___Toc228755_2928331029), and [NYFIN](#__RefHeading___Toc228757_2928331029) keywords in the [GRID](#__RefHeading___Toc38674_784232322) section to fully define a Cartesian [LGR](#__RefHeading___Toc55049_4106839650) grid model.
+See also the CARFIN, ENDFIN, NXFIN, and NYFIN keywords in the GRID section to fully define a Cartesian LGR grid model.
 
 #### Example
 
@@ -48,4 +48,4 @@ NZFIN
 
 ENDFIN
 
-The above example splits the global cells (24, 86, 1-50) into two [LGR](#__RefHeading___Toc55049_4106839650) grid blocks per host cell in the z-direction, and since the [HZFIN](#__RefHeading___Toc227697_2135714711) keyword has not been supplied, then the host cells will split into equal proportions.
+The above example splits the global cells (24, 86, 1-50) into two LGR grid blocks per host cell in the z-direction, and since the HZFIN keyword has not been supplied, then the host cells will split into equal proportions.

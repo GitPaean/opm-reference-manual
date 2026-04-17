@@ -1,13 +1,13 @@
 ### PLYVISC -- Define Polymer Viscosity Scaling Factors
 
-| [RUNSPEC](#3.RUNSPEC SECTION|outline) | [GRID](#4.GRID SECTION|outline) | [EDIT](#5.EDIT SECTION|outline) | [PROPS](#6.PROPS SECTION|outline) | [REGIONS](#7.REGIONS SECTION|outline) | [SOLUTION](#8.SOLUTION SECTION|outline) | [SUMMARY](#9.SUMMARY SECTION|outline) | [SCHEDULE](#10.SCHEDULE SECTION|outline) |
+| RUNSPEC | GRID | EDIT | PROPS | REGIONS | SOLUTION | SUMMARY | SCHEDULE |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 
 #### Description
 
-PLYSVISC defines the polymer viscosity scaling factors used to determine the relationship of pure water viscosity with respect to increasing polymer concentration within a grid block. The polymer option must be activated by the [POLYMER](#__RefHeading___Toc38609_2267116897) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section in order to use this keyword.
+PLYSVISC defines the polymer viscosity scaling factors used to determine the relationship of pure water viscosity with respect to increasing polymer concentration within a grid block. The polymer option must be activated by the POLYMER keyword in the RUNSPEC section in order to use this keyword.
 
-The [BRINE](#__RefHeading___Toc162083_289573908) option in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) should be deactivated if this keyword is to be used.
+The BRINE option in the RUNSPEC should be deactivated if this keyword is to be used.
 
 | No. | Name | Description | Default |
 | --- | --- | --- | --- |
@@ -16,7 +16,7 @@ The [BRINE](#__RefHeading___Toc162083_289573908) option in the [RUNSPEC](#__RefH
 | lb/stb | kg/sm^3^ | gm/scc |  |
 | 2 | VISFAC | A columnar vector of real increasing or equal values that defines a factor that scales the effective viscosity of the solution for the given POLCON entry.<br>Normally VISFAC value for the first row in the table should be one. | None |
 | dimensionless | dimensionless | dimensionless |  |
-| Notes:<br>1)  The keyword is followed by NTPVT tables as declared on the [TABDIMS](#__RefHeading___Toc89327_327352552) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section.<br>2)  Each table must contain a minimum of two rows and a maximum of NPPVT rows as declared on the [TABDIMS](#__RefHeading___Toc89327_327352552) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section.<br>3)  Each table is terminated by a "/" and there is no "/" terminator for the keyword. |  |  |  |
+| Notes:<br>1)  The keyword is followed by NTPVT tables as declared on the TABDIMS keyword in the RUNSPEC section.<br>2)  Each table must contain a minimum of two rows and a maximum of NPPVT rows as declared on the TABDIMS keyword in the RUNSPEC section.<br>3)  Each table is terminated by a "/" and there is no "/" terminator for the keyword. |  |  |  |
 
 Table 8.108: PLYVISC Keyword Description
 
@@ -62,4 +62,4 @@ PLYVISC
 
 0.0011 55.000 / TABLE NO. 02
 
-The example defines two polymer viscosity scaling factor tables, based on the NTPVT variable on the [TABDIMS](#__RefHeading___Toc89327_327352552) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section being equal to two and NPPVT variable on the same keyword being greater than or equal to six.
+The example defines two polymer viscosity scaling factor tables, based on the NTPVT variable on the TABDIMS keyword in the RUNSPEC section being equal to two and NPPVT variable on the same keyword being greater than or equal to six.

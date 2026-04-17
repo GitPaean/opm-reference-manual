@@ -1,24 +1,24 @@
 ### CNAMES -- Define Compositional Component Names
 
-| [RUNSPEC](#3.RUNSPEC SECTION|outline) | [GRID](#4.GRID SECTION|outline) | [EDIT](#5.EDIT SECTION|outline) | [PROPS](#6.PROPS SECTION|outline) | [REGIONS](#7.REGIONS SECTION|outline) | [SOLUTION](#8.SOLUTION SECTION|outline) | [SUMMARY](#9.SUMMARY SECTION|outline) | [SCHEDULE](#10.SCHEDULE SECTION|outline) |
+| RUNSPEC | GRID | EDIT | PROPS | REGIONS | SOLUTION | SUMMARY | SCHEDULE |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 
 #### Description
 
-The [CNAMES](#__RefHeading___Toc27871_3671211675 Copy 1 Copy 1 Copy 1) keyword defines the names for each of the compositional components active in the model. The keyword should only be used if the compositional mode has been requested using the [COMPS](#__RefHeading___Toc27871_3671211675 Copy 1) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section.
+The CNAMES keyword defines the names for each of the compositional components active in the model. The keyword should only be used if the compositional mode has been requested using the COMPS keyword in the RUNSPEC section.
 
 OPM Flow does not currently support the general compositional modeling formulation.
 
 | No. | Name | Description | Default |
 | --- | --- | --- | --- |
-| 1 | [CNAMES](#__RefHeading___Toc27871_3671211675 Copy 1 Copy 1 Copy 1) | A series of character strings of up to eight characters in length that define the names for each of the compositional components active in the model. | None |
-| Notes:<br>1)  The keyword must contain [COMPS](#__RefHeading___Toc27871_3671211675 Copy 1) values as specified by the [COMPS](#__RefHeading___Toc27871_3671211675 Copy 1) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section.<br>2)  The keyword is terminated by a "/". |  |  |  |
+| 1 | CNAMES | A series of character strings of up to eight characters in length that define the names for each of the compositional components active in the model. | None |
+| Notes:<br>1)  The keyword must contain COMPS values as specified by the COMPS keyword in the RUNSPEC section.<br>2)  The keyword is terminated by a "/". |  |  |  |
 
 Table 8.25: CNAMES Keyword Description
 
 #### Example
 
-The following example defines how to confirm a three component formulation, together with defining the names of the compositional components, to be used with the [CO2STORE](#__RefHeading___Toc387968_1616145207) and [GASWAT](#__RefHeading___Toc38607_2267116897 Copy 1) options.
+The following example defines how to confirm a three component formulation, together with defining the names of the compositional components, to be used with the CO2STORE and GASWAT options.
 
 \--
 

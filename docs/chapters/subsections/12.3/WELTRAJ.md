@@ -1,17 +1,17 @@
 ### WELTRAJ -- Define Well Trajectory Data
 
-| [RUNSPEC](#3.RUNSPEC SECTION|outline) | [GRID](#4.GRID SECTION|outline) | [EDIT](#5.EDIT SECTION|outline) | [PROPS](#6.PROPS SECTION|outline) | [REGIONS](#7.REGIONS SECTION|outline) | [SOLUTION](#8.SOLUTION SECTION|outline) | [SUMMARY](#9.SUMMARY SECTION|outline) | [SCHEDULE](#10.SCHEDULE SECTION|outline) |
+| RUNSPEC | GRID | EDIT | PROPS | REGIONS | SOLUTION | SUMMARY | SCHEDULE |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 
 #### Description
 
-The [WELTRAJ](#__RefHeading___Toc268463_13666227011) keyword defines a trajectory well together with the well trajectory data (simplified directional survey data), and is used in conjunction with the [COMPTRAJ](#__RefHeading___Toc97651_32617439171) keyword in the [SCHEDULE](#__RefHeading___Toc43945_784232322) section to define the well connections to the simulation grid blocks. The keyword can only be used for trajectory wells that employ the [COMPTRAJ](#__RefHeading___Toc97651_32617439171) keyword to define the connections to the grid, that is, one cannot use [COMPDAT](#__RefHeading___Toc97651_3261743917) keyword in the [SCHEDULE](#__RefHeading___Toc43945_784232322) section for declaring the connections to the grid for these type of wells.
+The WELTRAJ keyword defines a trajectory well together with the well trajectory data (simplified directional survey data), and is used in conjunction with the COMPTRAJ keyword in the SCHEDULE section to define the well connections to the simulation grid blocks. The keyword can only be used for trajectory wells that employ the COMPTRAJ keyword to define the connections to the grid, that is, one cannot use COMPDAT keyword in the SCHEDULE section for declaring the connections to the grid for these type of wells.
 
-Although [WELTRAJ](#__RefHeading___Toc268463_13666227011) and [COMPTRAJ](#__RefHeading___Toc97651_32617439171) keywords are sufficient to define the wellbore path and connections to the grid, it is still necessary to defined the general well specification parameters using the [WELSPECS](#__RefHeading___Toc268463_1366622701) keyword in the [SCHEDULE](#__RefHeading___Toc43945_784232322) section. In this case, the wellhead location parameters, [WELSPECS](#__RefHeading___Toc268463_1366622701)(I, J), should be defaulted with 1\*.
+Although WELTRAJ and COMPTRAJ keywords are sufficient to define the wellbore path and connections to the grid, it is still necessary to defined the general well specification parameters using the WELSPECS keyword in the SCHEDULE section. In this case, the wellhead location parameters, WELSPECS(I, J), should be defaulted with 1\*.
 
-| 1 | WELNAME | A character string of up to eight characters in length that defines the well name for which the well trajectory data are being defined.<br>Note that the well name (WELNAME) must have been declared previously using the [WELSPECS](#__RefHeading___Toc268463_1366622701) keyword in the [SCHEDULE](#__RefHeading___Toc43945_784232322) section, otherwise an error may occur.<br>Secondly, the wellhead location parameters on the [WELSPECS](#__RefHeading___Toc268463_1366622701) keyword, [WELSPECS](#__RefHeading___Toc268463_1366622701)(I, J), should be defaulted with 1\* for trajectory wells, as the well location will be calculated by the simulator. | None |
+| 1 | WELNAME | A character string of up to eight characters in length that defines the well name for which the well trajectory data are being defined.<br>Note that the well name (WELNAME) must have been declared previously using the WELSPECS keyword in the SCHEDULE section, otherwise an error may occur.<br>Secondly, the wellhead location parameters on the WELSPECS keyword, WELSPECS(I, J), should be defaulted with 1\* for trajectory wells, as the well location will be calculated by the simulator. | None |
 | --- | --- | --- | --- |
-| 2 | IBRANCH | A positive integer greater than or equal to one and less than or equal to MXBRAN on [WSEGDIMS](#__RefHeading___Toc104259_3115110868) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section that defines the branch number of a segment.<br>All segments on the main stem must have IBRANCH set to one and lateral branches should have values between two and MXSEGS on the [WSEGDIMS](#__RefHeading___Toc104259_3115110868) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section.<br>Only the default value of one is currently supported, that is only the main branch of a multi-segment well is supported, or a single trajectory for a conventional well. | 1 |
+| 2 | IBRANCH | A positive integer greater than or equal to one and less than or equal to MXBRAN on WSEGDIMS keyword in the RUNSPEC section that defines the branch number of a segment.<br>All segments on the main stem must have IBRANCH set to one and lateral branches should have values between two and MXSEGS on the WSEGDIMS keyword in the RUNSPEC section.<br>Only the default value of one is currently supported, that is only the main branch of a multi-segment well is supported, or a single trajectory for a conventional well. | 1 |
 | 3<br>‍ | XCORD<br>| | A real positive value representing the X coordinate in three dimensional space of the well trajectory path. The Geodesy Reference System should be same as the static model used to generate the dynamic model.<br>| | None<br>| |
 | feet | m | cm |  |
 | 4<br>‍ | YCORD<br>| | A real positive value representing the Y coordinate in three dimensional space of the well trajectory path. Again, the Geodesy Reference System should be same as the static model used to generate the dynamic model.<br>| | None<br>| |
@@ -20,17 +20,17 @@ Although [WELTRAJ](#__RefHeading___Toc268463_13666227011) and [COMPTRAJ](#__RefH
 | feet | m | cm |  |
 | 6<br>‍ | MD<br>| | A real positive value that defines the equivalent measured depth along the wellbore path at TVD. Normally, MD is referenced to a reference point on the drilling rig that drilled the well, for example, Relative to Kelly Bushing, MDRKB.<br>| | None<br>| |
 | feet | m | cm |  |
-| Notes:<br>1)  For this keyword the Laboratory set of units are not supported.<br>2)  The keyword is followed by any number records with each record terminated by a "/" and the keyword should be terminated by a "/".<br>3)  Note that the total number of individual wells declared by the [WELSPECS](#__RefHeading___Toc268463_1366622701) cannot exceed the valued entered via the MXWELS variable on the [WELLDIMS](#__RefHeading___Toc82886_327352552) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section. |  |  |  |
+| Notes:<br>1)  For this keyword the Laboratory set of units are not supported.<br>2)  The keyword is followed by any number records with each record terminated by a "/" and the keyword should be terminated by a "/".<br>3)  Note that the total number of individual wells declared by the WELSPECS cannot exceed the valued entered via the MXWELS variable on the WELLDIMS keyword in the RUNSPEC section. |  |  |  |
 
 Table 12.94: WELTRAJ Keyword Description
 
-Using the [WELTRAJ](#__RefHeading___Toc268463_13666227011) and [COMPTRAJ](#__RefHeading___Toc97651_32617439171) keywords to define wells and how they are connected to grid, offers several advantages compared to the conventional approach based on the (I, J, K) co-ordinates of the grid. The approach allows for the wells to be independent of the grid, which is particularly useful when running ensemble cases, as the well connections are no longer required to be re-calculated for each ensemble case. In addition, quality control of the model is improved by using consistent perforation data in both the static and dynamic models.
+Using the WELTRAJ and COMPTRAJ keywords to define wells and how they are connected to grid, offers several advantages compared to the conventional approach based on the (I, J, K) co-ordinates of the grid. The approach allows for the wells to be independent of the grid, which is particularly useful when running ensemble cases, as the well connections are no longer required to be re-calculated for each ensemble case. In addition, quality control of the model is improved by using consistent perforation data in both the static and dynamic models.
 
 See the example on the following page.
 
 #### Example
 
-The following example defines two trajectory wells oil wells, OP01 and OP02, using the [WELSPECS](#__RefHeading___Toc268463_1366622701) and [WELTRAJ](#__RefHeading___Toc268463_13666227011) keywords, together with their perforations using the [COMPTRAJ](#__RefHeading___Toc97651_32617439171) keyword.
+The following example defines two trajectory wells oil wells, OP01 and OP02, using the WELSPECS and WELTRAJ keywords, together with their perforations using the COMPTRAJ keyword.
 
 \--
 

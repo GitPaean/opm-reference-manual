@@ -1,20 +1,20 @@
 ### PLMIXPAR -- Define the Polymer Todd-Longstaff Mixing Parameters
 
-| [RUNSPEC](#3.RUNSPEC SECTION|outline) | [GRID](#4.GRID SECTION|outline) | [EDIT](#5.EDIT SECTION|outline) | [PROPS](#6.PROPS SECTION|outline) | [REGIONS](#7.REGIONS SECTION|outline) | [SOLUTION](#8.SOLUTION SECTION|outline) | [SUMMARY](#9.SUMMARY SECTION|outline) | [SCHEDULE](#10.SCHEDULE SECTION|outline) |
+| RUNSPEC | GRID | EDIT | PROPS | REGIONS | SOLUTION | SUMMARY | SCHEDULE |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 
 #### Description
 
-The [PLMIXPAR](#__RefHeading___Toc93833_3812137098) keyword defines the Todd-Longstaff[^1] mixing parameters for when the polymer option has been activated by the [POLYMER](#__RefHeading___Toc38609_2267116897) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section. This keyword must be present in the input deck if the [POLYMER](#__RefHeading___Toc38609_2267116897) keyword has been activated.
+The PLMIXPAR keyword defines the Todd-Longstaff[^1] mixing parameters for when the polymer option has been activated by the POLYMER keyword in the RUNSPEC section. This keyword must be present in the input deck if the POLYMER keyword has been activated.
 
-Note that this keyword is used only for the polymer option, if the [MISCIBLE](#__RefHeading___Toc61978_4106839650) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section has been invoked then in addition the [TLMIXPAR](#__RefHeading___Toc121483_83452205) keyword is also required to define the Todd-Longstaff mixing parameters for the [MISCIBLE](#__RefHeading___Toc61978_4106839650) option.
+Note that this keyword is used only for the polymer option, if the MISCIBLE keyword in the RUNSPEC section has been invoked then in addition the TLMIXPAR keyword is also required to define the Todd-Longstaff mixing parameters for the MISCIBLE option.
 
 | No. | Name | Description | Default |
 | --- | --- | --- | --- |
 | Field | Metric | Laboratory |  |
 | 1 | PLMVIS | A real positive value that is greater than or equal to zero and less than or equal to one, that defines the viscosity Todd-Longstaff mixing parameter for each polymer region. | None |
 | dimensionless | dimensionless | dimensionless |  |
-| Notes:<br>1)  The keyword is followed by NPLMIX tables as declared on the [REGDIMS](#__RefHeading___Toc70161_327352552) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section, for each rock region. There should be only one row per table.<br>2)  Each entry is terminated by a "/" and there is no "/" terminator for the keyword. |  |  |  |
+| Notes:<br>1)  The keyword is followed by NPLMIX tables as declared on the REGDIMS keyword in the RUNSPEC section, for each rock region. There should be only one row per table.<br>2)  Each entry is terminated by a "/" and there is no "/" terminator for the keyword. |  |  |  |
 
 Table 8.98: PLMIXPAR Keyword Description
 
@@ -40,6 +40,6 @@ PLMIXPAR
 
 0.6500 / TABLE NO. 03
 
-The above example defines three polymer Todd-Longstaff mixing parameter data sets, based on the NPLMIX variable on the [REGDIMS](#__RefHeading___Toc70161_327352552) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section being equal to three.
+The above example defines three polymer Todd-Longstaff mixing parameter data sets, based on the NPLMIX variable on the REGDIMS keyword in the RUNSPEC section being equal to three.
 
 [^1]: Todd, M. and Longstaff, W. "The Development, Testing and Application of a Numerical Simulator for Predicting Miscible Flood Performance," paper SPE 3484, Journal of Canadian Petroleum Technology (1972) 24, No. 7, 874-882.

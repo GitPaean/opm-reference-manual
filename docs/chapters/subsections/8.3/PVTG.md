@@ -1,11 +1,11 @@
 ### PVTG -- Gas PVT Properties for Wet Gas with Vaporized Oil
 
-| [RUNSPEC](#3.RUNSPEC SECTION|outline) | [GRID](#4.GRID SECTION|outline) | [EDIT](#5.EDIT SECTION|outline) | [PROPS](#6.PROPS SECTION|outline) | [REGIONS](#7.REGIONS SECTION|outline) | [SOLUTION](#8.SOLUTION SECTION|outline) | [SUMMARY](#9.SUMMARY SECTION|outline) | [SCHEDULE](#10.SCHEDULE SECTION|outline) |
+| RUNSPEC | GRID | EDIT | PROPS | REGIONS | SOLUTION | SUMMARY | SCHEDULE |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 
 #### Description
 
-[PVTG](#__RefHeading___Toc104060_57619843) defines the gas PVT properties for wet gas[^1]. This keyword should be used when the [VAPOIL](#__RefHeading___Toc56610_2267116897) keyword has be declared in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section indicating that that vaporized oil (more commonly referred to as condensate) is present in the wet gas phase. The keyword may be used for gas-water and oil-water-gas input decks that contain the oil and gas phases.
+PVTG defines the gas PVT properties for wet gas[^1]. This keyword should be used when the VAPOIL keyword has be declared in the RUNSPEC section indicating that that vaporized oil (more commonly referred to as condensate) is present in the wet gas phase. The keyword may be used for gas-water and oil-water-gas input decks that contain the oil and gas phases.
 
 | 1 | PRESS | A real monotonically increasing down the column vector that defines the gas phase pressure, associated with the saturated condensate-gas ratio ("CGR") or Rv, the gas formation volume factor and the gas viscosity for the corresponding pressure for the stated saturated RVS.<br>For a given PRESS the variability of the gas formation volume factor and the gas viscosity with respect to the under-saturated Rv is optionally included as a sub table under RVU, FVFU and VISU columns, that is it is not necessary to repeat PRESS for each sub table entry. However, each sub table must be terminated by a "/".<br>The under saturated Rv entries are optional, except for perhaps the last PRESS entry to define the PVT properties above the initial saturation pressure. | None |  |
 | --- | --- | --- | --- | --- |
@@ -16,7 +16,7 @@
 | rb/Mscf | rm^3^/sm^3^ | rcc/scc |  |  |
 | 4 | VISS | VISU | VISS a columnar vector of real increasing down the column values that defines the corresponding gas phase viscosity for a given pressure (PRESS) and for a given RVS.<br>VISU a columnar vector of real decreasing from VISS down the column values that defines the corresponding gas phase viscosity for a given pressure (PRESS) and for a given RVU. | None |
 | cP | cP | cP |  |  |
-| Notes:<br>1)  The keyword is followed by NTPVT tables as declared on the [TABDIMS](#__RefHeading___Toc89327_327352552) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section.<br>2)  Each table must contain a minimum of two rows and a maximum of NPPVT rows and NRPVT Rv entries as declared on the [TABDIMS](#__RefHeading___Toc89327_327352552) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section.<br>3)  Apart from the PRESS data there must be same number of entries for each column.<br>4)  Each sub table defining the under saturated gas properties must be terminated by "/".<br>5)  Each main table is terminated by a single "/" on a separate line and there is no "/" terminator for the keyword. |  |  |  |  |
+| Notes:<br>1)  The keyword is followed by NTPVT tables as declared on the TABDIMS keyword in the RUNSPEC section.<br>2)  Each table must contain a minimum of two rows and a maximum of NPPVT rows and NRPVT Rv entries as declared on the TABDIMS keyword in the RUNSPEC section.<br>3)  Apart from the PRESS data there must be same number of entries for each column.<br>4)  Each sub table defining the under saturated gas properties must be terminated by "/".<br>5)  Each main table is terminated by a single "/" on a separate line and there is no "/" terminator for the keyword. |  |  |  |  |
 
 Table 8.117: PVTG Keyword Description
 
@@ -24,7 +24,7 @@ Note that provided the first table has been entered, subsequent tables may be de
 
 #### Example
 
-The first example defines two wet gas PVT tables assuming NTPVT equals two, NPPVT is greater than or equal to eight, and NRPVT greater than or equal to two on the [TABDIMS](#__RefHeading___Toc89327_327352552) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section.
+The first example defines two wet gas PVT tables assuming NTPVT equals two, NPPVT is greater than or equal to eight, and NRPVT greater than or equal to two on the TABDIMS keyword in the RUNSPEC section.
 
 \--
 
@@ -100,7 +100,7 @@ PVTG
 
 / TABLE NO. 2
 
-The second example defines four wet gas PVT tables assuming NTPVT equals four, NPPVT is greater than or equal to eight, and NRPVT greater than or equal to two on the [TABDIMS](#__RefHeading___Toc89327_327352552) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section. Here table two defaults to table one, and table four defaults to table three.
+The second example defines four wet gas PVT tables assuming NTPVT equals four, NPPVT is greater than or equal to eight, and NRPVT greater than or equal to two on the TABDIMS keyword in the RUNSPEC section. Here table two defaults to table one, and table four defaults to table three.
 
 \--
 

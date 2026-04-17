@@ -1,11 +1,11 @@
 ### OPTIONS -- Activate Various Program Options
 
-| [RUNSPEC](#3.RUNSPEC SECTION|outline) | [GRID](#4.GRID SECTION|outline) | [EDIT](#5.EDIT SECTION|outline) | [PROPS](#6.PROPS SECTION|outline) | [REGIONS](#7.REGIONS SECTION|outline) | [SOLUTION](#8.SOLUTION SECTION|outline) | [SUMMARY](#9.SUMMARY SECTION|outline) | [SCHEDULE](#10.SCHEDULE SECTION|outline) |
+| RUNSPEC | GRID | EDIT | PROPS | REGIONS | SOLUTION | SUMMARY | SCHEDULE |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 
 #### Description
 
-The [OPTIONS](#__RefHeading___Toc51266_1640804870) keyword activates various program options in the commercial simulator. Currently, none of the options available in the commercial simulator are implemented in OPM Flow, and it is unlikely that this keyword will be supported in the future releases of OPM Flow.
+The OPTIONS keyword activates various program options in the commercial simulator. Currently, none of the options available in the commercial simulator are implemented in OPM Flow, and it is unlikely that this keyword will be supported in the future releases of OPM Flow.
 
 This keyword is not supported by OPM Flow but would change the results if supported so the simulation will be stopped.
 

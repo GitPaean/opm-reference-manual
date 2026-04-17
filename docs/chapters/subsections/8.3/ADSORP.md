@@ -1,11 +1,11 @@
 ### ADSORP -- Define Generalized Langmuir Adsorption Function
 
-| [RUNSPEC](#3.RUNSPEC SECTION|outline) | [GRID](#4.GRID SECTION|outline) | [EDIT](#5.EDIT SECTION|outline) | [PROPS](#6.PROPS SECTION|outline) | [REGIONS](#7.REGIONS SECTION|outline) | [SOLUTION](#8.SOLUTION SECTION|outline) | [SUMMARY](#9.SUMMARY SECTION|outline) | [SCHEDULE](#10.SCHEDULE SECTION|outline) |
+| RUNSPEC | GRID | EDIT | PROPS | REGIONS | SOLUTION | SUMMARY | SCHEDULE |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 
 #### Description
 
-The [ADSORP](#__RefHeading___Toc392026_3174375363) keyword defines the parameters for the generalized Langmuir Adsorption[^1] function for when the polymer, surfact, alkaline, foam and tracers phases have been activated in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section by the [POLYMER](#__RefHeading___Toc38609_2267116897), [SURFACT](#__RefHeading___Toc863854_4250154414), [ALKALINE](#__RefHeading___Toc197467_2366741785), [FOAM](#__RefHeading___Toc171586_289573908) and [TRACER](#__RefHeading___Toc121485_83452205) keywords.
+The ADSORP keyword defines the parameters for the generalized Langmuir Adsorption[^1] function for when the polymer, surfact, alkaline, foam and tracers phases have been activated in the RUNSPEC section by the POLYMER, SURFACT, ALKALINE, FOAM and TRACER keywords.
 
 This keyword is not supported by OPM Flow but would change the results if supported so the simulation will be stopped.
 

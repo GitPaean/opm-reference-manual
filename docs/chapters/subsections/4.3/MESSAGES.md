@@ -1,11 +1,11 @@
 ### MESSAGES -- Define Message Print Limits and Stop Limits
 
-| [RUNSPEC](#3.RUNSPEC SECTION|outline) | [GRID](#4.GRID SECTION|outline) | [EDIT](#5.EDIT SECTION|outline) | [PROPS](#6.PROPS SECTION|outline) | [REGIONS](#7.REGIONS SECTION|outline) | [SOLUTION](#8.SOLUTION SECTION|outline) | [SUMMARY](#9.SUMMARY SECTION|outline) | [SCHEDULE](#10.SCHEDULE SECTION|outline) |
+| RUNSPEC | GRID | EDIT | PROPS | REGIONS | SOLUTION | SUMMARY | SCHEDULE |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 
 #### Description
 
-The [MESSAGES](#__RefHeading___Toc61634_2479612490) keyword defines the print and stops levels for various messages. The "print limits" set the maximum number of messages that will be printed, after which no more messages will be printed and the "stop limits" terminate the run when these limits are exceeded. There are six levels of message that increase in severity from informative all the way to programming errors, as outlined in [Table 4.5](#anchor-2).
+The MESSAGES keyword defines the print and stops levels for various messages. The "print limits" set the maximum number of messages that will be printed, after which no more messages will be printed and the "stop limits" terminate the run when these limits are exceeded. There are six levels of message that increase in severity from informative all the way to programming errors, as outlined in [Table 4.5](#anchor-2).
 
 | 1 | PRTSMESG | An integer defining the maximum number of MESSAGE type messages to be printed after which this type of message stops printing. | 1,000,000 |
 | --- | --- | --- | --- |

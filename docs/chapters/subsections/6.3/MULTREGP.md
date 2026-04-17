@@ -1,18 +1,18 @@
 ### MULTREGP -- Multiply Pore Volumes Based On Region Number
 
-| [RUNSPEC](#3.RUNSPEC SECTION|outline) | [GRID](#4.GRID SECTION|outline) | [EDIT](#5.EDIT SECTION|outline) | [PROPS](#6.PROPS SECTION|outline) | [REGIONS](#7.REGIONS SECTION|outline) | [SOLUTION](#8.SOLUTION SECTION|outline) | [SUMMARY](#9.SUMMARY SECTION|outline) | [SCHEDULE](#10.SCHEDULE SECTION|outline) |
+| RUNSPEC | GRID | EDIT | PROPS | REGIONS | SOLUTION | SUMMARY | SCHEDULE |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 
 #### Description
 
-The [MULTREGP](#__RefHeading___Toc296617_1576177388) keyword multiplies the pore volume of a cell by a constant for all cells with a specific region number. The region number array can be [FLUXNUM](#__RefHeading___Toc45781_719036256), [MULTNUM](#__RefHeading___Toc61329_2752266063) or [OPERNUM](#__RefHeading___Toc67857_718313858) and these arrays must be defined and be available before the [MULTREGP](#__RefHeading___Toc296617_1576177388) keyword is read by the simulator. The constant should be a real number.
+The MULTREGP keyword multiplies the pore volume of a cell by a constant for all cells with a specific region number. The region number array can be FLUXNUM, MULTNUM or OPERNUM and these arrays must be defined and be available before the MULTREGP keyword is read by the simulator. The constant should be a real number.
 
 | No. | Name | Description | Default |
 | --- | --- | --- | --- |
 | 1 | REGION | REGION is a positive integer representing the region for which the CONSTANT in (2) should be applied. | None |
 | 2 | CONSTANT | A real value to multiply the pore volume by for a given REGION. | 1 |
-| 3 | REGION<br>ARRAY | The REGION ARRAY to use for applying the CONSTANT in (2) based on the REGION in (1). ARRAY can have the following values:<br>1)  F for the [FLUXNUM](#__RefHeading___Toc45781_719036256) array.<br>2)  M for the [MULTNUM](#__RefHeading___Toc61329_2752266063) array.<br>3)  O for the [OPERNUM](#__RefHeading___Toc67857_718313858) array. | M |
-| Notes:<br>1)  Where the REGION should be less than or equal to the maximum number of regions as defined on the [REGDIMS](#__RefHeading___Toc70161_327352552) keyword for the [FIPNUM](#__RefHeading___Toc77229_2752266063) and [OPERNUM](#__RefHeading___Toc67857_718313858) arrays or the [GRIDOPTS](#__RefHeading___Toc45741_719036256) keyword for the [MULTNUM](#__RefHeading___Toc61329_2752266063) array in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section.<br>2)  If the [GRIDOPTS](#__RefHeading___Toc45741_719036256) keyword is not present in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section or if the [GRIDOPTS](#__RefHeading___Toc45741_719036256) keyword is present but the maximum number of [MULTNUM](#__RefHeading___Toc61329_2752266063) regions (NRMULT) equals zero then REGION ARRAY will default to F for the [FLUXNUM](#__RefHeading___Toc45781_719036256) array.<br>3)  Each record must be terminated by a "/" and the keyword is terminated by a "/". |  |  |  |
+| 3 | REGION<br>ARRAY | The REGION ARRAY to use for applying the CONSTANT in (2) based on the REGION in (1). ARRAY can have the following values:<br>1)  F for the FLUXNUM array.<br>2)  M for the MULTNUM array.<br>3)  O for the OPERNUM array. | M |
+| Notes:<br>1)  Where the REGION should be less than or equal to the maximum number of regions as defined on the REGDIMS keyword for the FIPNUM and OPERNUM arrays or the GRIDOPTS keyword for the MULTNUM array in the RUNSPEC section.<br>2)  If the GRIDOPTS keyword is not present in the RUNSPEC section or if the GRIDOPTS keyword is present but the maximum number of MULTNUM regions (NRMULT) equals zero then REGION ARRAY will default to F for the FLUXNUM array.<br>3)  Each record must be terminated by a "/" and the keyword is terminated by a "/". |  |  |  |
 
 Table 6.78: MULTREGP Keyword Description
 
@@ -40,4 +40,4 @@ MULTREGP
 
 /
 
-The above example re-scales the pore volumes for [MULTNUM](#__RefHeading___Toc61329_2752266063) regions one and three and makes regions two and four inactive by setting their pore volumes to zero.
+The above example re-scales the pore volumes for MULTNUM regions one and three and makes regions two and four inactive by setting their pore volumes to zero.

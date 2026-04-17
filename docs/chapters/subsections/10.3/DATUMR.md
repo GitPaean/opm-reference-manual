@@ -1,22 +1,22 @@
 ### DATUMR -- Define Datum Depths for the FIPNUM Regions
 
-| [RUNSPEC](#3.RUNSPEC SECTION|outline) | [GRID](#4.GRID SECTION|outline) | [EDIT](#5.EDIT SECTION|outline) | [PROPS](#6.PROPS SECTION|outline) | [REGIONS](#7.REGIONS SECTION|outline) | [SOLUTION](#8.SOLUTION SECTION|outline) | [SUMMARY](#9.SUMMARY SECTION|outline) | [SCHEDULE](#10.SCHEDULE SECTION|outline) |
+| RUNSPEC | GRID | EDIT | PROPS | REGIONS | SOLUTION | SUMMARY | SCHEDULE |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 
 #### Description
 
-The [DATUMR](#__RefHeading___Toc135615_1317547213) keyword defines the datum depth for each fluid in-place region ([FIPNUM](#__RefHeading___Toc77229_2752266063)) declared in the model. This allows for all grid block potentials (depth corrected pressures) to be calculated at a common depth within a [FIPNUM](#__RefHeading___Toc77229_2752266063) region.
+The DATUMR keyword defines the datum depth for each fluid in-place region (FIPNUM) declared in the model. This allows for all grid block potentials (depth corrected pressures) to be calculated at a common depth within a FIPNUM region.
 
 | No. | Name | Description | Default |
 | --- | --- | --- | --- |
 | Field | Metric | Laboratory |  |
-| 1 | [DATUMR](#__RefHeading___Toc135615_1317547213) | [DATUMR](#__RefHeading___Toc135615_1317547213) is a vector of positive values that defines the datum depth for each fluid in-place region. | None |
+| 1 | DATUMR | DATUMR is a vector of positive values that defines the datum depth for each fluid in-place region. | None |
 | feet | m | cm |  |
-| Notes:<br>1)  The keyword is followed by NTFIP values as defined on [REGDIMS](#__RefHeading___Toc70161_327352552) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section.<br>2)  The keyword is terminated by a "/". |  |  |  |
+| Notes:<br>1)  The keyword is followed by NTFIP values as defined on REGDIMS keyword in the RUNSPEC section.<br>2)  The keyword is terminated by a "/". |  |  |  |
 
 Table 10.12: DATUMR Keyword Description
 
-See also the [DATUM](#__RefHeading___Toc135613_1317547213) and [DATUMRX](#__RefHeading___Toc298753_1539708736) keywords in the [SOLUTION](#__RefHeading___Toc43947_784232322) section that also define the datum depth for the model.
+See also the DATUM and DATUMRX keywords in the SOLUTION section that also define the datum depth for the model.
 
 #### Example
 
@@ -36,4 +36,4 @@ DATUMR
 
 5000.0 / DATUM DEPTH FOR REPORTING
 
-The above example defines the datum depth for three [FIPNUM](#__RefHeading___Toc77229_2752266063) regions, for when NTFIP has been set equal to three on the [REGDIMS](#__RefHeading___Toc70161_327352552) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section.
+The above example defines the datum depth for three FIPNUM regions, for when NTFIP has been set equal to three on the REGDIMS keyword in the RUNSPEC section.

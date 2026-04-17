@@ -1,11 +1,11 @@
 ### LGR -- Define Local Grid Refinement Dimensions and Parameters
 
-| [RUNSPEC](#3.RUNSPEC SECTION|outline) | [GRID](#4.GRID SECTION|outline) | [EDIT](#5.EDIT SECTION|outline) | [PROPS](#6.PROPS SECTION|outline) | [REGIONS](#7.REGIONS SECTION|outline) | [SOLUTION](#8.SOLUTION SECTION|outline) | [SUMMARY](#9.SUMMARY SECTION|outline) | [SCHEDULE](#10.SCHEDULE SECTION|outline) |
+| RUNSPEC | GRID | EDIT | PROPS | REGIONS | SOLUTION | SUMMARY | SCHEDULE |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 
 #### Description
 
-The [LGR](#__RefHeading___Toc55049_4106839650) keyword defines the maximum dimensions and parameters for the Local Grid Refinement ("LGR") option.
+The LGR keyword defines the maximum dimensions and parameters for the Local Grid Refinement ("LGR") option.
 
 Currently, OPM Flow does not support the local grid refinement feature and therefore this keyword is ignored by the simulator, but is documented here for completeness.
 
@@ -16,9 +16,9 @@ Currently, OPM Flow does not support the local grid refinement feature and there
 | 3 | MCOARS | A positive integer value that defines the maximum number of amalgamated coarse grid blocks in the model. | 0 |
 | 4 | MAMALG | A positive integer value that defines the maximum number of LGR amalgamations in the model. | 0 |
 | 5 | MXLALG | A positive integer value that defines the maximum number of LGRs in any amalgamation in the model. | 0 |
-| 6 | LSTACK | A positive integer that defines the maximum number of previous search directions stored by the linear solver for the LGR. See the [NSTACK](#__RefHeading___Toc34963_1640804870) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section for a full description. | 10 |
+| 6 | LSTACK | A positive integer that defines the maximum number of previous search directions stored by the linear solver for the LGR. See the NSTACK keyword in the RUNSPEC section for a full description. | 10 |
 | 7 | INTOPT | A character string set to either INTERP to activate the Quandalle[^1] pressure correction, or NOINTERP to deactivate this option. The option applies bi-linear interpolation to the global cells surrounding an LGR in order to improve the accuracy of the flow calculations between the LGR and the host cells. | NOINTERP |
-| 8 | NCHCOR | A positive integer value that defines the maximum number of grid blocks within a coarsened grid that overlap parallel domain boundaries for when the Parallel option has been invoked by the [PARALLEL](#__RefHeading___Toc88962_4106839650) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section.<br>OPM Flow uses a different numerical scheme which makes this parameter redundant, see section [Running OPM Flow From The Command Line](#running-opm-flow-from-the-command-line) on how to run OPM Flow in parallel mode. |            | | 0 |
+| 8 | NCHCOR | A positive integer value that defines the maximum number of grid blocks within a coarsened grid that overlap parallel domain boundaries for when the Parallel option has been invoked by the PARALLEL keyword in the RUNSPEC section.<br>OPM Flow uses a different numerical scheme which makes this parameter redundant, see section [Running OPM Flow From The Command Line](#running-opm-flow-from-the-command-line) on how to run OPM Flow in parallel mode. |            | | 0 |
 | Notes:<br>1)  The keyword is terminated by a "/". |  |  |  |
 
 Table 5.19: LGR Keyword Description

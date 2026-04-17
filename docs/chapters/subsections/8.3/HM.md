@@ -1,32 +1,32 @@
 ### HM -- History Match End-Point Gradient Multiplicative Modifier
 
-| [RUNSPEC](#3.RUNSPEC SECTION|outline) | [GRID](#4.GRID SECTION|outline) | [EDIT](#5.EDIT SECTION|outline) | [PROPS](#6.PROPS SECTION|outline) | [REGIONS](#7.REGIONS SECTION|outline) | [SOLUTION](#8.SOLUTION SECTION|outline) | [SUMMARY](#9.SUMMARY SECTION|outline) | [SCHEDULE](#10.SCHEDULE SECTION|outline) |
+| RUNSPEC | GRID | EDIT | PROPS | REGIONS | SOLUTION | SUMMARY | SCHEDULE |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 
 #### Description
 
-The [HM](#__RefHeading___Toc267495_373485663) series of keywords defines the history match end-point gradient parameters used to set the multiplicative cumulative end point data, for when the History Match Gradient option has been activated by the [HMDIMS](#__RefHeading___Toc207753_4219267791) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section. In addition, the End-Point Scaling option must also be activated by the [ENDSCALE](#__RefHeading___Toc68146_2267116897) keyword which is also in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section. The keyword consists of the first two characters of "HM" followed by the end-point keyword shown in , for example, HMSWL.
+The HM series of keywords defines the history match end-point gradient parameters used to set the multiplicative cumulative end point data, for when the History Match Gradient option has been activated by the HMDIMS keyword in the RUNSPEC section. In addition, the End-Point Scaling option must also be activated by the ENDSCALE keyword which is also in the RUNSPEC section. The keyword consists of the first two characters of "HM" followed by the end-point keyword shown in , for example, HMSWL.
 
 This keyword is not supported by OPM Flow but has no effect on the results so it will be ignored.
 
-| Saturation | [SWL](#__RefHeading___Toc22881_7842323221) | Connate water saturation, that is the smallest water saturation in a water saturation function table. |
+| Saturation | SWL | Connate water saturation, that is the smallest water saturation in a water saturation function table. |
 | --- | --- | --- |
-| [SWCR](#__RefHeading___Toc27248_784232322) | Critical water saturation, that is the largest water saturation for which the water relative permeability is zero. |  |
-| [SOWCR](#__RefHeading___Toc30436_784232322) | Critical oil-in-water saturation, that is the largest oil saturation for which the oil relative permeability is zero in an oil-water system. |  |
-| Relative<br>Permeability | [KRW](#__RefHeading___Toc97397_621662414) | Relative permeability of water at the maximum water saturation (normally the maximum water saturation is one). |
-| [KRO](#__RefHeading___Toc97395_621662414) | Relative permeability of oil at the maximum oil saturation. |  |
-| [KRWR](#__RefHeading___Toc70193_335817223) | Relative permeability of water at the residual oil saturation or the residual gas saturation in a gas-water run. |  |
-| [KRORW](#__RefHeading___Toc70191_335817223) | Relative permeability of oil at the critical water saturation. |  |
-| Capillary<br>Pressure | [SWLPC](#__RefHeading___Toc179514_1371377330) | Capillary pressure connate water saturation, that is the smallest water saturation in a water saturation function table. |
+| SWCR | Critical water saturation, that is the largest water saturation for which the water relative permeability is zero. |  |
+| SOWCR | Critical oil-in-water saturation, that is the largest oil saturation for which the oil relative permeability is zero in an oil-water system. |  |
+| Relative<br>Permeability | KRW | Relative permeability of water at the maximum water saturation (normally the maximum water saturation is one). |
+| KRO | Relative permeability of oil at the maximum oil saturation. |  |
+| KRWR | Relative permeability of water at the residual oil saturation or the residual gas saturation in a gas-water run. |  |
+| KRORW | Relative permeability of oil at the critical water saturation. |  |
+| Capillary<br>Pressure | SWLPC | Capillary pressure connate water saturation, that is the smallest water saturation in a water saturation function table. |
 | Type | End-Point<br>Keyword | Gas-Oil End-Point Definitions |
-| Saturation | [SGL](#__RefHeading___Toc22881_784232322) | Connate gas saturation, that is the smallest gas saturation in a gas saturation function table. |
-| [SGCR](#__RefHeading___Toc20428_784232322) | Critical gas saturation, that is the largest gas saturation for which the gas relative permeability is zero. |  |
-| [SOGCR](#__RefHeading___Toc30434_784232322) | Critical oil-in-gas saturation, that is the largest oil saturation for which the oil relative permeability is zero in an oil-gas-connate water system. |  |
-| Relative<br>Permeability | [KRG](#__RefHeading___Toc97393_621662414) | Relative permeability of gas at the maximum gas saturation. |
-| [KRGR](#__RefHeading___Toc70187_335817223) | Relative permeability of gas at the residual oil saturation or the critical water saturation in a gas-water run. |  |
-| [KRORG](#__RefHeading___Toc70189_335817223) | Relative permeability of oil at the critical gas saturation. |  |
-| Capillary<br>Pressure | [SGLPC](#__RefHeading___Toc170136_1371377330) | Capillary pressure connate gas saturation, that is the smallest gas saturation in a gas saturation function table. |
+| Saturation | SGL | Connate gas saturation, that is the smallest gas saturation in a gas saturation function table. |
+| SGCR | Critical gas saturation, that is the largest gas saturation for which the gas relative permeability is zero. |  |
+| SOGCR | Critical oil-in-gas saturation, that is the largest oil saturation for which the oil relative permeability is zero in an oil-gas-connate water system. |  |
+| Relative<br>Permeability | KRG | Relative permeability of gas at the maximum gas saturation. |
+| KRGR | Relative permeability of gas at the residual oil saturation or the critical water saturation in a gas-water run. |  |
+| KRORG | Relative permeability of oil at the critical gas saturation. |  |
+| Capillary<br>Pressure | SGLPC | Capillary pressure connate gas saturation, that is the smallest gas saturation in a gas saturation function table. |
 
-Table 8.46: [HM](#__RefHeading___Toc267495_373485663) Keyword List
+Table 8.46: HM Keyword List
 
-See also the [HMPROPS](#__RefHeading___Toc235727_373485663) keyword in the [PROPS](#__RefHeading___Toc39329_784232322) section that allows the use of the [ADD](#__RefHeading___Toc4412_421927891), [BOX](#__RefHeading___Toc42110_3671211675), [EQUALS](#__RefHeading___Toc296597_1576177388), [COPY](#__RefHeading___Toc45761_719036256), [MINVALUE](#__RefHeading___Toc296605_1576177388), and [MAXVALUE](#__RefHeading___Toc296601_1576177388) keywords to be used with the [HA](#__RefHeading___Toc279266_870710203) and [HM](#__RefHeading___Toc267495_373485663) series of keywords.
+See also the HMPROPS keyword in the PROPS section that allows the use of the ADD, BOX, EQUALS, COPY, MINVALUE, and MAXVALUE keywords to be used with the HA and HM series of keywords.

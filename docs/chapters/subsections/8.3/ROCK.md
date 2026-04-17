@@ -1,11 +1,11 @@
 ### ROCK -- Define the Rock Compressibility for Various Regions
 
-| [RUNSPEC](#3.RUNSPEC SECTION|outline) | [GRID](#4.GRID SECTION|outline) | [EDIT](#5.EDIT SECTION|outline) | [PROPS](#6.PROPS SECTION|outline) | [REGIONS](#7.REGIONS SECTION|outline) | [SOLUTION](#8.SOLUTION SECTION|outline) | [SUMMARY](#9.SUMMARY SECTION|outline) | [SCHEDULE](#10.SCHEDULE SECTION|outline) |
+| RUNSPEC | GRID | EDIT | PROPS | REGIONS | SOLUTION | SUMMARY | SCHEDULE |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 
 #### Description
 
-[ROCK](#__RefHeading___Toc45809_719036256) defines the rock compressibility for various regions in the model. The number of [ROCK](#__RefHeading___Toc45809_719036256) vector data sets is defined by the NTPVT parameter on the [TABDIMS](#__RefHeading___Toc89327_327352552) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section and the allocation of the [ROCK](#__RefHeading___Toc45809_719036256) tables to different grid blocks in the model is done via the [PVTNUM](#__RefHeading___Toc68366_2752266063) keyword in the [REGIONS](#__RefHeading___Toc40648_784232322) section. One data set consists of one record or line which is terminated by a "/".
+ROCK defines the rock compressibility for various regions in the model. The number of ROCK vector data sets is defined by the NTPVT parameter on the TABDIMS keyword in the RUNSPEC section and the allocation of the ROCK tables to different grid blocks in the model is done via the PVTNUM keyword in the REGIONS section. One data set consists of one record or line which is terminated by a "/".
 
 This keyword must be defined in the OPM Flow input deck.
 
@@ -16,7 +16,7 @@ This keyword must be defined in the OPM Flow input deck.
 | psia<br>14.7 | barsa<br>1.0132 | atma<br>1.0 |  |
 | 2 | RCOMP | RCOMP is a real number defining the rock compressibility (cf) at the rock reference pressure and is defined as: | Defined |
 | 1/psia<br>0.0 | 1/barsa<br>0.0 | 1/atma<br>0.0 |  |
-| Notes:<br>1)  The keyword is followed by NTPVT vectors as declared by the NTPVT parameter on the [TABDIMS](#__RefHeading___Toc89327_327352552) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section.<br>Note, however, that if [ROCKOPTS](#__RefHeading___Toc111814_2939291539)(ROCKOPT3) parameter has been used to set the allocation of the [ROCK](#__RefHeading___Toc45809_719036256) data via the [ROCKNUM](#__RefHeading___Toc118210_2939291539) array, then the number of [ROCK](#__RefHeading___Toc45809_719036256) vectors should correspond to the value entered on [TABDIMS](#__RefHeading___Toc89327_327352552)(NTROCC) in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section. Similarly, if the [ROCKOPTS](#__RefHeading___Toc111814_2939291539)(ROCKOPT3) has been used to set the assignment of the [ROCK](#__RefHeading___Toc45809_719036256) data via the [SATNUM](#__RefHeading___Toc71136_2752266063) array, then the number of vectors should correspond to the value entered via the [TABDIMS](#__RefHeading___Toc89327_327352552)(NTSFUN) parameter, since the tables will be allocated via the [SATNUM](#__RefHeading___Toc71136_2752266063) array.<br>1)  Each table is terminated by a "/" and there is no "/" terminator for the keyword. |  |  |  |
+| Notes:<br>1)  The keyword is followed by NTPVT vectors as declared by the NTPVT parameter on the TABDIMS keyword in the RUNSPEC section.<br>Note, however, that if ROCKOPTS(ROCKOPT3) parameter has been used to set the allocation of the ROCK data via the ROCKNUM array, then the number of ROCK vectors should correspond to the value entered on TABDIMS(NTROCC) in the RUNSPEC section. Similarly, if the ROCKOPTS(ROCKOPT3) has been used to set the assignment of the ROCK data via the SATNUM array, then the number of vectors should correspond to the value entered via the TABDIMS(NTSFUN) parameter, since the tables will be allocated via the SATNUM array.<br>1)  Each table is terminated by a "/" and there is no "/" terminator for the keyword. |  |  |  |
 
 Table 8.125: ROCK Keyword Description
 
@@ -34,11 +34,11 @@ where:
 
 = pore volume at at the reference pressure.
 
-See also the [ROCKOPTS](#__RefHeading___Toc111814_2939291539) and [ROCKTAB](#__RefHeading___Toc107256_3812137098) keywords in the [PROPS](#__RefHeading___Toc39329_784232322) section.
+See also the ROCKOPTS and ROCKTAB keywords in the PROPS section.
 
 #### Examples
 
-The following shows the [ROCK](#__RefHeading___Toc45809_719036256) keyword for when NTPVT on the [TABDIMS](#__RefHeading___Toc89327_327352552) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section is set to one.
+The following shows the ROCK keyword for when NTPVT on the TABDIMS keyword in the RUNSPEC section is set to one.
 
 \--
 
@@ -66,7 +66,7 @@ ROCK
 
 3966.9 5.0E-06 / ROCK COMPRESSIBILITY
 
-The next example shows the [ROCK](#__RefHeading___Toc45809_719036256) keyword for when NTPVT on the [TABDIMS](#__RefHeading___Toc89327_327352552) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section is set to three.
+The next example shows the ROCK keyword for when NTPVT on the TABDIMS keyword in the RUNSPEC section is set to three.
 
 \--
 
@@ -98,6 +98,6 @@ ROCK
 
 4566.9 6.0E-06 / ROCK COMPRESSIBILITY REGION 3
 
-The above example defines three [ROCK](#__RefHeading___Toc45809_719036256) tables and assumes that NTPVT equals three on the [TABDIMS](#__RefHeading___Toc89327_327352552) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section.
+The above example defines three ROCK tables and assumes that NTPVT equals three on the TABDIMS keyword in the RUNSPEC section.
 
-There is no terminating "/" for this keyword, and thus the number entries must match the value entered via the [TABDIMS](#__RefHeading___Toc89327_327352552)(NTPVT), [TABDIMS](#__RefHeading___Toc89327_327352552)(NTROCC), or [TABDIMS](#__RefHeading___Toc89327_327352552)(NTSFUN) parameters, depending on the option selected via the [ROCKOPTS](#__RefHeading___Toc111814_2939291539) keyword.
+There is no terminating "/" for this keyword, and thus the number entries must match the value entered via the TABDIMS(NTPVT), TABDIMS(NTROCC), or TABDIMS(NTSFUN) parameters, depending on the option selected via the ROCKOPTS keyword.

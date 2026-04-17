@@ -1,11 +1,11 @@
 ### DIFFC -- Define PVT Region Molecular Diffusion Tables
 
-| [RUNSPEC](#3.RUNSPEC SECTION|outline) | [GRID](#4.GRID SECTION|outline) | [EDIT](#5.EDIT SECTION|outline) | [PROPS](#6.PROPS SECTION|outline) | [REGIONS](#7.REGIONS SECTION|outline) | [SOLUTION](#8.SOLUTION SECTION|outline) | [SUMMARY](#9.SUMMARY SECTION|outline) | [SCHEDULE](#10.SCHEDULE SECTION|outline) |
+| RUNSPEC | GRID | EDIT | PROPS | REGIONS | SOLUTION | SUMMARY | SCHEDULE |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 
 #### Description
 
-The [DIFFC](#__RefHeading___Toc314077_1539708736) keyword defines the molecular weight of the fluids and diffusion coefficients between phases for each PVT region, for when the Molecular Diffusion option has been activated by the [DIFFUSE](#__RefHeading___Toc349951_1539708736) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section. This keyword is optional as OPM Flow will automatically calculate the coefficients, as described by Sandve et al.[^1], if the [DIFFC](#__RefHeading___Toc314077_1539708736) keyword is absent from the input deck. The keyword thus allows one to overwrite the automatically calculated values.
+The DIFFC keyword defines the molecular weight of the fluids and diffusion coefficients between phases for each PVT region, for when the Molecular Diffusion option has been activated by the DIFFUSE keyword in the RUNSPEC section. This keyword is optional as OPM Flow will automatically calculate the coefficients, as described by Sandve et al.[^1], if the DIFFC keyword is absent from the input deck. The keyword thus allows one to overwrite the automatically calculated values.
 
 | 1 | OILMW | OILMW is a real positive number that specifies the molecular weight of the oil in the given PVT region. | None |
 | --- | --- | --- | --- |
@@ -24,15 +24,15 @@ The [DIFFC](#__RefHeading___Toc314077_1539708736) keyword defines the molecular 
 | ft^2^/day | m^2^/day | cm^2^/hour |  |
 | 8 | OILOILCD | A real positive number that defines the oil in oil cross phase diffusion coefficient in the given PVT region.<br>This parameter is ignored by OPM Flow and should be defaulted or set equal to zero. | 0.0 |
 | ft^2^/day | m^2^/day | cm^2^/hour |  |
-| Notes:<br>1)  The keyword is followed by NTPVT tables as declared on the [TABDIMS](#__RefHeading___Toc89327_327352552) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section.<br>2)  Each record is terminated by a "/" and there is no "/" terminator for the keyword. |  |  |  |
+| Notes:<br>1)  The keyword is followed by NTPVT tables as declared on the TABDIMS keyword in the RUNSPEC section.<br>2)  Each record is terminated by a "/" and there is no "/" terminator for the keyword. |  |  |  |
 
 Table 8.27: DIFFC Keyword Description
 
-See also the [DIFFUSE](#__RefHeading___Toc349951_1539708736) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section to activate the Molecular Diffusion option.
+See also the DIFFUSE keyword in the RUNSPEC section to activate the Molecular Diffusion option.
 
 #### Example
 
-The example below is based on field units, with NTPVT equal to three on the [TABDIMS](#__RefHeading___Toc89327_327352552) keyword.
+The example below is based on field units, with NTPVT equal to three on the TABDIMS keyword.
 
 \--
 

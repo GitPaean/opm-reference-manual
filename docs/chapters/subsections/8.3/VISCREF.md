@@ -1,30 +1,30 @@
 ### VISCREF -- Define Viscosity-Temperature Reference Conditions
 
-| [RUNSPEC](#3.RUNSPEC SECTION|outline) | [GRID](#4.GRID SECTION|outline) | [EDIT](#5.EDIT SECTION|outline) | [PROPS](#6.PROPS SECTION|outline) | [REGIONS](#7.REGIONS SECTION|outline) | [SOLUTION](#8.SOLUTION SECTION|outline) | [SUMMARY](#9.SUMMARY SECTION|outline) | [SCHEDULE](#10.SCHEDULE SECTION|outline) |
+| RUNSPEC | GRID | EDIT | PROPS | REGIONS | SOLUTION | SUMMARY | SCHEDULE |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 
 #### Description
 
-[VISCREF](#__RefHeading___Toc121487_83452205) defines the reference conditions for the viscosity-temperature tables, [GASVISCT](#__RefHeading___Toc163486_254534176111), [OILVISCT](#__RefHeading___Toc107282_57619843) and [WATVISCT](#__RefHeading___Toc121489_83452205), for when the thermal option has been activated by [THERMAL](#__RefHeading___Toc137276_650382403) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section. This keyword can only be used if the thermal option has been activated by the [THERMAL](#__RefHeading___Toc137276_650382403) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section. Note this is different to the commercial simulator that uses the [TEMP](#__RefHeading___Toc146397_3544483072) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section to activate the black-oil thermal model.
+VISCREF defines the reference conditions for the viscosity-temperature tables, GASVISCT, OILVISCT and WATVISCT, for when the thermal option has been activated by THERMAL keyword in the RUNSPEC section. This keyword can only be used if the thermal option has been activated by the THERMAL keyword in the RUNSPEC section. Note this is different to the commercial simulator that uses the TEMP keyword in the RUNSPEC section to activate the black-oil thermal model.
 
 | No. | Name | Description | Default |
 | --- | --- | --- | --- |
 | Field | Metric | Laboratory |  |
 | 1 | PRES | PRES is a real positive number defining the reference pressure for the viscosity and temperature tables | None |
 | psia | barsa | atma |  |
-| 2 | [RS](#__RefHeading___Toc137361_1317547213) | [RS](#__RefHeading___Toc137361_1317547213) is a real positive number defining the reference gas-oil ratio for when the model contains gas dissolved as activated by the [DISGAS](#__RefHeading___Toc39767_2267116897) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section | None |
+| 2 | RS | RS is a real positive number defining the reference gas-oil ratio for when the model contains gas dissolved as activated by the DISGAS keyword in the RUNSPEC section | None |
 | Mscf/stb | sm^3^/sm^3^ | scc/scc |  |
-| 3 | [API](#__RefHeading___Toc4422_421927891) | [API](#__RefHeading___Toc4422_421927891) is a real number defining the oil [API](#__RefHeading___Toc4422_421927891) for when the [API](#__RefHeading___Toc4422_421927891) tracking option has been invoked by the [API](#__RefHeading___Toc4422_421927891) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section.<br>Note that OPM Flow does not support [API](#__RefHeading___Toc4422_421927891) tracking, and therefore this variable is ignored. | None |
-| ^o^[API](#__RefHeading___Toc4422_421927891) | ^o^[API](#__RefHeading___Toc4422_421927891) | ^o^[API](#__RefHeading___Toc4422_421927891) |  |
-| Notes:<br>1)  The keyword is followed by NTPVT tables as declared on the [TABDIMS](#__RefHeading___Toc89327_327352552) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section.<br>2)  Each table is terminated by a "/" and there is no "/" terminator for the keyword. |  |  |  |
+| 3 | API | API is a real number defining the oil API for when the API tracking option has been invoked by the API keyword in the RUNSPEC section.<br>Note that OPM Flow does not support API tracking, and therefore this variable is ignored. | None |
+| ^o^API | ^o^API | ^o^API |  |
+| Notes:<br>1)  The keyword is followed by NTPVT tables as declared on the TABDIMS keyword in the RUNSPEC section.<br>2)  Each table is terminated by a "/" and there is no "/" terminator for the keyword. |  |  |  |
 
 Table 8.196: VISCREF Keyword Description
 
-OPM Flow currently does not support [API](#__RefHeading___Toc4422_421927891) tracking and therefore item (3) of this keyword is ignored. See also the [OILVISCT](#__RefHeading___Toc107282_57619843), [GASVISCT](#__RefHeading___Toc163486_254534176111) and [WATVISCT](#__RefHeading___Toc121489_83452205) keywords in the [PROPS](#__RefHeading___Toc39329_784232322) section.
+OPM Flow currently does not support API tracking and therefore item (3) of this keyword is ignored. See also the OILVISCT, GASVISCT and WATVISCT keywords in the PROPS section.
 
 #### Example
 
-The following example shows the [VISCREF](#__RefHeading___Toc121487_83452205) keyword for when the thermal option has been activated by the [THERMAL](#__RefHeading___Toc137276_650382403) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section and for when NTPVT on the [TABDIMS](#__RefHeading___Toc89327_327352552) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section is set to five.
+The following example shows the VISCREF keyword for when the thermal option has been activated by the THERMAL keyword in the RUNSPEC section and for when NTPVT on the TABDIMS keyword in the RUNSPEC section is set to five.
 
 \--
 

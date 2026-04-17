@@ -1,10 +1,10 @@
 ### ACTIONG -- Define Action Conditions and Command Processing (Groups)
 
-| [RUNSPEC](#3.RUNSPEC SECTION|outline) | [GRID](#4.GRID SECTION|outline) | [EDIT](#5.EDIT SECTION|outline) | [PROPS](#6.PROPS SECTION|outline) | [REGIONS](#7.REGIONS SECTION|outline) | [SOLUTION](#8.SOLUTION SECTION|outline) | [SUMMARY](#9.SUMMARY SECTION|outline) | [SCHEDULE](#10.SCHEDULE SECTION|outline) |
+| RUNSPEC | GRID | EDIT | PROPS | REGIONS | SOLUTION | SUMMARY | SCHEDULE |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 
 #### Description
 
-The [ACTIONG](#__RefHeading___Toc152219_2992482751) keyword defines a series of conditions that invoke run time processing of [ACTION](#__RefHeading___Toc148342_63720426) functions and is similar to executing a run time script for conditions and variables at the group level
+The ACTIONG keyword defines a series of conditions that invoke run time processing of ACTION functions and is similar to executing a run time script for conditions and variables at the group level
 
-This keyword is not supported by OPM Flow but would change the results if supported so the simulation will be stopped; use the [ACTIONX](#__RefHeading___Toc152227_2992482751) keyword instead.
+This keyword is not supported by OPM Flow but would change the results if supported so the simulation will be stopped; use the ACTIONX keyword instead.

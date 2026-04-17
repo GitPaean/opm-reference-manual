@@ -1,13 +1,13 @@
 ### PLYVMH -- Polymer Molecular Weight Model Polymer Viscosity Constants
 
-| [RUNSPEC](#3.RUNSPEC SECTION|outline) | [GRID](#4.GRID SECTION|outline) | [EDIT](#5.EDIT SECTION|outline) | [PROPS](#6.PROPS SECTION|outline) | [REGIONS](#7.REGIONS SECTION|outline) | [SOLUTION](#8.SOLUTION SECTION|outline) | [SUMMARY](#9.SUMMARY SECTION|outline) | [SCHEDULE](#10.SCHEDULE SECTION|outline) |
+| RUNSPEC | GRID | EDIT | PROPS | REGIONS | SOLUTION | SUMMARY | SCHEDULE |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 
 #### Description
 
-This keyword, [PLYVMH](#__RefHeading___Toc473331_21243525712), defines the constants used to calculate viscosity of the polymer solution as a function of the polymer molecular weight and the polymer concentration, for the simulator\'s Polymer Molecular Weight Transport option, that uses the polymer molecular weight in calculating the polymer viscosity. The keyword consists of a series of row vectors, which each vector having four elements, that define the constants used in calculating the polymer viscosity
+This keyword, PLYVMH, defines the constants used to calculate viscosity of the polymer solution as a function of the polymer molecular weight and the polymer concentration, for the simulator\'s Polymer Molecular Weight Transport option, that uses the polymer molecular weight in calculating the polymer viscosity. The keyword consists of a series of row vectors, which each vector having four elements, that define the constants used in calculating the polymer viscosity
 
-This keyword should only be used if the [POLYMER](#__RefHeading___Toc38609_2267116897) and [POLYMW](#__RefHeading___Toc38609_22671168971) keywords in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section are also activated.
+This keyword should only be used if the POLYMER and POLYMW keywords in the RUNSPEC section are also activated.
 
 | 1<br>‍ | MHK<br>| | The Mark-Houwink K polymer specific constant in the Mark-Houwink equation, see equation .<br>| | None<br>| |
 | --- | --- | --- | --- |
@@ -18,7 +18,7 @@ This keyword should only be used if the [POLYMER](#__RefHeading___Toc38609_22671
 |  |  |  |  |
 | 4 | KAPPA | The κ intrinsic water-polymer viscosity constant in the Huggins equation, see equation . | None |
 |  |  |  |  |
-| Notes:<br>1)  The keyword is followed by NPLYVHM records as declared on the [PINTDIMS](#__RefHeading___Toc637730_5168988431) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section, with each record terminated by a "/" and the keyword itself should be terminated by a "/". |  |  |  |
+| Notes:<br>1)  The keyword is followed by NPLYVHM records as declared on the PINTDIMS keyword in the RUNSPEC section, with each record terminated by a "/" and the keyword itself should be terminated by a "/". |  |  |  |
 
 Table 8.109: PLYVMH Keyword Description
 
@@ -92,11 +92,11 @@ and equation becomes:
 
 Note that the model does not account for non-Newtonian flow; the apparent viscosity is simply set equal to the zero-shear viscosity, and that the model only considers the full mixing between the polymer and water.
 
-See also the [PLYMWINJ](#__RefHeading___Toc473331_2124352571) keyword in the [PROPS](#__RefHeading___Toc39329_784232322) section, that describes the relationship of the injected polymer molecular weight as a function of polymer throughput and polymer velocity. Note that the standard polymer property data keywords: [PLYROCK](#__RefHeading___Toc110216_2939291539), [PLYADS](#__RefHeading___Toc121087_57619843), [PLYMAX](#__RefHeading___Toc110214_2939291539), etc., are still required to fully describe the polymer fluid.
+See also the PLYMWINJ keyword in the PROPS section, that describes the relationship of the injected polymer molecular weight as a function of polymer throughput and polymer velocity. Note that the standard polymer property data keywords: PLYROCK, PLYADS, PLYMAX, etc., are still required to fully describe the polymer fluid.
 
 #### Example
 
-Given NPLYVMH equals two on the [PINTDIMS](#__RefHeading___Toc637730_5168988431) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section, then:
+Given NPLYVMH equals two on the PINTDIMS keyword in the RUNSPEC section, then:
 
 \--
 
@@ -118,7 +118,7 @@ PLYVMH
 
 /
 
-Two sets of data should be entered with the [PLYVMH](#__RefHeading___Toc473331_21243525712) keyword, as shown above.
+Two sets of data should be entered with the PLYVMH keyword, as shown above.
 
 [^1]: H. Mark, in R. Saenger, Der feste Koerper, Hirzel, Leipzig, 1938.
 

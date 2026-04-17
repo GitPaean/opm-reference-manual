@@ -1,11 +1,11 @@
 ### NEFAC -- Node Efficiency Factors (Extended Network)
 
-| [RUNSPEC](#3.RUNSPEC SECTION|outline) | [GRID](#4.GRID SECTION|outline) | [EDIT](#5.EDIT SECTION|outline) | [PROPS](#6.PROPS SECTION|outline) | [REGIONS](#7.REGIONS SECTION|outline) | [SOLUTION](#8.SOLUTION SECTION|outline) | [SUMMARY](#9.SUMMARY SECTION|outline) | [SCHEDULE](#10.SCHEDULE SECTION|outline) |
+| RUNSPEC | GRID | EDIT | PROPS | REGIONS | SOLUTION | SUMMARY | SCHEDULE |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 
 #### Description
 
-The [NEFAC](#__RefHeading___Toc299702_1841740821) keyword defines an extended network node's efficiency factor, for when the Extended Network option has been activated by the [NETWORK](#__RefHeading___Toc311583_1841740821) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section. See also the [GEFAC](#__RefHeading___Toc268455_1366622701) keyword in the [SCHEDULE](#__RefHeading___Toc43945_784232322) section that can also be used with the Extended Network option.
+The NEFAC keyword defines an extended network node's efficiency factor, for when the Extended Network option has been activated by the NETWORK keyword in the RUNSPEC section. See also the GEFAC keyword in the SCHEDULE section that can also be used with the Extended Network option.
 
 | 1 | NODE | A character string of up to eight characters in length that defines the node name for which the node efficiency factor is being defined. | None |
 | --- | --- | --- | --- |
@@ -15,4 +15,4 @@ The [NEFAC](#__RefHeading___Toc299702_1841740821) keyword defines an extended ne
 
 Table 12.3.159.1: NEFAC Keyword Description
 
-See also the [WEFAC](#__RefHeading___Toc48856_327352552) keyword in the [SCHEDULE](#__RefHeading___Toc43945_784232322) section to define a well's' efficiency factor.
+See also the WEFAC keyword in the SCHEDULE section to define a well's' efficiency factor.

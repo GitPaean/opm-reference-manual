@@ -1,17 +1,17 @@
 ### TRACERS -- Activate Tracer Options and Set Tracer Array Dimensions
 
-| [RUNSPEC](#3.RUNSPEC SECTION|outline) | [GRID](#4.GRID SECTION|outline) | [EDIT](#5.EDIT SECTION|outline) | [PROPS](#6.PROPS SECTION|outline) | [REGIONS](#7.REGIONS SECTION|outline) | [SOLUTION](#8.SOLUTION SECTION|outline) | [SUMMARY](#9.SUMMARY SECTION|outline) | [SCHEDULE](#10.SCHEDULE SECTION|outline) |
+| RUNSPEC | GRID | EDIT | PROPS | REGIONS | SOLUTION | SUMMARY | SCHEDULE |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 
 #### Description
 
-The [TRACERS](#__RefHeading___Toc76509_327352552) keyword defines the number of tracers in the model and the various passive tracer tracking options.
+The TRACERS keyword defines the number of tracers in the model and the various passive tracer tracking options.
 
-| 1 | MXOILTR | A positive integer defining the maximum number of passive oil tracers defined using the [TRACER](#__RefHeading___Toc121485_83452205) keyword. | 0 |
+| 1 | MXOILTR | A positive integer defining the maximum number of passive oil tracers defined using the TRACER keyword. | 0 |
 | --- | --- | --- | --- |
-| 2 | MXWATTR | A positive integer defining the maximum number of passive water tracers defined using the [TRACER](#__RefHeading___Toc121485_83452205) keyword. | 0 |
-| 3 | MXGASTR | A positive integer defining the maximum number of passive gas tracers defined using the [TRACER](#__RefHeading___Toc121485_83452205) keyword. | 0 |
-| 4 | MXENVTR | A positive integer defining the maximum number of passive environmental tracers defined using the [TRACER](#__RefHeading___Toc121485_83452205) keyword. Environmental tracers are used with the Environment Tracer model that takes into account tracer adsorption and decay.<br>Only the default value of zero is currently supported. | 0 |
+| 2 | MXWATTR | A positive integer defining the maximum number of passive water tracers defined using the TRACER keyword. | 0 |
+| 3 | MXGASTR | A positive integer defining the maximum number of passive gas tracers defined using the TRACER keyword. | 0 |
+| 4 | MXENVTR | A positive integer defining the maximum number of passive environmental tracers defined using the TRACER keyword. Environmental tracers are used with the Environment Tracer model that takes into account tracer adsorption and decay.<br>Only the default value of zero is currently supported. | 0 |
 | 5 | DIFFOPT | A character string defining the numerical diffusion option for tracer tracking runs that should be set to:<br>1)  DIFF activates the numerical diffusion control options.<br>2)  NODIFF deactivates the numerical diffusion control options.<br>Only the default value of NODIFF is supported | NODIFF |
 | 6 | MXITRTR | A positive integer defining the maximum number of non-linear iterations to be used when the tracer option is activated. | 12 |
 | 7 | MNITRTR | A positive integer defining the minimum number of non-linear iterations to be used when the tracer option is activated. | 1 |
@@ -24,7 +24,7 @@ The [TRACERS](#__RefHeading___Toc76509_327352552) keyword defines the number of 
 
 Table 5.48: TRACERS Keyword Description
 
-See also the [TRACER](#__RefHeading___Toc121485_83452205) keyword in the [PROPS](#__RefHeading___Toc39329_784232322) section that defines the individual tracers.
+See also the TRACER keyword in the PROPS section that defines the individual tracers.
 
 #### Example
 

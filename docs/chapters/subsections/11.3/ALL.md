@@ -1,11 +1,11 @@
 ### ALL -- Export Standard Summary Variable Vectors to File
 
-| [RUNSPEC](#3.RUNSPEC SECTION|outline) | [GRID](#4.GRID SECTION|outline) | [EDIT](#5.EDIT SECTION|outline) | [PROPS](#6.PROPS SECTION|outline) | [REGIONS](#7.REGIONS SECTION|outline) | [SOLUTION](#8.SOLUTION SECTION|outline) | [SUMMARY](#9.SUMMARY SECTION|outline) | [SCHEDULE](#10.SCHEDULE SECTION|outline) |
+| RUNSPEC | GRID | EDIT | PROPS | REGIONS | SOLUTION | SUMMARY | SCHEDULE |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 
 #### Description
 
-This keyword activates the writing out of a standard set of summary production and injection data vectors for the field, group and well objects to the [SUMMARY](#__RefHeading___Toc43949_784232322) (\*.SMSPEC and \*.UNSMRY) and RSM (\*.RSM) files. lists the production, injection, pressure and volume summary variables written out by the [ALL](#__RefHeading___Toc4420_421927891) keyword, and list the aquifer variables.
+This keyword activates the writing out of a standard set of summary production and injection data vectors for the field, group and well objects to the SUMMARY (\*.SMSPEC and \*.UNSMRY) and RSM (\*.RSM) files. lists the production, injection, pressure and volume summary variables written out by the ALL keyword, and list the aquifer variables.
 
 | Variable | Root | Field | Group | Well | Comment |
 | --- | --- | --- | --- | --- | --- |
@@ -94,4 +94,4 @@ RUNSUM
 
 SEPARATE
 
-Note the [SEPARATE](#__RefHeading___Toc210158_2884651453) keyword is not required for OPM Flow as this is the default behavior; however, it is probably good practice to include it if the same input decks are being run with commercial simulator.
+Note the SEPARATE keyword is not required for OPM Flow as this is the default behavior; however, it is probably good practice to include it if the same input decks are being run with commercial simulator.

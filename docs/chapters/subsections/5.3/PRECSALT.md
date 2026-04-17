@@ -1,19 +1,19 @@
 ### PRECSALT -- Activate the OPM Flow Salt Precipitation Model
 
-| [RUNSPEC](#3.RUNSPEC SECTION|outline) | [GRID](#4.GRID SECTION|outline) | [EDIT](#5.EDIT SECTION|outline) | [PROPS](#6.PROPS SECTION|outline) | [REGIONS](#7.REGIONS SECTION|outline) | [SOLUTION](#8.SOLUTION SECTION|outline) | [SUMMARY](#9.SUMMARY SECTION|outline) | [SCHEDULE](#10.SCHEDULE SECTION|outline) |
+| RUNSPEC | GRID | EDIT | PROPS | REGIONS | SOLUTION | SUMMARY | SCHEDULE |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 
 #### Description
 
-This keyword activates the OPM Flow Salt Precipitation model that accounts for salt precipitating out of the water phase when the water is being vaporized into the gas phase and the dissolved salt reaches the solubility limit as the pressure in the reservoir is being depleted (see the [VAPWAT](#__RefHeading___Toc317543_3149455253) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section). This facility is an extension to the standard Brine model, and as such the [BRINE](#__RefHeading___Toc162083_289573908) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) must also be present in the input deck. In general, if the [PRECSALT](#__RefHeading___Toc332782_3149455253) keyword has been activated in the input deck then the [VAPWAT](#__RefHeading___Toc317543_3149455253) keyword should also be activated. The keyword should only be used if both water and gas phases are active in the model.
+This keyword activates the OPM Flow Salt Precipitation model that accounts for salt precipitating out of the water phase when the water is being vaporized into the gas phase and the dissolved salt reaches the solubility limit as the pressure in the reservoir is being depleted (see the VAPWAT keyword in the RUNSPEC section). This facility is an extension to the standard Brine model, and as such the BRINE keyword in the RUNSPEC must also be present in the input deck. In general, if the PRECSALT keyword has been activated in the input deck then the VAPWAT keyword should also be activated. The keyword should only be used if both water and gas phases are active in the model.
 
-If the keyword is present in the input deck then the [SALTSOL](#__RefHeading___Toc681417_1466963378) keyword in the [PROPS](#__RefHeading___Toc39329_784232322) section also needs to be present in the input deck to define the salt solubility. In addition, either the [SALTPVD](#__RefHeading___Toc613572_1667959253) or [SALTP](#__RefHeading___Toc486358_4287353749) keywords in the [SOLUTION](#__RefHeading___Toc43947_784232322) section should be used to define the initial salt precipitated saturation.
+If the keyword is present in the input deck then the SALTSOL keyword in the PROPS section also needs to be present in the input deck to define the salt solubility. In addition, either the SALTPVD or SALTP keywords in the SOLUTION section should be used to define the initial salt precipitated saturation.
 
 There is no data required for this keyword and there is no terminating "/" for this keyword.
 
 #### Example
 
-The first part of the example shows the keywords for the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section.
+The first part of the example shows the keywords for the RUNSPEC section.
 
 \-- ==============================================================================
 
@@ -81,9 +81,9 @@ BRINE
 
 PRECSALT
 
-The above example declares that the oil, water, gas, dissolved gas, and brine phases are present in the model, and activates the Brine ([BRINE](#__RefHeading___Toc162083_289573908) keyword) and Salt Precipitation ([PRECSALT](#__RefHeading___Toc332782_3149455253) keyword) models.
+The above example declares that the oil, water, gas, dissolved gas, and brine phases are present in the model, and activates the Brine (BRINE keyword) and Salt Precipitation (PRECSALT keyword) models.
 
-The second part of the example shows the additional PVT fluid keywords require for the Salt Precipitation model in the [PROPS](#__RefHeading___Toc39329_784232322) section. Note that in addition to the Salt Precipitation model specific keywords, the standard [DENSITY](#__RefHeading___Toc45799_719036256) (or [GRAVITY](#__RefHeading___Toc45801_719036256)), [PVDG](#__RefHeading___Toc104056_57619843), and [PVTO](#__RefHeading___Toc104062_57619843) keywords are required.
+The second part of the example shows the additional PVT fluid keywords require for the Salt Precipitation model in the PROPS section. Note that in addition to the Salt Precipitation model specific keywords, the standard DENSITY (or GRAVITY), PVDG, and PVTO keywords are required.
 
 \-- ==============================================================================
 
@@ -139,7 +139,7 @@ SALTSOL
 
 0.500 135.46867445023383 /
 
-In addition, to the above the [PERMFACT](#__RefHeading___Toc712146_1466963378) keyword may be used to account for the reduction in porosity and permeability due to salt precipitating into the pore space. Again, in addition to the Salt Precipitation model specific keywords, the standard [ROCK](#__RefHeading___Toc45809_719036256), [SGOF](#__RefHeading___Toc106870_335817223), and [SWOF](#__RefHeading___Toc45811_7190362561) keywords are required.
+In addition, to the above the PERMFACT keyword may be used to account for the reduction in porosity and permeability due to salt precipitating into the pore space. Again, in addition to the Salt Precipitation model specific keywords, the standard ROCK, SGOF, and SWOF keywords are required.
 
 \--
 
@@ -167,7 +167,7 @@ PERMFACT
 
 /
 
-In order to initialize the model in the [SOLUTION](#__RefHeading___Toc43947_784232322) section, apart from the standard equilibration keywords, the following Salt Precipitation model specific keywords should be included.
+In order to initialize the model in the SOLUTION section, apart from the standard equilibration keywords, the following Salt Precipitation model specific keywords should be included.
 
 \-- ==============================================================================
 
@@ -213,7 +213,7 @@ SALTVD
 
 Note that OPM Flow does not support Multi-Component Brine model, thus there should only one column of salt concentrations.
 
-Finally, in the [SCHEDULE](#__RefHeading___Toc43945_784232322) section, one may optionally one can add the injections well\'s injection salt concentrations, as shown below.
+Finally, in the SCHEDULE section, one may optionally one can add the injections well\'s injection salt concentrations, as shown below.
 
 \-- ==============================================================================
 
@@ -245,4 +245,4 @@ WSALT
 
 /
 
-Normally, with this option one would also include vaporized water via the [VAPWAT](#__RefHeading___Toc317543_3149455253) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section, as well as the [PVTGW](#__RefHeading___Toc355649_3149455253) keyword to define gas PVT properties for dry gas, or the [PVTGWO](#__RefHeading___Toc356776_4176551521) keyword that declares the gas PVT properties for wet gas. Both keywords are in the [PROPS](#__RefHeading___Toc39329_784232322) section. The [RWGSALT](#__RefHeading___Toc304264_1667959253) keyword in the [PROPS](#__RefHeading___Toc39329_784232322) section, may be used to define the relationship of water vaporization versus pressure and salt concentration. Again, the keyword is in the [PROPS](#__RefHeading___Toc39329_784232322) section. Secondly, in the [SOLUTION](#__RefHeading___Toc43947_784232322) section, the [RVW](#__RefHeading___Toc537756_4287353749) keyword can be used to set the initial equilibration vaporized water in gas ratio values for all grid cells in the model for Enumeration Initialization, or the [RVWVD](#__RefHeading___Toc137367_13175472131) keyword that declares the vaporized water-gas ratio (Rvw) versus depth tables for each equilibration region, for Equilibrium Initialization.
+Normally, with this option one would also include vaporized water via the VAPWAT keyword in the RUNSPEC section, as well as the PVTGW keyword to define gas PVT properties for dry gas, or the PVTGWO keyword that declares the gas PVT properties for wet gas. Both keywords are in the PROPS section. The RWGSALT keyword in the PROPS section, may be used to define the relationship of water vaporization versus pressure and salt concentration. Again, the keyword is in the PROPS section. Secondly, in the SOLUTION section, the RVW keyword can be used to set the initial equilibration vaporized water in gas ratio values for all grid cells in the model for Enumeration Initialization, or the RVWVD keyword that declares the vaporized water-gas ratio (Rvw) versus depth tables for each equilibration region, for Equilibrium Initialization.

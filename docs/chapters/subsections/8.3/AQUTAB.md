@@ -1,11 +1,11 @@
 ### AQUTAB -- Define Carter-Tracy Aquifer Influence Functions
 
-| [RUNSPEC](#3.RUNSPEC SECTION|outline) | [GRID](#4.GRID SECTION|outline) | [EDIT](#5.EDIT SECTION|outline) | [PROPS](#6.PROPS SECTION|outline) | [REGIONS](#7.REGIONS SECTION|outline) | [SOLUTION](#8.SOLUTION SECTION|outline) | [SUMMARY](#9.SUMMARY SECTION|outline) | [SCHEDULE](#10.SCHEDULE SECTION|outline) |
+| RUNSPEC | GRID | EDIT | PROPS | REGIONS | SOLUTION | SUMMARY | SCHEDULE |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 
 #### Description
 
-The [AQUTAB](#__RefHeading___Toc110746_846947960) keyword defines additional Carter-Tracy[^1] aquifer functions to be used in the model. Carter-Tracy representation of the aquifer influx is via a qw term in the non-linear aquifer influence function Q(t). It allows the water influx from the aquifer to be represented in the simulator by assuming that there is a constant water influx rate over finite time periods. It is derived from the superposition methods of van Everdingen and Hurst[^2], whose superposition methods are not suitable for implementation in reservoir simulation software, although they are very useful in interpreting aquifer response. The storage requirements and calculation complexity of handling the resulting superposition formulae can be largely eliminated by use of the Carter-Tracy approximate water influx method.
+The AQUTAB keyword defines additional Carter-Tracy[^1] aquifer functions to be used in the model. Carter-Tracy representation of the aquifer influx is via a qw term in the non-linear aquifer influence function Q(t). It allows the water influx from the aquifer to be represented in the simulator by assuming that there is a constant water influx rate over finite time periods. It is derived from the superposition methods of van Everdingen and Hurst[^2], whose superposition methods are not suitable for implementation in reservoir simulation software, although they are very useful in interpreting aquifer response. The storage requirements and calculation complexity of handling the resulting superposition formulae can be largely eliminated by use of the Carter-Tracy approximate water influx method.
 
 | No. | Name | Description | Default |
 | --- | --- | --- | --- |
@@ -14,7 +14,7 @@ The [AQUTAB](#__RefHeading___Toc110746_846947960) keyword defines additional Car
 | dimensionless | dimensionless | dimensionless |  |
 | 2 | PD | Dimensionless Pressure | None |
 | dimensionless | dimensionless | dimensionless |  |
-| Notes:<br>1)  The keyword is followed by NIFTBL tables as declared on the [AQUDIMS](#__RefHeading___Toc10103_3701168388) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section.<br>2)  Each table must contain at least two complete rows with a maximum of NRIFTB rows as declared on the [AQUDIMS](#__RefHeading___Toc10103_3701168388) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section. Note that NRIFTB must not be less than 36 in order to accommodate the default infinite acting Carter-Tracy aquifer influence function.<br>3)  Each table is terminated by a "/" and there is no "/" terminator for the keyword. |  |  |  |
+| Notes:<br>1)  The keyword is followed by NIFTBL tables as declared on the AQUDIMS keyword in the RUNSPEC section.<br>2)  Each table must contain at least two complete rows with a maximum of NRIFTB rows as declared on the AQUDIMS keyword in the RUNSPEC section. Note that NRIFTB must not be less than 36 in order to accommodate the default infinite acting Carter-Tracy aquifer influence function.<br>3)  Each table is terminated by a "/" and there is no "/" terminator for the keyword. |  |  |  |
 
 Table 8.18: AQUTAB Keyword Description
 
@@ -145,7 +145,7 @@ Table 8.21: Carter-Tracy Aquifer Influence Functions (RD =6.0, 7.0, 8.0 and 9.0)
 
 Table 8.22: Carter-Tracy Aquifer Influence Functions (RD =10 and Finite Linear)
 
-For the finite linear Carter-Tracy influence function in set the inner radius of the aquifer to the length of linear aquifer and the angle of influence toon the [AQUCT](#__RefHeading___Toc179876_3429068809) keyword in the grid section.
+For the finite linear Carter-Tracy influence function in set the inner radius of the aquifer to the length of linear aquifer and the angle of influence toon the AQUCT keyword in the grid section.
 
 For reference, outlines the content terminal rate case for an infinite aquifer derived by van Everdingen and Hurst, that is the default table number one used for the Carter-Tracy analytical aquifers, as implemented in OPM Flow.
 

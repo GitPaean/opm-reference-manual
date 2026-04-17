@@ -380,6 +380,104 @@ def _clean_captions(text: str) -> str:
 
 
 # ---------------------------------------------------------------------------
+# 4d. Broken cross-reference link clean-up
+# ---------------------------------------------------------------------------
+#
+# The original FODT was a monolithic document.  When it was split into
+# per-keyword pages the internal cross-reference anchors (e.g.
+# ``#__RefHeading___Toc…``) no longer resolve because the target heading
+# lives on a *different* page.  MkDocs ``--strict`` mode treats these as
+# errors, so we strip them and keep only the display text.
+
+# Markdown: [text](#__RefHeading___...) → text
+_REFHEADING_LINK_RE = re.compile(
+    r"\[([^\[\]]+)\]\(#__RefHeading___[^)]+\)"
+)
+
+# HTML: <a href="#__RefHeading___...">text</a> → text
+_REFHEADING_HTML_LINK_RE = re.compile(
+    r'<a href="#__RefHeading___[^"]*">([^<]*)</a>'
+)
+
+# Markdown: [text](#REF_HEADING_KEYWORD_...) → text
+_REFHEADING_KW_LINK_RE = re.compile(
+    r"\[([^\[\]]*)\]\(#REF_HEADING_KEYWORD_[^)]+\)"
+)
+
+# Standalone empty-text anchors pointing nowhere: [](#anchor-N)
+_EMPTY_ANCHOR_LINK_RE = re.compile(r"\[]\(#anchor(?:-\d+)?\)")
+
+
+def _strip_outline_links(text: str) -> str:
+    r"""Remove ``[text](#…|outline)`` links, keeping only the display text.
+
+    Because the display text can contain nested Markdown links
+    (e.g. ``[[inner](#anchor)](#…|outline)``) and the URL can contain
+    literal parentheses, a pure regex approach risks catastrophic
+    backtracking on large files with many ``[`` characters.  Instead we
+    scan for the distinctive ``|outline)`` marker and work backwards to
+    locate the matching ``](#`` and opening ``[``.
+    """
+    MARKER = "|outline)"
+    result: list[str] = []
+    search_start = 0
+
+    while True:
+        marker_pos = text.find(MARKER, search_start)
+        if marker_pos == -1:
+            result.append(text[search_start:])
+            break
+
+        # Find the start of the URL: "](#" before "|outline)".
+        # The URL is between ](#...|outline), walk backwards past balanced
+        # parentheses to find the "](#" that opens this link's URL.
+        url_start = text.rfind("](#", search_start, marker_pos)
+        if url_start == -1:
+            # No link syntax found — keep text as-is up through marker.
+            result.append(text[search_start : marker_pos + len(MARKER)])
+            search_start = marker_pos + len(MARKER)
+            continue
+
+        # ``url_start`` points to the ``]`` of ``](#…|outline)``.
+        # The display text is between a matching ``[`` and this ``]``.
+        # Walk backwards, counting brackets to handle one level of nesting.
+        bracket_pos = url_start - 1
+        depth = 1
+        while bracket_pos >= search_start and depth > 0:
+            ch = text[bracket_pos]
+            if ch == "]":
+                depth += 1
+            elif ch == "[":
+                depth -= 1
+            bracket_pos -= 1
+
+        if depth != 0:
+            # Unbalanced — keep as-is.
+            result.append(text[search_start : marker_pos + len(MARKER)])
+            search_start = marker_pos + len(MARKER)
+            continue
+
+        open_bracket = bracket_pos + 1  # position of the ``[``
+        display_text = text[open_bracket + 1 : url_start]
+
+        result.append(text[search_start:open_bracket])
+        result.append(display_text)
+        search_start = marker_pos + len(MARKER)
+
+    return "".join(result)
+
+
+def _clean_broken_links(text: str) -> str:
+    """Strip broken cross-reference links, keeping only their display text."""
+    text = _REFHEADING_LINK_RE.sub(r"\1", text)
+    text = _REFHEADING_HTML_LINK_RE.sub(r"\1", text)
+    text = _REFHEADING_KW_LINK_RE.sub(r"\1", text)
+    text = _strip_outline_links(text)
+    text = _EMPTY_ANCHOR_LINK_RE.sub("", text)
+    return text
+
+
+# ---------------------------------------------------------------------------
 # 5.  General post-processing
 # ---------------------------------------------------------------------------
 
@@ -407,6 +505,8 @@ def _postprocess_md(md_path: Path) -> None:
     text = _clean_pipe_table_blockquotes(text)
     # Convert ::: caption ... ::: blocks to italic captions.
     text = _clean_captions(text)
+    # Strip broken FODT cross-reference links (must run before anchor strip).
+    text = _clean_broken_links(text)
 
     text = _LEADING_DIV_RE.sub("", text)
     text = _TRAILING_DIV_RE.sub("", text)

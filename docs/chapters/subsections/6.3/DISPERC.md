@@ -1,22 +1,22 @@
 ### DISPERC -- Define the Mechanical Dispersivity for All Cells
 
-| [RUNSPEC](#3.RUNSPEC SECTION|outline) | [GRID](#4.GRID SECTION|outline) | [EDIT](#5.EDIT SECTION|outline) | [PROPS](#6.PROPS SECTION|outline) | [REGIONS](#7.REGIONS SECTION|outline) | [SOLUTION](#8.SOLUTION SECTION|outline) | [SUMMARY](#9.SUMMARY SECTION|outline) | [SCHEDULE](#10.SCHEDULE SECTION|outline) |
+| RUNSPEC | GRID | EDIT | PROPS | REGIONS | SOLUTION | SUMMARY | SCHEDULE |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 
 #### Description
 
-The [DISPERC](#REF_HEADING_KEYWORD_DISPERC_6_3) keyword defines the mechanical dispersivity for all cells in the model via an array.
+The DISPERC keyword defines the mechanical dispersivity for all cells in the model via an array.
 
 | No. | Name | Description | Default |
 | --- | --- | --- | --- |
 |  | Metric | Laboratory |  |
-| 1 | [DISPERC](#REF_HEADING_KEYWORD_DISPERC_6_3) | [DISPERC](#REF_HEADING_KEYWORD_DISPERC_6_3) is an array of real positive values that defines the mechanical dispersivity for each cell in the model.<br>Repeat counts may be used, for example 20\*1.0. | None |
+| 1 | DISPERC | DISPERC is an array of real positive values that defines the mechanical dispersivity for each cell in the model.<br>Repeat counts may be used, for example 20\*1.0. | None |
 | feet | m | cm |  |
-| Notes:<br>1)  The number of entries should correspond to the NX x NY x NZ parameters on the [DIMENS](#__RefHeading___Toc20387_2267116897) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section, unless the [BOX](#__RefHeading___Toc42110_3671211675) keyword defines a sub area of the grid, in which case the total number of entries should correspond to the number of cells defined by the [BOX](#__RefHeading___Toc42110_3671211675) statement.<br>2)  The keyword is terminated by a "/". |  |  |  |
+| Notes:<br>1)  The number of entries should correspond to the NX x NY x NZ parameters on the DIMENS keyword in the RUNSPEC section, unless the BOX keyword defines a sub area of the grid, in which case the total number of entries should correspond to the number of cells defined by the BOX statement.<br>2)  The keyword is terminated by a "/". |  |  |  |
 
-Table : [DISPERC](#REF_HEADING_KEYWORD_DISPERC_6_3) Keyword Description
+Table : DISPERC Keyword Description
 
-See also the [CO2STORE](#__RefHeading___Toc387968_1616145207) and [H2STORE](#REF_HEADING_KEYWORD_H2STORE) keywords in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section that active OPM Flow's CO~2~ and H~2~ storage models respectively.
+See also the CO2STORE and H2STORE keywords in the RUNSPEC section that active OPM Flow's CO~2~ and H~2~ storage models respectively.
 
 #### Example
 

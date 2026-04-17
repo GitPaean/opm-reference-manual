@@ -1,11 +1,11 @@
 ### END -- Define the End of the Input File
 
-| [RUNSPEC](#3.RUNSPEC SECTION|outline) | [GRID](#4.GRID SECTION|outline) | [EDIT](#5.EDIT SECTION|outline) | [PROPS](#6.PROPS SECTION|outline) | [REGIONS](#7.REGIONS SECTION|outline) | [SOLUTION](#8.SOLUTION SECTION|outline) | [SUMMARY](#9.SUMMARY SECTION|outline) | [SCHEDULE](#10.SCHEDULE SECTION|outline) |
+| RUNSPEC | GRID | EDIT | PROPS | REGIONS | SOLUTION | SUMMARY | SCHEDULE |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 
 #### Description
 
-This keyword marks the end of the input file and can occur in any section. Any keywords and data after the [END](#__RefHeading___Toc46631_2479612490) keyword are ignored.
+This keyword marks the end of the input file and can occur in any section. Any keywords and data after the END keyword are ignored.
 
 There is no data required for this keyword.
 
@@ -69,4 +69,4 @@ DATES
 
 /
 
-In the above example OPM Flow will process the data up to October 1, 2006 only, and then start to run the simulation. All keywords after the [END](#__RefHeading___Toc46631_2479612490) file keyword will not be read or processed.
+In the above example OPM Flow will process the data up to October 1, 2006 only, and then start to run the simulation. All keywords after the END file keyword will not be read or processed.

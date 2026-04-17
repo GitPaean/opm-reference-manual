@@ -1,11 +1,11 @@
 ### GIMODEL -- Activate Gi Pseudo Compositional Option
 
-| [RUNSPEC](#3.RUNSPEC SECTION|outline) | [GRID](#4.GRID SECTION|outline) | [EDIT](#5.EDIT SECTION|outline) | [PROPS](#6.PROPS SECTION|outline) | [REGIONS](#7.REGIONS SECTION|outline) | [SOLUTION](#8.SOLUTION SECTION|outline) | [SUMMARY](#9.SUMMARY SECTION|outline) | [SCHEDULE](#10.SCHEDULE SECTION|outline) |
+| RUNSPEC | GRID | EDIT | PROPS | REGIONS | SOLUTION | SUMMARY | SCHEDULE |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 
 #### Description
 
-This keyword, [GIMODEL](#__RefHeading___Toc383678_1414963541), activates the Gi Pseudo Compositional option for gas condensate and volatile oil fluids.
+This keyword, GIMODEL, activates the Gi Pseudo Compositional option for gas condensate and volatile oil fluids.
 
 This keyword is not supported by OPM Flow but would change the results if supported so the simulation will be stopped.
 

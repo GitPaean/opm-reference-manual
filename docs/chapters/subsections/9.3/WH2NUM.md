@@ -1,24 +1,24 @@
 ### WH2NUM -- Define WAG Hysteresis Saturation Table Region Numbers (Two Phase)
 
-| [RUNSPEC](#3.RUNSPEC SECTION|outline) | [GRID](#4.GRID SECTION|outline) | [EDIT](#5.EDIT SECTION|outline) | [PROPS](#6.PROPS SECTION|outline) | [REGIONS](#7.REGIONS SECTION|outline) | [SOLUTION](#8.SOLUTION SECTION|outline) | [SUMMARY](#9.SUMMARY SECTION|outline) | [SCHEDULE](#10.SCHEDULE SECTION|outline) |
+| RUNSPEC | GRID | EDIT | PROPS | REGIONS | SOLUTION | SUMMARY | SCHEDULE |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 
 #### Description
 
-The [WH2NUM](#__RefHeading___Toc1046874_487874538) keyword defines the two phase Water-Alternating-Gas ("WAG") hysteresis tables (relative permeability and capillary pressure tables) region numbers for each grid block, for when the hysteresis option has been activated by the [WAGHYSTR](#__RefHeading___Toc207827_2026549522) variable on the [SATOPTS](#__RefHeading___Toc37029_327352552) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section. The region number specifies which set of relative permeability tables ([SGFN](#__RefHeading___Toc106868_335817223), [SWFN](#__RefHeading___Toc106882_335817223), [SOF2](#__RefHeading___Toc106876_335817223), [SOF3](#__RefHeading___Toc106878_335817223), [SOF32D](#__RefHeading___Toc765497_4250154414), [SGOF](#__RefHeading___Toc106870_335817223), [SLGOF](#__RefHeading___Toc106874_335817223) and [SWOF](#__RefHeading___Toc45811_7190362561)) are used to calculate the relative permeability and capillary pressure in a grid block. Note that this keyword if the two phase water relative permeabilities WAG option.
+The WH2NUM keyword defines the two phase Water-Alternating-Gas ("WAG") hysteresis tables (relative permeability and capillary pressure tables) region numbers for each grid block, for when the hysteresis option has been activated by the WAGHYSTR variable on the SATOPTS keyword in the RUNSPEC section. The region number specifies which set of relative permeability tables (SGFN, SWFN, SOF2, SOF3, SOF32D, SGOF, SLGOF and SWOF) are used to calculate the relative permeability and capillary pressure in a grid block. Note that this keyword if the two phase water relative permeabilities WAG option.
 
 This keyword is not supported by OPM Flow but would change the results if supported so the simulation will be stopped.
 
 | No. | Name | Description | Default |
 | --- | --- | --- | --- |
-| 1 | [WH2NUM](#__RefHeading___Toc1046874_487874538) | [WH2NUM](#__RefHeading___Toc1046874_487874538) defines an array of positive integers assigning a grid cell to a particular saturation table region.<br>The maximum number of [WH2NUM](#__RefHeading___Toc1046874_487874538) regions is set by the NTSFUN variable on the [TABDIMS](#__RefHeading___Toc89327_327352552) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section. | Taken from cell allocated [SATNUM](#__RefHeading___Toc71136_2752266063) |
-| Notes:<br>1)  The number of entries should correspond to the NX x NY x NZ parameters on the [DIMENS](#__RefHeading___Toc20387_2267116897) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section, unless the [BOX](#__RefHeading___Toc42110_3671211675) keyword defines a sub area of the grid, in which case the total number of entries should correspond to the number of cells defined by the [BOX](#__RefHeading___Toc42110_3671211675) statement.<br>2)  If a cell is not assigned a [WH2NUM](#__RefHeading___Toc1046874_487874538) region then the default value will be used.<br>3)  The keyword is terminated by a "/". |  |  |  |
+| 1 | WH2NUM | WH2NUM defines an array of positive integers assigning a grid cell to a particular saturation table region.<br>The maximum number of WH2NUM regions is set by the NTSFUN variable on the TABDIMS keyword in the RUNSPEC section. | Taken from cell allocated SATNUM |
+| Notes:<br>1)  The number of entries should correspond to the NX x NY x NZ parameters on the DIMENS keyword in the RUNSPEC section, unless the BOX keyword defines a sub area of the grid, in which case the total number of entries should correspond to the number of cells defined by the BOX statement.<br>2)  If a cell is not assigned a WH2NUM region then the default value will be used.<br>3)  The keyword is terminated by a "/". |  |  |  |
 
-Table : [WH2NUM](#__RefHeading___Toc1046874_487874538) Keyword Description
+Table : WH2NUM Keyword Description
 
 #### Example
 
-The example below sets three [WH2NUM](#__RefHeading___Toc1046874_487874538) regions for a model.
+The example below sets three WH2NUM regions for a model.
 
 \--
 

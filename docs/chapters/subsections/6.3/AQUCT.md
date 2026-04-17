@@ -2,16 +2,16 @@
 
 ### AQUCT -- Define Carter-Tracy Analytical Aquifers
 
-| [RUNSPEC](#3.RUNSPEC SECTION|outline) | [GRID](#4.GRID SECTION|outline) | [EDIT](#5.EDIT SECTION|outline) | [PROPS](#6.PROPS SECTION|outline) | [REGIONS](#7.REGIONS SECTION|outline) | [SOLUTION](#8.SOLUTION SECTION|outline) | [SUMMARY](#9.SUMMARY SECTION|outline) | [SCHEDULE](#10.SCHEDULE SECTION|outline) |
+| RUNSPEC | GRID | EDIT | PROPS | REGIONS | SOLUTION | SUMMARY | SCHEDULE |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 
 #### Description
 
-The [AQUCT](#__RefHeading___Toc179876_3429068809) keyword defines Carter-Tracy[^1] [^2] analytical aquifers, the properties of the aquifer, including the Carter-Tracy aquifer influence function associated with the aquifer, defined by the [AQUTAB](#__RefHeading___Toc110746_846947960) keyword in the [PROPS](#__RefHeading___Toc39329_784232322) section.
+The AQUCT keyword defines Carter-Tracy[^1] [^2] analytical aquifers, the properties of the aquifer, including the Carter-Tracy aquifer influence function associated with the aquifer, defined by the AQUTAB keyword in the PROPS section.
 
-Each row entry in the [AQUCT](#__RefHeading___Toc179876_3429068809) keyword defines one Carter-Tracy aquifer.
+Each row entry in the AQUCT keyword defines one Carter-Tracy aquifer.
 
-| 1 | AQUID | A positive integer greater than or equal to one and less than or equal to NANAQU on the [AQUDIMS](#__RefHeading___Toc10103_3701168388) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section, that defines the Carter-Tracy aquifer number. | 1 |
+| 1 | AQUID | A positive integer greater than or equal to one and less than or equal to NANAQU on the AQUDIMS keyword in the RUNSPEC section, that defines the Carter-Tracy aquifer number. | 1 |
 | --- | --- | --- | --- |
 | 2 | DATUM | DATUM is a single positive value that defines the Carter-Tracy reference datum depth for PRESS. | None |
 | feet | m | cm |  |
@@ -29,21 +29,21 @@ Each row entry in the [AQUCT](#__RefHeading___Toc179876_3429068809) keyword defi
 | feet | m | cm |  |
 | 9 | ANGLE | ANGLE is a real positive number that defines the angle of influence, that is the angular connection between the aquifer and the hydrocarbon reservoir. A value of 360^o^ degrees, the default value, indicates that the aquifer completely surrounds the hydrocarbon reservoir. | 360.0 |
 | degrees | degrees | degrees |  |
-| 10 | PVTNUM | PVTNUM is positive integer greater than zero and less than the NTPVT variable on the [TABDIMS](#__RefHeading___Toc89327_327352552) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section, that defines the [PVTW](#__RefHeading___Toc2086106_3315222525) table allocated to the Carter-Tracy aquifer. | 1 |
-| 11 | AQUTAB | AQUTAB is positive integer greater than zero and less than the NIFTBL variable as declared on the [AQUDIMS](#__RefHeading___Toc10103_3701168388) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section, that defines the AQUTAB table allocated to this Carter-Tracy aquifer.<br>The default value of one sets the internal infinite acting Carter-Tracy aquifer influence table not the first table in the [AQUTAB](#__RefHeading___Toc110746_846947960) keyword in the [PROPS](#__RefHeading___Toc39329_784232322) section The first table in the [AQUTAB](#__RefHeading___Toc110746_846947960) keyword is considered to be table number two.<br>The internal table, AQUTAB equal to one, is based on the Radial Flow, Constant Pressure and Constant Terminal Rate Cases for Infinite Reservoirs (Table I) in Van Everdingen and Hurst\'s [^3] paper. | 1 |
-| 12 | SALTCON | SALTCON is a real positive number that defines the initial salt concentration in the aquifer, for when with simulator\'s Brine Model has been activated via the [BRINE](#__RefHeading___Toc162083_289573908) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section.<br>This variable is ignored by OPM Flow. | 0.0 |
+| 10 | PVTNUM | PVTNUM is positive integer greater than zero and less than the NTPVT variable on the TABDIMS keyword in the RUNSPEC section, that defines the PVTW table allocated to the Carter-Tracy aquifer. | 1 |
+| 11 | AQUTAB | AQUTAB is positive integer greater than zero and less than the NIFTBL variable as declared on the AQUDIMS keyword in the RUNSPEC section, that defines the AQUTAB table allocated to this Carter-Tracy aquifer.<br>The default value of one sets the internal infinite acting Carter-Tracy aquifer influence table not the first table in the AQUTAB keyword in the PROPS section The first table in the AQUTAB keyword is considered to be table number two.<br>The internal table, AQUTAB equal to one, is based on the Radial Flow, Constant Pressure and Constant Terminal Rate Cases for Infinite Reservoirs (Table I) in Van Everdingen and Hurst\'s [^3] paper. | 1 |
+| 12 | SALTCON | SALTCON is a real positive number that defines the initial salt concentration in the aquifer, for when with simulator\'s Brine Model has been activated via the BRINE keyword in the RUNSPEC section.<br>This variable is ignored by OPM Flow. | 0.0 |
 | lb/stb | kg/sm^3^ | gm/scc |  |
-| 13 | TEMP | TEMP is a real positive number that defines the initial temperature of the aquifer at DATUM for use with OPM Flow\'s thermal option. The [THERMAL](#__RefHeading___Toc137276_650382403) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section must be activated to use this option. | 1\* |
+| 13 | TEMP | TEMP is a real positive number that defines the initial temperature of the aquifer at DATUM for use with OPM Flow\'s thermal option. The THERMAL keyword in the RUNSPEC section must be activated to use this option. | 1\* |
 | ^o^F | ^o^C | ^o^C |  |
-| Notes:<br>1)  The keyword is followed by up to NANAQ records as defined on the [AQUDIMS](#__RefHeading___Toc10103_3701168388) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section<br>2)  Each record is terminated by a "/" and the keyword should be terminated by a "/". |  |  |  |
+| Notes:<br>1)  The keyword is followed by up to NANAQ records as defined on the AQUDIMS keyword in the RUNSPEC section<br>2)  Each record is terminated by a "/" and the keyword should be terminated by a "/". |  |  |  |
 
 Table 6.9: AQUCT Keyword Description
 
-In order to full define a Carter-Tracy aquifer one has to define the aquifer properties via the [AQUCT](#__RefHeading___Toc179876_3429068809) keyword, the Carter-Tracy influence function via the [AQUTAB](#__RefHeading___Toc110746_846947960) keyword in the [PROPS](#__RefHeading___Toc39329_784232322) section ([[AQUTAB -- Define Carter-Tracy Aquifer Influence Functions](#anchor-2)](#8.3.9.AQUTAB – Define Carter-Tracy Aquifer Influence Functions|outline)), if the default infinite acting table is not being employed, and finally, how the aquifer is connected to the reservoir using the [AQUANCON](#__RefHeading___Toc177536_3429068809) keyword in the [GRID](#__RefHeading___Toc38674_784232322) or [SOLUTION](#__RefHeading___Toc43947_784232322) sections.
+In order to full define a Carter-Tracy aquifer one has to define the aquifer properties via the AQUCT keyword, the Carter-Tracy influence function via the AQUTAB keyword in the PROPS section ([AQUTAB -- Define Carter-Tracy Aquifer Influence Functions](#anchor-2)), if the default infinite acting table is not being employed, and finally, how the aquifer is connected to the reservoir using the AQUANCON keyword in the GRID or SOLUTION sections.
 
 #### Example
 
-Given the following grid and aquifer dimensions in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section:
+Given the following grid and aquifer dimensions in the RUNSPEC section:
 
 \--
 
@@ -63,7 +63,7 @@ AQUDIMS
 
 1\* 1\* 5 100 1 1\* 1\* 1\* /
 
-And the [AQUTAB](#__RefHeading___Toc110746_846947960) keyword in the [PROPS](#__RefHeading___Toc39329_784232322) section
+And the AQUTAB keyword in the PROPS section
 
 \--
 
@@ -155,7 +155,7 @@ AQUTAB
 
 1000.00 666.982 /
 
-The Carter-Tracy aquifer is defined in the [GRID](#__RefHeading___Toc38674_784232322) or [SOLUTION](#__RefHeading___Toc43947_784232322) sections as:
+The Carter-Tracy aquifer is defined in the GRID or SOLUTION sections as:
 
 \-- ==============================================================================
 
@@ -187,7 +187,7 @@ AQUCT
 
 /
 
-And the connection of the aquifer is set in the [GRID](#__RefHeading___Toc38674_784232322) or [SOLUTION](#__RefHeading___Toc43947_784232322) sections as:
+And the connection of the aquifer is set in the GRID or SOLUTION sections as:
 
 \--
 

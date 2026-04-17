@@ -22,31 +22,31 @@ The 2025-10 release consists of some new features and various improvements and b
 
         -   The intensive quantities cache now stores values for the current time step only and not the previous time step. This reduces the peak memory usage of the entire simulator by 10 %, without any performance degradation.
 
-        -   Added a OPM Flow specific option to the Killough hysteresis model ([EHYSTR](#__RefHeading___Toc67396_621662414) keyword item 14) to correct the construction of the capillary pressure scanning curve.
+        -   Added a OPM Flow specific option to the Killough hysteresis model (EHYSTR keyword item 14) to correct the construction of the capillary pressure scanning curve.
 
         -   The new saturation function consistency checks have been enabled by default.
 
         -   Added support for running OPM Flow single phase (water) simulations from Python code using the Python bindings.
 
-        -   Added support for running OPM Flow gas-water simulations, for example [H2STORE](#REF_HEADING_KEYWORD_H2STORE) or [CO2STORE](#__RefHeading___Toc387968_1616145207) cases, from Python code using the Python bindings.
+        -   Added support for running OPM Flow gas-water simulations, for example H2STORE or CO2STORE cases, from Python code using the Python bindings.
 
-        -   Added support for additional [TUNING](#__RefHeading___Toc146744_4203985108) keyword items: NEWTMX, NEWTMN, TRGMBE, TRGCNV, and XXXCNV.
+        -   Added support for additional TUNING keyword items: NEWTMX, NEWTMN, TRGMBE, TRGCNV, and XXXCNV.
 
         -   Improved support for satellite injection and production groups.
 
-        -   A user defined argument can now be used for group reservoir volume production rate (RESV) controls when using the [GCONPROD](#__RefHeading___Toc146746_4203985108) keyword.
+        -   A user defined argument can now be used for group reservoir volume production rate (RESV) controls when using the GCONPROD keyword.
 
         -   Restart file support has been added for the number of Newton iterations required by each cell to satisfy the solution change convergence criteria at the last time step (CONV_NEW).
 
         -   Support has been added for running simulations beyond 31-Dec-9999 (up to 292 million years).
 
-        -   Added support for [WECON](#__RefHeading___Toc134884_2055188184) keyword item 9, the name of the follow-on well to be open if the current well is shut.
+        -   Added support for WECON keyword item 9, the name of the follow-on well to be open if the current well is shut.
 
-        -   Added support for [WSEGAICD](#__RefHeading___Toc971419_4263943340) keyword item 22, the density function exponent.
+        -   Added support for WSEGAICD keyword item 22, the density function exponent.
 
-        -   Added UDA support for items 3 and 4 of the [WTRACER](#__RefHeading___Toc97665_3261743917) keyword.
+        -   Added UDA support for items 3 and 4 of the WTRACER keyword.
 
-        -   Support has been added for the use of UDAs for ORAT, WRAT, and GRAT in the [GSATPROD](#__RefHeading___Toc202038_870710203) keyword.
+        -   Support has been added for the use of UDAs for ORAT, WRAT, and GRAT in the GSATPROD keyword.
 
         -   Full support has been added for running the Constrained Pressure Residual with Algebraic Multigrid (CPR-AMG) preconditioner entirely on the GPU for serial or single-GPU runs, using the GpuIstl framework.
 
@@ -101,7 +101,7 @@ A.  1.  1.  ### New Features
 
 In addition to the changes to the command line options the following new features have been added to the simulator:
 
-3)  1)  1)  Added support for the biofilm model in two-phase gas-water systems, which can be activated using the [BIOFILM](#REF_HEADING_KEYWORD_BIOFILM) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section in [CO2STORE](#__RefHeading___Toc387968_1616145207) or [H2STORE](#REF_HEADING_KEYWORD_H2STORE) runs ([#6462](https://github.com/OPM/opm-simulators/pull/6462)). The model includes biofilm as a solid phase and as microbes suspended in the water. This can be used in applications such as underground storage where dissolved hydrogen consumed by microbes leads to injectivity and hydrogen loss.
+3)  1)  1)  Added support for the biofilm model in two-phase gas-water systems, which can be activated using the BIOFILM keyword in the RUNSPEC section in CO2STORE or H2STORE runs ([#6462](https://github.com/OPM/opm-simulators/pull/6462)). The model includes biofilm as a solid phase and as microbes suspended in the water. This can be used in applications such as underground storage where dissolved hydrogen consumed by microbes leads to injectivity and hydrogen loss.
 
         2)  Added an optimized version of the preconditioner update calls, at the cost of apply times, to tailor the implementation more towards CPR-type preconditioners with smaller apply/update ratios ([#6310](https://github.com/OPM/opm-simulators/pull/6310)).
 
@@ -113,17 +113,17 @@ In addition to the changes to the command line options the following new feature
 
         6)  Added additional restart file items to maintain compatibility with user defined arguments ([#4439](https://github.com/OPM/opm-common/pull/4439)).
 
-        7)  Added support for specifying the maximum and minimum number of Newton iterations for a time step (NEWTMX and NEWTMN) on the [TUNING](#__RefHeading___Toc146744_4203985108) keyword in the [SCHEDULE](#__RefHeading___Toc43945_784232322) section ([#6378](https://github.com/OPM/opm-simulators/pull/6378)).
+        7)  Added support for specifying the maximum and minimum number of Newton iterations for a time step (NEWTMX and NEWTMN) on the TUNING keyword in the SCHEDULE section ([#6378](https://github.com/OPM/opm-simulators/pull/6378)).
 
-        8)  Added parser support for the [GSATINJE](#__RefHeading___Toc116596_332691817) keyword to specify satellite injection at the group level ([#4700](https://github.com/OPM/opm-common/pull/4700)).
+        8)  Added parser support for the GSATINJE keyword to specify satellite injection at the group level ([#4700](https://github.com/OPM/opm-common/pull/4700)).
 
-        9)  A check has been added to ensure that all wells and/or groups needed in a [UDQ](#__RefHeading___Toc161095_2932703077) DEFINE statement are present at the point of definition ([#4619](https://github.com/OPM/opm-common/pull/4619)). An error message will be generated for any missing well objects, for example:
+        9)  A check has been added to ensure that all wells and/or groups needed in a UDQ DEFINE statement are present at the point of definition ([#4619](https://github.com/OPM/opm-common/pull/4619)). An error message will be generated for any missing well objects, for example:
 
-3)  1)  1)  Restart file support has been added for the number of Newton iterations required by each cell to satisfy the solution change convergence criteria at the last time step (CONV_NEW) ([#6374](https://github.com/OPM/opm-simulators/pull/6374)). This output can be requested by including the CONV mnemonic on the [RPTRST](#__RefHeading___Toc210154_2884651453) keyword. Note that simulations using NLDD are not currently supported.
+3)  1)  1)  Restart file support has been added for the number of Newton iterations required by each cell to satisfy the solution change convergence criteria at the last time step (CONV_NEW) ([#6374](https://github.com/OPM/opm-simulators/pull/6374)). This output can be requested by including the CONV mnemonic on the RPTRST keyword. Note that simulations using NLDD are not currently supported.
 
-        2)  Added support for [WSEGAICD](#__RefHeading___Toc971419_4263943340) keyword item 22, the density function exponent ([#6473](https://github.com/OPM/opm-simulators/pull/6473), [#4736](https://github.com/OPM/opm-common/pull/4736)).
+        2)  Added support for WSEGAICD keyword item 22, the density function exponent ([#6473](https://github.com/OPM/opm-simulators/pull/6473), [#4736](https://github.com/OPM/opm-common/pull/4736)).
 
-        3)  Experimental support has been added for the [WELSPECL](#__RefHeading___Toc147691_6053652) and [COMPDATL](#__RefHeading___Toc153110_63720426) keywords ([#6297](https://github.com/OPM/opm-simulators/pull/6297)).
+        3)  Experimental support has been added for the WELSPECL and COMPDATL keywords ([#6297](https://github.com/OPM/opm-simulators/pull/6297)).
 
         4)  Added a command line option (\--linear-solver-accelerator=cpu or gpu) to optionally carry out the linear solver operations on the GPU ([#6270](https://github.com/OPM/opm-simulators/pull/6270)). By default all operations are carried out on the CPU. When using the gpu option, the linear solvers can be specified with the normal \--linear-solver argument, which can point to a JSON file which can have the same format as the one for the CPU. Note that some options and preconditioners are currently limited to the CPU.
 
@@ -194,39 +194,39 @@ Improvements to the simulator in this release include the following:
 
         17) The memory consumption during simulation has been reduced by 96 MB per million cells by removing unused capillary pressure storage ([#4650](https://github.com/OPM/opm-common/pull/4650)).
 
-        18) There is a speed improvement in some cases where a single [PYACTION](#__RefHeading___Toc393199_4211536922) block generates multiple keywords ([#4624](https://github.com/OPM/opm-common/pull/4624)).
+        18) There is a speed improvement in some cases where a single PYACTION block generates multiple keywords ([#4624](https://github.com/OPM/opm-common/pull/4624)).
 
         19) GPU matrix updates have been optimized by using direct memory transfer and pinned memory for Gpu-ISTL, providing significant performance improvements for GPU linear solver operations ([#6406](https://github.com/OPM/opm-simulators/pull/6406)).
 
-        20) Improved error messages when invalid grid block ranges are defined using the [BOX](#__RefHeading___Toc42110_3671211675) keyword ([#4600](https://github.com/OPM/opm-common/pull/4600)).
+        20) Improved error messages when invalid grid block ranges are defined using the BOX keyword ([#4600](https://github.com/OPM/opm-common/pull/4600)).
 
         21) Messages reporting that a well has converged in zero iterations (for example, \'Well P-1 converged in 0 inner iterations\') will now only be output to the Debug (DBG) file if an elevated verbosity level has been specified by the user ([#6350](https://github.com/OPM/opm-simulators/pull/6350)).
 
-        22) Added support for running OPM Flow gas-water simulations, for example [H2STORE](#REF_HEADING_KEYWORD_H2STORE) or [CO2STORE](#__RefHeading___Toc387968_1616145207) cases, from Python code using the Python bindings ([#6075](https://github.com/OPM/opm-simulators/pull/6075)).
+        22) Added support for running OPM Flow gas-water simulations, for example H2STORE or CO2STORE cases, from Python code using the Python bindings ([#6075](https://github.com/OPM/opm-simulators/pull/6075)).
 
         23) The Python documentation for OPM Flow has been updated ([#4615](https://github.com/OPM/opm-common/pull/4615), [OPM Python Documentation](https://opm.github.io/opm-python-documentation/master/index.html)).
 
         24) Added effect of satellite surface injection rates, and updated satellite surface production rates ([#6454](https://github.com/OPM/opm-simulators/pull/6454)).
 
-        25) Added support for additional [TUNING](#__RefHeading___Toc146744_4203985108) keyword items: target non-linear convergence error (TRGCNV), maximum non-linear convergence error (XXXCNV), and target material balance error (TRGMBE) ([#6413](https://github.com/OPM/opm-simulators/pull/6413)).
+        25) Added support for additional TUNING keyword items: target non-linear convergence error (TRGCNV), maximum non-linear convergence error (XXXCNV), and target material balance error (TRGMBE) ([#6413](https://github.com/OPM/opm-simulators/pull/6413)).
 
-        26) A user defined argument can now be used for group reservoir volume production rate (RESV) controls when using the [GCONPROD](#__RefHeading___Toc146746_4203985108) keyword ([#4503](https://github.com/OPM/opm-common/pull/4503)). In addition, restart support has been added for this control.
+        26) A user defined argument can now be used for group reservoir volume production rate (RESV) controls when using the GCONPROD keyword ([#4503](https://github.com/OPM/opm-common/pull/4503)). In addition, restart support has been added for this control.
 
         27) Support has been added for running simulations beyond 31-Dec-9999 (up to 292 million years) ([#6336](https://github.com/OPM/opm-simulators/pull/6336)).
 
         28) Support has been added for underscore characters in user defined region set names ([#4611](https://github.com/OPM/opm-common/pull/4611)). These were previously rejected at the input level.
 
-        29) The implementation of the exponentiation operator \"\^\" has been extended to support combinations of UDQ sets and UDQ scalars in the definition of UDQs (see the [UDQ](#__RefHeading___Toc161095_2932703077) keyword) ([#4757](https://github.com/OPM/opm-common/pull/4757)). Previously, this operator only supported UDQ sets of the same size.
+        29) The implementation of the exponentiation operator \"\^\" has been extended to support combinations of UDQ sets and UDQ scalars in the definition of UDQs (see the UDQ keyword) ([#4757](https://github.com/OPM/opm-common/pull/4757)). Previously, this operator only supported UDQ sets of the same size.
 
-        30) Added support for [WECON](#__RefHeading___Toc134884_2055188184) keyword item 9, the name of the follow-on well to be open if the current well is shut ([#6050](https://github.com/OPM/opm-simulators/pull/6050), [#4507](https://github.com/OPM/opm-common/pull/4507)).
+        30) Added support for WECON keyword item 9, the name of the follow-on well to be open if the current well is shut ([#6050](https://github.com/OPM/opm-simulators/pull/6050), [#4507](https://github.com/OPM/opm-common/pull/4507)).
 
-        31) Added UDA support for items 3 and 4 of the [WTRACER](#__RefHeading___Toc97665_3261743917) keyword ([#6549](https://github.com/OPM/opm-simulators/pull/6549), [#4800](https://github.com/OPM/opm-common/pull/4800)).
+        31) Added UDA support for items 3 and 4 of the WTRACER keyword ([#6549](https://github.com/OPM/opm-simulators/pull/6549), [#4800](https://github.com/OPM/opm-common/pull/4800)).
 
-        32) If the [GSATPROD](#__RefHeading___Toc202038_870710203) keyword specifies a group that doesn\'t exist at this point in the schedule then it will be created ([#4689](https://github.com/OPM/opm-common/pull/4689)). Groups created in this way will be parented directly to the FIELD group.
+        32) If the GSATPROD keyword specifies a group that doesn\'t exist at this point in the schedule then it will be created ([#4689](https://github.com/OPM/opm-common/pull/4689)). Groups created in this way will be parented directly to the FIELD group.
 
-        33) Support has been added for the use of UDAs for ORAT, WRAT, and GRAT in the [GSATPROD](#__RefHeading___Toc202038_870710203) keyword ([#6429](https://github.com/OPM/opm-simulators/pull/6429), [#4701](https://github.com/OPM/opm-common/pull/4701)).
+        33) Support has been added for the use of UDAs for ORAT, WRAT, and GRAT in the GSATPROD keyword ([#6429](https://github.com/OPM/opm-simulators/pull/6429), [#4701](https://github.com/OPM/opm-common/pull/4701)).
 
-        34) Added the option to output [FIP](#__RefHeading___Toc250560_252421755) and RESV data to a separate CSV file ([#6329](https://github.com/OPM/opm-simulators/pull/6329)). This is requested by including the CSVFIP mnemonic in the [RPTSOL](#__RefHeading___Toc135631_1317547213) keyword.
+        34) Added the option to output FIP and RESV data to a separate CSV file ([#6329](https://github.com/OPM/opm-simulators/pull/6329)). This is requested by including the CSVFIP mnemonic in the RPTSOL keyword.
 
         35) A more user friendly message is now output if an attempt is made to restart a simulation from report step zero, which is not supported by OPM Flow ([#4638](https://github.com/OPM/opm-common/pull/4638)).
 
@@ -268,11 +268,11 @@ Improvements to the simulator in this release include the following:
 
         51) Only surface rates are allowed to be assigned to satellite production or injection groups ([#6480](https://github.com/OPM/opm-simulators/pull/6480)). If higher level groups containing satellite groups have a reservoir volume rate (RESV) or voidage replacement (VREP) control, the treatment of the satellite rates is not well defined. A check has been added and an error message is now output if this is the case.
 
-        52) Previously well control changes weren\'t logged during local switching ([#6145](https://github.com/OPM/opm-simulators/pull/6145)). Well control changes are now logged when the [NUPCOL](#__RefHeading___Toc86969_4106839650) iteration threshold is reached.
+        52) Previously well control changes weren\'t logged during local switching ([#6145](https://github.com/OPM/opm-simulators/pull/6145)). Well control changes are now logged when the NUPCOL iteration threshold is reached.
 
         53) The initialization procedure for production wells is now more robust, in particular it ensures that valid gas and water fractions are obtained for the VFP table lookup ([#6114](https://github.com/OPM/opm-simulators/pull/6114)). Also, the gas and water fractions of a well are stored across iterations to better deal with situations such as stopped wells, where it is not possible to reconstruct gas and water fractions from the rates.
 
-        54) When detecting oscillations only the number of group switches after [NUPCOL](#__RefHeading___Toc86969_4106839650) non-linear iterations are now considered ([#6358](https://github.com/OPM/opm-simulators/pull/6358)). This makes the behaviour of groups similar to that of wells.
+        54) When detecting oscillations only the number of group switches after NUPCOL non-linear iterations are now considered ([#6358](https://github.com/OPM/opm-simulators/pull/6358)). This makes the behaviour of groups similar to that of wells.
 
 ```{=html}
 <!-- -->
@@ -281,43 +281,43 @@ A.  1.  1.  ### Bug Fixes
 
 The following bug fixes have been incorporated into this release:
 
-3)  1)  1)  Corrected the application of region to region transmissibility multipliers ([MULTREGT](#__RefHeading___Toc296621_1576177388) keyword) to NNCs created by pinched-out cells ([PINCH](#__RefHeading___Toc74261_2479612490) keyword) in some specific cases ([#6498](https://github.com/OPM/opm-simulators/pull/6498)).
+3)  1)  1)  Corrected the application of region to region transmissibility multipliers (MULTREGT keyword) to NNCs created by pinched-out cells (PINCH keyword) in some specific cases ([#6498](https://github.com/OPM/opm-simulators/pull/6498)).
 
         2)  Fixed a small bug for grid topology that did not affect OPM Flow, but did affect the geomechanics codes ([#913](https://github.com/OPM/opm-grid/pull/913)).
 
-        3)  Added a OPM Flow specific option to the Killough hysteresis model ([EHYSTR](#__RefHeading___Toc67396_621662414) keyword item 14) to correct the construction of the capillary pressure scanning curve ([#4676](https://github.com/OPM/opm-common/pull/4676)). This option is currently inactive by default but this is likely to change in the future as the correction is believed to be a bug fix.
+        3)  Added a OPM Flow specific option to the Killough hysteresis model (EHYSTR keyword item 14) to correct the construction of the capillary pressure scanning curve ([#4676](https://github.com/OPM/opm-common/pull/4676)). This option is currently inactive by default but this is likely to change in the future as the correction is believed to be a bug fix.
 
-        4)  The old style [PYACTION](#__RefHeading___Toc393199_4211536922) scripts are now assumed to have run successfully if they do not return a value ([#4725](https://github.com/OPM/opm-common/pull/4725)). This fixes backwards compatibility.
+        4)  The old style PYACTION scripts are now assumed to have run successfully if they do not return a value ([#4725](https://github.com/OPM/opm-common/pull/4725)). This fixes backwards compatibility.
 
-        5)  The [TUNING](#__RefHeading___Toc146744_4203985108) keyword now correctly sets the minimum length of all time steps Item 1-3 TSMINZ instead of Item 1-6 TSFMIN ([#6332](https://github.com/OPM/opm-simulators/pull/6332)).
+        5)  The TUNING keyword now correctly sets the minimum length of all time steps Item 1-3 TSMINZ instead of Item 1-6 TSFMIN ([#6332](https://github.com/OPM/opm-simulators/pull/6332)).
 
-        6)  A bug has been fixed in the unit handling of the [OPERATE](#__RefHeading___Toc64455_718313858) keyword ([#4765](https://github.com/OPM/opm-common/pull/4765)). This resolves an reported issue with the units when performing operations on permeability arrays ([#4597](https://github.com/OPM/opm-simulators/pull/4597)).
+        6)  A bug has been fixed in the unit handling of the OPERATE keyword ([#4765](https://github.com/OPM/opm-common/pull/4765)). This resolves an reported issue with the units when performing operations on permeability arrays ([#4597](https://github.com/OPM/opm-simulators/pull/4597)).
 
-        7)  Allow the [WELTARG](#__RefHeading___Toc134888_2055188184) keyword to accept an empty well list ([#4654](https://github.com/OPM/opm-common/pull/4654)). In this case no well targets will be changed and a warning message will be output.
+        7)  Allow the WELTARG keyword to accept an empty well list ([#4654](https://github.com/OPM/opm-common/pull/4654)). In this case no well targets will be changed and a warning message will be output.
 
-        8)  A bug has been fixed where previously [DRSDT](#__RefHeading___Toc117623_2179381650) was activated in restart runs even if the original simulation did not contain the [DRSDT](#__RefHeading___Toc117623_2179381650) keyword ([#4655](https://github.com/OPM/opm-common/pull/4655)).
+        8)  A bug has been fixed where previously DRSDT was activated in restart runs even if the original simulation did not contain the DRSDT keyword ([#4655](https://github.com/OPM/opm-common/pull/4655)).
 
-        9)  Fixed the handling of the group production control ([GCONPROD](#__RefHeading___Toc146746_4203985108)) keyword item 2 equals FLD ([#4635](https://github.com/OPM/opm-common/pull/4635)). This is now correctly interpreted as inheriting the control from the group\'s parent(s).
+        9)  Fixed the handling of the group production control (GCONPROD) keyword item 2 equals FLD ([#4635](https://github.com/OPM/opm-common/pull/4635)). This is now correctly interpreted as inheriting the control from the group\'s parent(s).
 
-        10) If [WLIST](#__RefHeading___Toc179534_3325167686) keyword add (ADD) or move (MOV) operations are performed on a non-existent well list then a new list will now be created ([#4768](https://github.com/OPM/opm-common/pull/4768)). Also, if an attempt is made to delete (DEL) a non-existent well list then an error message is output.
+        10) If WLIST keyword add (ADD) or move (MOV) operations are performed on a non-existent well list then a new list will now be created ([#4768](https://github.com/OPM/opm-common/pull/4768)). Also, if an attempt is made to delete (DEL) a non-existent well list then an error message is output.
 
-        11) OPM Flow now respects [GCONPROD](#__RefHeading___Toc146746_4203985108) keyword items 11 to 13 properly ([#6331](https://github.com/OPM/opm-simulators/pull/6331)). These are the actions to be taken if water, gas, and liquid rate constraints are violated. Previously the action would default to that specified by item 7 whichever of the constraints was violated.
+        11) OPM Flow now respects GCONPROD keyword items 11 to 13 properly ([#6331](https://github.com/OPM/opm-simulators/pull/6331)). These are the actions to be taken if water, gas, and liquid rate constraints are violated. Previously the action would default to that specified by item 7 whichever of the constraints was violated.
 
-        12) The code now protects against possible division by zero when applying the [UDQ](#__RefHeading___Toc161095_2932703077) comparison operators, which have a relative tolerance defined by the UDQPARAMS keyword item 4 ([#4758](https://github.com/OPM/opm-common/pull/4758)).
+        12) The code now protects against possible division by zero when applying the UDQ comparison operators, which have a relative tolerance defined by the UDQPARAMS keyword item 4 ([#4758](https://github.com/OPM/opm-common/pull/4758)).
 
-        13) UDQ values are now only updated once at the end of the next time step if the [UDQ](#__RefHeading___Toc161095_2932703077) keyword UPDATE flag is set to NEXT ([#4767](https://github.com/OPM/opm-common/pull/4767)). Previously, the UDQ values were also updated at the beginning of the next report step.
+        13) UDQ values are now only updated once at the end of the next time step if the UDQ keyword UPDATE flag is set to NEXT ([#4767](https://github.com/OPM/opm-common/pull/4767)). Previously, the UDQ values were also updated at the beginning of the next report step.
 
-        14) An error is now reported if the specified initial gas-oil contact is deeper than the initial oil-water contact specified on the [EQUIL](#__RefHeading___Toc135617_1317547213) keyword in the [SOLUTION](#__RefHeading___Toc43947_784232322) section ([#4771](https://github.com/OPM/opm-common/pull/4771)).
+        14) An error is now reported if the specified initial gas-oil contact is deeper than the initial oil-water contact specified on the EQUIL keyword in the SOLUTION section ([#4771](https://github.com/OPM/opm-common/pull/4771)).
 
         15) Fixed the summary (RSM) file generation failure in cases with formatted output ([#4653](https://github.com/OPM/opm-common/pull/4653)). Also, corrected the generation of the SMSPEC file name used as the source when creating RSM file output in certain special cases that were previously not handled.
 
-        16) Fixed the time step counter in cases where the [SUMTHIN](#__RefHeading___Toc28401_3671211675) or [RPTONLY](#__RefHeading___Toc210150_2884651453) keywords are used ([#4644](https://github.com/OPM/opm-common/pull/4644)).
+        16) Fixed the time step counter in cases where the SUMTHIN or RPTONLY keywords are used ([#4644](https://github.com/OPM/opm-common/pull/4644)).
 
         17) Invalid region index pairs specified when requesting inter-region flow summary vectors (RxFT) are now ignored and a warning message is output ([#4704](https://github.com/OPM/opm-common/pull/4704)).
 
         18) Since the TIME vector in the summary file is stored as a single precision floating-point number, small time steps can give TIME values that are not strictly increasing especially at long elapsed times ([#4647](https://github.com/OPM/opm-common/pull/4647)). This is known to cause problems for some post-processing tools. Summary output is now filtered to prevent this occurring.
 
-        19) The summary vector calculation of group and field level cumulative production volumes (\[FG\]xPT) have been amended to incorporate group level efficiency factors ([GEFAC](#__RefHeading___Toc268455_1366622701)) for satellite production ([#4683](https://github.com/OPM/opm-common/pull/4683)).
+        19) The summary vector calculation of group and field level cumulative production volumes (\[FG\]xPT) have been amended to incorporate group level efficiency factors (GEFAC) for satellite production ([#4683](https://github.com/OPM/opm-common/pull/4683)).
 
         20) An incorrect reference solTracerRate has been fixed in TracerModel ([#6207](https://github.com/OPM/opm-simulators/pull/6207)).
 
@@ -343,7 +343,7 @@ The following bug fixes have been incorporated into this release:
 
         31) Several bugs in the rocSPARSE backend for the GPU have been fixed including a memory leakage that caused a segmentation fault for a big model, and the rocSPARSE based CPR implementation has been updated to be inline with the OPM default CPR implementation ([#6339](https://github.com/OPM/opm-simulators/pull/6339)).
 
-        32) The baseName has been separated from the file removal regular expression since it\'s a user-controlled string that might contain regular expression metacharacters like \'+\' or \'-\' ([#6293](https://github.com/OPM/opm-simulators/pull/6293)). In rare corner cases, those characters might lead to matching too many or not enough files. The simulator now uses regular string matching for the baseName. Symbolic links and directories are omitted from consideration. Grid files are also omitted from file removal since it\'s possible for CASE.DATA to use CASE.EGRID as an input file (see the [GDFILE](#__RefHeading___Toc139346_951517595) keyword).
+        32) The baseName has been separated from the file removal regular expression since it\'s a user-controlled string that might contain regular expression metacharacters like \'+\' or \'-\' ([#6293](https://github.com/OPM/opm-simulators/pull/6293)). In rare corner cases, those characters might lead to matching too many or not enough files. The simulator now uses regular string matching for the baseName. Symbolic links and directories are omitted from consideration. Grid files are also omitted from file removal since it\'s possible for CASE.DATA to use CASE.EGRID as an input file (see the GDFILE keyword).
 
 ```{=html}
 <!-- -->
@@ -354,11 +354,11 @@ Known issues in this release of the simulator include:
 
 3)  1)  1)  There is an error with the RSM header for summary vectors whose NUMS entry in the SMSPEC file is derived from more than a single number source (e.g., single region or segment ID). This applies to all block vectors (BGPV, BOPV, BWPV, etc.), connection level quantities (COPT, etc.), and inter-region flows such as ROFT etc ([#3078](https://github.com/OPM/opm-common/issues/3078)). The work around is to plot the data in OPM ResInsight and right-click on the plot to view and copy the data.
 
-        2)  As per previous releases of the radial model, the [COORDSYS](#__RefHeading___Toc45759_719036256) keyword item three must be set to COMP to complete the circle, this has not been implemented in this release. Also there appears to be a bug for full radial models when a well goes on BHP control that causes the well not to respect the BHP constraint, this eventually causes the well to die prematurely. See [#2640](https://github.com/OPM/opm-common/pull/2640) for a discussion on the topic.
+        2)  As per previous releases of the radial model, the COORDSYS keyword item three must be set to COMP to complete the circle, this has not been implemented in this release. Also there appears to be a bug for full radial models when a well goes on BHP control that causes the well not to respect the BHP constraint, this eventually causes the well to die prematurely. See [#2640](https://github.com/OPM/opm-common/pull/2640) for a discussion on the topic.
 
-        3)  As in previous releases there are some issues with the [OPERATE](#__RefHeading___Toc64455_718313858) and [OPERATER](#__RefHeading___Toc155507_332691817) keywords associated with the input parsing; for various reasons a few of the fields require special case treatment in the grid processing, including (at least) [MULTZ](#__RefHeading___Toc80291_1778172979), [PORV](#__RefHeading___Toc96547_718313858), and [ACTNUM](#__RefHeading___Toc4410_421927891), and for those keywords the [OPERATE](#__RefHeading___Toc64455_718313858)/[OPERATER](#__RefHeading___Toc155507_332691817) keyword does not work. The work around is to use the [MULTIPLY](#__RefHeading___Toc296609_1576177388) keyword instead.
+        3)  As in previous releases there are some issues with the OPERATE and OPERATER keywords associated with the input parsing; for various reasons a few of the fields require special case treatment in the grid processing, including (at least) MULTZ, PORV, and ACTNUM, and for those keywords the OPERATE/OPERATER keyword does not work. The work around is to use the MULTIPLY keyword instead.
 
-        4)  For the [UDQ](#__RefHeading___Toc161095_2932703077) ASSIGN operator after the terminating "/" normally any comments can be entered; however, if there is "/" within the comment field, as per:
+        4)  For the UDQ ASSIGN operator after the terminating "/" normally any comments can be entered; however, if there is "/" within the comment field, as per:
 
             > ASSIGN FUNGLYLD 1.196 / Condensate Yield (63.5/56.7)/(1.0 -- 0.065)
 
@@ -366,27 +366,27 @@ Known issues in this release of the simulator include:
 
             > ASSIGN FUNGLYLD 1.196 / \-- Condensate Yield (63.5/56.7)/(1.0 -- 0.06)
 
-        5)  At the moment, one cannot initialize tracers using the [EQUALS](#__RefHeading___Toc296597_1576177388) keyword. Instead use the array format, that is the keyword followed by the required number of values, or the [TVDP](#__RefHeading___Toc210170_2884651453) keyword in the [SOLUTION](#__RefHeading___Toc43947_784232322) section to set the initial tracer concentrations as a function of depth.
+        5)  At the moment, one cannot initialize tracers using the EQUALS keyword. Instead use the array format, that is the keyword followed by the required number of values, or the TVDP keyword in the SOLUTION section to set the initial tracer concentrations as a function of depth.
 
-        6)  Currently, gas tracers cannot be used if the dissolved gas phase, as per the [DISGAS](#__RefHeading___Toc39767_2267116897) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section, is active in the model.
+        6)  Currently, gas tracers cannot be used if the dissolved gas phase, as per the DISGAS keyword in the RUNSPEC section, is active in the model.
 
         7)  The summary vector RTIPTHEA, that defines the energy in-place between the initial and the current time for regions, is not supported unlike the FTIPTHEA and BTIPTHEA vectors. Secondly, the error message:
 
-is incorrect, as the message indicates that it is being treated like a named region, as per the [FIP](#__RefHeading___Toc250560_252421755) keyword, when it is actually a [SUMMARY](#__RefHeading___Toc43949_784232322) vector ([#3870](https://github.com/OPM/opm-simulators/issues/3870)).
+is incorrect, as the message indicates that it is being treated like a named region, as per the FIP keyword, when it is actually a SUMMARY vector ([#3870](https://github.com/OPM/opm-simulators/issues/3870)).
 
 3)  1)  1)  If there are cells that are very distorted, which can occur near fault planes, then the simulator may abort because it cannot calculate the pore volume of such cells. The work around is to re-generate the grid in the static model, taking care that the cells around the fault planes are more or less orthogonal ([#2992](https://github.com/OPM/opm-common/issues/2992) and [#3770](https://github.com/OPM/opm-simulators/issues/3770)).
 
-        2)  Currently the [OPERATER](#__RefHeading___Toc155507_332691817) keyword in the [EDIT](#__RefHeading___Toc40641_784232322) section does not work with the [DEPTH](#__RefHeading___Toc58139_3701168388), [TRANX](#__RefHeading___Toc93085_718313858), [TRANY](#__RefHeading___Toc93087_718313858), and [TRANZ](#__RefHeading___Toc93089_718313858) property arrays ([#2994](https://github.com/OPM/opm-common/issues/2994) and [#748](https://github.com/OPM/opm-tests/pull/748)).
+        2)  Currently the OPERATER keyword in the EDIT section does not work with the DEPTH, TRANX, TRANY, and TRANZ property arrays ([#2994](https://github.com/OPM/opm-common/issues/2994) and [#748](https://github.com/OPM/opm-tests/pull/748)).
 
-        3)  If a standard well is fully declared in an [ACTIONX](#__RefHeading___Toc152227_2992482751) block which is then activated at a later date, and later the well is modified to be a multi-segment well using the [WELSEGS](#__RefHeading___Toc97661_3261743917) and [COMPSEGS](#__RefHeading___Toc316604_3519154785) keywords, then this will cause the simulator to abort with an assert failure. The solution to this issue is to not use this type of work flow in declaring wells ([#2891](https://github.com/OPM/opm-common/issues/2891) and [#2895](https://github.com/OPM/opm-common/pull/2895)).
+        3)  If a standard well is fully declared in an ACTIONX block which is then activated at a later date, and later the well is modified to be a multi-segment well using the WELSEGS and COMPSEGS keywords, then this will cause the simulator to abort with an assert failure. The solution to this issue is to not use this type of work flow in declaring wells ([#2891](https://github.com/OPM/opm-common/issues/2891) and [#2895](https://github.com/OPM/opm-common/pull/2895)).
 
-        4)  Although the [ACTIONX](#__RefHeading___Toc152227_2992482751) [EXIT](#__RefHeading___Toc627737_1466963378) command works as expected, it does not write out the requested RSM file at the end of the run. However, the other [SUMMARY](#__RefHeading___Toc43949_784232322) and [RESTART](#__RefHeading___Toc135629_1317547213) files are written out ([#2877](https://github.com/OPM/opm-common/issues/2877)).
+        4)  Although the ACTIONX EXIT command works as expected, it does not write out the requested RSM file at the end of the run. However, the other SUMMARY and RESTART files are written out ([#2877](https://github.com/OPM/opm-common/issues/2877)).
 
-        5)  There are small differences in the behavior of the [NEXTSTEP](#__RefHeading___Toc323446_1841740821) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section between OPM Flow and the commercial simulator that remain unresolved ([#3745](https://github.com/OPM/opm-simulators/issues/3745)).
+        5)  There are small differences in the behavior of the NEXTSTEP keyword in the RUNSPEC section between OPM Flow and the commercial simulator that remain unresolved ([#3745](https://github.com/OPM/opm-simulators/issues/3745)).
 
         6)  OPM cannot be built with dune-fem version 2.9 or later ([#4934](https://github.com/OPM/opm-simulators/issues/4934)). Please use a previous version.
 
-        7)  The simulator uses an irregular corner-point grid geometry with adjusted pore volumes to represent radial grids so it is not possible to create a full ring (360 degree disk) with only one cell in the theta direction (NY=1). The work around is to model a slice (say [DTHETA](#__RefHeading___Toc120096_2066951158)=60 degrees). Note that as the angle increases larger pore volume adjustments are required ([#4755](https://github.com/OPM/opm-simulators/issues/4755)).
+        7)  The simulator uses an irregular corner-point grid geometry with adjusted pore volumes to represent radial grids so it is not possible to create a full ring (360 degree disk) with only one cell in the theta direction (NY=1). The work around is to model a slice (say DTHETA=60 degrees). Note that as the angle increases larger pore volume adjustments are required ([#4755](https://github.com/OPM/opm-simulators/issues/4755)).
 
         8)  In some cases with the network option the simulator can wrongly report that a well has no THP constraints, for example
 
@@ -400,11 +400,11 @@ The 2025-04 release consists of some new features and various improvements and b
 
 -   -   -   A command line option \--check-satfnc-consistency has been added that enables improved saturation function consistency checking.
 
-        -   A new hybrid linear-radial filter cake modelling option LINRAD has been added to the [WINJDAM](#REF_HEADING_KEYWORD_WINJDAM) keyword.
+        -   A new hybrid linear-radial filter cake modelling option LINRAD has been added to the WINJDAM keyword.
 
         -   The simulator now prints a message to the log files and standard output for all errors that occur while parsing the input deck, previously no message was reported for some errors before aborting.
 
-        -   Gas consumption ([GCONSUMP](#__RefHeading___Toc188037_2026549522) keyword) is now supported at multiple levels in the group hierarchy.
+        -   Gas consumption (GCONSUMP keyword) is now supported at multiple levels in the group hierarchy.
 
         -   The linear setup time has been reduced when using two-stage (CPR-like) preconditioners.
 
@@ -412,63 +412,63 @@ The 2025-04 release consists of some new features and various improvements and b
 
         -   The ability to pass standard command line parameters to the simulator from Python has been added.
 
-        -   The handling of the [NUPCOL](#__RefHeading___Toc86969_4106839650) keyword has been updated.
+        -   The handling of the NUPCOL keyword has been updated.
 
         -   To avoid group control oscillations the code now limits the maximum number of times a group can switch to the same control.
 
         -   Support has been added for using the Hypre library\'s BoomerAMG solver in serial runs, providing a high-performance algebraic multigrid solver option particularly beneficial for large-scale simulations and the possibility to run the algebraic multigrid (AMG) solver on the GPU.
 
-        -   Support has been added for the [WCYCLE](#__RefHeading___Toc437133_2026549522) keyword in the [SCHEDULE](#__RefHeading___Toc43945_784232322) section that defines automatic well opening and closing cycle parameters.
+        -   Support has been added for the WCYCLE keyword in the SCHEDULE section that defines automatic well opening and closing cycle parameters.
 
         -   Support has been added for using the AmgX library in serial runs. AmgX is a high-performance algebraic multigrid solver for NVIDIA GPUs.
 
-        -   Added support for [ROCKOPTS](#__RefHeading___Toc111814_2939291539) keyword item 2 equal to STORE. If [ROCKOPTS](#__RefHeading___Toc111814_2939291539) item 2 is equal to STORE, the initial pressure is used in [ROCK](#__RefHeading___Toc45809_719036256) and [ROCKTAB](#__RefHeading___Toc107256_3812137098) keywords.
+        -   Added support for ROCKOPTS keyword item 2 equal to STORE. If ROCKOPTS item 2 is equal to STORE, the initial pressure is used in ROCK and ROCKTAB keywords.
 
         -   The simulator now uses the TPFA linearizer for Black Oil Thermal runs.
 
         -   The default load balancer has been changed to Zoltan with the grid represented by a graph. All cells potentially perforated by a well are represented by a single vertex, therefore the partitioning is unable to split a well across more than one process. This has resulted in a general improvement and has resolved convergence issues in some hard cases.
 
-        -   The [WELPI](#__RefHeading___Toc121389_332691817) and [WPIMULT](#__RefHeading___Toc121645_2412586160) keywords can now be used with the \"insert keywords\" function in [PYACTION](#__RefHeading___Toc393199_4211536922) blocks.
+        -   The WELPI and WPIMULT keywords can now be used with the \"insert keywords\" function in PYACTION blocks.
 
-        -   Added partial support for the [GSATPROD](#__RefHeading___Toc202038_870710203) keyword in the [SCHEDULE](#__RefHeading___Toc43945_784232322) section to define group satellite production rates.
+        -   Added partial support for the GSATPROD keyword in the SCHEDULE section to define group satellite production rates.
 
         -   Added command line parameters for network solver sub-iterations and pressure update damping.
 
         -   Added the following command line arguments to specify load balancing parameters: add corners to partition (\--add-corners=false), and numbers of layers overlap in parallel partition (\--num-overlap=1).
 
-        -   Support has been added for instantaneous flow rates in extended network models ([WEFAC](#__RefHeading___Toc48856_327352552) and [GEFAC](#__RefHeading___Toc268455_1366622701) item 3). The [WEFAC](#__RefHeading___Toc48856_327352552) and [GEFAC](#__RefHeading___Toc268455_1366622701) keywords are now fully supported.
+        -   Support has been added for instantaneous flow rates in extended network models (WEFAC and GEFAC item 3). The WEFAC and GEFAC keywords are now fully supported.
 
-        -   The permeability multiplication factor as a function of porosity change ([PERMFACT](#__RefHeading___Toc712146_1466963378) keyword) can now be defined for each saturation table region.
+        -   The permeability multiplication factor as a function of porosity change (PERMFACT keyword) can now be defined for each saturation table region.
 
-        -   Support has been added for the [WCONHIST](#__RefHeading___Toc134880_2055188184) and [WCONINJH](#__RefHeading___Toc146752_4203985108) keywords in [ACTIONX](#__RefHeading___Toc152227_2992482751) blocks.
+        -   Support has been added for the WCONHIST and WCONINJH keywords in ACTIONX blocks.
 
-        -   Added support for multi-segment well output to the PRT file for [RPTSCHED](#__RefHeading___Toc268459_1366622701) mnemonic WELLS=x.
+        -   Added support for multi-segment well output to the PRT file for RPTSCHED mnemonic WELLS=x.
 
-        -   Support has been added for the [RSW](#REF_HEADING_KEYWORD_RSW_10_3) keyword in the [SOLUTION](#__RefHeading___Toc43947_784232322) section to explicitly initialise the dissolved gas-water ratio in each cell when dissolved gas in the water phase has been activated.
+        -   Support has been added for the RSW keyword in the SOLUTION section to explicitly initialise the dissolved gas-water ratio in each cell when dissolved gas in the water phase has been activated.
 
-        -   Defaulted tables are now allowed in the [SWOF](#__RefHeading___Toc45811_7190362561), [SGOF](#__RefHeading___Toc106870_335817223), [SWFN](#__RefHeading___Toc106882_335817223), [SGFN](#__RefHeading___Toc106868_335817223) and [SLGOF](#__RefHeading___Toc106874_335817223) keywords provided the first table has been defined. A defaulted table is set equal to the previous table.
+        -   Defaulted tables are now allowed in the SWOF, SGOF, SWFN, SGFN and SLGOF keywords provided the first table has been defined. A defaulted table is set equal to the previous table.
 
-        -   Added support for outputting saturation function tables defined using the [SLGOF](#__RefHeading___Toc106874_335817223) keyword to the initial data ([INIT](#__RefHeading___Toc45789_719036256)) file.
+        -   Added support for outputting saturation function tables defined using the SLGOF keyword to the initial data (INIT) file.
 
-        -   The [WELTRAJ](#__RefHeading___Toc268463_13666227011) and [COMPTRAJ](#__RefHeading___Toc97651_32617439171) keywords now handle any [MAPAXES](#__RefHeading___Toc39960_2479612490) specifications.
+        -   The WELTRAJ and COMPTRAJ keywords now handle any MAPAXES specifications.
 
-        -   Support has been added for using the special name selector \'?\' in well level [UDQ](#__RefHeading___Toc161095_2932703077) assignments within an [ACTIONX](#__RefHeading___Toc152227_2992482751) block.
+        -   Support has been added for using the special name selector \'?\' in well level UDQ assignments within an ACTIONX block.
 
         -   Support has been added for gas consumption and gas import summary vectors.
 
-        -   Threshold pressures ([THPRES](#__RefHeading___Toc210168_2884651453) keyword) are now restored from the [RESTART](#__RefHeading___Toc135629_1317547213) file.
+        -   Threshold pressures (THPRES keyword) are now restored from the RESTART file.
 
-        -   Added support for the [WTMULT](#__RefHeading___Toc1141674_4263943340) and [WLIST](#__RefHeading___Toc179534_3325167686) keywords in [PYACTION](#__RefHeading___Toc393199_4211536922) blocks.
+        -   Added support for the WTMULT and WLIST keywords in PYACTION blocks.
 
-        -   Support has been added for the [GEFAC](#__RefHeading___Toc268455_1366622701) keyword in [ACTIONX](#__RefHeading___Toc152227_2992482751) blocks and in [PYACTION](#__RefHeading___Toc393199_4211536922) code.
+        -   Support has been added for the GEFAC keyword in ACTIONX blocks and in PYACTION code.
 
-        -   The use of named regions is now supported in [ACTIONX](#__RefHeading___Toc152227_2992482751) conditions.
+        -   The use of named regions is now supported in ACTIONX conditions.
 
         -   Support has been added for summary output of group and field production and injection targets.
 
-        -   Support has been added for the [CO2STORE](#__RefHeading___Toc387968_1616145207)/[H2STORE](#REF_HEADING_KEYWORD_H2STORE) specific block level CO~2~/H~2~ mass, moles and volumes in place summary variables; mass production rate (GMPR) and mass production total (GMPT) variables; and mass injection/production variables at the connection and completion level (for example, CGMIR and CGMIRL).
+        -   Support has been added for the CO2STORE/H2STORE specific block level CO~2~/H~2~ mass, moles and volumes in place summary variables; mass production rate (GMPR) and mass production total (GMPT) variables; and mass injection/production variables at the connection and completion level (for example, CGMIR and CGMIRL).
 
-        -   The microbially induced calcite precipitation model (see the [MICP](#__RefHeading___Toc383375_111689907) keyword) has been updated to use the new lineariser, support dispersion, diffusion, sources, boundary conditions, and new summary variables. In addition, the new [BIOFPARA](#REF_HEADING_KEYWORD_BIOFPARA) keyword (which can be set per [SATNUM](#__RefHeading___Toc71136_2752266063) region) is now used to set the parameters instead of the [MICPPARA](#__RefHeading___Toc394764_111689907) keyword.
+        -   The microbially induced calcite precipitation model (see the MICP keyword) has been updated to use the new lineariser, support dispersion, diffusion, sources, boundary conditions, and new summary variables. In addition, the new BIOFPARA keyword (which can be set per SATNUM region) is now used to set the parameters instead of the MICPPARA keyword.
 
 A.  1.  1.  ### New and Deprecated Command Line Options
 
@@ -508,7 +508,7 @@ In addition to the changes to the command line options the following new feature
 
 3)  1)  1)  A command line option \--check-satfnc-consistency has been added that enables improved saturation function consistency checking. In addition, the new command line option \--num-satfnc-consistency-sample-points allows the user to select the maximum number of reported failures for each individual consistency check. By default the simulator will report at most five failures for each check. If end-point scaling has been activated then the scaled curves are checked otherwise the unscaled curves are checked ([#5596](https://github.com/OPM/opm-simulators/pull/5596)).
 
-        2)  A new hybrid linear-radial filter cake modelling option LINRAD has been added to the [WINJDAM](#REF_HEADING_KEYWORD_WINJDAM) keyword in the [SCHEDULE](#__RefHeading___Toc43945_784232322) section ([#5717](https://github.com/OPM/opm-simulators/pull/5717)). The cake thickness is computed assuming linear geometry. This thickness is then used to compute a damage skin in radial geometry.
+        2)  A new hybrid linear-radial filter cake modelling option LINRAD has been added to the WINJDAM keyword in the SCHEDULE section ([#5717](https://github.com/OPM/opm-simulators/pull/5717)). The cake thickness is computed assuming linear geometry. This thickness is then used to compute a damage skin in radial geometry.
 
         3)  Running flow with the parameter \--partition-method=3 will use Zoltan partitioner with the grid represented by a graph ([#5749](https://github.com/OPM/opm-simulators/pull/5749)). All cells potentially perforated by a well are represented by a single vertex, therefore the partitioning is unable to split a well into several processes. This should lead to better partitioning results on problems with a complex well structure, where other partitioners might split wells over several processes after which some well cells would have to be remapped (when distributed wells are not allowed).
 
@@ -516,21 +516,21 @@ In addition to the changes to the command line options the following new feature
 
         5)  Support has been added for using the Hypre library\'s BoomerAMG solver, providing a high-performance algebraic multigrid solver option particularly beneficial for large-scale simulations and the possibility to run the algebraic multigrid (AMG) solver on the GPU ([#5762](https://github.com/OPM/opm-simulators/pull/5762)).
 
-        6)  Support has been added for the [WCYCLE](#__RefHeading___Toc437133_2026549522) keyword in the [SCHEDULE](#__RefHeading___Toc43945_784232322) section that defines automatic well opening and closing cycle parameters ([#5792](https://github.com/OPM/opm-simulators/pull/5792)).
+        6)  Support has been added for the WCYCLE keyword in the SCHEDULE section that defines automatic well opening and closing cycle parameters ([#5792](https://github.com/OPM/opm-simulators/pull/5792)).
 
         7)  Support has been added for using the AmgX library in serial runs ([#5808](https://github.com/OPM/opm-simulators/pull/5808)). AmgX is a high-performance algebraic multigrid solver for NVIDIA GPUs.
 
-        8)  Added support for [ROCKOPTS](#__RefHeading___Toc111814_2939291539) keyword item 2 equal to STORE ([#5785](https://github.com/OPM/opm-simulators/pull/5785)). If [ROCKOPTS](#__RefHeading___Toc111814_2939291539) item 2 is equal to STORE, the initial pressure is used in [ROCK](#__RefHeading___Toc45809_719036256) and [ROCKTAB](#__RefHeading___Toc107256_3812137098) keywords.
+        8)  Added support for ROCKOPTS keyword item 2 equal to STORE ([#5785](https://github.com/OPM/opm-simulators/pull/5785)). If ROCKOPTS item 2 is equal to STORE, the initial pressure is used in ROCK and ROCKTAB keywords.
 
         9)  A mixed precision option has been added to GPU DILU similar to that for GPU ILU0 ([#5674](https://github.com/OPM/opm-simulators/pull/5674)).
 
         10) A mixed precision option where off-diagonals are stored as float and diagonals are stored as double has been added to both GPU DILU and GPU ILU0 ([#5688](https://github.com/OPM/opm-simulators/pull/5688)).
 
-        11) The [WELPI](#__RefHeading___Toc121389_332691817) and [WPIMULT](#__RefHeading___Toc121645_2412586160) keywords can now be used with the \"insert keywords\" function in [PYACTION](#__RefHeading___Toc393199_4211536922) blocks ([#5892](https://github.com/OPM/opm-simulators/pull/5892)).
+        11) The WELPI and WPIMULT keywords can now be used with the \"insert keywords\" function in PYACTION blocks ([#5892](https://github.com/OPM/opm-simulators/pull/5892)).
 
-        12) The following cubic equations of state can now be selected using the [EOS](#REF_HEADING_KEYWORD_EOS_5_3) keyword: Peng-Robinson (PR), modified Peng-Robinson (PRCORR), Redlich-Kwong (RK) and Soave-Redlich-Kwong (SRK) when using the experimental compositional simulator ([#5886](https://github.com/OPM/opm-simulators/pull/5886)).
+        12) The following cubic equations of state can now be selected using the EOS keyword: Peng-Robinson (PR), modified Peng-Robinson (PRCORR), Redlich-Kwong (RK) and Soave-Redlich-Kwong (SRK) when using the experimental compositional simulator ([#5886](https://github.com/OPM/opm-simulators/pull/5886)).
 
-        13) Added partial support for the [GSATPROD](#__RefHeading___Toc202038_870710203) keyword in the [SCHEDULE](#__RefHeading___Toc43945_784232322) section to define group satellite production rates ([#5894](https://github.com/OPM/opm-simulators/pull/5894)).
+        13) Added partial support for the GSATPROD keyword in the SCHEDULE section to define group satellite production rates ([#5894](https://github.com/OPM/opm-simulators/pull/5894)).
 
         14) Added command line parameters for network solver sub-iterations and pressure update damping ([#5918](https://github.com/OPM/opm-simulators/pull/5918)). See the following command line arguments: maximum number of sub-iterations to update network pressures, within a single well/group control update (\--network-max-sub-iterations), damping factor in the inner network pressure update iterations (\--network-pressure-update-damping-factor), and maximum pressure update in the inner network pressure update iterations (\--network-max-pressure-update-in-bars).
 
@@ -538,7 +538,7 @@ In addition to the changes to the command line options the following new feature
 
         16) The experimental compositional simulator has been expanded to three phases by the addition of a (\"dummy\") immiscible water phase ([#5851](https://github.com/OPM/opm-simulators/pull/5851)).
 
-        17) Support has been added for instantaneous flow rates in extended network models ([WEFAC](#__RefHeading___Toc48856_327352552) and [GEFAC](#__RefHeading___Toc268455_1366622701) item 3). The [WEFAC](#__RefHeading___Toc48856_327352552) and [GEFAC](#__RefHeading___Toc268455_1366622701) keywords are now fully supported ([#5410](https://github.com/OPM/opm-simulators/pull/5410)).
+        17) Support has been added for instantaneous flow rates in extended network models (WEFAC and GEFAC item 3). The WEFAC and GEFAC keywords are now fully supported ([#5410](https://github.com/OPM/opm-simulators/pull/5410)).
 
         18) A third-order time step controller has been added that can be used as an alternative to the PID controller ([#5974](https://github.com/OPM/opm-simulators/pull/5974)). The new controller can be specified by using the \--time-step-control=\"general3rdorder\" command line argument.
 
@@ -546,17 +546,17 @@ In addition to the changes to the command line options the following new feature
 
         20) Added command line parameter (\--zoltan-phg-edge-size-threshold=0.35) that controls which hypergraph edges to omit/discard by the Zoltan partitioner ([#6036](https://github.com/OPM/opm-simulators/pull/6036)). This is to enable runtime experimentation with this aspect of the partitioning algorithm, the default value should not normally be altered.
 
-        21) The permeability multiplication factor as a function of porosity change ([PERMFACT](#__RefHeading___Toc712146_1466963378) keyword) can now be defined for each saturation table region ([#6074](https://github.com/OPM/opm-simulators/pull/6074)).
+        21) The permeability multiplication factor as a function of porosity change (PERMFACT keyword) can now be defined for each saturation table region ([#6074](https://github.com/OPM/opm-simulators/pull/6074)).
 
-        22) Added support for [RPTSCHED](#__RefHeading___Toc268459_1366622701) mnemonic WELLS=2. In particular, this appends connection level results to the injection/production output sent to the print (PRT) file ([#6099](https://github.com/OPM/opm-simulators/pull/6099)).
+        22) Added support for RPTSCHED mnemonic WELLS=2. In particular, this appends connection level results to the injection/production output sent to the print (PRT) file ([#6099](https://github.com/OPM/opm-simulators/pull/6099)).
 
-        23) Support has been added for the [WCONHIST](#__RefHeading___Toc134880_2055188184) and [WCONINJH](#__RefHeading___Toc146752_4203985108) keywords in [ACTIONX](#__RefHeading___Toc152227_2992482751) blocks ([#6092](https://github.com/OPM/opm-simulators/pull/6092)).
+        23) Support has been added for the WCONHIST and WCONINJH keywords in ACTIONX blocks ([#6092](https://github.com/OPM/opm-simulators/pull/6092)).
 
-        24) Added support for multi-segment well output to the PRT file for [RPTSCHED](#__RefHeading___Toc268459_1366622701) mnemonic WELLS=x ([#6110](https://github.com/OPM/opm-simulators/pull/6110)).
+        24) Added support for multi-segment well output to the PRT file for RPTSCHED mnemonic WELLS=x ([#6110](https://github.com/OPM/opm-simulators/pull/6110)).
 
-        25) Support has been added for the [RSW](#REF_HEADING_KEYWORD_RSW_10_3) keyword in the [SOLUTION](#__RefHeading___Toc43947_784232322) section to explicitly initialise the dissolved gas-water ratio in each cell when dissolved gas in the water phase has been activated by specifying the [DISGASW](#__RefHeading___Toc39767_22671168971) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section ([#6111](https://github.com/OPM/opm-simulators/pull/6111)).
+        25) Support has been added for the RSW keyword in the SOLUTION section to explicitly initialise the dissolved gas-water ratio in each cell when dissolved gas in the water phase has been activated by specifying the DISGASW keyword in the RUNSPEC section ([#6111](https://github.com/OPM/opm-simulators/pull/6111)).
 
-        26) Added support for block summary vectors related to mass and volume in-place for [CO2STORE](#__RefHeading___Toc387968_1616145207) and [H2STORE](#REF_HEADING_KEYWORD_H2STORE) runs including: BGMIP, BGMGP, BGMDS, BGMST, BGMUS, BGMTR, BGMMO, BGKTR, BGKMO, BGCDI, BGCDM, BGKDI, BGKDM, BWCD, BWIPG, BWIPL ([#6127](https://github.com/OPM/opm-simulators/pull/6127)).
+        26) Added support for block summary vectors related to mass and volume in-place for CO2STORE and H2STORE runs including: BGMIP, BGMGP, BGMDS, BGMST, BGMUS, BGMTR, BGMMO, BGKTR, BGKMO, BGCDI, BGCDM, BGKDI, BGKDM, BWCD, BWIPG, BWIPL ([#6127](https://github.com/OPM/opm-simulators/pull/6127)).
 
         27) Added the option to merge each well with a layer(s) of cells surrounding it, in order to keep the well further from the subdomain boundary, when partitioning the grid ([#811](https://github.com/OPM/opm-grid/pull/811)). To use this option, flow must be called with parameter \--zoltan-params=\*.json taking a json file. The json file must contain the keyword EnvelopeWellLayers with the number of layers (default 0). The feature is supported only by the partitioner using the GraphOfGrid (\--partition-method=3).
 
@@ -564,19 +564,19 @@ In addition to the changes to the command line options the following new feature
 
         29) The zoltanGoG (Zoltan Graph of Grid) partitioner has replaced zoltan as the default partitioner (if there are no wells zoltanGoG is equivalent to zoltan) ([#840](https://github.com/OPM/opm-grid/pull/840)).
 
-        30) Defaulted tables are now allowed in the [SWOF](#__RefHeading___Toc45811_7190362561), [SGOF](#__RefHeading___Toc106870_335817223), [SWFN](#__RefHeading___Toc106882_335817223), [SGFN](#__RefHeading___Toc106868_335817223) and [SLGOF](#__RefHeading___Toc106874_335817223) keywords provided the first table has been defined ([#4308](https://github.com/OPM/opm-common/pull/4308)). A defaulted table is set equal to the previous table.
+        30) Defaulted tables are now allowed in the SWOF, SGOF, SWFN, SGFN and SLGOF keywords provided the first table has been defined ([#4308](https://github.com/OPM/opm-common/pull/4308)). A defaulted table is set equal to the previous table.
 
-        31) Added support for \'LINRAD\' as a valid option for item 2 (GEOMETRY) of the keyword [WINJDAM](#REF_HEADING_KEYWORD_WINJDAM) ([#4320](https://github.com/OPM/opm-common/pull/4320)). This option specifies a hybrid filter cake model where the cake thickness is computed assuming linear geometry (as with item 2 = LINEAR). This thickness is then used to compute a damage skin in radial geometry (as with item 2 = [RADIAL](#__RefHeading___Toc51752_2905512151)).
+        31) Added support for \'LINRAD\' as a valid option for item 2 (GEOMETRY) of the keyword WINJDAM ([#4320](https://github.com/OPM/opm-common/pull/4320)). This option specifies a hybrid filter cake model where the cake thickness is computed assuming linear geometry (as with item 2 = LINEAR). This thickness is then used to compute a damage skin in radial geometry (as with item 2 = RADIAL).
 
         32) Support has been added for gas consumption and gas import summary vectors GGCR, GGIMR, GGCT, GGIMT, FGCR, FGIMR, FGCT and FGIMT and for the corresponding restart input/output ([#4342](https://github.com/OPM/opm-common/pull/4342)).
 
-        33) Support has been added for group name pattern matching in [UDQ](#__RefHeading___Toc161095_2932703077) assignments ([#4433](https://github.com/OPM/opm-common/pull/4433)).
+        33) Support has been added for group name pattern matching in UDQ assignments ([#4433](https://github.com/OPM/opm-common/pull/4433)).
 
         34) Support has been added for summary output of group (and field) production and injection targets ([#4500](https://github.com/OPM/opm-common/pull/4500)). The following summary vectors are now supported: G\[OWGLV\]PRT, G\[WGV\]IRT, F\[OWGLV\]PRT, and F\[WGV\]IRT.
 
-        35) Support has been added for the [CO2STORE](#__RefHeading___Toc387968_1616145207)/[H2STORE](#REF_HEADING_KEYWORD_H2STORE) specific block level CO~2~/H~2~ mass, moles and volumes in place summary variables; mass production rate (GMPR) and mass production total (GMPT) variables; and mass injection/production variables at the connection and completion level (for example, CGMIR and CGMIRL) ([#4550](https://github.com/OPM/opm-common/pull/4550)).
+        35) Support has been added for the CO2STORE/H2STORE specific block level CO~2~/H~2~ mass, moles and volumes in place summary variables; mass production rate (GMPR) and mass production total (GMPT) variables; and mass injection/production variables at the connection and completion level (for example, CGMIR and CGMIRL) ([#4550](https://github.com/OPM/opm-common/pull/4550)).
 
-        36) The microbially induced calcite precipitation model (see the [MICP](#__RefHeading___Toc383375_111689907) keyword) has been updated to use the new lineariser, support dispersion, diffusion, sources, boundary conditions, and new summary variables ([#4538](https://github.com/OPM/opm-common/pull/4538)). In addition, the new [BIOFPARA](#REF_HEADING_KEYWORD_BIOFPARA) keyword (which can be set per [SATNUM](#__RefHeading___Toc71136_2752266063) region) is now used to set the parameters instead of the [MICPPARA](#__RefHeading___Toc394764_111689907) keyword.
+        36) The microbially induced calcite precipitation model (see the MICP keyword) has been updated to use the new lineariser, support dispersion, diffusion, sources, boundary conditions, and new summary variables ([#4538](https://github.com/OPM/opm-common/pull/4538)). In addition, the new BIOFPARA keyword (which can be set per SATNUM region) is now used to set the parameters instead of the MICPPARA keyword.
 
 ```{=html}
 <!-- -->
@@ -587,7 +587,7 @@ Improvements to simulator in this release include the following:
 
 3)  1)  1)  When partitioning, the simulator now only accounts for wells that might be active at some point in time during the run ([#5609](https://github.com/OPM/opm-simulators/pull/5609)).
 
-        2)  Logging has been added for [PYACTION](#__RefHeading___Toc393199_4211536922) blocks similar to the current logging for [ACTIONX](#__RefHeading___Toc152227_2992482751) blocks ([#5699](https://github.com/OPM/opm-simulators/pull/5699)).
+        2)  Logging has been added for PYACTION blocks similar to the current logging for ACTIONX blocks ([#5699](https://github.com/OPM/opm-simulators/pull/5699)).
 
         3)  The experimental compositional simulator now outputs INIT, EGRID, SMSPEC, UNRST and UNSMRY files ([#5687](https://github.com/OPM/opm-simulators/pull/5687)).
 
@@ -601,25 +601,25 @@ Improvements to simulator in this release include the following:
 
         8)  If one well operating on a well constraint (typically THP or BHP) in a group struggles to converge it may lead to problems for the other wells in the group. In this case, the simulator now only shuts the unconverged well rather than all the wells in the group ([#5735](https://github.com/OPM/opm-simulators/pull/5735)).
 
-        9)  Previously, using the [WTEST](#__RefHeading___Toc121925_2556401936) keyword on a gas lifted well typically resulted in the maximum artificial lift quantity (ALQ) being used after the well was reopened. The simulator now optimises the ALQ to give the maximum incremental gradient. This has reduced the large spikes in ALQ seen after reopening wells in the gas lift test cases ([#5757](https://github.com/OPM/opm-simulators/pull/5757)).
+        9)  Previously, using the WTEST keyword on a gas lifted well typically resulted in the maximum artificial lift quantity (ALQ) being used after the well was reopened. The simulator now optimises the ALQ to give the maximum incremental gradient. This has reduced the large spikes in ALQ seen after reopening wells in the gas lift test cases ([#5757](https://github.com/OPM/opm-simulators/pull/5757)).
 
         10) Debug output from THP calculations previously output to the PRT file will now be output to the DBG file ([#5761](https://github.com/OPM/opm-simulators/pull/5761)). The volume of output can be large especially for cases with gas lift.
 
-        11) Gas consumption ([GCONSUMP](#__RefHeading___Toc188037_2026549522) keyword) is now supported at multiple levels in the group hierarchy ([#5739](https://github.com/OPM/opm-simulators/pull/5739)).
+        11) Gas consumption (GCONSUMP keyword) is now supported at multiple levels in the group hierarchy ([#5739](https://github.com/OPM/opm-simulators/pull/5739)).
 
         12) The simulator now avoids duplicating the output of warnings and errors to the standard error stream (stderr) ([#5765](https://github.com/OPM/opm-simulators/pull/5765)).
 
-        13) The linear setup time has been reduced when using two-stage (CPR-like) preconditioners. Previously, the second stage ILU0 preconditioner was unnecessarily recreated every Newton iteration. The simulator now only updates the preconditioner ([#5758](https://github.com/OPM/opm-simulators/pull/5758)). This will be especially important when using GPU preconditioners with [CPR](#__RefHeading___Toc27871_3671211675), as these GPU preconditioners typically involve expensive GPU allocations, matrix analysis and autotuning.
+        13) The linear setup time has been reduced when using two-stage (CPR-like) preconditioners. Previously, the second stage ILU0 preconditioner was unnecessarily recreated every Newton iteration. The simulator now only updates the preconditioner ([#5758](https://github.com/OPM/opm-simulators/pull/5758)). This will be especially important when using GPU preconditioners with CPR, as these GPU preconditioners typically involve expensive GPU allocations, matrix analysis and autotuning.
 
         14) Network solver sub-iterations have been added to avoid updating the gas lift, group controls and so on at every network update ([#5767](https://github.com/OPM/opm-simulators/pull/5767)). This gives a significant speed up in cases including gas lift and network.
 
         15) The ability to pass standard command line parameters to the simulator from Python has been added ([#5760](https://github.com/OPM/opm-simulators/pull/5760)).
 
-        16) The handling of the [NUPCOL](#__RefHeading___Toc86969_4106839650) keyword has been updated ([#5724](https://github.com/OPM/opm-simulators/pull/5724)). Wells are no longer allowed to change to group control when the number of iterations is greater than [NUPCOL](#__RefHeading___Toc86969_4106839650). Voidage replacement and reinjection target rates are updated even if the number of iterations is greater than [NUPCOL](#__RefHeading___Toc86969_4106839650) provided the change is greater than a specified relative tolerance (see \--nupcol-group-rate-tolerance).
+        16) The handling of the NUPCOL keyword has been updated ([#5724](https://github.com/OPM/opm-simulators/pull/5724)). Wells are no longer allowed to change to group control when the number of iterations is greater than NUPCOL. Voidage replacement and reinjection target rates are updated even if the number of iterations is greater than NUPCOL provided the change is greater than a specified relative tolerance (see \--nupcol-group-rate-tolerance).
 
-        17) The fine-level smoothing parameters (pre_smooth and post_smooth) for the [CPR](#__RefHeading___Toc27871_3671211675) AMG implementation in OPM have been exposed by adding them to the linear solver JSON configuration tree output to the DBG file ([#5786](https://github.com/OPM/opm-simulators/pull/5786)).
+        17) The fine-level smoothing parameters (pre_smooth and post_smooth) for the CPR AMG implementation in OPM have been exposed by adding them to the linear solver JSON configuration tree output to the DBG file ([#5786](https://github.com/OPM/opm-simulators/pull/5786)).
 
-        18) To avoid group control oscillations the code now limits the maximum number of times a group can switch to the same control ([#5753](https://github.com/OPM/opm-simulators/pull/5753)). The number of switches is only checked when the number of iterations is greater than [NUPCOL](#__RefHeading___Toc86969_4106839650) (that is multiple switches are allowed whilst the network is iterating). See the command line argument \--maximum-number-of-group-switches.
+        18) To avoid group control oscillations the code now limits the maximum number of times a group can switch to the same control ([#5753](https://github.com/OPM/opm-simulators/pull/5753)). The number of switches is only checked when the number of iterations is greater than NUPCOL (that is multiple switches are allowed whilst the network is iterating). See the command line argument \--maximum-number-of-group-switches.
 
         19) The code now ensures that tracer flows for cross-flowing injector connections are included ([#5789](https://github.com/OPM/opm-simulators/pull/5789)).
 
@@ -641,11 +641,11 @@ Improvements to simulator in this release include the following:
 
         28) Empty command line arguments are now ignored, this avoids error messages of the form \"Parameter \'EclDeckFileName\' specified multiple times as a command line parameter\" ([#5679](https://github.com/OPM/opm-simulators/pull/5679)).
 
-        29) In an extended network model the bottommost (leaf) nodes associated with wells must be the same as those defined by [GRUPTREE](#__RefHeading___Toc118321_1596574740) keyword. However, the extended network model will now allow empty leaf nodes (with no wells) that do not exist in the [GRUPTREE](#__RefHeading___Toc118321_1596574740) ([#5919](https://github.com/OPM/opm-simulators/pull/5919), [#6010](https://github.com/OPM/opm-simulators/pull/6010)).
+        29) In an extended network model the bottommost (leaf) nodes associated with wells must be the same as those defined by GRUPTREE keyword. However, the extended network model will now allow empty leaf nodes (with no wells) that do not exist in the GRUPTREE ([#5919](https://github.com/OPM/opm-simulators/pull/5919), [#6010](https://github.com/OPM/opm-simulators/pull/6010)).
 
         30) Improved the logic for shutting failed wells ([#5900](https://github.com/OPM/opm-simulators/pull/5900)). In particular, allow for failed wells to shut even though they haven\'t failed consistently in the last 3 attempts if the time step has already been reduced enough.
 
-        31) A check has been added to guard against high roughness values in the [WELSEGS](#__RefHeading___Toc97661_3261743917) keyword (that can result in a singularity) whilst reading the input deck ([#5945](https://github.com/OPM/opm-simulators/pull/5945)).
+        31) A check has been added to guard against high roughness values in the WELSEGS keyword (that can result in a singularity) whilst reading the input deck ([#5945](https://github.com/OPM/opm-simulators/pull/5945)).
 
         32) Information about wells being stopped or revived before the timestep has converged will now only be sent to the debug (DBG) file. However, changes to the well status when the timestep has converged will still be output to the terminal and the print (PRT) file ([#6012](https://github.com/OPM/opm-simulators/pull/6012)).
 
@@ -655,39 +655,39 @@ Improvements to simulator in this release include the following:
 
         35) The gaslift optimiser information messages are now output to the debug (DBG) file rather than the print (PRT) file to avoid exceeding the message limit ([#6082](https://github.com/OPM/opm-simulators/pull/6082)).
 
-        36) Updates generated by [PYACTION](#__RefHeading___Toc393199_4211536922) or [ACTIONX](#__RefHeading___Toc152227_2992482751) blocks are now collected and applied together ([#6070](https://github.com/OPM/opm-simulators/pull/6070)). Previously, the updates would have been applied one at a time, potentially causing unnecessary recalculations.
+        36) Updates generated by PYACTION or ACTIONX blocks are now collected and applied together ([#6070](https://github.com/OPM/opm-simulators/pull/6070)). Previously, the updates would have been applied one at a time, potentially causing unnecessary recalculations.
 
-        37) When testing a well (see [WTEST](#__RefHeading___Toc121925_2556401936) keyword) belonging to a group that corresponds to a node in an extended network model (see [NETWORK](#__RefHeading___Toc311583_1841740821) keyword) the well\'s dynamic THP constraint will now be set based on the network\'s nodal pressure ([#6116](https://github.com/OPM/opm-simulators/pull/6116)).
+        37) When testing a well (see WTEST keyword) belonging to a group that corresponds to a node in an extended network model (see NETWORK keyword) the well\'s dynamic THP constraint will now be set based on the network\'s nodal pressure ([#6116](https://github.com/OPM/opm-simulators/pull/6116)).
 
         38) Previously, the original fluid in place values in a restart run would be zero ([#6119](https://github.com/OPM/opm-simulators/pull/6119)). If a restart file is available for report step zero then this will now be used to generate the original fluids in place.
 
-        39) The well rates used to avoid oscillations are now taken from the network iterations (see [NUPCOL](#__RefHeading___Toc86969_4106839650) keyword) rather than using the previous well rates ([#6128](https://github.com/OPM/opm-simulators/pull/6128)). This is expected to give more accurate results in particular when wells startup.
+        39) The well rates used to avoid oscillations are now taken from the network iterations (see NUPCOL keyword) rather than using the previous well rates ([#6128](https://github.com/OPM/opm-simulators/pull/6128)). This is expected to give more accurate results in particular when wells startup.
 
-        40) The maximum number of Newton iterations used to updated well targets (see [NUPCOL](#__RefHeading___Toc86969_4106839650) keyword) is now applied correctly, rather than the specified value plus one ([#6100](https://github.com/OPM/opm-simulators/pull/6100)). Also, gas lift is no longer optimized in the last iteration to allow the network to converge (unless the maximum number of iterations is less than two).
+        40) The maximum number of Newton iterations used to updated well targets (see NUPCOL keyword) is now applied correctly, rather than the specified value plus one ([#6100](https://github.com/OPM/opm-simulators/pull/6100)). Also, gas lift is no longer optimized in the last iteration to allow the network to converge (unless the maximum number of iterations is less than two).
 
-        41) The value of the saturated dissolution factor is now stored giving a significant speed up in cases with convective mixing (see [DRSDTCON](#__RefHeading___Toc481925_1297399298) keyword) ([#5774](https://github.com/OPM/opm-simulators/pull/5774)).
+        41) The value of the saturated dissolution factor is now stored giving a significant speed up in cases with convective mixing (see DRSDTCON keyword) ([#5774](https://github.com/OPM/opm-simulators/pull/5774)).
 
         42) Some bugs that were present in the Non-Linear Domain Decomposition (NLDD) reporting have been fixed, and the way statistics from the NLDD solver are collected, displayed, and analysed has been improved ([#6124](https://github.com/OPM/opm-simulators/pull/6124)).
 
         43) The well equation is no longer re-solved when computing the initial guess for BHP at the THP constraint if the well state is updated ([#6081](https://github.com/OPM/opm-simulators/pull/6081)).
 
-        44) Non-neighbour connections generated due to pinched out cells (see [PINCH](#__RefHeading___Toc74261_2479612490) keyword) have been added to the log output ([#798](https://github.com/OPM/opm-grid/pull/798)).
+        44) Non-neighbour connections generated due to pinched out cells (see PINCH keyword) have been added to the log output ([#798](https://github.com/OPM/opm-grid/pull/798)).
 
         45) The code now uses unsigned integers when processing the grid to allow larger grid sizes ([#818](https://github.com/OPM/opm-grid/pull/818)).
 
         46) Support for lowercase file extensions has been added to the file conversion utility (convertECL) ([#4274](https://github.com/OPM/opm-common/pull/4274)).
 
-        47) Added support for outputting saturation function tables defined using the [SLGOF](#__RefHeading___Toc106874_335817223) keyword to the initial data ([INIT](#__RefHeading___Toc45789_719036256)) file ([#4307](https://github.com/OPM/opm-common/pull/4307)).
+        47) Added support for outputting saturation function tables defined using the SLGOF keyword to the initial data (INIT) file ([#4307](https://github.com/OPM/opm-common/pull/4307)).
 
         48) Added GPU support for evaluation of CO~2~ PVT functions ([#4222](https://github.com/OPM/opm-common/pull/4222)).
 
-        49) The simulator now allows a non-zero artificial lift quantity (ALQ) to be used in the defining expression of a user defined quantity ([UDQ](#__RefHeading___Toc161095_2932703077)) in the case where no vertical flow performance (VFP) tables have been provided ([#4324](https://github.com/OPM/opm-common/pull/4324)).
+        49) The simulator now allows a non-zero artificial lift quantity (ALQ) to be used in the defining expression of a user defined quantity (UDQ) in the case where no vertical flow performance (VFP) tables have been provided ([#4324](https://github.com/OPM/opm-common/pull/4324)).
 
-        50) The simulator now gives a more meaningful error message if the well connections defined in a [COMPDAT](#__RefHeading___Toc97651_3261743917) keyword within an [ACTIONX](#__RefHeading___Toc152227_2992482751) block are not part of the grid ([#4336](https://github.com/OPM/opm-common/pull/4336)).
+        50) The simulator now gives a more meaningful error message if the well connections defined in a COMPDAT keyword within an ACTIONX block are not part of the grid ([#4336](https://github.com/OPM/opm-common/pull/4336)).
 
-        51) Added support for restart runs with the standard network model, where the network dimensions have not been defined by the [NETWORK](#__RefHeading___Toc311583_1841740821) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section ([#4337](https://github.com/OPM/opm-common/pull/4337)).
+        51) Added support for restart runs with the standard network model, where the network dimensions have not been defined by the NETWORK keyword in the RUNSPEC section ([#4337](https://github.com/OPM/opm-common/pull/4337)).
 
-        52) Support has been added for using the special name selector \'?\' in well level [UDQ](#__RefHeading___Toc161095_2932703077) assignments within an [ACTIONX](#__RefHeading___Toc152227_2992482751) block ([#4343](https://github.com/OPM/opm-common/pull/4343)). In particular, OPM Flow now supports [ACTIONX](#__RefHeading___Toc152227_2992482751) blocks like
+        52) Support has been added for using the special name selector \'?\' in well level UDQ assignments within an ACTIONX block ([#4343](https://github.com/OPM/opm-common/pull/4343)). In particular, OPM Flow now supports ACTIONX blocks like
 
             > ACTIONX
 
@@ -711,51 +711,51 @@ Improvements to simulator in this release include the following:
 
         53) Support has been added for using a leading backslash (\\) to disambiguate a leading wildcard characters (\* or ?) in a name pattern as being truly a wildcard, for example wells matching \'\\\*PROD\' rather than the well list \'\*PRODS\' ([#4345](https://github.com/OPM/opm-common/pull/4345)).
 
-        54) Threshold pressures ([THPRES](#__RefHeading___Toc210168_2884651453) keyword) are now restored from the [RESTART](#__RefHeading___Toc135629_1317547213) file ([#5743](https://github.com/OPM/opm-simulators/pull/5743), [#4347](https://github.com/OPM/opm-common/pull/4347)).
+        54) Threshold pressures (THPRES keyword) are now restored from the RESTART file ([#5743](https://github.com/OPM/opm-simulators/pull/5743), [#4347](https://github.com/OPM/opm-common/pull/4347)).
 
-        55) The code will now issue a warning message if the [THPRES](#__RefHeading___Toc210168_2884651453) keyword is present in a restart run (and it will be ignored) ([#4347](https://github.com/OPM/opm-common/pull/4347)). When performing a restart the solution section should be updated, and in particular the [THPRES](#__RefHeading___Toc210168_2884651453) keyword should be removed. The [THPRES](#__RefHeading___Toc210168_2884651453) values should be read from the restart file instead.
+        55) The code will now issue a warning message if the THPRES keyword is present in a restart run (and it will be ignored) ([#4347](https://github.com/OPM/opm-common/pull/4347)). When performing a restart the solution section should be updated, and in particular the THPRES keyword should be removed. The THPRES values should be read from the restart file instead.
 
         56) Added restart file support for field level user defined arguments (UDA) ([#4357](https://github.com/OPM/opm-common/pull/4357)).
 
-        57) The default well injection temperature (see the [WTEMP](#__RefHeading___Toc192631_213178337) keyword in the [SCHEDULE](#__RefHeading___Toc43945_784232322) section) has been changed from standard conditions to zero degrees Celsius in runs using the temperature modelling option (see the [TEMP](#__RefHeading___Toc146397_3544483072) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section) ([#4042](https://github.com/OPM/opm-common/pull/4042)).
+        57) The default well injection temperature (see the WTEMP keyword in the SCHEDULE section) has been changed from standard conditions to zero degrees Celsius in runs using the temperature modelling option (see the TEMP keyword in the RUNSPEC section) ([#4042](https://github.com/OPM/opm-common/pull/4042)).
 
         58) The depth correction algorithm for the WBPn well block pressure summary vectors has been revised ([#4376](https://github.com/OPM/opm-common/pull/4376)). The revised approach uses the common mixture density, but corrects each cell pressure individually based on that cell\'s centre depth before aggregating the per-connection contributions.
 
-        59) Added support for the [WTMULT](#__RefHeading___Toc1141674_4263943340) and [WLIST](#__RefHeading___Toc179534_3325167686) keywords in [PYACTION](#__RefHeading___Toc393199_4211536922) blocks ([#4397](https://github.com/OPM/opm-common/pull/4397), [#4402](https://github.com/OPM/opm-common/pull/4402)).
+        59) Added support for the WTMULT and WLIST keywords in PYACTION blocks ([#4397](https://github.com/OPM/opm-common/pull/4397), [#4402](https://github.com/OPM/opm-common/pull/4402)).
 
         60) Variable and function names in the Python Schedule class have been changed from \"timestep\" to \"reportstep\" where these refer to report steps rather than time steps ([#4412](https://github.com/OPM/opm-common/pull/4412)).
 
         61) Added documentation to Python classes: SummayState, Schedule, Connection, Deck, DeckKeyword, DeckItem, DeckRecord, UDAValue, EclipseGrid, EclipseState, ESmry and EGrid ([#4405](https://github.com/OPM/opm-common/pull/4405), [#4413](https://github.com/OPM/opm-common/pull/4413), [#4414](https://github.com/OPM/opm-common/pull/4414), [#4428](https://github.com/OPM/opm-common/pull/4428), [#4497](https://github.com/OPM/opm-common/pull/4497)).
 
-        62) Support has been added for the [GEFAC](#__RefHeading___Toc268455_1366622701) keyword in [ACTIONX](#__RefHeading___Toc152227_2992482751) blocks and in [PYACTION](#__RefHeading___Toc393199_4211536922) code ([#4408](https://github.com/OPM/opm-common/pull/4408)).
+        62) Support has been added for the GEFAC keyword in ACTIONX blocks and in PYACTION code ([#4408](https://github.com/OPM/opm-common/pull/4408)).
 
-        63) The use of named regions is now supported in [ACTIONX](#__RefHeading___Toc152227_2992482751) conditions, for example \'RPR 1 RE3 \< 215 /\' ([#4449](https://github.com/OPM/opm-common/pull/4449)).
+        63) The use of named regions is now supported in ACTIONX conditions, for example \'RPR 1 RE3 \< 215 /\' ([#4449](https://github.com/OPM/opm-common/pull/4449)).
 
-        64) Added support for writing the combined thermal conductivity of rock plus fluid array ([THCONR](#__RefHeading___Toc132284_650382403)) to the initial data ([INIT](#__RefHeading___Toc45789_719036256)) file ([#4474](https://github.com/OPM/opm-common/pull/4474)).
+        64) Added support for writing the combined thermal conductivity of rock plus fluid array (THCONR) to the initial data (INIT) file ([#4474](https://github.com/OPM/opm-common/pull/4474)).
 
-        65) If necessary the gas PVT tables entered using either the [PVDG](#__RefHeading___Toc104056_57619843) or [PVTG](#__RefHeading___Toc104060_57619843) keywords are now extended down to a pressure of 1 barsa ([#3779](https://github.com/OPM/opm-common/pull/3779)). This change guards against potential negative formation volume factors (densities) and/or viscosities when extrapolating the original tables to pressures in the order of one atmosphere.
+        65) If necessary the gas PVT tables entered using either the PVDG or PVTG keywords are now extended down to a pressure of 1 barsa ([#3779](https://github.com/OPM/opm-common/pull/3779)). This change guards against potential negative formation volume factors (densities) and/or viscosities when extrapolating the original tables to pressures in the order of one atmosphere.
 
-        66) The surface densities of CO~2~ and brine are now output to the terminal in the same units as the input deck for [CO2STORE](#__RefHeading___Toc387968_1616145207)/[CO2SOL](#REF_HEADING_KEYWORD_CO2SOL) runs ([#4510](https://github.com/OPM/opm-common/pull/4510)).
+        66) The surface densities of CO~2~ and brine are now output to the terminal in the same units as the input deck for CO2STORE/CO2SOL runs ([#4510](https://github.com/OPM/opm-common/pull/4510)).
 
         67) The simulator now avoids calculating the vapour pressure when not required for the CO~2~-Brine PVT model ([#4515](https://github.com/OPM/opm-common/pull/4515)). Note that in Spycher and Pruess 2010 they use 31 °C which is inconsistent with the critical temperature (30.95 °C) used in OPM Flow.
 
         68) The simulator now properly restores gas-lift optimisation parameters following a restart ([#4517](https://github.com/OPM/opm-common/pull/4517)).
 
-        69) [NODEPROP](#__RefHeading___Toc212708_2026549522) keyword Item 4 (GASLIFT) for leaf nodes in an extended network model is now saved to and restored from the restart file ([#4499](https://github.com/OPM/opm-common/pull/4499)).
+        69) NODEPROP keyword Item 4 (GASLIFT) for leaf nodes in an extended network model is now saved to and restored from the restart file ([#4499](https://github.com/OPM/opm-common/pull/4499)).
 
-        70) The [COMPSEGS](#__RefHeading___Toc316604_3519154785) keyword now allows the distance to the start of the connection (Item 5) to be equal to the distance to the end of the connection (Item 6) to define very short completion intervals ([#4265](https://github.com/OPM/opm-common/pull/4265)).
+        70) The COMPSEGS keyword now allows the distance to the start of the connection (Item 5) to be equal to the distance to the end of the connection (Item 6) to define very short completion intervals ([#4265](https://github.com/OPM/opm-common/pull/4265)).
 
         71) A warning is now issued if the depth change along a well segment is larger than the segment length ([#3976](https://github.com/OPM/opm-common/pull/3976)).
 
-        72) Invalid keyword combinations encountered whilst parsing [ACTIONX](#__RefHeading___Toc152227_2992482751) blocks are now ignored ([#4511](https://github.com/OPM/opm-common/pull/4511)).
+        72) Invalid keyword combinations encountered whilst parsing ACTIONX blocks are now ignored ([#4511](https://github.com/OPM/opm-common/pull/4511)).
 
-        73) If a well is completed in a numerical aquifer cell then the connection properties are now taken from the numerical aquifer rather than the grid cell ([#4547](https://github.com/OPM/opm-common/pull/4547)). Previously, this could give not-a-number (NaN) values for the permeability-thickness (kh) product and the connection length since the grid\'s permeability would be explicitly reset to zero in numerical aquifer cells. This impacts the [WELSPECS](#__RefHeading___Toc268463_1366622701) report generated by the [RPTSCHED](#__RefHeading___Toc268459_1366622701) keyword and the SCON restart file array.
+        73) If a well is completed in a numerical aquifer cell then the connection properties are now taken from the numerical aquifer rather than the grid cell ([#4547](https://github.com/OPM/opm-common/pull/4547)). Previously, this could give not-a-number (NaN) values for the permeability-thickness (kh) product and the connection length since the grid\'s permeability would be explicitly reset to zero in numerical aquifer cells. This impacts the WELSPECS report generated by the RPTSCHED keyword and the SCON restart file array.
 
-        74) Report step zero will now always be written to the restart file (unless this has been explicitly turned off) ([#4545](https://github.com/OPM/opm-common/pull/4545)). This is used to generate initial fluid in place ([FIP](#__RefHeading___Toc250560_252421755)) reports in restart runs.
+        74) Report step zero will now always be written to the restart file (unless this has been explicitly turned off) ([#4545](https://github.com/OPM/opm-common/pull/4545)). This is used to generate initial fluid in place (FIP) reports in restart runs.
 
-        75) Support has been restored for the old-style \"integer control\" format for PRT file report generation using the [RPTSCHED](#__RefHeading___Toc268459_1366622701) keyword ([#4526](https://github.com/OPM/opm-common/pull/4526)).
+        75) Support has been restored for the old-style \"integer control\" format for PRT file report generation using the RPTSCHED keyword ([#4526](https://github.com/OPM/opm-common/pull/4526)).
 
-        76) The lookup of source terms defined by the [SOURCE](#REF_HEADING_KEYWORD_SOURCE_12_3) keyword is now much faster ([#4553](https://github.com/OPM/opm-common/pull/4553)). Previously, the lookup could be very slow when using the [SOURCE](#REF_HEADING_KEYWORD_SOURCE_12_3) keyword to couple OPM Flow with another simulator where there could be a source term in every cell.
+        76) The lookup of source terms defined by the SOURCE keyword is now much faster ([#4553](https://github.com/OPM/opm-common/pull/4553)). Previously, the lookup could be very slow when using the SOURCE keyword to couple OPM Flow with another simulator where there could be a source term in every cell.
 
 ```{=html}
 <!-- -->
@@ -782,7 +782,7 @@ The following bug fixes and improvements have been incorporated into this releas
 
         9)  A potential deadlock that could occur if the Unsymmetric MultiFront (UMFPACK) solver encountered a singular matrix has been fixed ([#5773](https://github.com/OPM/opm-simulators/pull/5773)).
 
-        10) The simulator now aways calculates the initial in place volumes since these may be used by various keywords in the [SCHEDULE](#__RefHeading___Toc43945_784232322) section even if [FIP](#__RefHeading___Toc250560_252421755) is not requested by the [RPTSOL](#__RefHeading___Toc135631_1317547213) keyword ([#5784](https://github.com/OPM/opm-simulators/pull/5784)).
+        10) The simulator now aways calculates the initial in place volumes since these may be used by various keywords in the SCHEDULE section even if FIP is not requested by the RPTSOL keyword ([#5784](https://github.com/OPM/opm-simulators/pull/5784)).
 
         11) The code now allows efficiency scaling factors to be queried in off-process wells where required ([#5816](https://github.com/OPM/opm-simulators/pull/5816)). Previously, this could cause MPI to hang due to an exception thrown by well_state\[name\].
 
@@ -800,9 +800,9 @@ The following bug fixes and improvements have been incorporated into this releas
 
         18) Corrected application of THP constraints for wells subject to group constraints ([#6018](https://github.com/OPM/opm-simulators/pull/6018)).
 
-        19) Fixed VTK output for dry runs (requested using \--enable-vtk-output=true and \--enable-dry-run=true) in cases without the oil phase present ([#6057](https://github.com/OPM/opm-simulators/pull/6057)) or with the [DRSDT](#__RefHeading___Toc117623_2179381650) keyword in the [SCHEDULE](#__RefHeading___Toc43945_784232322) section ([#6060](https://github.com/OPM/opm-simulators/pull/6060)).
+        19) Fixed VTK output for dry runs (requested using \--enable-vtk-output=true and \--enable-dry-run=true) in cases without the oil phase present ([#6057](https://github.com/OPM/opm-simulators/pull/6057)) or with the DRSDT keyword in the SCHEDULE section ([#6060](https://github.com/OPM/opm-simulators/pull/6060)).
 
-        20) Fixed problem with group pressure maintenance targets and controls applied at the Field level using the [GPMAINT](#__RefHeading___Toc192979_2026549522) keyword ([#5916](https://github.com/OPM/opm-simulators/pull/5916)).
+        20) Fixed problem with group pressure maintenance targets and controls applied at the Field level using the GPMAINT keyword ([#5916](https://github.com/OPM/opm-simulators/pull/5916)).
 
         21) A potential division by zero has been prevented that could occur when using the CPRW linear solver and a well has no active perforations on some rank ([#6053](https://github.com/OPM/opm-simulators/pull/6053)).
 
@@ -812,41 +812,41 @@ The following bug fixes and improvements have been incorporated into this releas
 
         24) The simulator now re-iterates the network solver if the well group controls are changed, the gaslift quantity is changed, or the inner iterations did not converge ([#6062](https://github.com/OPM/opm-simulators/pull/6062)).
 
-        25) The [MICP](#__RefHeading___Toc383375_111689907) model now works with the default linear solver settings ([#6109](https://github.com/OPM/opm-simulators/pull/6109)).
+        25) The MICP model now works with the default linear solver settings ([#6109](https://github.com/OPM/opm-simulators/pull/6109)).
 
-        26) Groups subject to higher level controls are now allowed to switch to the [FIELD](#__RefHeading___Toc71850_2267116897) group controls ([#6135](https://github.com/OPM/opm-simulators/pull/6135)).
+        26) Groups subject to higher level controls are now allowed to switch to the FIELD group controls ([#6135](https://github.com/OPM/opm-simulators/pull/6135)).
 
         27) Fixed an issue where the wrong phase index could be used for restart output if output was only requested for one phase ([#6134](https://github.com/OPM/opm-simulators/pull/6134)).
 
         28) The correct ALQ dimension is now restored when restarting a run ([#4271](https://github.com/OPM/opm-common/pull/4271)).
 
-        29) Specifying UPDATE NEXT in an [ACTIONX](#__RefHeading___Toc152227_2992482751) block now causes the [UDQ](#__RefHeading___Toc161095_2932703077) to be updated on the next time step rather than the next report step ([#4325](https://github.com/OPM/opm-common/pull/4325)).
+        29) Specifying UPDATE NEXT in an ACTIONX block now causes the UDQ to be updated on the next time step rather than the next report step ([#4325](https://github.com/OPM/opm-common/pull/4325)).
 
-        30) A few issues with the [WELTRAJ](#__RefHeading___Toc268463_13666227011) and [COMPTRAJ](#__RefHeading___Toc97651_32617439171) keywords have been fixed ([#4279](https://github.com/OPM/opm-common/pull/4279)). Any [MAPAXES](#__RefHeading___Toc39960_2479612490) specifications were not handled, and cases with the origin not at zero failed. To solve this, the well coordinates are now transformed when they are read. There was a bug in [COMPTRAJ](#__RefHeading___Toc97651_32617439171) where defaulting the saturation table column was not handled, leading to a segmentation fault. The code for converting the trajectory to cell indices only took the top and bottom coordinates into account, effectively assuming linear trajectories. Now intermediate points are added, allowing arbitrary trajectories.
+        30) A few issues with the WELTRAJ and COMPTRAJ keywords have been fixed ([#4279](https://github.com/OPM/opm-common/pull/4279)). Any MAPAXES specifications were not handled, and cases with the origin not at zero failed. To solve this, the well coordinates are now transformed when they are read. There was a bug in COMPTRAJ where defaulting the saturation table column was not handled, leading to a segmentation fault. The code for converting the trajectory to cell indices only took the top and bottom coordinates into account, effectively assuming linear trajectories. Now intermediate points are added, allowing arbitrary trajectories.
 
         31) All group constraints are now written to the restart file even if the group is controlled by a higher-level group ([#4346](https://github.com/OPM/opm-common/pull/4346)). Previously, production groups controlled by a higher-level group could be given the wrong group control following a restart.
 
-        32) The minimum grid block pore volume thresholds for individual cells specified using the [MINPVV](#__RefHeading___Toc132765_2319858807) keyword will now take precedence over the threshold set of all cells using the [MINPV](#__RefHeading___Toc569208_3181922006) or [MINPORV](#__RefHeading___Toc77711_2479612490) keyword ([#4360](https://github.com/OPM/opm-common/pull/4360)). Previously, [MINPVV](#__RefHeading___Toc132765_2319858807) would be ignored if either [MINPV](#__RefHeading___Toc569208_3181922006) or [MINPORV](#__RefHeading___Toc77711_2479612490) was used.
+        32) The minimum grid block pore volume thresholds for individual cells specified using the MINPVV keyword will now take precedence over the threshold set of all cells using the MINPV or MINPORV keyword ([#4360](https://github.com/OPM/opm-common/pull/4360)). Previously, MINPVV would be ignored if either MINPV or MINPORV was used.
 
         33) The simulator can now handle deck files with sub-second report steps with a resolution of 1ms ([#4374](https://github.com/OPM/opm-common/pull/4374)).
 
         34) A potential divide by zero error at report step zero has been avoided ([#4392](https://github.com/OPM/opm-common/pull/4392)).
 
-        35) The [GRUPTARG](#__RefHeading___Toc196552_870710203), [GSATINJE](#__RefHeading___Toc116596_332691817), [GSATPROD](#__RefHeading___Toc202038_870710203), [GRUPNET](#__RefHeading___Toc118319_1596574740) and TEST keywords have been removed from the list of supported keywords in [ACTIONX](#__RefHeading___Toc152227_2992482751) blocks since they are not supported by OPM Flow ([#4400](https://github.com/OPM/opm-common/pull/4400), [#4436](https://github.com/OPM/opm-common/pull/4436)). Note that TEST is not a keyword.
+        35) The GRUPTARG, GSATINJE, GSATPROD, GRUPNET and TEST keywords have been removed from the list of supported keywords in ACTIONX blocks since they are not supported by OPM Flow ([#4400](https://github.com/OPM/opm-common/pull/4400), [#4436](https://github.com/OPM/opm-common/pull/4436)). Note that TEST is not a keyword.
 
-        36) Previously, there was a risk that the defining expression for a [UDQ](#__RefHeading___Toc161095_2932703077) could overflow the 128 character limit when stored in the restart file ([#4422](https://github.com/OPM/opm-common/pull/4422)). The simulator now stores a \"fused\" version of the defining expression that honours the character limit.
+        36) Previously, there was a risk that the defining expression for a UDQ could overflow the 128 character limit when stored in the restart file ([#4422](https://github.com/OPM/opm-common/pull/4422)). The simulator now stores a \"fused\" version of the defining expression that honours the character limit.
 
         37) The code now ensures that any events that might happen during the first time step after the restart time are preserved ([#4417](https://github.com/OPM/opm-common/pull/4417)).
 
         38) Fixed the handling of the group (GRUP) control mode for wells in auto-choke groups in extended network models ([#4435](https://github.com/OPM/opm-common/pull/4435)).
 
-        39) Fixed a bug where the simulator tried to restore [UDQ](#__RefHeading___Toc161095_2932703077) unit strings as [UDQ](#__RefHeading___Toc161095_2932703077) variables after a restart ([#4457](https://github.com/OPM/opm-common/pull/4457)).
+        39) Fixed a bug where the simulator tried to restore UDQ unit strings as UDQ variables after a restart ([#4457](https://github.com/OPM/opm-common/pull/4457)).
 
         40) The code now uses the branch number to correctly determine if a segment of a multi-segment well is active at restart ([#4483](https://github.com/OPM/opm-common/pull/4483)).
 
         41) When a keyword is expected the simulator will now ignore any line where the first non-whitespace character is a slash ([#4462](https://github.com/OPM/opm-common/pull/4462)). Previously, if the slash was followed by any non-whitespace characters on the same line then an exception would have been raised.
 
-        42) The simulator now updates the well efficiency factor immediately if the [WEFAC](#__RefHeading___Toc48856_327352552) keyword is run from an [ACTIONX](#__RefHeading___Toc152227_2992482751) block during a report step rather than at the end of the report step ([#4495](https://github.com/OPM/opm-common/pull/4495)).
+        42) The simulator now updates the well efficiency factor immediately if the WEFAC keyword is run from an ACTIONX block during a report step rather than at the end of the report step ([#4495](https://github.com/OPM/opm-common/pull/4495)).
 
         43) The handling of daylight-saving time when importing the start date from a summary file (or enhanced summary file) using Python bindings has been fixed ([#4509](https://github.com/OPM/opm-common/pull/4509)).
 
@@ -859,11 +859,11 @@ Known issues in this release of the simulator include:
 
 3)  1)  1)  There is an error with the RSM header for summary vectors whose NUMS entry in the SMSPEC file is derived from more than a single number source (e.g., single region or segment ID). This applies to all block vectors (BGPV, BOPV, BWPV, etc.), connection level quantities (COPT, etc.), and inter-region flows such as ROFT etc ([#3078](https://github.com/OPM/opm-common/issues/3078)). The work around is to plot the data in OPM ResInsight and right-click on the plot to view and copy the data.
 
-        2)  As per previous releases of the radial model, the [COORDSYS](#__RefHeading___Toc45759_719036256) keyword item three must be set to COMP to complete the circle, this has not been implemented in this release. Also there appears to be a bug for full radial models when a well goes on BHP control that causes the well not to respect the BHP constraint, this eventually causes the well to die prematurely. See [#2640](https://github.com/OPM/opm-common/pull/2640) for a discussion on the topic.
+        2)  As per previous releases of the radial model, the COORDSYS keyword item three must be set to COMP to complete the circle, this has not been implemented in this release. Also there appears to be a bug for full radial models when a well goes on BHP control that causes the well not to respect the BHP constraint, this eventually causes the well to die prematurely. See [#2640](https://github.com/OPM/opm-common/pull/2640) for a discussion on the topic.
 
-        3)  As in previous releases there are some issues with the [OPERATE](#__RefHeading___Toc64455_718313858) and [OPERATER](#__RefHeading___Toc155507_332691817) keywords associated with the input parsing; for various reasons a few of the fields require special case treatment in the grid processing, including (at least) [MULTZ](#__RefHeading___Toc80291_1778172979), [PORV](#__RefHeading___Toc96547_718313858) and [ACTNUM](#__RefHeading___Toc4410_421927891), and for those keywords the [OPERATE](#__RefHeading___Toc64455_718313858)/[OPERATER](#__RefHeading___Toc155507_332691817) keyword does not work. The work around is to use the [MULTIPLY](#__RefHeading___Toc296609_1576177388) keyword instead.
+        3)  As in previous releases there are some issues with the OPERATE and OPERATER keywords associated with the input parsing; for various reasons a few of the fields require special case treatment in the grid processing, including (at least) MULTZ, PORV and ACTNUM, and for those keywords the OPERATE/OPERATER keyword does not work. The work around is to use the MULTIPLY keyword instead.
 
-        4)  For the [UDQ](#__RefHeading___Toc161095_2932703077) ASSIGN operator after the terminating "/" normally any comments can be entered; however, if there is "/" within the comment field, as per:
+        4)  For the UDQ ASSIGN operator after the terminating "/" normally any comments can be entered; however, if there is "/" within the comment field, as per:
 
 *ASSIGN FUNGLYLD 1.196 / Condensate Yield (63.5/56.7)/(1.0 -- 0.065*)
 
@@ -871,33 +871,33 @@ then the simulator will abort. The work around is to manually place the comment 
 
 *ASSIGN FUNGLYLD 1.196 / \-- Condensate Yield (63.5/56.7)/(1.0 -- 0.06)*
 
-3)  1)  1)  At the moment, one cannot initialize tracers using the [EQUALS](#__RefHeading___Toc296597_1576177388) keyword. Instead use the array format, that is the keyword followed by the required number of values, or the [TVDP](#__RefHeading___Toc210170_2884651453) keyword in the [SOLUTION](#__RefHeading___Toc43947_784232322) section to set the initial tracer concentrations as a function of depth.
+3)  1)  1)  At the moment, one cannot initialize tracers using the EQUALS keyword. Instead use the array format, that is the keyword followed by the required number of values, or the TVDP keyword in the SOLUTION section to set the initial tracer concentrations as a function of depth.
 
-        2)  Currently, gas tracers cannot be used if the dissolved gas phase, as per the [DISGAS](#__RefHeading___Toc39767_2267116897) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section, is active in the model.
+        2)  Currently, gas tracers cannot be used if the dissolved gas phase, as per the DISGAS keyword in the RUNSPEC section, is active in the model.
 
         3)  The summary vector RTIPTHEA, that defines the energy in-place between the initial and the current time for regions, is not supported unlike the FTIPTHEA and BTIPTHEA vectors. Secondly, the error message:
 
-is incorrect, as the message indicates that it is being treated like a named region, as per the [FIP](#__RefHeading___Toc250560_252421755) keyword, when it is actually a [SUMMARY](#__RefHeading___Toc43949_784232322) vector ([#3870](https://github.com/OPM/opm-simulators/issues/3870)).
+is incorrect, as the message indicates that it is being treated like a named region, as per the FIP keyword, when it is actually a SUMMARY vector ([#3870](https://github.com/OPM/opm-simulators/issues/3870)).
 
 3)  1)  1)  If there are cells that are very distorted, which can occur near fault planes, then the simulator may abort because it cannot calculate the pore volume of such cells. The work around is to re-generate the grid in the static model, taking care that the cells around the fault planes are more or less orthogonal ([#2992](https://github.com/OPM/opm-common/issues/2992) and [#3770](https://github.com/OPM/opm-simulators/issues/3770)).
 
-        2)  Currently the [OPERATER](#__RefHeading___Toc155507_332691817) keyword in the [EDIT](#__RefHeading___Toc40641_784232322) section does not work with the [DEPTH](#__RefHeading___Toc58139_3701168388), [TRANX](#__RefHeading___Toc93085_718313858), [TRANY](#__RefHeading___Toc93087_718313858) and [TRANZ](#__RefHeading___Toc93089_718313858) property arrays ([#2994](https://github.com/OPM/opm-common/issues/2994) and [#748](https://github.com/OPM/opm-tests/pull/748)).
+        2)  Currently the OPERATER keyword in the EDIT section does not work with the DEPTH, TRANX, TRANY and TRANZ property arrays ([#2994](https://github.com/OPM/opm-common/issues/2994) and [#748](https://github.com/OPM/opm-tests/pull/748)).
 
-        3)  If a standard well is fully declared in an [ACTIONX](#__RefHeading___Toc152227_2992482751) block which is then activated at a later date, and later the well is modified to be a multi-segment well using the [WELSEGS](#__RefHeading___Toc97661_3261743917) and [COMPSEGS](#__RefHeading___Toc316604_3519154785) keywords, then this will cause the simulator to abort with an assert failure. The solution to this issue is to not use this type of work flow in declaring wells ([#2891](https://github.com/OPM/opm-common/issues/2891) and [#2895](https://github.com/OPM/opm-common/pull/2895)).
+        3)  If a standard well is fully declared in an ACTIONX block which is then activated at a later date, and later the well is modified to be a multi-segment well using the WELSEGS and COMPSEGS keywords, then this will cause the simulator to abort with an assert failure. The solution to this issue is to not use this type of work flow in declaring wells ([#2891](https://github.com/OPM/opm-common/issues/2891) and [#2895](https://github.com/OPM/opm-common/pull/2895)).
 
-        4)  Although the [ACTIONX](#__RefHeading___Toc152227_2992482751) [EXIT](#__RefHeading___Toc627737_1466963378) command works as expected, it does not write out the requested RSM file at the end of the run. However, the other [SUMMARY](#__RefHeading___Toc43949_784232322) and [RESTART](#__RefHeading___Toc135629_1317547213) files are written out ([#2877](https://github.com/OPM/opm-common/issues/2877)).
+        4)  Although the ACTIONX EXIT command works as expected, it does not write out the requested RSM file at the end of the run. However, the other SUMMARY and RESTART files are written out ([#2877](https://github.com/OPM/opm-common/issues/2877)).
 
-        5)  Although the [GCONSUMP](#__RefHeading___Toc188037_2026549522) keyword in the [SCHEDULE](#__RefHeading___Toc43945_784232322) section is fully implemented as documented, it is not possible to verify the output as the associated [SUMMARY](#__RefHeading___Toc43949_784232322) vectors are not written out, that is the [SUMMARY](#__RefHeading___Toc43949_784232322) sales gas vectors FGSR, FGST, GGSR and GGST, and fuel vectors FGCR, FGCT, GGCR, and GGCT have not been implemented ([#2679](https://github.com/OPM/opm-common/issues/2679)).
+        5)  Although the GCONSUMP keyword in the SCHEDULE section is fully implemented as documented, it is not possible to verify the output as the associated SUMMARY vectors are not written out, that is the SUMMARY sales gas vectors FGSR, FGST, GGSR and GGST, and fuel vectors FGCR, FGCT, GGCR, and GGCT have not been implemented ([#2679](https://github.com/OPM/opm-common/issues/2679)).
 
-        6)  There are small differences in the behavior of the [NEXTSTEP](#__RefHeading___Toc323446_1841740821) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section between OPM Flow and the commercial simulator that remain unresolved ([#3745](https://github.com/OPM/opm-simulators/issues/3745)).
+        6)  There are small differences in the behavior of the NEXTSTEP keyword in the RUNSPEC section between OPM Flow and the commercial simulator that remain unresolved ([#3745](https://github.com/OPM/opm-simulators/issues/3745)).
 
-        7)  There is a unit handling issue associated with [OPERATE](#__RefHeading___Toc64455_718313858) keyword. If the [OPERATE](#__RefHeading___Toc64455_718313858)(X) parameter has units, as for example [PERMX](#__RefHeading___Toc45791_719036256), then the conversion is always done in SI units, despite the input deck declaring the deck to be fields units, as per [FIELD](#__RefHeading___Toc71850_2267116897) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section. Note that OPM Flow performs all of its calculations internally in SI and performs unit handling only when inputting the \*.DATA file and when outputting result files. Thanks to [lrijkels](https://github.com/lrijkels) for reporting the issue. See [#4597](https://github.com/OPM/opm-simulators/issues/4597) for details.
+        7)  There is a unit handling issue associated with OPERATE keyword. If the OPERATE(X) parameter has units, as for example PERMX, then the conversion is always done in SI units, despite the input deck declaring the deck to be fields units, as per FIELD keyword in the RUNSPEC section. Note that OPM Flow performs all of its calculations internally in SI and performs unit handling only when inputting the \*.DATA file and when outputting result files. Thanks to [lrijkels](https://github.com/lrijkels) for reporting the issue. See [#4597](https://github.com/OPM/opm-simulators/issues/4597) for details.
 
-        8)  There is an issue associated with restarting from a restart file with the solution gas (Rs) maximum rate of increase, as defined by the [DRSDT](#__RefHeading___Toc117623_2179381650) keyword in the [SCHEDULE](#__RefHeading___Toc43945_784232322), that has been set to zero. This is because, the simulator does not save/restore this setting in simulator\'s restart files, which means that simulator misses the essential value zero upon restarting the case. As a work-around one can use the option *\--sched-restart=true*, when running the restart case. This will initialize the restarted simulation based on information from the complete [SCHEDULE](#__RefHeading___Toc43945_784232322) section, instead of just the parts that we\'re going to simulate and the rest from the restart file. Thanks to [goncalvesmachadoc](https://github.com/goncalvesmachadoc) for reporting the issue. See [#4272](https://github.com/OPM/opm-simulators/issues/4272) for details.
+        8)  There is an issue associated with restarting from a restart file with the solution gas (Rs) maximum rate of increase, as defined by the DRSDT keyword in the SCHEDULE, that has been set to zero. This is because, the simulator does not save/restore this setting in simulator\'s restart files, which means that simulator misses the essential value zero upon restarting the case. As a work-around one can use the option *\--sched-restart=true*, when running the restart case. This will initialize the restarted simulation based on information from the complete SCHEDULE section, instead of just the parts that we\'re going to simulate and the rest from the restart file. Thanks to [goncalvesmachadoc](https://github.com/goncalvesmachadoc) for reporting the issue. See [#4272](https://github.com/OPM/opm-simulators/issues/4272) for details.
 
         9)  OPM cannot be built with dune-fem version 2.9 or later ([#4934](https://github.com/OPM/opm-simulators/issues/4934)). Please use a previous version.
 
-        10) The simulator uses an irregular corner-point grid geometry with adjusted pore volumes to represent radial grids so it is not possible to create a full ring (360 degree disk) with only one cell in the theta direction (NY=1). The work around is to model a slice (say [DTHETA](#__RefHeading___Toc120096_2066951158)=60 degrees). Note that as the angle increases larger pore volume adjustments are required ([#4755](https://github.com/OPM/opm-simulators/issues/4755)).
+        10) The simulator uses an irregular corner-point grid geometry with adjusted pore volumes to represent radial grids so it is not possible to create a full ring (360 degree disk) with only one cell in the theta direction (NY=1). The work around is to model a slice (say DTHETA=60 degrees). Note that as the angle increases larger pore volume adjustments are required ([#4755](https://github.com/OPM/opm-simulators/issues/4755)).
 
         11) In some cases with the network option the simulator can wrongly report that a well has no THP constraints, for example
 
@@ -913,53 +913,53 @@ The 2024-10 release consists of some new features and various improvements and b
 
         -   Add summary output vectors for stranded CO~2~ in the gas phase (GMST) and maximum potential residual trapping (GMTR).
 
-        -   Added PSI and OMEGA parameters to [DRSDTCON](#__RefHeading___Toc481925_1297399298) to control the regime and rate of convective mixing. Now supports [GAS](#__RefHeading___Toc38607_2267116897)/[WATER](#__RefHeading___Toc38611_2267116897) systems in addition to [OIL](#__RefHeading___Toc97439_1778172979)/[GAS](#__RefHeading___Toc38607_2267116897) systems.
+        -   Added PSI and OMEGA parameters to DRSDTCON to control the regime and rate of convective mixing. Now supports GAS/WATER systems in addition to OIL/GAS systems.
 
         -   Support has been added for MPI communication being performed directly between GPUs instead of being sent via the CPU when using a multi-gpu linear solver.
 
-        -   Added support for [WTMULT](#__RefHeading___Toc1141674_4263943340) to multiply a well target or constraint by a constant.
+        -   Added support for WTMULT to multiply a well target or constraint by a constant.
 
         -   Simulator is now able to make better usage of the Damaris middleware if enabled (https://project.inria.fr/damaris/).
 
         -   Extended the tracer model to include partitioning of tracers into free and solution states whenever dissolved gas/vaporized oil exist.
 
-        -   Added support for automatic chokes ([NODEPROP](#__RefHeading___Toc212708_2026549522) item 3 CHOKE) in extended network models.
+        -   Added support for automatic chokes (NODEPROP item 3 CHOKE) in extended network models.
 
-        -   Added support for Killough\'s hysteresis model for both wetting and non-wetting phase hysteresis in a water wet system ([EHYSTR](#__RefHeading___Toc67396_621662414) item 2 HYSTMOD = 4).
+        -   Added support for Killough\'s hysteresis model for both wetting and non-wetting phase hysteresis in a water wet system (EHYSTR item 2 HYSTMOD = 4).
 
         -   Added the option to specify the linear solver for subdomains when using the NLDD nonlinear solver.
 
         -   Added foundations for future experiments using the four-byte float type instead of the eight-byte double type as the primary array element in order to save memory.
 
-        -   Support added for RFIP and SFIP mnemonics for the [RPTRST](#__RefHeading___Toc210154_2884651453) keyword.
+        -   Support added for RFIP and SFIP mnemonics for the RPTRST keyword.
 
-        -   Support added for mnemonic WELLS=N for the [RPTSCHED](#__RefHeading___Toc268459_1366622701) keyword.
+        -   Support added for mnemonic WELLS=N for the RPTSCHED keyword.
 
         -   Previously the THP was set to zero if a well was stopped or set to a zero rate (well or group). The THP will now be calculated provided a VFP table is active.
 
-        -   Corrected transmissibilities calculated for pinched out cells when using [PINCH](#__RefHeading___Toc74261_2479612490) option 4 equals [ALL](#__RefHeading___Toc4420_421927891).
+        -   Corrected transmissibilities calculated for pinched out cells when using PINCH option 4 equals ALL.
 
-        -   Support added for the [EQUALREG](#__RefHeading___Toc296593_1576177388) keyword.
+        -   Support added for the EQUALREG keyword.
 
         -   Added support for using METIS in addition to Zoltan to partition corner point grids.
 
-        -   Proper [INIT](#__RefHeading___Toc45789_719036256) file table output for the saturation functions in LET format.
+        -   Proper INIT file table output for the saturation functions in LET format.
 
-        -   Add support for outputting [MULTPV](#__RefHeading___Toc95300_3218818441) to the Restart file.
+        -   Add support for outputting MULTPV to the Restart file.
 
-        -   Add support for additional keywords in [PYACTION](#__RefHeading___Toc393199_4211536922) blocks.
+        -   Add support for additional keywords in PYACTION blocks.
 
-        -   Added support for [DENAQA](#REF_HEADING_KEYWORD_DENAQA_8_3) and [VISCAQA](#REF_HEADING_KEYWORD_VISCAQA_8_3) keywords when using [CO2STORE](#__RefHeading___Toc387968_1616145207). Also added support for [SALTMF](#REF_HEADING_KEYWORD_SALTMF_8_3) keyword.
+        -   Added support for DENAQA and VISCAQA keywords when using CO2STORE. Also added support for SALTMF keyword.
 
         -   Support has been expanded for saving/restoring scaling factors for segment level devices (SICDs, AICDs and Valves) to/from the Restart file.
 
         -   Added support for output of well level target or constraint summary vectors.
 
-        -   Added support for field, group and well gas mass injection rate and injection total summary vectors for use with [CO2STORE](#__RefHeading___Toc387968_1616145207).
+        -   Added support for field, group and well gas mass injection rate and injection total summary vectors for use with CO2STORE.
 
-        -   Proper handling of the [WHISTCTL](#__RefHeading___Toc268465_1366622701) in restarted simulations.
+        -   Proper handling of the WHISTCTL in restarted simulations.
 
-        -   Expanded consistency checks for array operations such as [ADD](#__RefHeading___Toc4412_421927891), [COPY](#__RefHeading___Toc45761_719036256), and [MULTIPLY](#__RefHeading___Toc296609_1576177388), as well as the per-region counterparts.
+        -   Expanded consistency checks for array operations such as ADD, COPY, and MULTIPLY, as well as the per-region counterparts.
 
         -   Performance improvements in well name matching on platforms which support the Posix fnmatch() function.
 
@@ -971,7 +971,7 @@ A.  1.  1.  ### New and Deprecated Command Line Options
 
 The major command line changes made for this release are summarized in
 
-| 1 | \--action-parsing-strictness | Added a new command line parameter that specifies the parsing strictness for [ACTIONX](#__RefHeading___Toc152227_2992482751) and [PYACTION](#__RefHeading___Toc393199_4211536922) blocks ([#5547](https://github.com/OPM/opm-simulators/pull/5547), [#4167](https://github.com/OPM/opm-common/pull/4167)).<br>A defined character string. Set strictness of parsing process for ActionX and PyAction. Available options are normal (do not apply keywords that have not been tested for ActionX or PyAction) and low (try to apply all keywords, beware: the simulation outcome might be incorrect). | \"normal\" |
+| 1 | \--action-parsing-strictness | Added a new command line parameter that specifies the parsing strictness for ACTIONX and PYACTION blocks ([#5547](https://github.com/OPM/opm-simulators/pull/5547), [#4167](https://github.com/OPM/opm-common/pull/4167)).<br>A defined character string. Set strictness of parsing process for ActionX and PyAction. Available options are normal (do not apply keywords that have not been tested for ActionX or PyAction) and low (try to apply all keywords, beware: the simulation outcome might be incorrect). | \"normal\" |
 | --- | --- | --- | --- |
 | 2 | \--check-group-constraints-inner-well-iterations | A boolean value. Allow checking of group constraints during inner well iterations. | true |
 | 3 | \--convergence-monitoring | A new convergence monitoring feature ([#5590](https://github.com/OPM/opm-simulators/pull/5590)) has been introduced to improve the robustness and efficiency of the simulator based on Moyner et al., 2024 (https://doi.org/10.3997/2214-4609.202437057).<br>A boolean value. Enable convergence monitoring. | false |
@@ -979,10 +979,10 @@ The major command line changes made for this release are summarized in
 | 5 | \--convergence-monitoring-decay-factor | A real value. Decay factor for convergence monitoring. | 0.75 |
 | 6 | \--enable-drift-compensation | Linear solver default parameters have been updated to improve accuracy and performance including: material balance tolerance reduced to 1.0e-7, local well solve control switching is turned on, use implicit IPR is turned on, and enable drift compensation is turned off ([#5157](https://github.com/OPM/opm-simulators/pull/5157)).<br>A boolean value. Enable partial compensation of systematic mass losses via the source term of the next time step. | false |
 | 7 | \--imbalance-tol | A real value. Tolerable imbalance of the load balancing. | 1.1 |
-| 8 | \--inj-mult-damp-mult | Added damping to the injectivity multipliers defined by the [WINJMULT](#__RefHeading___Toc121402_332691817) keyword ([#5631](https://github.com/OPM/opm-simulators/pull/5631)).<br>A real value. Injection multiplier dampening factor (dampening multiplied by this each time oscillation is detected). | 0.9 |
+| 8 | \--inj-mult-damp-mult | Added damping to the injectivity multipliers defined by the WINJMULT keyword ([#5631](https://github.com/OPM/opm-simulators/pull/5631)).<br>A real value. Injection multiplier dampening factor (dampening multiplied by this each time oscillation is detected). | 0.9 |
 | 9 | \--inj-mult-min-damp-factor | A real value. Minimum injection multiplier dampening factor (maximum dampening level). | 0.05 |
 | 10 | \--inj-mult-osc-threshold | A real value. Injection multiplier oscillation threshold (used for multiplier dampening). | 0.1 |
-| 11 | \--input-skip-mode | Added a command line argument to control the way OPM Flow treats [SKIP100](#__RefHeading___Toc65046_1640804870) and [SKIP300](#__RefHeading___Toc980121_1781444514) keywords ([#5329](https://github.com/OPM/opm-simulators/pull/5329)). By default OPM Flow behaves like the commercial black-oil simulator.<br>A defined character string. Set compatibility mode for the [SKIP100](#__RefHeading___Toc65046_1640804870)/[SKIP300](#__RefHeading___Toc980121_1781444514) keywords. Options are: 100 (skip [SKIP100](#__RefHeading___Toc65046_1640804870)..ENDSKIP, keep [SKIP300](#__RefHeading___Toc980121_1781444514)..ENDSKIP), 300 (skip [SKIP300](#__RefHeading___Toc980121_1781444514)..ENDSKIP, keep [SKIP100](#__RefHeading___Toc65046_1640804870)..ENDSKIP) or all (skip both [SKIP100](#__RefHeading___Toc65046_1640804870)..ENDSKIP and [SKIP300](#__RefHeading___Toc980121_1781444514)..ENDSKIP). | \"100\" |
+| 11 | \--input-skip-mode | Added a command line argument to control the way OPM Flow treats SKIP100 and SKIP300 keywords ([#5329](https://github.com/OPM/opm-simulators/pull/5329)). By default OPM Flow behaves like the commercial black-oil simulator.<br>A defined character string. Set compatibility mode for the SKIP100/SKIP300 keywords. Options are: 100 (skip SKIP100..ENDSKIP, keep SKIP300..ENDSKIP), 300 (skip SKIP300..ENDSKIP, keep SKIP100..ENDSKIP) or all (skip both SKIP100..ENDSKIP and SKIP300..ENDSKIP). | \"100\" |
 | 12 | \--linear-solver | A defined character string. Configuration of solver. Valid options are: cprw (default), ilu0, dilu, cpr (an alias for cprw), cpr_quasiimpes, cpr_trueimpes, cpr_trueimpesanalytic, amg or hybrid (experimental). Alternatively, you can request a configuration to be read from a JSON file by giving the filename here, ending with \'.json.\'. | \"cprw\" |
 | 13 | \--local-well-solve-control-switching | A boolean value. Allow control switching during local well solutions. | true |
 | 14 | \--metis-params | A character string. Configuration of Metis partitioner. You can request a configuration to be read from a JSON file by giving the filename here, ending with \'.json.\' See http://glaros.dtc.umn.edu/gkhome/fetch/sw/metis/manual.pdf for available METIS options. | \"default\" |
@@ -1009,43 +1009,43 @@ In addition to the changes to the command line options the following new feature
 
 3)  1)  1)  Add summary output vectors for stranded CO~2~ in the gas phase (GMST) and maximum potential residual trapping (GMTR) ([#5344](https://github.com/OPM/opm-simulators/pull/5344), https://docs.opengosim.com/theory/residual_and_stranded/).
 
-        2)  Added support for [WTMULT](#__RefHeading___Toc1141674_4263943340) to multiply a well target or constraint by a constant ([#5411](https://github.com/OPM/opm-simulators/pull/5411)).
+        2)  Added support for WTMULT to multiply a well target or constraint by a constant ([#5411](https://github.com/OPM/opm-simulators/pull/5411)).
 
         3)  Simulator is now able to make better usage of the Damaris middleware if enabled (https://project.inria.fr/damaris/). Added the ability to pass multiple variables to Damaris using the DamarisWriter class ([#5352](https://github.com/OPM/opm-simulators/pull/5352)). A command line option has also been added to limit the variables to be passed using \--damaris-limit-variables=\<CSV list\>.
 
-        4)  Restart files can now be output every time step if the command line option \--enable-write-all-solutions=true ([#5426](https://github.com/OPM/opm-simulators/pull/5426)). The numbering of the restart and summary files will follow the time step index and not the report index. This will not be compatible with restart, but it is sometimes useful to investigate the results at every time step. Note that this doesn\'t add support for [RPTRST](#__RefHeading___Toc210154_2884651453) BASIC=6.
+        4)  Restart files can now be output every time step if the command line option \--enable-write-all-solutions=true ([#5426](https://github.com/OPM/opm-simulators/pull/5426)). The numbering of the restart and summary files will follow the time step index and not the report index. This will not be compatible with restart, but it is sometimes useful to investigate the results at every time step. Note that this doesn\'t add support for RPTRST BASIC=6.
 
-        5)  Added support for automatic chokes ([NODEPROP](#__RefHeading___Toc212708_2026549522) item 3 CHOKE) in extended network models ([#4935](https://github.com/OPM/opm-simulators/pull/4935)).
+        5)  Added support for automatic chokes (NODEPROP item 3 CHOKE) in extended network models ([#4935](https://github.com/OPM/opm-simulators/pull/4935)).
 
-        6)  Added support for using [CPR](#__RefHeading___Toc27871_3671211675) on AMD GPU using the rocSPARSE library ([#5408](https://github.com/OPM/opm-simulators/pull/5408)).
+        6)  Added support for using CPR on AMD GPU using the rocSPARSE library ([#5408](https://github.com/OPM/opm-simulators/pull/5408)).
 
         7)  Added support for outputting the RSWSAT and RVWSAT arrays to the Restart file ([#5483](https://github.com/OPM/opm-simulators/pull/5483)).
 
-        8)  Added PSI and OMEGA parameters to [DRSDTCON](#__RefHeading___Toc481925_1297399298) to control the regime and rate of convective mixing ([#5491](https://github.com/OPM/opm-simulators/pull/5491)). Now supports [GAS](#__RefHeading___Toc38607_2267116897)/[WATER](#__RefHeading___Toc38611_2267116897) systems in addition to [OIL](#__RefHeading___Toc97439_1778172979)/[GAS](#__RefHeading___Toc38607_2267116897) systems.
+        8)  Added PSI and OMEGA parameters to DRSDTCON to control the regime and rate of convective mixing ([#5491](https://github.com/OPM/opm-simulators/pull/5491)). Now supports GAS/WATER systems in addition to OIL/GAS systems.
 
         9)  Added an OPM implementation of the ILU0 preconditioner in CUDA similar to that implemented in CuDILU ([#5441](https://github.com/OPM/opm-simulators/pull/5441)).
 
-        10) Added support for Killough\'s hysteresis model for both wetting and non-wetting phase hysteresis in a water wet system ([EHYSTR](#__RefHeading___Toc67396_621662414) item 2 HYSTMOD = 4) ([#5273](https://github.com/OPM/opm-simulators/pull/5273)).
+        10) Added support for Killough\'s hysteresis model for both wetting and non-wetting phase hysteresis in a water wet system (EHYSTR item 2 HYSTMOD = 4) ([#5273](https://github.com/OPM/opm-simulators/pull/5273)).
 
-        11) Extended implementation of [DRSDTCON](#__RefHeading___Toc481925_1297399298) to apply to multiple PVT regions ([#5527](https://github.com/OPM/opm-simulators/pull/5527)). Also added support for deactivation of individual [DRSDT](#__RefHeading___Toc117623_2179381650), [DRVDT](#__RefHeading___Toc117625_2179381650) and [DRSDTCON](#__RefHeading___Toc481925_1297399298) regions.
+        11) Extended implementation of DRSDTCON to apply to multiple PVT regions ([#5527](https://github.com/OPM/opm-simulators/pull/5527)). Also added support for deactivation of individual DRSDT, DRVDT and DRSDTCON regions.
 
         12) Added foundations for future experiments using the four-byte float type instead of the eight-byte double type as the primary array element in order to save memory ([#5560](https://github.com/OPM/opm-simulators/pull/5560)).
 
-        13) Support added for RFIP and SFIP mnemonics for the [RPTRST](#__RefHeading___Toc210154_2884651453) keyword to request output of fluid in place volumes at surface and reservoir conditions to the Restart file ([#5621](https://github.com/OPM/opm-simulators/pull/5621)). Note that [FIP](#__RefHeading___Toc250560_252421755) is an alias for SFIP.
+        13) Support added for RFIP and SFIP mnemonics for the RPTRST keyword to request output of fluid in place volumes at surface and reservoir conditions to the Restart file ([#5621](https://github.com/OPM/opm-simulators/pull/5621)). Note that FIP is an alias for SFIP.
 
-        14) Support added for mnemonic WELLS=N for the [RPTSCHED](#__RefHeading___Toc268459_1366622701) keyword to request output of well reports to the Print file ([#5626](https://github.com/OPM/opm-simulators/pull/5626)).
+        14) Support added for mnemonic WELLS=N for the RPTSCHED keyword to request output of well reports to the Print file ([#5626](https://github.com/OPM/opm-simulators/pull/5626)).
 
-        15) Support added for the [EQUALREG](#__RefHeading___Toc296593_1576177388) keyword to specify property arrays by region ([#5648](https://github.com/OPM/opm-simulators/pull/5648)).
+        15) Support added for the EQUALREG keyword to specify property arrays by region ([#5648](https://github.com/OPM/opm-simulators/pull/5648)).
 
         16) Added a failure flag to the TaskletRunner allowing errors in a tasklet to be caught and logged ([#909](https://github.com/OPM/opm-models/pull/909)).
 
-        17) Add support for outputting [MULTPV](#__RefHeading___Toc95300_3218818441) to the Restart file if it is specified in the [GRID](#__RefHeading___Toc38674_784232322) or [EDIT](#__RefHeading___Toc40641_784232322) section ([#4021](https://github.com/OPM/opm-common/pull/4021)).
+        17) Add support for outputting MULTPV to the Restart file if it is specified in the GRID or EDIT section ([#4021](https://github.com/OPM/opm-common/pull/4021)).
 
-        18) Add support for [WELSPECS](#__RefHeading___Toc268463_1366622701), [COMPSEGS](#__RefHeading___Toc316604_3519154785), [WELSEGS](#__RefHeading___Toc97661_3261743917), [WSEGVALV](#__RefHeading___Toc1091865_4263943340), [WECON](#__RefHeading___Toc134884_2055188184), [WTEST](#__RefHeading___Toc121925_2556401936), [WGRUPCON](#__RefHeading___Toc121641_2412586160), [GCONSUMP](#__RefHeading___Toc188037_2026549522), [GRUPTREE](#__RefHeading___Toc118321_1596574740) and [EXIT](#__RefHeading___Toc627737_1466963378) keywords in [PYACTION](#__RefHeading___Toc393199_4211536922) blocks ([#4059](https://github.com/OPM/opm-common/pull/4059), [#4061](https://github.com/OPM/opm-common/pull/4061), [#4069](https://github.com/OPM/opm-common/pull/4069), [#4070](https://github.com/OPM/opm-common/pull/4070), [#4071](https://github.com/OPM/opm-common/pull/4071)).
+        18) Add support for WELSPECS, COMPSEGS, WELSEGS, WSEGVALV, WECON, WTEST, WGRUPCON, GCONSUMP, GRUPTREE and EXIT keywords in PYACTION blocks ([#4059](https://github.com/OPM/opm-common/pull/4059), [#4061](https://github.com/OPM/opm-common/pull/4061), [#4069](https://github.com/OPM/opm-common/pull/4069), [#4070](https://github.com/OPM/opm-common/pull/4070), [#4071](https://github.com/OPM/opm-common/pull/4071)).
 
-        19) Added support for [CNAMES](#__RefHeading___Toc27871_3671211675 Copy 1 Copy 1 Copy 1) to specify the component names ([#5405](https://github.com/OPM/opm-simulators/pull/5405), [#4091](https://github.com/OPM/opm-common/pull/4091)).
+        19) Added support for CNAMES to specify the component names ([#5405](https://github.com/OPM/opm-simulators/pull/5405), [#4091](https://github.com/OPM/opm-common/pull/4091)).
 
-        20) Added support for [DENAQA](#REF_HEADING_KEYWORD_DENAQA_8_3) and [VISCAQA](#REF_HEADING_KEYWORD_VISCAQA_8_3) keywords to specify parameters for calculating brine density and viscosity using Ezrokhi\'s method when using [CO2STORE](#__RefHeading___Toc387968_1616145207) ([#4091](https://github.com/OPM/opm-common/pull/4091)). Also added support for [SALTMF](#REF_HEADING_KEYWORD_SALTMF_8_3) to allow the initial salt concentration to be input as a mole fraction.
+        20) Added support for DENAQA and VISCAQA keywords to specify parameters for calculating brine density and viscosity using Ezrokhi\'s method when using CO2STORE ([#4091](https://github.com/OPM/opm-common/pull/4091)). Also added support for SALTMF to allow the initial salt concentration to be input as a mole fraction.
 
         21) Extended the tracer model to include partitioning of tracers into free and solution states whenever dissolved gas/vaporized oil exist ([#5268](https://github.com/OPM/opm-simulators/pull/5268), [#4001](https://github.com/OPM/opm-common/pull/4001)). Essentially the tracer linear system has been extended with equations for free and solution tracers with simple mass transfer coupling between them. Both free and solution tracers are now output to the Restart file.
 
@@ -1053,17 +1053,17 @@ In addition to the changes to the command line options the following new feature
 
         23) Initial support for enumerated compositional initialisation ([#4110](https://github.com/OPM/opm-common/pull/4110)).
 
-        24) Added support for \[FGW\]GMI\[RT\] field, group and well gas mass injection rate and injection total summary vectors for use with [CO2STORE](#__RefHeading___Toc387968_1616145207) ([#4162](https://github.com/OPM/opm-common/pull/4162)).
+        24) Added support for \[FGW\]GMI\[RT\] field, group and well gas mass injection rate and injection total summary vectors for use with CO2STORE ([#4162](https://github.com/OPM/opm-common/pull/4162)).
 
-        25) A mixing model has been added to the thermal black-oil simulator ([#4014](https://github.com/OPM/opm-common/pull/4014)). The internal energy of each phase now also includes the energy for the dissolved component. The meaning of the [TEMP](#__RefHeading___Toc146397_3544483072) keyword has been changed. In the Thermal model ([THERMAL](#__RefHeading___Toc137276_650382403)) enthalpy equals internal energy plus work. Whereas, the Temperature model ([TEMP](#__RefHeading___Toc146397_3544483072)) now assumes enthalpy equals internal energy.
+        25) A mixing model has been added to the thermal black-oil simulator ([#4014](https://github.com/OPM/opm-common/pull/4014)). The internal energy of each phase now also includes the energy for the dissolved component. The meaning of the TEMP keyword has been changed. In the Thermal model (THERMAL) enthalpy equals internal energy plus work. Whereas, the Temperature model (TEMP) now assumes enthalpy equals internal energy.
 
-        26) Added support for the [COPY](#__RefHeading___Toc45761_719036256), [OPERATE](#__RefHeading___Toc64455_718313858), [ADDREG](#__RefHeading___Toc4414_421927891), [COPYREG](#__RefHeading___Toc296589_1576177388), [EQUALREG](#__RefHeading___Toc296593_1576177388), and [MULTIREG](#__RefHeading___Toc296613_1576177388) keywords for data with global storage ([#4236](https://github.com/OPM/opm-common/pull/4236), [#4237](https://github.com/OPM/opm-common/pull/4237), [#4238](https://github.com/OPM/opm-common/pull/4238)).
+        26) Added support for the COPY, OPERATE, ADDREG, COPYREG, EQUALREG, and MULTIREG keywords for data with global storage ([#4236](https://github.com/OPM/opm-common/pull/4236), [#4237](https://github.com/OPM/opm-common/pull/4237), [#4238](https://github.com/OPM/opm-common/pull/4238)).
 
         27) Extended API to allow a source term to be added to a cell ([#4241](https://github.com/OPM/opm-common/pull/4241)). In particular this allows a source term to be generated by Python code without needing to pass in a DeckRecord.
 
         28) Added parsing support for ZMF keyword ([#4200](https://github.com/OPM/opm-common/pull/4200)).
 
-        29) The convertECL utility has been updated to support conversion of [LGR](#__RefHeading___Toc55049_4106839650) output between the unformatted (.LGR) and formatted (.FLGR) file types ([#4249](https://github.com/OPM/opm-common/pull/4249)).
+        29) The convertECL utility has been updated to support conversion of LGR output between the unformatted (.LGR) and formatted (.FLGR) file types ([#4249](https://github.com/OPM/opm-common/pull/4249)).
 
 ```{=html}
 <!-- -->
@@ -1086,19 +1086,19 @@ Improvements to simulator in this release include the following:
 
         7)  Optimized the memory operations time by overlapping the creation (which includes a host memory copy) of the Jacobian matrix used in the block Jacobi ILU with copying the matrix data to the GPU ([#5256](https://github.com/OPM/opm-simulators/pull/5256)).
 
-        8)  SummaryState Objects are now Aware of Undefined [UDQ](#__RefHeading___Toc161095_2932703077) Values ([#5334](https://github.com/OPM/opm-simulators/pull/5334)).
+        8)  SummaryState Objects are now Aware of Undefined UDQ Values ([#5334](https://github.com/OPM/opm-simulators/pull/5334)).
 
         9)  Previously the code would only start handling oscillations when two phases had oscillating residuals. The code will now start handling oscillations when just one phase is oscillating ([#5398](https://github.com/OPM/opm-simulators/pull/5398)).
 
         10) Added Newton update damping for the situation where the solution for a domain oscillates ([#5342](https://github.com/OPM/opm-simulators/pull/5342)).
 
-        11) Reduced execution time for parallel AMG/[CPR](#__RefHeading___Toc27871_3671211675) simulations. Allowed use of AMG with command line option \--matrix-add-well-contributions=false ([#5182](https://github.com/OPM/opm-simulators/pull/5182)).
+        11) Reduced execution time for parallel AMG/CPR simulations. Allowed use of AMG with command line option \--matrix-add-well-contributions=false ([#5182](https://github.com/OPM/opm-simulators/pull/5182)).
 
         12) The code has been updated to only issue warnings the first time the transmissibilities are calculated thus removing spurious and duplicate warnings that can occur when using load balancing ([#5351](https://github.com/OPM/opm-simulators/pull/5351)).
 
         13) Nearly all exceptions thrown when computing wells will not abort the simulator but result in a timestep chop. Hence those should not be counted as errors and be reported in the PRT file. The simulator now only reports problems for exceptions thrown when updating the well potentials ([#5423](https://github.com/OPM/opm-simulators/pull/5423)).
 
-        14) The well economic ([WECON](#__RefHeading___Toc134884_2055188184)) minimum rates are no longer applied if the well is subject to a zero group rate target or constraint ([#5424](https://github.com/OPM/opm-simulators/pull/5424)).
+        14) The well economic (WECON) minimum rates are no longer applied if the well is subject to a zero group rate target or constraint ([#5424](https://github.com/OPM/opm-simulators/pull/5424)).
 
         15) Directly output the SGMAX, SHMAX, SOMAX, SOMIN and SWHY1 arrays rather than the KRNSW_GO, KRNSW_OW, PCSWM_GO, PCSWM_OW and SOMAX arrays to the Restart file for cases with relative permeability and/or capillary pressure hysteresis ([#5402](https://github.com/OPM/opm-simulators/pull/5402)).
 
@@ -1112,11 +1112,11 @@ Improvements to simulator in this release include the following:
 
         20) Linear solver default parameters have been updated to improve accuracy and performance including: material balance tolerance reduced to 1.0e-7, local well solve control switching is turned on, use implicit IPR is turned on, and enable drift compensation is turned off ([#5157](https://github.com/OPM/opm-simulators/pull/5157)).
 
-        21) A more helpful message is now output if the [PETGRID](#__RefHeading___Toc757350_2928331029) keyword is used to try to load a generic simulation grid (\*.GSG) file ([#5541](https://github.com/OPM/opm-simulators/pull/5541)): \"OPM Flow cannot read GSG format grid input, re-export case from Petrel using GRDECL instead.\"
+        21) A more helpful message is now output if the PETGRID keyword is used to try to load a generic simulation grid (\*.GSG) file ([#5541](https://github.com/OPM/opm-simulators/pull/5541)): \"OPM Flow cannot read GSG format grid input, re-export case from Petrel using GRDECL instead.\"
 
         22) The check for active wells as a condition for drift compensation has been removed ([#5110](https://github.com/OPM/opm-simulators/pull/5110)). For CO~2~ injection simulation the drift compensation is still beneficial even when wells are no longer active.
 
-        23) The command line option \--cpr-reuse-setup now only applies to the [CPR](#__RefHeading___Toc27871_3671211675) preconditioner ([#5445](https://github.com/OPM/opm-simulators/pull/5445)).
+        23) The command line option \--cpr-reuse-setup now only applies to the CPR preconditioner ([#5445](https://github.com/OPM/opm-simulators/pull/5445)).
 
         24) The simulator now uses a mobility weighted average of cell level densities for the connection level mixture densities in no-flow producing wells ([#5479](https://github.com/OPM/opm-simulators/pull/5479)). This mobility weighted average approach gives a more monotone pressure build up.
 
@@ -1130,7 +1130,7 @@ Improvements to simulator in this release include the following:
 
         29) Previously the THP was set to zero if a well was stopped or set to a zero rate (well or group). The THP will now be calculated provided a VFP table is active ([#5634](https://github.com/OPM/opm-simulators/pull/5634)).
 
-        30) Consistency checks have been added for three-point saturation scaling [SCALECRS](#__RefHeading___Toc2086108_3315222525)=YES ([#5573](https://github.com/OPM/opm-simulators/pull/5573), [#5640](https://github.com/OPM/opm-simulators/pull/5640)). These checks collectively guarantee a mobile displacing oil saturation in the two phase gas-oil and oil-water systems.
+        30) Consistency checks have been added for three-point saturation scaling SCALECRS=YES ([#5573](https://github.com/OPM/opm-simulators/pull/5573), [#5640](https://github.com/OPM/opm-simulators/pull/5640)). These checks collectively guarantee a mobile displacing oil saturation in the two phase gas-oil and oil-water systems.
 
         31) The dependencies on the OPM PyPi packages have been updated to add support for newer versions of Python, versions 3.6 to 3.12 are now supported ([#5644](https://github.com/OPM/opm-simulators/pull/5644)).
 
@@ -1140,11 +1140,11 @@ Improvements to simulator in this release include the following:
 
         34) The number of pinch-out connections generated will now be reported to the print file ([#767](https://github.com/OPM/opm-grid/pull/767)).
 
-        35) An error message will now be generated if the [COMPSEGS](#__RefHeading___Toc316604_3519154785) keyword is used before the multi-segment well is defined using the [WELSEGS](#__RefHeading___Toc97661_3261743917) keyword ([#4031](https://github.com/OPM/opm-common/pull/4031)).
+        35) An error message will now be generated if the COMPSEGS keyword is used before the multi-segment well is defined using the WELSEGS keyword ([#4031](https://github.com/OPM/opm-common/pull/4031)).
 
         36) The reservoir volume rate (RESV) constraint for a history matching producer is evaluated by converting the observed oil, water and gas surface rates to the current reservoir conditions hence its value is not fixed. However, to test if the well is subject to a zero reservoir volume rate constraint it is sufficient to test if all of the observed rates are zero ([#4039](https://github.com/OPM/opm-common/pull/4039)).
 
-        37) The path of the Restart file (either absolute or relative to the .DATA file) as specified by the [RESTART](#__RefHeading___Toc135629_1317547213) keyword is now saved for writing to the SMSPEC file ([#4056](https://github.com/OPM/opm-common/pull/4056)).
+        37) The path of the Restart file (either absolute or relative to the .DATA file) as specified by the RESTART keyword is now saved for writing to the SMSPEC file ([#4056](https://github.com/OPM/opm-common/pull/4056)).
 
         38) Restart file paths of between 73 and 132 characters in length are now also written to the SMSPEC file ([#4057](https://github.com/OPM/opm-common/pull/4057)).
 
@@ -1152,23 +1152,23 @@ Improvements to simulator in this release include the following:
 
         40) Improved the reading of possibly corrupt summary files ([#4079](https://github.com/OPM/opm-common/pull/4079)).
 
-        41) The [ACTNUM](#__RefHeading___Toc4410_421927891) array is now updated immediately after scanning the [GRID](#__RefHeading___Toc38674_784232322) and [EDIT](#__RefHeading___Toc40641_784232322) sections ([#4082](https://github.com/OPM/opm-common/pull/4082)). This avoids problems where cells are deactivated by setting [PORO](#__RefHeading___Toc45797_719036256) equal to zero while at the same time setting regions numbers for these cells to invalid values (which is not currently supported).
+        41) The ACTNUM array is now updated immediately after scanning the GRID and EDIT sections ([#4082](https://github.com/OPM/opm-common/pull/4082)). This avoids problems where cells are deactivated by setting PORO equal to zero while at the same time setting regions numbers for these cells to invalid values (which is not currently supported).
 
         42) The compatibility with restart files has been improved specifically reading the well closure reason for history matching wells, and not using a guide rate model for wells with a target type of NONE ([#4090](https://github.com/OPM/opm-common/pull/4090)).
 
-        43) The [INIT](#__RefHeading___Toc45789_719036256) file output code\'s assumption that tabulated saturation functions have at most NSSFUN ([TABDIMS](#__RefHeading___Toc89327_327352552) keyword item 3) rows per saturation region has been relaxed ([#4066](https://github.com/OPM/opm-common/pull/4066)). This allows larger saturation function tables to be output to the [INIT](#__RefHeading___Toc45789_719036256) file without an error being generated.
+        43) The INIT file output code\'s assumption that tabulated saturation functions have at most NSSFUN (TABDIMS keyword item 3) rows per saturation region has been relaxed ([#4066](https://github.com/OPM/opm-common/pull/4066)). This allows larger saturation function tables to be output to the INIT file without an error being generated.
 
         44) Added support for restarting cases with group injection controlled voidage replacement ([#4108](https://github.com/OPM/opm-common/pull/4108)).
 
         45) Support has been expanded for saving/restoring scaling factors for segment level devices (SICDs, AICDs and Valves) to/from the Restart file ([#3978](https://github.com/OPM/opm-common/pull/3978)).
 
-        46) Avoid unnecessarily checking if the fluid is saturated in [CO2STORE](#__RefHeading___Toc387968_1616145207) and [H2STORE](#REF_HEADING_KEYWORD_H2STORE) cases ([#4125](https://github.com/OPM/opm-common/pull/4125)).
+        46) Avoid unnecessarily checking if the fluid is saturated in CO2STORE and H2STORE cases ([#4125](https://github.com/OPM/opm-common/pull/4125)).
 
         47) If the injection fluid temperature has not been set for an injection well then it now defaults to the cell temperature in the upper most completion ([#5490](https://github.com/OPM/opm-simulators/pull/5490), [#4155](https://github.com/OPM/opm-common/pull/4155), [#4152](https://github.com/OPM/opm-common/pull/4152)).
 
-        48) A warning message will now be generated and the well connection will be skipped if the well connection is in a cell that will be deactivated due a pore volume cut off specified by the [MINPV](#__RefHeading___Toc569208_3181922006) or [MINPVV](#__RefHeading___Toc132765_2319858807) keyword ([#4174](https://github.com/OPM/opm-common/pull/4174)). This also avoids a crash that would have occurred if any such well was re-completed at a later stage in the simulation.
+        48) A warning message will now be generated and the well connection will be skipped if the well connection is in a cell that will be deactivated due a pore volume cut off specified by the MINPV or MINPVV keyword ([#4174](https://github.com/OPM/opm-common/pull/4174)). This also avoids a crash that would have occurred if any such well was re-completed at a later stage in the simulation.
 
-        49) Restart support has been added for [DRSDT](#__RefHeading___Toc117623_2179381650) ([#4166](https://github.com/OPM/opm-common/pull/4166)).
+        49) Restart support has been added for DRSDT ([#4166](https://github.com/OPM/opm-common/pull/4166)).
 
         50) The code now uses the failure flag of the tasklet runner to detect a failure while writing output and throw an error if this happens ([#5478](https://github.com/OPM/opm-simulators/pull/5478), [#4178](https://github.com/OPM/opm-common/pull/4178)).
 
@@ -1176,7 +1176,7 @@ Improvements to simulator in this release include the following:
 
         52) Add support for converting between formatted (.FGRID) and unformatted (.GRID) grid files to the convertECL utility ([#4208](https://github.com/OPM/opm-common/pull/4208)).
 
-        53) An error message will now be generated if an attempt is made to copy an undefined array (for example using the [COPY](#__RefHeading___Toc45761_719036256) keyword). Similarly, operations on an array (for example the [ADD](#__RefHeading___Toc4412_421927891) keyword) other than assignment (for example using the [EQUALS](#__RefHeading___Toc296597_1576177388) keyword) will now generate an error message if the array being operated on has not been previously been defined in the input deck ([#4109](https://github.com/OPM/opm-common/pull/4109), [#4235](https://github.com/OPM/opm-common/pull/4235)). However, operations are allowed on multiplier arrays ([MULTX](#__RefHeading___Toc80283_1778172979), [MULTY](#__RefHeading___Toc80287_1778172979), etc.) that have not been explicitly defined in the input deck but have a default value of one ([#4235](https://github.com/OPM/opm-common/pull/4235)).
+        53) An error message will now be generated if an attempt is made to copy an undefined array (for example using the COPY keyword). Similarly, operations on an array (for example the ADD keyword) other than assignment (for example using the EQUALS keyword) will now generate an error message if the array being operated on has not been previously been defined in the input deck ([#4109](https://github.com/OPM/opm-common/pull/4109), [#4235](https://github.com/OPM/opm-common/pull/4235)). However, operations are allowed on multiplier arrays (MULTX, MULTY, etc.) that have not been explicitly defined in the input deck but have a default value of one ([#4235](https://github.com/OPM/opm-common/pull/4235)).
 
         54) Performance improvements in well name matching on platforms which support the Posix fnmatch() function ([#4243](https://github.com/OPM/opm-common/pull/4243)).
 
@@ -1193,9 +1193,9 @@ The following bug fixes and improvements have been incorporated into this releas
 
         3)  Fixed output of CO~2~ mass in place ([#5324](https://github.com/OPM/opm-simulators/pull/5324)).
 
-        4)  Initialise the reservoir temperature in [CO2STORE](#__RefHeading___Toc387968_1616145207) restart runs using the initial reservoir temperature if no temperatures are stored in the restart file, as is now the case for isothermal runs ([#5331](https://github.com/OPM/opm-simulators/pull/5331)).
+        4)  Initialise the reservoir temperature in CO2STORE restart runs using the initial reservoir temperature if no temperatures are stored in the restart file, as is now the case for isothermal runs ([#5331](https://github.com/OPM/opm-simulators/pull/5331)).
 
-        5)  Mark the option \'BASIC=0\' as allowed for the [RPTRST](#__RefHeading___Toc210154_2884651453) keyword ([#5335](https://github.com/OPM/opm-simulators/pull/5335)).
+        5)  Mark the option \'BASIC=0\' as allowed for the RPTRST keyword ([#5335](https://github.com/OPM/opm-simulators/pull/5335)).
 
         6)  Corrected definitions of GMDS and GMGP summary vectors ([#5292](https://github.com/OPM/opm-simulators/pull/5292)).
 
@@ -1205,19 +1205,19 @@ The following bug fixes and improvements have been incorporated into this releas
 
         9)  Avoid possible use of out-of-scope temporary ([#5393](https://github.com/OPM/opm-simulators/pull/5393)).
 
-        10) Fixed an issue where a [UDQ](#__RefHeading___Toc161095_2932703077) assignment would not be performed if it was triggered on the last time step of report step ([#5379](https://github.com/OPM/opm-simulators/pull/5379)).
+        10) Fixed an issue where a UDQ assignment would not be performed if it was triggered on the last time step of report step ([#5379](https://github.com/OPM/opm-simulators/pull/5379)).
 
         11) Three small fixes: Make sure that the same explicit/implicit fraction is used when computing THP(BHP) and when computing BHP(THP). Reduced risk of switching control in case of extreme VFP-extrapolation. Disallow local well control switching when the maximum number of well switches has been reached ([#5395](https://github.com/OPM/opm-simulators/pull/5395)).
 
-        12) Fix the modification of transmissibility arrays (for example, using the [MULTIPLY](#__RefHeading___Toc296609_1576177388) keyword in the [EDIT](#__RefHeading___Toc40641_784232322) section to modify [TRANX](#__RefHeading___Toc93085_718313858)) when running in parallel ([#5414](https://github.com/OPM/opm-simulators/pull/5414)).
+        12) Fix the modification of transmissibility arrays (for example, using the MULTIPLY keyword in the EDIT section to modify TRANX) when running in parallel ([#5414](https://github.com/OPM/opm-simulators/pull/5414)).
 
         13) Avoid recursively deleting results in all subfolders if the command line argument \--output-dir is empty ([#5427](https://github.com/OPM/opm-simulators/pull/5427)).
 
-        14) Avoid mass creation when using [DRSDT](#__RefHeading___Toc117623_2179381650) or [DRSDTCON](#__RefHeading___Toc481925_1297399298) if hysteresis was deactivated ([#5407](https://github.com/OPM/opm-simulators/pull/5407)).
+        14) Avoid mass creation when using DRSDT or DRSDTCON if hysteresis was deactivated ([#5407](https://github.com/OPM/opm-simulators/pull/5407)).
 
         15) If convergence fails due to NaN then report this as a problem rather than an error, then chop the time step and continue ([#5434](https://github.com/OPM/opm-simulators/pull/5434)).
 
-        16) Support was previously added for [GCONPROD](#__RefHeading___Toc146746_4203985108) items 11 to 13 but generally did not take effect. This has been now been fixed ([#5432](https://github.com/OPM/opm-simulators/pull/5432)).
+        16) Support was previously added for GCONPROD items 11 to 13 but generally did not take effect. This has been now been fixed ([#5432](https://github.com/OPM/opm-simulators/pull/5432)).
 
         17) Check that a well exists before closing it due to a group action ([#5462](https://github.com/OPM/opm-simulators/pull/5462)).
 
@@ -1227,17 +1227,17 @@ The following bug fixes and improvements have been incorporated into this releas
 
         20) Ensure default ALQ is set for all production wells on all processes. Fixes an MPI bug for cases where a well switches from producer to injector at the restart step ([#5534](https://github.com/OPM/opm-simulators/pull/5534)).
 
-        21) Avoids an exception that would be thrown if one or more wells are shut in a [CO2STORE](#__RefHeading___Toc387968_1616145207) run ([#5546](https://github.com/OPM/opm-simulators/pull/5546)).
+        21) Avoids an exception that would be thrown if one or more wells are shut in a CO2STORE run ([#5546](https://github.com/OPM/opm-simulators/pull/5546)).
 
         22) Avoid deleting derivatives in the case of zero pressure or zero flux that would have resulted in an incorrect matrix ([#5236](https://github.com/OPM/opm-simulators/pull/5236)).
 
-        23) Fixed conditional expression in [DRVDT](#__RefHeading___Toc117625_2179381650) initialisation code ([#5565](https://github.com/OPM/opm-simulators/pull/5565)).
+        23) Fixed conditional expression in DRVDT initialisation code ([#5565](https://github.com/OPM/opm-simulators/pull/5565)).
 
         24) Set the correct number of target iterations in the simple iteration timestep controller ([#5476](https://github.com/OPM/opm-simulators/pull/5476)).
 
         25) Ensure well and accumulated group efficiency factors are applied to the connection energy rates ([#5323](https://github.com/OPM/opm-simulators/pull/5323)).
 
-        26) Fixed calculation of injection well BHP for [CO2STORE](#__RefHeading___Toc387968_1616145207) and [H2STORE](#REF_HEADING_KEYWORD_H2STORE) runs ([#5602](https://github.com/OPM/opm-simulators/pull/5602)).
+        26) Fixed calculation of injection well BHP for CO2STORE and H2STORE runs ([#5602](https://github.com/OPM/opm-simulators/pull/5602)).
 
         27) Fixed output of well temperature ([#5305](https://github.com/OPM/opm-simulators/pull/5305)).
 
@@ -1249,7 +1249,7 @@ The following bug fixes and improvements have been incorporated into this releas
 
         31) Actually use fixed ordering when constructing matrices in the AMG hierarchy to get reproducible results in parallel runs ([#5646](https://github.com/OPM/opm-simulators/pull/5646)).
 
-        32) Corrected transmissibilities calculated for pinched out cells when using [PINCH](#__RefHeading___Toc74261_2479612490) option 4 equals [ALL](#__RefHeading___Toc4420_421927891) ([#5577](https://github.com/OPM/opm-simulators/pull/5577)).
+        32) Corrected transmissibilities calculated for pinched out cells when using PINCH option 4 equals ALL ([#5577](https://github.com/OPM/opm-simulators/pull/5577)).
 
         33) Call method with the correct precision in the rocSPARSE solver ([#5655](https://github.com/OPM/opm-simulators/pull/5655)).
 
@@ -1265,33 +1265,33 @@ The following bug fixes and improvements have been incorporated into this releas
 
         39) Add scoped and named variable to avoid using out-of-scope temporary ([#724](https://github.com/OPM/opm-grid/pull/724)).
 
-        40) Make methods that handle well connections aware of possible future connections that might be opened in [ACTIONX](#__RefHeading___Toc152227_2992482751) ([#742](https://github.com/OPM/opm-grid/pull/742)).
+        40) Make methods that handle well connections aware of possible future connections that might be opened in ACTIONX ([#742](https://github.com/OPM/opm-grid/pull/742)).
 
         41) Updated the molar mass of n-Decane (\"C10\") defined in the code from 0.0142 to 0.142 kg/gmol ([#4037](https://github.com/OPM/opm-common/pull/4037)).
 
-        42) Change the dimension for critical temperature ([TCRIT](#REF_HEADING_KEYWORD_TCRIT)) from temperature to absolute temperature ([#4041](https://github.com/OPM/opm-common/pull/4041)).
+        42) Change the dimension for critical temperature (TCRIT) from temperature to absolute temperature ([#4041](https://github.com/OPM/opm-common/pull/4041)).
 
-        43) Previously three modules were exported to Python for use with [PYACTION](#__RefHeading___Toc393199_4211536922), now only opmcommon_python is exported ([#4029](https://github.com/OPM/opm-common/pull/4029)).
+        43) Previously three modules were exported to Python for use with PYACTION, now only opmcommon_python is exported ([#4029](https://github.com/OPM/opm-common/pull/4029)).
 
         44) Avoid computing a well THP if the VFP table is defaulted or explicitly set to zero ([#4058](https://github.com/OPM/opm-common/pull/4058)).
 
-        45) Proper [INIT](#__RefHeading___Toc45789_719036256) file table output for the saturation functions in LET format ([#4051](https://github.com/OPM/opm-common/pull/4051)).
+        45) Proper INIT file table output for the saturation functions in LET format ([#4051](https://github.com/OPM/opm-common/pull/4051)).
 
-        46) Fix deadlock when outputting [MULTPV](#__RefHeading___Toc95300_3218818441) to [INIT](#__RefHeading___Toc45789_719036256) file in parallel ([#4068](https://github.com/OPM/opm-common/pull/4068)).
+        46) Fix deadlock when outputting MULTPV to INIT file in parallel ([#4068](https://github.com/OPM/opm-common/pull/4068)).
 
-        47) The value specified by the [UDQPARAM](#__RefHeading___Toc161093_2932703077) keyword for undefined UDQs is now used as a fallback default for undefined or missing UDQs, in particular well, group or segment UDQs ([#4054](https://github.com/OPM/opm-common/pull/4054)).
+        47) The value specified by the UDQPARAM keyword for undefined UDQs is now used as a fallback default for undefined or missing UDQs, in particular well, group or segment UDQs ([#4054](https://github.com/OPM/opm-common/pull/4054)).
 
         48) Fixed comparison and serialization from Runspec object where multiple members were ignored ([#4086](https://github.com/OPM/opm-common/pull/4086)).
 
         49) Fix output of LET curves by taking into account the connate saturations ([#4085](https://github.com/OPM/opm-common/pull/4085)).
 
-        50) Trigger an update of the well targets when running [WTMULT](#__RefHeading___Toc1141674_4263943340) in an [ACTIONX](#__RefHeading___Toc152227_2992482751) block ([#4095](https://github.com/OPM/opm-common/pull/4095)).
+        50) Trigger an update of the well targets when running WTMULT in an ACTIONX block ([#4095](https://github.com/OPM/opm-common/pull/4095)).
 
-        51) Fix salinity input in [CO2STORE](#__RefHeading___Toc387968_1616145207) module and allow [CO2STORE](#__RefHeading___Toc387968_1616145207) to be used with multiple PVT regions ([#4099](https://github.com/OPM/opm-common/pull/4099)).
+        51) Fix salinity input in CO2STORE module and allow CO2STORE to be used with multiple PVT regions ([#4099](https://github.com/OPM/opm-common/pull/4099)).
 
-        52) Wells modified by user-defined arguments (UDA) of a [WSEGVALV](#__RefHeading___Toc1091865_4263943340) keyword will be updated during time steps not only report steps ([#4121](https://github.com/OPM/opm-common/pull/4121)).
+        52) Wells modified by user-defined arguments (UDA) of a WSEGVALV keyword will be updated during time steps not only report steps ([#4121](https://github.com/OPM/opm-common/pull/4121)).
 
-        53) Use gas-water ratio ([RSW](#REF_HEADING_KEYWORD_RSW_10_3)) rather than saturated gas-water ratio (RSWSAT) when calculating water density ([#4124](https://github.com/OPM/opm-common/pull/4124)).
+        53) Use gas-water ratio (RSW) rather than saturated gas-water ratio (RSWSAT) when calculating water density ([#4124](https://github.com/OPM/opm-common/pull/4124)).
 
         54) Hysteresis parameter get and set methods now work directly on min/max saturations rather than relative permeability and capillary pressure values to avoid conversion in the output layer ([#4089](https://github.com/OPM/opm-common/pull/4089)). Also, imbibition and drainage curves were mixed up, and connate water saturation was incorrectly added to the drainage wetting phase critical saturation.
 
@@ -1303,9 +1303,9 @@ The following bug fixes and improvements have been incorporated into this releas
 
         58) Avoid duplicating objects on pointer serialization/de-serialization ([#4141](https://github.com/OPM/opm-common/pull/4141)).
 
-        59) Avoid division by zero when evaluating corner point coordinates if coordinate lines ([COORD](#__RefHeading___Toc45757_719036256)) have equal top and bottom depths ([#4145](https://github.com/OPM/opm-common/pull/4145)).
+        59) Avoid division by zero when evaluating corner point coordinates if coordinate lines (COORD) have equal top and bottom depths ([#4145](https://github.com/OPM/opm-common/pull/4145)).
 
-        60) Ensure that the unit conversion offset is not discarded when parsing Temperature units ([#4155](https://github.com/OPM/opm-common/pull/4155)). Also the units for the Joule-Thomson coefficient have been changed from Temperature/Pressure to AbsoluteTemperature/Pressure on the [GASJT](#__RefHeading___Toc163486_2545341761), [OILJT](#__RefHeading___Toc163486_25453417611) amd [WATJT](#__RefHeading___Toc163486_254534176112) keywords, and the units for the thermal expansion ratio for a cell in mechanics models have been changed from 1/Temperature to 1/AbsoluteTemperature on the THERMEXR keyword.
+        60) Ensure that the unit conversion offset is not discarded when parsing Temperature units ([#4155](https://github.com/OPM/opm-common/pull/4155)). Also the units for the Joule-Thomson coefficient have been changed from Temperature/Pressure to AbsoluteTemperature/Pressure on the GASJT, OILJT amd WATJT keywords, and the units for the thermal expansion ratio for a cell in mechanics models have been changed from 1/Temperature to 1/AbsoluteTemperature on the THERMEXR keyword.
 
         61) The summary tool now prints the help message and returns failure if you run it with no parameters (or no parameters after the options). Previously, the tool would generate a segmentation fault ([#4156](https://github.com/OPM/opm-common/pull/4156)).
 
@@ -1313,13 +1313,13 @@ The following bug fixes and improvements have been incorporated into this releas
 
         63) Use correct bhp limit for production wells under historic control when restarting a run ([#4112](https://github.com/OPM/opm-common/pull/4112)).
 
-        64) Fix assignment of selected well variables using the [UDQ](#__RefHeading___Toc161095_2932703077) keyword, and improve handling of quoted well names ([#4177](https://github.com/OPM/opm-common/pull/4177)).
+        64) Fix assignment of selected well variables using the UDQ keyword, and improve handling of quoted well names ([#4177](https://github.com/OPM/opm-common/pull/4177)).
 
-        65) Proper handling of the [WHISTCTL](#__RefHeading___Toc268465_1366622701) in restarted simulations ([#4119](https://github.com/OPM/opm-common/pull/4119)).
+        65) Proper handling of the WHISTCTL in restarted simulations ([#4119](https://github.com/OPM/opm-common/pull/4119)).
 
         66) The serializer nolonger passes null pointers to the packers, and a workaround for Dune 2.6 has been removed ([#4192](https://github.com/OPM/opm-common/pull/4192)).
 
-        67) Flag indicating whether the parameters for the logarithm-based polymer shear thinning/thickening option include a reference temperature is now assigned to the correct member of the [PLYSHLOG](#__RefHeading___Toc110220_2939291539) table object ([#4195](https://github.com/OPM/opm-common/pull/4195)).
+        67) Flag indicating whether the parameters for the logarithm-based polymer shear thinning/thickening option include a reference temperature is now assigned to the correct member of the PLYSHLOG table object ([#4195](https://github.com/OPM/opm-common/pull/4195)).
 
         68) Fixed serialization and output of Ezrokhi density coefficients for parallel runs ([#4209](https://github.com/OPM/opm-common/pull/4209)).
 
@@ -1327,11 +1327,11 @@ The following bug fixes and improvements have been incorporated into this releas
 
         70) Added missing throw statements for logic errors ([#4203](https://github.com/OPM/opm-common/pull/4203)).
 
-        71) If the VFP table number is defaulted for history wells using [WCONHIST](#__RefHeading___Toc134880_2055188184) or [WCONINJH](#__RefHeading___Toc146752_4203985108) then the previously defined value now will be used ([#4228](https://github.com/OPM/opm-common/pull/4228)).
+        71) If the VFP table number is defaulted for history wells using WCONHIST or WCONINJH then the previously defined value now will be used ([#4228](https://github.com/OPM/opm-common/pull/4228)).
 
-        72) Previously, a warning \'well is not connected to the grid\' is output if any connection is not connected to the grid. Now a warning message is only output if the well is completely unconnected from the grid after the entire [COMPDAT](#__RefHeading___Toc97651_3261743917) record has been processed ([#4223](https://github.com/OPM/opm-common/pull/4223)).
+        72) Previously, a warning \'well is not connected to the grid\' is output if any connection is not connected to the grid. Now a warning message is only output if the well is completely unconnected from the grid after the entire COMPDAT record has been processed ([#4223](https://github.com/OPM/opm-common/pull/4223)).
 
-        73) Added missing UDA Dimension for group production ([GCONPROD](#__RefHeading___Toc146746_4203985108)) gas rate target or constraint (GRAT). Without this a restarted simulation with UDAs for GCONPROD\'s GRAT target or constraint with fail to load ([#4248](https://github.com/OPM/opm-common/pull/4248)).
+        73) Added missing UDA Dimension for group production (GCONPROD) gas rate target or constraint (GRAT). Without this a restarted simulation with UDAs for GCONPROD\'s GRAT target or constraint with fail to load ([#4248](https://github.com/OPM/opm-common/pull/4248)).
 
         74) Fixed a bug where well and group rates that can be specified by UDAs were converted to SI units twice ([#4269](https://github.com/OPM/opm-common/pull/4269)).
 
@@ -1346,11 +1346,11 @@ Known issues in this release of the simulator include:
 
 3)  1)  1)  There is an error with the RSM header for summary vectors whose NUMS entry in the SMSPEC file is derived from more than a single number source (e.g., single region or segment ID). This applies to all block vectors (BGPV, BOPV, BWPV, etc.), connection level quantities (COPT, etc.), and inter-region flows such as ROFT etc ([#3078](https://github.com/OPM/opm-common/issues/3078)). The work around is to plot the data in OPM ResInsight and right-click on the plot to view and copy the data.
 
-        2)  As per previous releases of the radial model, the [COORDSYS](#__RefHeading___Toc45759_719036256) keyword item three must be set to COMP to complete the circle, this has not been implemented in this release. Also there appears to be a bug for full radial models when a well goes on BHP control that causes the well not to respect the BHP constraint, this eventually causes the well to die prematurely. See [#2640](https://github.com/OPM/opm-common/pull/2640) for a discussion on the topic.
+        2)  As per previous releases of the radial model, the COORDSYS keyword item three must be set to COMP to complete the circle, this has not been implemented in this release. Also there appears to be a bug for full radial models when a well goes on BHP control that causes the well not to respect the BHP constraint, this eventually causes the well to die prematurely. See [#2640](https://github.com/OPM/opm-common/pull/2640) for a discussion on the topic.
 
-        3)  As in previous releases there are some issues with the [OPERATE](#__RefHeading___Toc64455_718313858) and [OPERATER](#__RefHeading___Toc155507_332691817) keywords associated with the input parsing; for various reasons a few of the fields require special case treatment in the grid processing, including (at least) [MULTZ](#__RefHeading___Toc80291_1778172979), [PORV](#__RefHeading___Toc96547_718313858) and [ACTNUM](#__RefHeading___Toc4410_421927891), and for those keywords the [OPERATE](#__RefHeading___Toc64455_718313858)/[OPERATER](#__RefHeading___Toc155507_332691817) keyword doe not work. The work around is to use the [MULTIPLY](#__RefHeading___Toc296609_1576177388) keyword instead.
+        3)  As in previous releases there are some issues with the OPERATE and OPERATER keywords associated with the input parsing; for various reasons a few of the fields require special case treatment in the grid processing, including (at least) MULTZ, PORV and ACTNUM, and for those keywords the OPERATE/OPERATER keyword doe not work. The work around is to use the MULTIPLY keyword instead.
 
-        4)  For the [UDQ](#__RefHeading___Toc161095_2932703077) ASSIGN operator after the terminating "/" normally any comments can be entered; however, if there is "/" within the comment field, as per:
+        4)  For the UDQ ASSIGN operator after the terminating "/" normally any comments can be entered; however, if there is "/" within the comment field, as per:
 
 *ASSIGN FUNGLYLD 1.196 / Condensate Yield (63.5/56.7)/(1.0 -- 0.065*)
 
@@ -1358,33 +1358,33 @@ then the simulator will abort. The work around is to manually place the comment 
 
 *ASSIGN FUNGLYLD 1.196 / \-- Condensate Yield (63.5/56.7)/(1.0 -- 0.06)*
 
-3)  1)  1)  At the moment, one cannot initialize tracers using the [EQUALS](#__RefHeading___Toc296597_1576177388) keyword. Instead use the array format, that is the keyword followed by the required number of values, or the [TVDP](#__RefHeading___Toc210170_2884651453) keyword in the [SOLUTION](#__RefHeading___Toc43947_784232322) section to set the initial tracer concentrations as a function of depth.
+3)  1)  1)  At the moment, one cannot initialize tracers using the EQUALS keyword. Instead use the array format, that is the keyword followed by the required number of values, or the TVDP keyword in the SOLUTION section to set the initial tracer concentrations as a function of depth.
 
-        2)  Currently, gas tracers cannot be used if the dissolved gas phase, as per the [DISGAS](#__RefHeading___Toc39767_2267116897) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section, is active in the model.
+        2)  Currently, gas tracers cannot be used if the dissolved gas phase, as per the DISGAS keyword in the RUNSPEC section, is active in the model.
 
         3)  The summary vector RTIPTHEA, that defines the energy in-place between the initial and the current time for regions, is not supported unlike the FTIPTHEA and BTIPTHEA vectors. Secondly, the error message:
 
-is incorrect, as the message indicates that it is being treated like a named region, as per the [FIP](#__RefHeading___Toc250560_252421755) keyword, when it is actually a [SUMMARY](#__RefHeading___Toc43949_784232322) vector ([#3870](https://github.com/OPM/opm-simulators/issues/3870)).
+is incorrect, as the message indicates that it is being treated like a named region, as per the FIP keyword, when it is actually a SUMMARY vector ([#3870](https://github.com/OPM/opm-simulators/issues/3870)).
 
 3)  1)  1)  If there are cells that are very distorted, which can occur near fault planes, then the simulator may abort because it cannot calculate the pore volume of such cells. The work around is to re-generate the grid in the static model, taking care that the cells around the fault planes are more or less orthogonal ([#2992](https://github.com/OPM/opm-common/issues/2992) and [#3770](https://github.com/OPM/opm-simulators/issues/3770)).
 
-        2)  Currently the [OPERATER](#__RefHeading___Toc155507_332691817) keyword in the [EDIT](#__RefHeading___Toc40641_784232322) section does not work with the [DEPTH](#__RefHeading___Toc58139_3701168388), [TRANX](#__RefHeading___Toc93085_718313858), [TRANY](#__RefHeading___Toc93087_718313858) and [TRANZ](#__RefHeading___Toc93089_718313858) property arrays ([#2994](https://github.com/OPM/opm-common/issues/2994) and [#748](https://github.com/OPM/opm-tests/pull/748)).
+        2)  Currently the OPERATER keyword in the EDIT section does not work with the DEPTH, TRANX, TRANY and TRANZ property arrays ([#2994](https://github.com/OPM/opm-common/issues/2994) and [#748](https://github.com/OPM/opm-tests/pull/748)).
 
-        3)  If a standard well is fully declared in an [ACTIONX](#__RefHeading___Toc152227_2992482751) block which is then activated at a later date, and later the well is modified to be a multi-segment well using the [WELSEGS](#__RefHeading___Toc97661_3261743917) and [COMPSEGS](#__RefHeading___Toc316604_3519154785) keywords, then this will cause the simulator to abort with an assert failure. The solution to this issue is to not use this type of work flow in declaring wells ([#2891](https://github.com/OPM/opm-common/issues/2891) and [#2895](https://github.com/OPM/opm-common/pull/2895)).
+        3)  If a standard well is fully declared in an ACTIONX block which is then activated at a later date, and later the well is modified to be a multi-segment well using the WELSEGS and COMPSEGS keywords, then this will cause the simulator to abort with an assert failure. The solution to this issue is to not use this type of work flow in declaring wells ([#2891](https://github.com/OPM/opm-common/issues/2891) and [#2895](https://github.com/OPM/opm-common/pull/2895)).
 
-        4)  Although the [ACTIONX](#__RefHeading___Toc152227_2992482751) [EXIT](#__RefHeading___Toc627737_1466963378) command works as expected, it does not write out the requested RSM file at the end of the run. However, the other [SUMMARY](#__RefHeading___Toc43949_784232322) and [RESTART](#__RefHeading___Toc135629_1317547213) files are written out ([#2877](https://github.com/OPM/opm-common/issues/2877)).
+        4)  Although the ACTIONX EXIT command works as expected, it does not write out the requested RSM file at the end of the run. However, the other SUMMARY and RESTART files are written out ([#2877](https://github.com/OPM/opm-common/issues/2877)).
 
-        5)  Although the [GCONSUMP](#__RefHeading___Toc188037_2026549522) keyword in the [SCHEDULE](#__RefHeading___Toc43945_784232322) section is fully implemented as documented, it is not possible to verify the output as the associated [SUMMARY](#__RefHeading___Toc43949_784232322) vectors are not written out, that is the [SUMMARY](#__RefHeading___Toc43949_784232322) sales gas vectors FGSR, FGST, GGSR and GGST, and fuel vectors FGCR, FGCT, GGCR, and GGCT have not been implemented ([#2679](https://github.com/OPM/opm-common/issues/2679)).
+        5)  Although the GCONSUMP keyword in the SCHEDULE section is fully implemented as documented, it is not possible to verify the output as the associated SUMMARY vectors are not written out, that is the SUMMARY sales gas vectors FGSR, FGST, GGSR and GGST, and fuel vectors FGCR, FGCT, GGCR, and GGCT have not been implemented ([#2679](https://github.com/OPM/opm-common/issues/2679)).
 
-        6)  There are small differences in the behavior of the [NEXTSTEP](#__RefHeading___Toc323446_1841740821) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section between OPM Flow and the commercial simulator that remain unresolved ([#3745](https://github.com/OPM/opm-simulators/issues/3745)).
+        6)  There are small differences in the behavior of the NEXTSTEP keyword in the RUNSPEC section between OPM Flow and the commercial simulator that remain unresolved ([#3745](https://github.com/OPM/opm-simulators/issues/3745)).
 
-        7)  **There is a unit handling issue associated with [OPERATE](#__RefHeading___Toc64455_718313858) keyword. If the [OPERATE](#__RefHeading___Toc64455_718313858)(X) parameter has units, as for example [PERMX](#__RefHeading___Toc45791_719036256), then the conversion is always done in SI units, despite the input deck declaring the deck to be fields units, as per [FIELD](#__RefHeading___Toc71850_2267116897) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section. Note that OPM Flow performs all of its calculations internally in SI and performs unit handling only when inputting the \*.DATA file and when outputting result files. Thanks to **[lrijkels](https://github.com/lrijkels)** for reporting the issue. See **[#4597](https://github.com/OPM/opm-simulators/issues/4597)** for details. **
+        7)  **There is a unit handling issue associated with OPERATE keyword. If the OPERATE(X) parameter has units, as for example PERMX, then the conversion is always done in SI units, despite the input deck declaring the deck to be fields units, as per FIELD keyword in the RUNSPEC section. Note that OPM Flow performs all of its calculations internally in SI and performs unit handling only when inputting the \*.DATA file and when outputting result files. Thanks to **[lrijkels](https://github.com/lrijkels)** for reporting the issue. See **[#4597](https://github.com/OPM/opm-simulators/issues/4597)** for details. **
 
-        8)  There is an issue associated with restarting from a restart file with the solution gas (Rs) maximum rate of increase, as defined by the [DRSDT](#__RefHeading___Toc117623_2179381650) keyword in the [SCHEDULE](#__RefHeading___Toc43945_784232322), that has been set to zero. This is because, the simulator does not save/restore this setting in simulator\'s restart files, which means that simulator misses the essential value zero upon restarting the case. As a work-around one can use the option *\--sched-restart=true*, when running the restart case. This will initialize the restarted simulation based on information from the complete [SCHEDULE](#__RefHeading___Toc43945_784232322) section, instead of just the parts that we\'re going to simulate and the rest from the restart file. Thanks to [goncalvesmachadoc](https://github.com/goncalvesmachadoc) for reporting the issue. See [#4272](https://github.com/OPM/opm-simulators/issues/4272) for details.
+        8)  There is an issue associated with restarting from a restart file with the solution gas (Rs) maximum rate of increase, as defined by the DRSDT keyword in the SCHEDULE, that has been set to zero. This is because, the simulator does not save/restore this setting in simulator\'s restart files, which means that simulator misses the essential value zero upon restarting the case. As a work-around one can use the option *\--sched-restart=true*, when running the restart case. This will initialize the restarted simulation based on information from the complete SCHEDULE section, instead of just the parts that we\'re going to simulate and the rest from the restart file. Thanks to [goncalvesmachadoc](https://github.com/goncalvesmachadoc) for reporting the issue. See [#4272](https://github.com/OPM/opm-simulators/issues/4272) for details.
 
         9)  OPM cannot be built with dune-fem version 2.9 or later ([#4934](https://github.com/OPM/opm-simulators/issues/4934)). Please use a previous version.
 
-        10) The simulator uses an irregular corner-point grid geometry with adjusted pore volumes to represent radial grids so it is not possible to create a full ring (360 degree disk) with only one cell in the theta direction (NY=1). The work around is to model a slice (say [DTHETA](#__RefHeading___Toc120096_2066951158)=60 degrees). Note that as the angle increases larger pore volume adjustments are required ([#4755](https://github.com/OPM/opm-simulators/issues/4755)).
+        10) The simulator uses an irregular corner-point grid geometry with adjusted pore volumes to represent radial grids so it is not possible to create a full ring (360 degree disk) with only one cell in the theta direction (NY=1). The work around is to model a slice (say DTHETA=60 degrees). Note that as the angle increases larger pore volume adjustments are required ([#4755](https://github.com/OPM/opm-simulators/issues/4755)).
 
         11) In some cases with the network option the simulator can wrongly report that a well has no THP constraints, for example
 
@@ -1396,53 +1396,53 @@ A.  1.  ## Release 2024-04
 
 The 2024-04 release consists of some new features and various improvements and bug fixes. The new features and improvements include the following highlights:
 
--   -   -   Added support for the [CO2SOL](#REF_HEADING_KEYWORD_CO2SOL) and [H2SOL](#REF_HEADING_KEYWORD_H2SOL) keywords for modeling CO~2~ or H~2~ injection in hydrocarbon reservoirs. These are similar to the existing [CO2STORE](#__RefHeading___Toc387968_1616145207) and [H2STORE](#REF_HEADING_KEYWORD_H2STORE) keywords for modeling CO~2~ or H~2~ injection in saline aquifers.
+-   -   -   Added support for the CO2SOL and H2SOL keywords for modeling CO~2~ or H~2~ injection in hydrocarbon reservoirs. These are similar to the existing CO2STORE and H2STORE keywords for modeling CO~2~ or H~2~ injection in saline aquifers.
 
-        -   The option has been added to output the liquid phase H~2~ mole fraction and vapor phase water mole fraction to the [RESTART](#__RefHeading___Toc135629_1317547213) file when using the [H2STORE](#REF_HEADING_KEYWORD_H2STORE) option ([RPTRST](#__RefHeading___Toc210154_2884651453) keyword mnemonics XMFH2 and YMFWAT).
+        -   The option has been added to output the liquid phase H~2~ mole fraction and vapor phase water mole fraction to the RESTART file when using the H2STORE option (RPTRST keyword mnemonics XMFH2 and YMFWAT).
 
-        -   Added CO~2~ mass in place summary vectors for the field and region level when using [CO2STORE](#__RefHeading___Toc387968_1616145207), including trapped masses based on the definition of immobile gas in the 11th SPE Comparative Solution Project.
+        -   Added CO~2~ mass in place summary vectors for the field and region level when using CO2STORE, including trapped masses based on the definition of immobile gas in the 11th SPE Comparative Solution Project.
 
-        -   Added support for the [SOURCE](#REF_HEADING_KEYWORD_SOURCE_12_3) keyword for modeling a simple source term.
+        -   Added support for the SOURCE keyword for modeling a simple source term.
 
-        -   Support has been added for [WDFAC](#__RefHeading___Toc442057_2026549522) and [WDFACCOR](#__RefHeading___Toc48144_327352552) keywords in the [SCHEDULE](#__RefHeading___Toc43945_784232322) section. The option of setting connection specific D factors (Item 12 in [COMPDAT](#__RefHeading___Toc97651_3261743917)) is now also supported.
+        -   Support has been added for WDFAC and WDFACCOR keywords in the SCHEDULE section. The option of setting connection specific D factors (Item 12 in COMPDAT) is now also supported.
 
-        -   Added support for setting [GCONPROD](#__RefHeading___Toc146746_4203985108) keyword item 7 ([ACTION](#__RefHeading___Toc148342_63720426)) equal to WELL. Added support for reason equals G (group) to the [WTEST](#__RefHeading___Toc121925_2556401936) keyword item 3 (TEST).
+        -   Added support for setting GCONPROD keyword item 7 (ACTION) equal to WELL. Added support for reason equals G (group) to the WTEST keyword item 3 (TEST).
 
-        -   Added support for the [DIFFAGAS](#REF_HEADING_KEYWORD_DIFFAGAS_8_3) and [DIFFAWAT](#REF_HEADING_KEYWORD_DIFFAWAT_8_3) keywords to define respectively the gas phase and water phase diffusion coefficients based on a mass fraction formulation.
+        -   Added support for the DIFFAGAS and DIFFAWAT keywords to define respectively the gas phase and water phase diffusion coefficients based on a mass fraction formulation.
 
-        -   Support has been added for the [FBHPDEF](#__RefHeading___Toc280243_803326780) keyword in the [SCHEDULE](#__RefHeading___Toc43945_784232322) section to define the default well BHP target for production wells and the default BHP constraint for injection wells.
+        -   Support has been added for the FBHPDEF keyword in the SCHEDULE section to define the default well BHP target for production wells and the default BHP constraint for injection wells.
 
-        -   Support has been added for the [SKIP](#__RefHeading___Toc52489_2479612490), [SKIP100](#__RefHeading___Toc65046_1640804870), [SKIP300](#__RefHeading___Toc980121_1781444514) and [ENDSKIP](#__RefHeading___Toc52491_2479612490) keywords.
+        -   Support has been added for the SKIP, SKIP100, SKIP300 and ENDSKIP keywords.
 
-        -   Support has been added for the [NONNC](#__RefHeading___Toc77075_4106839650) keyword to deactivate non-neighbor connections.
+        -   Support has been added for the NONNC keyword to deactivate non-neighbor connections.
 
-        -   Added partial support for [DATUMR](#__RefHeading___Toc135615_1317547213) and [DATUMRX](#__RefHeading___Toc298753_1539708736) keywords in the [SOLUTION](#__RefHeading___Toc43947_784232322) section for use with block level summary keywords (BPP\*).
+        -   Added partial support for DATUMR and DATUMRX keywords in the SOLUTION section for use with block level summary keywords (BPP\*).
 
-        -   Limited support has been added for User Defined Tables ([UDT](#__RefHeading___Toc1674916_4250154414)).
+        -   Limited support has been added for User Defined Tables (UDT).
 
         -   Added support for using region-level summary vectors in the defining expressions of field-level user defined quantities (UDQs).
 
         -   Support has been added for output of addition summary vectors, initialization arrays and restart arrays.
 
-        -   A new brine-CO~2~ mutual solubility model has been implemented from Spycher & Pruess, Transp. Porous Med., 2010. This model improves the accuracy of the solubility calculations in [CO2STORE](#__RefHeading___Toc387968_1616145207) at temperatures above 100 degrees Celsius. In addition, a new keyword, [ACTCO2S](#REF_HEADING_KEYWORD_ACTCO2S), has been added to choose between activity models.
+        -   A new brine-CO~2~ mutual solubility model has been implemented from Spycher & Pruess, Transp. Porous Med., 2010. This model improves the accuracy of the solubility calculations in CO2STORE at temperatures above 100 degrees Celsius. In addition, a new keyword, ACTCO2S, has been added to choose between activity models.
 
-        -   Added support for the [PCFACT](#REF_HEADING_KEYWORD_PCFACT_8_3) keyword in the [PROPS](#__RefHeading___Toc39329_784232322) sections to define the capillary pressure multiplication factor as a function of porosity change; used in conjunction with OPM Flow's Salt Precipitation model.
+        -   Added support for the PCFACT keyword in the PROPS sections to define the capillary pressure multiplication factor as a function of porosity change; used in conjunction with OPM Flow's Salt Precipitation model.
 
-        -   Added support for the [THCO2MIX](#REF_HEADING_KEYWORD_THCO2MIX_8_3) keyword in the [PROPS](#__RefHeading___Toc39329_784232322) section to specify the thermal mixing models for salt in water, CO~2~ dissolved in brine, and water vaporized in CO~2~.
+        -   Added support for the THCO2MIX keyword in the PROPS section to specify the thermal mixing models for salt in water, CO~2~ dissolved in brine, and water vaporized in CO~2~.
 
-        -   Added support for using well lists ([WLIST](#__RefHeading___Toc179534_3325167686)) in [ACTIONX](#__RefHeading___Toc152227_2992482751) blocks with the following keywords: [COMPDAT](#__RefHeading___Toc97651_3261743917), [COMPLUMP](#__RefHeading___Toc97655_3261743917), [WCONINJE](#__RefHeading___Toc146750_4203985108), [WCONPROD](#__RefHeading___Toc146754_4203985108), [WECON](#__RefHeading___Toc134884_2055188184), [WEFAC](#__RefHeading___Toc48856_327352552), [WELOPEN](#__RefHeading___Toc268461_1366622701), [WELPI](#__RefHeading___Toc121389_332691817), [WELSPECS](#__RefHeading___Toc268463_1366622701), [WELTARG](#__RefHeading___Toc134888_2055188184), [WGRUPCON](#__RefHeading___Toc121641_2412586160), [WPIMULT](#__RefHeading___Toc121645_2412586160), [WSEGVALV](#__RefHeading___Toc1091865_4263943340), [WTEST](#__RefHeading___Toc121925_2556401936) and [WTMULT](#__RefHeading___Toc1141674_4263943340).
+        -   Added support for using well lists (WLIST) in ACTIONX blocks with the following keywords: COMPDAT, COMPLUMP, WCONINJE, WCONPROD, WECON, WEFAC, WELOPEN, WELPI, WELSPECS, WELTARG, WGRUPCON, WPIMULT, WSEGVALV, WTEST and WTMULT.
 
-        -   Added support for an expanded set of summary vectors to be used in defining expressions for UDQs and in the condition blocks of the [ACTIONX](#__RefHeading___Toc152227_2992482751) keyword.
+        -   Added support for an expanded set of summary vectors to be used in defining expressions for UDQs and in the condition blocks of the ACTIONX keyword.
 
-        -   Removed the need for a run-function in [PYACTION](#__RefHeading___Toc393199_4211536922) blocks. EclipseState, Schedule, ReportStep and SummaryState are now available as attributes of the module opm_embedded. The code maintains backwards compatibility with the previous usage.
+        -   Removed the need for a run-function in PYACTION blocks. EclipseState, Schedule, ReportStep and SummaryState are now available as attributes of the module opm_embedded. The code maintains backwards compatibility with the previous usage.
 
         -   Tooltips can now be enabled when writing code in a Python IDE by typing \"import opm_embedded\".
 
-        -   An error will now be reported and the simulation stopped when the [PYACTION](#__RefHeading___Toc393199_4211536922) keyword is used if flow was built without embedded Python.
+        -   An error will now be reported and the simulation stopped when the PYACTION keyword is used if flow was built without embedded Python.
 
-        -   Repaired the [PYACTION](#__RefHeading___Toc393199_4211536922) functions open_well(), shut_well() and stop_well(), which open/shut/stop a well at the specified report step, and added the option to use these functions at the current report step (if no report step is specified).
+        -   Repaired the PYACTION functions open_well(), shut_well() and stop_well(), which open/shut/stop a well at the specified report step, and added the option to use these functions at the current report step (if no report step is specified).
 
-        -   Added [PYACTION](#__RefHeading___Toc393199_4211536922) function insert_keyword() to insert a keyword at the specified later report step or at the current report step (if no report step is specified). This functionality is available for the keywords: [FIELD](#__RefHeading___Toc71850_2267116897), [ENDBOX](#__RefHeading___Toc88719_1778172979), [GCONINJE](#__RefHeading___Toc134874_2055188184), [GCONPROD](#__RefHeading___Toc146746_4203985108), [METRIC](#__RefHeading___Toc70639_2267116897), [MULTX](#__RefHeading___Toc80283_1778172979), [MULTX-](#__RefHeading___Toc80285_1778172979), [MULTY](#__RefHeading___Toc80287_1778172979), [MULTY-](#__RefHeading___Toc80289_1778172979), [MULTZ](#__RefHeading___Toc80291_1778172979), [MULTZ-](#__RefHeading___Toc80293_1778172979), [NEXT](#__RefHeading___Toc117629_2179381650), [NEXTSTEP](#__RefHeading___Toc323446_1841740821), [WCONINJE](#__RefHeading___Toc146750_4203985108), [WCONPROD](#__RefHeading___Toc146754_4203985108), [WEFAC](#__RefHeading___Toc48856_327352552), [WELOPEN](#__RefHeading___Toc268461_1366622701) and [WELTARG](#__RefHeading___Toc134888_2055188184).
+        -   Added PYACTION function insert_keyword() to insert a keyword at the specified later report step or at the current report step (if no report step is specified). This functionality is available for the keywords: FIELD, ENDBOX, GCONINJE, GCONPROD, METRIC, MULTX, MULTX-, MULTY, MULTY-, MULTZ, MULTZ-, NEXT, NEXTSTEP, WCONINJE, WCONPROD, WEFAC, WELOPEN and WELTARG.
 
 A.  1.  1.  ### New and Deprecated Command Line Options
 
@@ -1482,55 +1482,55 @@ A.  1.  1.  ### New Features
 
 In addition to the above the following new features have been added to the simulator:
 
-3)  1)  1)  The Forchheimer term has been added as an additional skin term that depends (explicitly) on the rate ([#4832](https://github.com/OPM/opm-simulators/pull/4832)). Support has been added for [WDFAC](#__RefHeading___Toc442057_2026549522) and [WDFACCOR](#__RefHeading___Toc48144_327352552) keywords in the [SCHEDULE](#__RefHeading___Toc43945_784232322) section. These keywords can be used to model a Forchheimer term in the well model either by specifying the D factor directly or by using the Dake model ([#3661](https://github.com/OPM/opm-common/pull/3661)). The option of setting connection specific D factors (Item 12 in [COMPDAT](#__RefHeading___Toc97651_3261743917)) is now also supported ([#4971](https://github.com/OPM/opm-simulators/pull/4971)).
+3)  1)  1)  The Forchheimer term has been added as an additional skin term that depends (explicitly) on the rate ([#4832](https://github.com/OPM/opm-simulators/pull/4832)). Support has been added for WDFAC and WDFACCOR keywords in the SCHEDULE section. These keywords can be used to model a Forchheimer term in the well model either by specifying the D factor directly or by using the Dake model ([#3661](https://github.com/OPM/opm-common/pull/3661)). The option of setting connection specific D factors (Item 12 in COMPDAT) is now also supported ([#4971](https://github.com/OPM/opm-simulators/pull/4971)).
 
-        2)  Support has been added for the [FBHPDEF](#__RefHeading___Toc280243_803326780) keyword in the [SCHEDULE](#__RefHeading___Toc43945_784232322) section to define the default well BHP target for production wells and the default BHP constraint for injection wells ([#4969](https://github.com/OPM/opm-simulators/pull/4969), [#3747](https://github.com/OPM/opm-common/pull/3747)).
+        2)  Support has been added for the FBHPDEF keyword in the SCHEDULE section to define the default well BHP target for production wells and the default BHP constraint for injection wells ([#4969](https://github.com/OPM/opm-simulators/pull/4969), [#3747](https://github.com/OPM/opm-common/pull/3747)).
 
-        3)  Added partial support for fluid in place region ([FIP](#__RefHeading___Toc250560_252421755)) output to the [RPTSOL](#__RefHeading___Toc135631_1317547213) and [RPTSCHED](#__RefHeading___Toc268459_1366622701) keywords ([#4982](https://github.com/OPM/opm-simulators/pull/4982), [#4978](https://github.com/OPM/opm-simulators/pull/4978), [#4980](https://github.com/OPM/opm-simulators/pull/4980), [#3756](https://github.com/OPM/opm-common/pull/3756)). The simulator supports mnemonic [FIP](#__RefHeading___Toc250560_252421755) = 1 or 2, and partially supports [FIP](#__RefHeading___Toc250560_252421755) =3.
+        3)  Added partial support for fluid in place region (FIP) output to the RPTSOL and RPTSCHED keywords ([#4982](https://github.com/OPM/opm-simulators/pull/4982), [#4978](https://github.com/OPM/opm-simulators/pull/4978), [#4980](https://github.com/OPM/opm-simulators/pull/4980), [#3756](https://github.com/OPM/opm-common/pull/3756)). The simulator supports mnemonic FIP = 1 or 2, and partially supports FIP =3.
 
         4)  Added support for mechanical dispersion as a compile time option ([#4960](https://github.com/OPM/opm-simulators/pull/4960), [#3737](https://github.com/OPM/opm-common/pull/3737), [#847](https://github.com/OPM/opm-models/pull/847)). This adds support for the linear dispersion model described in the 11th SPE CSP benchmark [document](https://github.com/Simulation-Benchmarks/11thSPE-CSP/blob/main/description/spe_csp11_description.pdf) (Eq. 2.3).
 
-        5)  Support has been added for specifying [WCONPROD](#__RefHeading___Toc146754_4203985108) keyword item 12 (ALQ) with a user defined argument (UDA) ([#5033](https://github.com/OPM/opm-simulators/pull/5033)).
+        5)  Support has been added for specifying WCONPROD keyword item 12 (ALQ) with a user defined argument (UDA) ([#5033](https://github.com/OPM/opm-simulators/pull/5033)).
 
-        6)  Support has been added for specifying [WSEGVALV](#__RefHeading___Toc1091865_4263943340) keyword item 4 (AREAREST) with a user defined argument (UDA) ([#4873](https://github.com/OPM/opm-simulators/pull/4873)).
+        6)  Support has been added for specifying WSEGVALV keyword item 4 (AREAREST) with a user defined argument (UDA) ([#4873](https://github.com/OPM/opm-simulators/pull/4873)).
 
-        7)  Support has been added for the [SKIP](#__RefHeading___Toc52489_2479612490), [SKIP100](#__RefHeading___Toc65046_1640804870), [SKIP300](#__RefHeading___Toc980121_1781444514) and [ENDSKIP](#__RefHeading___Toc52491_2479612490) keywords ([#5085](https://github.com/OPM/opm-simulators/pull/5085), [#3817](https://github.com/OPM/opm-common/pull/3817)). Note that OPM Flow will skip data between the [SKIP300](#__RefHeading___Toc980121_1781444514) and [ENDSKIP](#__RefHeading___Toc52491_2479612490) keywords whereas the commercial black-oil simulator will ignore the [SKIP300](#__RefHeading___Toc980121_1781444514) keyword.
+        7)  Support has been added for the SKIP, SKIP100, SKIP300 and ENDSKIP keywords ([#5085](https://github.com/OPM/opm-simulators/pull/5085), [#3817](https://github.com/OPM/opm-common/pull/3817)). Note that OPM Flow will skip data between the SKIP300 and ENDSKIP keywords whereas the commercial black-oil simulator will ignore the SKIP300 keyword.
 
-        8)  Added support for defining a fluid mass (and enthalpy) source term within a grid cell using the new OPM Flow specific [SOURCE](#REF_HEADING_KEYWORD_SOURCE_12_3) keyword in the [SCHEDULE](#__RefHeading___Toc43945_784232322) section ([#5050](https://github.com/OPM/opm-simulators/pull/5050), [#3835](https://github.com/OPM/opm-common/pull/3835), [#1106](https://github.com/OPM/opm-tests/pull/1106), [#5107](https://github.com/OPM/opm-simulators/pull/5107), [#3864](https://github.com/OPM/opm-common/pull/3864)).
+        8)  Added support for defining a fluid mass (and enthalpy) source term within a grid cell using the new OPM Flow specific SOURCE keyword in the SCHEDULE section ([#5050](https://github.com/OPM/opm-simulators/pull/5050), [#3835](https://github.com/OPM/opm-common/pull/3835), [#1106](https://github.com/OPM/opm-tests/pull/1106), [#5107](https://github.com/OPM/opm-simulators/pull/5107), [#3864](https://github.com/OPM/opm-common/pull/3864)).
 
-        9)  Support has been added for the [NONNC](#__RefHeading___Toc77075_4106839650) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section to deactivate non-neighbor connections ([#5134](https://github.com/OPM/opm-simulators/pull/5134)).
+        9)  Support has been added for the NONNC keyword in the RUNSPEC section to deactivate non-neighbor connections ([#5134](https://github.com/OPM/opm-simulators/pull/5134)).
 
-        10) Added support for the [DIFFAGAS](#REF_HEADING_KEYWORD_DIFFAGAS_8_3) and [DIFFAWAT](#REF_HEADING_KEYWORD_DIFFAWAT_8_3) keywords in the [PROPS](#__RefHeading___Toc39329_784232322) section to define respectively the gas phase and water phase diffusion coefficients for each pseudo component and for each PVT region. The [DIFFAGAS](#REF_HEADING_KEYWORD_DIFFAGAS_8_3) and [DIFFAWAT](#REF_HEADING_KEYWORD_DIFFAWAT_8_3) keywords are equivalent to [DIFFCGAS](#__RefHeading___Toc314077_1539708736 Copy 1) and [DIFFCWAT](#__RefHeading___Toc314077_1539708736 Copy 1 Copy 1) keywords, but assume a mass fraction formulation of diffusion rather than the default mole fraction formulation ([#5143](https://github.com/OPM/opm-simulators/pull/5143), [#3878](https://github.com/OPM/opm-common/pull/3878)).
+        10) Added support for the DIFFAGAS and DIFFAWAT keywords in the PROPS section to define respectively the gas phase and water phase diffusion coefficients for each pseudo component and for each PVT region. The DIFFAGAS and DIFFAWAT keywords are equivalent to DIFFCGAS and DIFFCWAT keywords, but assume a mass fraction formulation of diffusion rather than the default mole fraction formulation ([#5143](https://github.com/OPM/opm-simulators/pull/5143), [#3878](https://github.com/OPM/opm-common/pull/3878)).
 
-        11) Added partial support for [DATUMR](#__RefHeading___Toc135615_1317547213) and [DATUMRX](#__RefHeading___Toc298753_1539708736) keywords in the [SOLUTION](#__RefHeading___Toc43947_784232322) section for use with block level summary keywords (BPP\*) ([#5241](https://github.com/OPM/opm-simulators/pull/5241), [#5240](https://github.com/OPM/opm-simulators/pull/5240), [#3958](https://github.com/OPM/opm-common/pull/3958)).
+        11) Added partial support for DATUMR and DATUMRX keywords in the SOLUTION section for use with block level summary keywords (BPP\*) ([#5241](https://github.com/OPM/opm-simulators/pull/5241), [#5240](https://github.com/OPM/opm-simulators/pull/5240), [#3958](https://github.com/OPM/opm-common/pull/3958)).
 
         12) Added support for using region-level summary vectors in the defining expressions of field-level UDQs ([#5250](https://github.com/OPM/opm-simulators/pull/5250), [#5247](https://github.com/OPM/opm-simulators/pull/5247), [#3977](https://github.com/OPM/opm-common/pull/3977), [#3980](https://github.com/OPM/opm-common/pull/3980)). For example:
 
 3)  1)  1)
 
-        2)  Added support for [GCONPROD](#__RefHeading___Toc146746_4203985108) item 7 ([ACTION](#__RefHeading___Toc148342_63720426)) equal to WELL. Added support for reason [WTEST](#__RefHeading___Toc121925_2556401936) item 3 (TEST) equals G (group) ([#5172](https://github.com/OPM/opm-simulators/pull/5172), [#3894](https://github.com/OPM/opm-common/pull/3894)).
+        2)  Added support for GCONPROD item 7 (ACTION) equal to WELL. Added support for reason WTEST item 3 (TEST) equals G (group) ([#5172](https://github.com/OPM/opm-simulators/pull/5172), [#3894](https://github.com/OPM/opm-common/pull/3894)).
 
-        3)  Limited support has been added for User Defined Tables (see the [UDTDIMS](#__RefHeading___Toc1681728_4250154414) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section and [UDT](#__RefHeading___Toc1674916_4250154414) keyword in the [SCHEDULE](#__RefHeading___Toc43945_784232322) section), one-dimensional tables are now supported ([#4940](https://github.com/OPM/opm-simulators/pull/4940), [#3728](https://github.com/OPM/opm-common/pull/3728)). The maximum number of dimensions in any given User Defined Table is specified by item 4 (MXDIMS) of the [UDTDIMS](#__RefHeading___Toc1681728_4250154414) keyword.
+        3)  Limited support has been added for User Defined Tables (see the UDTDIMS keyword in the RUNSPEC section and UDT keyword in the SCHEDULE section), one-dimensional tables are now supported ([#4940](https://github.com/OPM/opm-simulators/pull/4940), [#3728](https://github.com/OPM/opm-common/pull/3728)). The maximum number of dimensions in any given User Defined Table is specified by item 4 (MXDIMS) of the UDTDIMS keyword.
 
         4)  Added support for setting a no flow and constant temperature boundary condition for the 11th SPE CSP benchmark cases B/C ([#865](https://github.com/OPM/opm-models/pull/865)).
 
-        5)  Added support for updating individual well properties for one or more wells (based on a well name, well name pattern or well list) using the [WELSPECS](#__RefHeading___Toc268463_1366622701) keyword in the [SCHEDULE](#__RefHeading___Toc43945_784232322) section. In particular, this revised logic enables the controlling group to be changed without affecting any other well properties such as the location of the well head or the well reference depth ([#3703](https://github.com/OPM/opm-common/pull/3703)). As an example, this new [WELSPECS](#__RefHeading___Toc268463_1366622701) behavior enables the following usage:
+        5)  Added support for updating individual well properties for one or more wells (based on a well name, well name pattern or well list) using the WELSPECS keyword in the SCHEDULE section. In particular, this revised logic enables the controlling group to be changed without affecting any other well properties such as the location of the well head or the well reference depth ([#3703](https://github.com/OPM/opm-common/pull/3703)). As an example, this new WELSPECS behavior enables the following usage:
 
 3)  1)  1)  to move all wells matching the pattern \'P\*\', and with a low oil production rate, to the group \'LOWPRESS\'. This could, in turn, apply a different set of group-level production controls to those wells.
 
-        2)  A new brine-CO~2~ mutual solubility model has been implemented from Spycher & Pruess[^1]. This model improves the accuracy of the solubility calculations in [CO2STORE](#__RefHeading___Toc387968_1616145207) at temperatures above 100 degrees Celsius. In addition, a new keyword, [ACTCO2S](#REF_HEADING_KEYWORD_ACTCO2S), has been added to choose between activity models. The original [CO2STORE](#__RefHeading___Toc387968_1616145207) solubility and salt activity models are currently the default behavior (i.e., [ACTCO2S](#REF_HEADING_KEYWORD_ACTCO2S) keyword model number 3) ([#3694](https://github.com/OPM/opm-common/pull/3694)).
+        2)  A new brine-CO~2~ mutual solubility model has been implemented from Spycher & Pruess[^1]. This model improves the accuracy of the solubility calculations in CO2STORE at temperatures above 100 degrees Celsius. In addition, a new keyword, ACTCO2S, has been added to choose between activity models. The original CO2STORE solubility and salt activity models are currently the default behavior (i.e., ACTCO2S keyword model number 3) ([#3694](https://github.com/OPM/opm-common/pull/3694)).
 
-        3)  Added the [CO2SOL](#REF_HEADING_KEYWORD_CO2SOL) and [H2SOL](#REF_HEADING_KEYWORD_H2SOL) keywords in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section which activate either dissolved carbon dioxide (CO~2~) or hydrogen (H~2~) in the water phase, where CO~2~ or H~2~ is represented by the [SOLVENT](#__RefHeading___Toc62787_1778172979) pseudo component, using the simulator's CO~2~-Brine or H~2~-Brine PVT model. The [CO2SOL](#REF_HEADING_KEYWORD_CO2SOL) and [H2SOL](#REF_HEADING_KEYWORD_H2SOL) keywords can be used when modeling CO~2~ or H~2~ injection in depleted hydrocarbon reservoirs ([#3764](https://github.com/OPM/opm-common/pull/3764), [#851](https://github.com/OPM/opm-models/pull/851), [#4991](https://github.com/OPM/opm-simulators/pull/4991)).
+        3)  Added the CO2SOL and H2SOL keywords in the RUNSPEC section which activate either dissolved carbon dioxide (CO~2~) or hydrogen (H~2~) in the water phase, where CO~2~ or H~2~ is represented by the SOLVENT pseudo component, using the simulator's CO~2~-Brine or H~2~-Brine PVT model. The CO2SOL and H2SOL keywords can be used when modeling CO~2~ or H~2~ injection in depleted hydrocarbon reservoirs ([#3764](https://github.com/OPM/opm-common/pull/3764), [#851](https://github.com/OPM/opm-models/pull/851), [#4991](https://github.com/OPM/opm-simulators/pull/4991)).
 
-        4)  Added support for the [PCFACT](#REF_HEADING_KEYWORD_PCFACT_8_3) keyword in the [PROPS](#__RefHeading___Toc39329_784232322) sections to define the capillary pressure multiplication factor as a function of porosity change ([#3857](https://github.com/OPM/opm-common/pull/3857)). Currently the keyword is used in conjunction with OPM Flow's Salt Precipitation model.
+        4)  Added support for the PCFACT keyword in the PROPS sections to define the capillary pressure multiplication factor as a function of porosity change ([#3857](https://github.com/OPM/opm-common/pull/3857)). Currently the keyword is used in conjunction with OPM Flow's Salt Precipitation model.
 
         5)  Added methods to the Python module opm.simulators.BlackOilSimulator to access primary variables and fluid state variables ([#4950](https://github.com/OPM/opm-simulators/pull/4950)).
 
         6)  Added docstrings for the Python bindings. Currently, the docstrings can be used to get context help in editors or in IPython. However, the plan is to also use these docstrings to generate sphinx documentation for the Python bindings ([#5242](https://github.com/OPM/opm-simulators/pull/5242)).
 
-        7)  Added [PYACTION](#__RefHeading___Toc393199_4211536922) functions insert_keyword(const std::string& deck_string) and insert_keyword(const std::string& deck_string, std::size_t report_step) to insert a keyword. A keyword can be inserted at a later report step or at the current report step; inserting a keyword at a past report step or at a report step exceeding the total number of report steps throws an error ([#3994](https://github.com/OPM/opm-common/pull/3994)).
+        7)  Added PYACTION functions insert_keyword(const std::string& deck_string) and insert_keyword(const std::string& deck_string, std::size_t report_step) to insert a keyword. A keyword can be inserted at a later report step or at the current report step; inserting a keyword at a past report step or at a report step exceeding the total number of report steps throws an error ([#3994](https://github.com/OPM/opm-common/pull/3994)).
 
-        8)  Added support for the [THCO2MIX](#REF_HEADING_KEYWORD_THCO2MIX_8_3) keyword in the [PROPS](#__RefHeading___Toc39329_784232322) section to specify the thermal mixing models for salt in water, CO~2~ dissolved in brine, and water vaporized in CO~2~ ([#4012](https://github.com/OPM/opm-common/pull/4012)).
+        8)  Added support for the THCO2MIX keyword in the PROPS section to specify the thermal mixing models for salt in water, CO~2~ dissolved in brine, and water vaporized in CO~2~ ([#4012](https://github.com/OPM/opm-common/pull/4012)).
 
 A.  1.  1.  ### Improvements
 
@@ -1544,11 +1544,11 @@ Improvements include:
 
         4)  The simulator has been updated to reduce well connection transmissibility factor due to salt precipitation ([#4919](https://github.com/OPM/opm-simulators/pull/4919)).
 
-        5)  The simulator has been updated to compute the reservoir volume rates based on the average pressure and temperature in the well for injectors in [THERMAL](#__RefHeading___Toc137276_650382403) cases ([#4826](https://github.com/OPM/opm-simulators/pull/4826)).
+        5)  The simulator has been updated to compute the reservoir volume rates based on the average pressure and temperature in the well for injectors in THERMAL cases ([#4826](https://github.com/OPM/opm-simulators/pull/4826)).
 
         6)  The code has been updated to ensure there is a non-zero initial guess for well rates, and that non-zero water/gas fractions are available from the previous time step for the (explicit) VFP table interpolation. Previously, if this was not the case then the well was likely to converge to the zero rate and/or zero fractions case and would be deemed to be inoperable ([#4952](https://github.com/OPM/opm-simulators/pull/4952)).
 
-        7)  The simulator has been updated to allow the creating or opening of a well as a result of an [ACTIONX](#__RefHeading___Toc152227_2992482751) keyword block in the middle rather than at the end of a report step ([#4749](https://github.com/OPM/opm-simulators/pull/4749)).
+        7)  The simulator has been updated to allow the creating or opening of a well as a result of an ACTIONX keyword block in the middle rather than at the end of a report step ([#4749](https://github.com/OPM/opm-simulators/pull/4749)).
 
         8)  Previously, numerical problems were reported as errors in the print file (\*.PRT), before continuing the simulation. This resulted in successful runs being incorrectly reported as having errors. The code has been updated to report them as problems rather than errors ([#4977](https://github.com/OPM/opm-simulators/pull/4977), [#4957](https://github.com/OPM/opm-simulators/pull/4957)).
 
@@ -1560,7 +1560,7 @@ Improvements include:
 
         12) The simulator will now log a problem if asked to continue with the run after a convergence failure of the non-linear solver has occurred, by specifying the command line option *\--solver-continue-on-convergence-failure=true* ([#4979](https://github.com/OPM/opm-simulators/pull/4979)).
 
-        13) If parsing strictness is set to low with the command line option *\--parsing-strictness=low* and no matching wells are found by various keywords in the [SCHEDULE](#__RefHeading___Toc43945_784232322) section then a warning will be issued and the run will continue ([#4905](https://github.com/OPM/opm-simulators/pull/4905), [#3698](https://github.com/OPM/opm-common/pull/3698)).
+        13) If parsing strictness is set to low with the command line option *\--parsing-strictness=low* and no matching wells are found by various keywords in the SCHEDULE section then a warning will be issued and the run will continue ([#4905](https://github.com/OPM/opm-simulators/pull/4905), [#3698](https://github.com/OPM/opm-common/pull/3698)).
 
         14) Previously, numerical problems during well testing would be caught at a higher level, causing time step chops in serial mode and possibly MPI communication errors in parallel. With this change wells that experience such problems during testing will simply not open, and the MPI errors are no longer present ([#5032](https://github.com/OPM/opm-simulators/pull/5032)).
 
@@ -1570,7 +1570,7 @@ Improvements include:
 
         17) Functionality has been added for computing an implicit Inflow Performance Relationship (IPR). Moreover several functions are now utilizing this for stability checking, estimating the operability of stopped/unconverged wells and searching for solutions (VFP/IPR intersections) in problematic cases. In addition, direct computation of potentials is included. For the new code to take effect, currently simulations must be run with both options *\--local-well-solve-control-switching=true* and *\--use-implicit-ipr=true* ([#4986](https://github.com/OPM/opm-simulators/pull/4986)).
 
-        18) The code has been updated to apply MULTX, [MULTY](#__RefHeading___Toc80287_1778172979) and [MULTZ](#__RefHeading___Toc80291_1778172979) transmissibility multipliers to boundary transmissibilities ([#5047](https://github.com/OPM/opm-simulators/pull/5047)).
+        18) The code has been updated to apply MULTX, MULTY and MULTZ transmissibility multipliers to boundary transmissibilities ([#5047](https://github.com/OPM/opm-simulators/pull/5047)).
 
         19) The name of the destination file is now included in warning messages about unhandled report keywords ([#5048](https://github.com/OPM/opm-simulators/pull/5048)).
 
@@ -1580,7 +1580,7 @@ Improvements include:
 
         22) The test of whether the gas phase at the well connection is saturated or not has been made more robust by simply comparing the oil-gas ratio with saturated oil-gas ratio at the connection pressure ([#5075](https://github.com/OPM/opm-simulators/pull/5075)).
 
-        23) Output of reservoir volumes to the Print file (\*.PRT) has been added for custom fluid in place ([FIP](#__RefHeading___Toc250560_252421755)) regions. In addition, the compatibility of the output with the commercial simulator has been improved ([#5068](https://github.com/OPM/opm-simulators/pull/5068)).
+        23) Output of reservoir volumes to the Print file (\*.PRT) has been added for custom fluid in place (FIP) regions. In addition, the compatibility of the output with the commercial simulator has been improved ([#5068](https://github.com/OPM/opm-simulators/pull/5068)).
 
         24) Previously the flow reports in the PRT file were restricted to wells active on the current MPI rank. The simulator now outputs the flow reports for all wells active at the current report step ([#5090](https://github.com/OPM/opm-simulators/pull/5090)).
 
@@ -1592,7 +1592,7 @@ Improvements include:
 
         28) Improved handling of wells with zero rate where cross-flow is turned on and off ([#5139](https://github.com/OPM/opm-simulators/pull/5139), [#3880](https://github.com/OPM/opm-common/pull/3880)).
 
-        29) The simulator has been updated to ignore the [COORDSYS](#__RefHeading___Toc45759_719036256) keyword in the [GRID](#__RefHeading___Toc38674_784232322) section ([#5161](https://github.com/OPM/opm-simulators/pull/5161)). Note that the simulator will stop if the number of reservoir grids to process, set using the [NUMRES](#__RefHeading___Toc81021_4106839650) keyword in the [GRID](#__RefHeading___Toc38674_784232322) section, is greater than one.
+        29) The simulator has been updated to ignore the COORDSYS keyword in the GRID section ([#5161](https://github.com/OPM/opm-simulators/pull/5161)). Note that the simulator will stop if the number of reservoir grids to process, set using the NUMRES keyword in the GRID section, is greater than one.
 
         30) Improved error message to be more informative when an exception occurs in computeWellPotentials() ([#5170](https://github.com/OPM/opm-simulators/pull/5170)).
 
@@ -1608,81 +1608,81 @@ Improvements include:
 
         4)  With multi-segment wells, the segment pressure can be lower than the BHP, so it is not desirable to use the BHP lower limit to limit the segment pressures. The simulator has been updated so that the BHP lower limit is only used to limit the BHP; a lower limit of zero is imposed on the segment pressure ([#5234](https://github.com/OPM/opm-simulators/pull/5234)).
 
-        5)  The simulator has been updated to allow for the possibility that not all well connections are in active cells for the purpose of calculating the WBPn summary vectors. This situation might arise for example when \"re-parsing\" portions of the [SCHEDULE](#__RefHeading___Toc43945_784232322) section following the successful triggering of an [ACTIONX](#__RefHeading___Toc152227_2992482751) block ([#5258](https://github.com/OPM/opm-simulators/pull/5258), [#3988](https://github.com/OPM/opm-common/pull/3988)).
+        5)  The simulator has been updated to allow for the possibility that not all well connections are in active cells for the purpose of calculating the WBPn summary vectors. This situation might arise for example when \"re-parsing\" portions of the SCHEDULE section following the successful triggering of an ACTIONX block ([#5258](https://github.com/OPM/opm-simulators/pull/5258), [#3988](https://github.com/OPM/opm-common/pull/3988)).
 
         6)  Avoid repeatedly getting a parameter value in a performance-critical section of the code, which was causing a significant performance loss for the Norne model, by getting the parameter once in the constructor instead ([#5318](https://github.com/OPM/opm-simulators/pull/5318)).
 
         7)  Avoid expensive call to FaceDir::FromIntersectionIndex() in a performance-critical section of the code, this fixes a significant performance regression on the order of 5% or more in the flux calculations that was introduced earlier ([#898](https://github.com/OPM/opm-models/pull/898)).
 
-        8)  Added support for using well lists ([WLIST](#__RefHeading___Toc179534_3325167686)) in [ACTIONX](#__RefHeading___Toc152227_2992482751) blocks with the following keywords: [COMPDAT](#__RefHeading___Toc97651_3261743917), [COMPLUMP](#__RefHeading___Toc97655_3261743917), [WCONINJE](#__RefHeading___Toc146750_4203985108), [WCONPROD](#__RefHeading___Toc146754_4203985108), [WECON](#__RefHeading___Toc134884_2055188184), [WEFAC](#__RefHeading___Toc48856_327352552), [WELOPEN](#__RefHeading___Toc268461_1366622701), [WELPI](#__RefHeading___Toc121389_332691817), [WELSPECS](#__RefHeading___Toc268463_1366622701), [WELTARG](#__RefHeading___Toc134888_2055188184), [WGRUPCON](#__RefHeading___Toc121641_2412586160), [WPIMULT](#__RefHeading___Toc121645_2412586160), [WSEGVALV](#__RefHeading___Toc1091865_4263943340), [WTEST](#__RefHeading___Toc121925_2556401936) and [WTMULT](#__RefHeading___Toc1141674_4263943340) ([#3741](https://github.com/OPM/opm-common/pull/3741)).
+        8)  Added support for using well lists (WLIST) in ACTIONX blocks with the following keywords: COMPDAT, COMPLUMP, WCONINJE, WCONPROD, WECON, WEFAC, WELOPEN, WELPI, WELSPECS, WELTARG, WGRUPCON, WPIMULT, WSEGVALV, WTEST and WTMULT ([#3741](https://github.com/OPM/opm-common/pull/3741)).
 
-        9)  Output computed surface densities for CO~2~ and Brine to the PRT file if the [CO2STORE](#__RefHeading___Toc387968_1616145207) option is enabled ([#3730](https://github.com/OPM/opm-common/pull/3730)).
+        9)  Output computed surface densities for CO~2~ and Brine to the PRT file if the CO2STORE option is enabled ([#3730](https://github.com/OPM/opm-common/pull/3730)).
 
-        10) The simulator will now output the time step in units of hours when using laboratory ([LAB](#__RefHeading___Toc72458_2267116897)) units. Previously units of days would have been used for all unit systems ([#3829](https://github.com/OPM/opm-common/pull/3829)).
+        10) The simulator will now output the time step in units of hours when using laboratory (LAB) units. Previously units of days would have been used for all unit systems ([#3829](https://github.com/OPM/opm-common/pull/3829)).
 
         11) Improved the handling of errors related to the grid keywords. Missing or ambiguous keywords are detected and the error messages list the valid options ([#3849](https://github.com/OPM/opm-common/pull/3849), [#3551](https://github.com/OPM/opm-common/pull/3551)).
 
-        12) Added support for pattern matching in the [MULTFLT](#__RefHeading___Toc90875_3218818441) keyword ([#3851](https://github.com/OPM/opm-common/pull/3851)).
+        12) Added support for pattern matching in the MULTFLT keyword ([#3851](https://github.com/OPM/opm-common/pull/3851)).
 
-        13) Improved the error reporting for [SALTSOL](#__RefHeading___Toc681417_1466963378) tables when a column is missing ([#3850](https://github.com/OPM/opm-common/pull/3850)).
+        13) Improved the error reporting for SALTSOL tables when a column is missing ([#3850](https://github.com/OPM/opm-common/pull/3850)).
 
-        14) Added support for setting the same region for the source and target in the [MULTREGT](#__RefHeading___Toc296621_1576177388) keyword. In this case the multipliers will be applied to all connections within the specified region as well as to connections between the specified region and all other regions ([#3845](https://github.com/OPM/opm-common/pull/3845)).
+        14) Added support for setting the same region for the source and target in the MULTREGT keyword. In this case the multipliers will be applied to all connections within the specified region as well as to connections between the specified region and all other regions ([#3845](https://github.com/OPM/opm-common/pull/3845)).
 
-        15) The code has been updated so that for mixed wettability systems it no longer scales the negative part of the oil-water capillary pressure curve when using the [SWATINIT](#__RefHeading___Toc323952_1728001293) keyword ([#3720](https://github.com/OPM/opm-common/pull/3720)). This behavior is controlled by an option in the commercial simulator.
+        15) The code has been updated so that for mixed wettability systems it no longer scales the negative part of the oil-water capillary pressure curve when using the SWATINIT keyword ([#3720](https://github.com/OPM/opm-common/pull/3720)). This behavior is controlled by an option in the commercial simulator.
 
-        16) The [CO2STORE](#__RefHeading___Toc387968_1616145207) option could lead to slow runs if a lot of extrapolation was done resulting in numerous warning messages. These messages have been turned off unless the debug option has been set. Note that extrapolation of tables can be avoided by limiting the temperatures and pressures using the *\--temperature-min*, *\--temperature-max*, *\--pressure-min* and *\--pressure-max* command line options ([#3858](https://github.com/OPM/opm-common/pull/3858)).
+        16) The CO2STORE option could lead to slow runs if a lot of extrapolation was done resulting in numerous warning messages. These messages have been turned off unless the debug option has been set. Note that extrapolation of tables can be avoided by limiting the temperatures and pressures using the *\--temperature-min*, *\--temperature-max*, *\--pressure-min* and *\--pressure-max* command line options ([#3858](https://github.com/OPM/opm-common/pull/3858)).
 
         17) The simulator now outputs a meaningful error message in the case where it fails to open a potentially corrupt file ([#3870](https://github.com/OPM/opm-common/pull/3870)).
 
-        18) Improved parsing of sections in the input deck and support for optional sections [EDIT](#__RefHeading___Toc40641_784232322), [REGIONS](#__RefHeading___Toc40648_784232322) and [SUMMARY](#__RefHeading___Toc43949_784232322) ([#3863](https://github.com/OPM/opm-common/pull/3863)).
+        18) Improved parsing of sections in the input deck and support for optional sections EDIT, REGIONS and SUMMARY ([#3863](https://github.com/OPM/opm-common/pull/3863)).
 
         19) Enforce consistency checks on keywords specifying the standard and extended network models respectively ([#3885](https://github.com/OPM/opm-common/pull/3885)).
 
         20) The simulator has been updated to check whether the standard network model is active when initializing a network balancing operation. Previously, the simulator would only check for the extended network model. This was an issue because the pressure convergence tolerance is set to zero unless a network model is active ([#3874](https://github.com/OPM/opm-common/pull/3874)).
 
-        21) Add support for operations (e.g. [EQUALS](#__RefHeading___Toc296597_1576177388)) on the [MINPVV](#__RefHeading___Toc132765_2319858807) array ([#3897](https://github.com/OPM/opm-common/pull/3897)).
+        21) Add support for operations (e.g. EQUALS) on the MINPVV array ([#3897](https://github.com/OPM/opm-common/pull/3897)).
 
         22) Added support for numbers in user defined region set names, for example FIPAB1 and FIPAB2 ([#3979](https://github.com/OPM/opm-common/pull/3979)).
 
-        23) Allow the use of the [FIELD](#__RefHeading___Toc71850_2267116897) group for selected group level keywords when handling UDQs and especially [ACTION](#__RefHeading___Toc148342_63720426)X condition blocks, for example GGOR 'FIELD' \> 123.4 ([#3993](https://github.com/OPM/opm-common/pull/3993)).
+        23) Allow the use of the FIELD group for selected group level keywords when handling UDQs and especially ACTIONX condition blocks, for example GGOR 'FIELD' \> 123.4 ([#3993](https://github.com/OPM/opm-common/pull/3993)).
 
-        24) Allow an expanded set of summary vectors to be used in defining expressions for UDQs and in the condition blocks of the [ACTIONX](#__RefHeading___Toc152227_2992482751) keyword. In principle, this change enables using all known summary vector categories as part of the defining expressions in a [UDQ](#__RefHeading___Toc161095_2932703077), but additional testing is needed before claiming to fully support such usage ([#3968](https://github.com/OPM/opm-common/pull/3968)).
+        24) Allow an expanded set of summary vectors to be used in defining expressions for UDQs and in the condition blocks of the ACTIONX keyword. In principle, this change enables using all known summary vector categories as part of the defining expressions in a UDQ, but additional testing is needed before claiming to fully support such usage ([#3968](https://github.com/OPM/opm-common/pull/3968)).
 
-        25) The simulator will now report an error if the [PYACTION](#__RefHeading___Toc393199_4211536922) keyword is used when flow has been built without embedded Python ([#3998](https://github.com/OPM/opm-common/pull/3998)). Previously, only a warning message would have been reported.
+        25) The simulator will now report an error if the PYACTION keyword is used when flow has been built without embedded Python ([#3998](https://github.com/OPM/opm-common/pull/3998)). Previously, only a warning message would have been reported.
 
-        26) Removed the need for a run-function in the Python code in [PYACTION](#__RefHeading___Toc393199_4211536922). The EclipseState, Schedule, ReportStep and SummaryState have been made available as attributes of the module opm_embedded instead. This enables tooltips for writing code in a Python IDE, after importing the library as \"import opm_embedded\", typing \"opm_embedded.\" will show the tooltips. The code will still be backwards compatible ([#3986](https://github.com/OPM/opm-common/pull/3986)).
+        26) Removed the need for a run-function in the Python code in PYACTION. The EclipseState, Schedule, ReportStep and SummaryState have been made available as attributes of the module opm_embedded instead. This enables tooltips for writing code in a Python IDE, after importing the library as \"import opm_embedded\", typing \"opm_embedded.\" will show the tooltips. The code will still be backwards compatible ([#3986](https://github.com/OPM/opm-common/pull/3986)).
 
         27) Added check that when a non-default THP constraint has been specified for a well that a valid VFP table has been defined ([#4005](https://github.com/OPM/opm-common/pull/4005)).
 
-        28) Previously, when temperature results were not available 0 K would be converted to the units system specified in the deck and output to the [SUMMARY](#__RefHeading___Toc43949_784232322) file (for example -273.15 or -459.67 depending on the unit system). The simulator will now output a zero temperature in the specified units system when temperature results are not available ([#4013](https://github.com/OPM/opm-common/pull/4013)).
+        28) Previously, when temperature results were not available 0 K would be converted to the units system specified in the deck and output to the SUMMARY file (for example -273.15 or -459.67 depending on the unit system). The simulator will now output a zero temperature in the specified units system when temperature results are not available ([#4013](https://github.com/OPM/opm-common/pull/4013)).
 
-        29) Added [PYACTION](#__RefHeading___Toc393199_4211536922) functions to open, close or shut a well without specifying the report step ([#4019](https://github.com/OPM/opm-common/pull/4019)).
+        29) Added PYACTION functions to open, close or shut a well without specifying the report step ([#4019](https://github.com/OPM/opm-common/pull/4019)).
 
-        30) Added an error message if an attempt is made to use the [COMPSEGS](#__RefHeading___Toc316604_3519154785) keyword to define the well segment connections before the structure of the multi-segment well has been defined using the [WELSEGS](#__RefHeading___Toc97661_3261743917) keyword ([#4031](https://github.com/OPM/opm-common/pull/4031)).
+        30) Added an error message if an attempt is made to use the COMPSEGS keyword to define the well segment connections before the structure of the multi-segment well has been defined using the WELSEGS keyword ([#4031](https://github.com/OPM/opm-common/pull/4031)).
 
         31) The code now determines if a history matching producer with a reservoir volume rate (RESV) target is subject to a zero rate constraint by checking if the specified historic rates for oil, gas and water are all zero ([#4039](https://github.com/OPM/opm-common/pull/4039)).
 
-In addition, the following new [SUMMARY](#__RefHeading___Toc43949_784232322) keywords are now recognized as described by the comments in .
+In addition, the following new SUMMARY keywords are now recognized as described by the comments in .
 
 | No. | Summary<br>Keyword | Comment |
 | --- | --- | --- |
 | 1 | NPR, GNETPR | Added support for output of network pressures based on rates at end of the time step ([#3701](https://github.com/OPM/opm-common/pull/3701), [#4914](https://github.com/OPM/opm-simulators/pull/4914)). Note that GNETPR is an alias for NPR included since NPR can cause problems for certain post-processors. |
 | 2 | CGFRF, CGFRS, COFRF and COFRS | Added support for output of well connection free gas, solution gas, liquid oil and vaporized oil flow rate vectors ([#5010](https://github.com/OPM/opm-simulators/pull/5010), [#3782](https://github.com/OPM/opm-common/pull/3782)). |
 | 3 | CDFAC | Added support for output of well connection D factor ([#4832](https://github.com/OPM/opm-simulators/pull/4832)). |
-| 4 | FGMIP, FGMGP, FGMDS, FGMTR and FGMMO | Added CO~2~ mass in place summary vectors for the field when using the [CO2STORE](#__RefHeading___Toc387968_1616145207) option: total mass in place, mass in gas phase, mass dissolved in water phase, mass in trapped gas phase and mass in mobile gas phase ([#5114](https://github.com/OPM/opm-simulators/pull/5114), [#3868](https://github.com/OPM/opm-common/pull/3868)). |
-| 5 | RGMIP, RGMGP, RGMDS, RGMTR and RGMMO | Added CO~2~ mass in place summary vectors for [FIP](#__RefHeading___Toc250560_252421755) regions when using the [CO2STORE](#__RefHeading___Toc387968_1616145207) option: total mass in place, mass in gas phase, mass dissolved in water phase, mass in trapped gas phase and mass in mobile gas phase ([#5114](https://github.com/OPM/opm-simulators/pull/5114), [#3868](https://github.com/OPM/opm-common/pull/3868)). |
+| 4 | FGMIP, FGMGP, FGMDS, FGMTR and FGMMO | Added CO~2~ mass in place summary vectors for the field when using the CO2STORE option: total mass in place, mass in gas phase, mass dissolved in water phase, mass in trapped gas phase and mass in mobile gas phase ([#5114](https://github.com/OPM/opm-simulators/pull/5114), [#3868](https://github.com/OPM/opm-common/pull/3868)). |
+| 5 | RGMIP, RGMGP, RGMDS, RGMTR and RGMMO | Added CO~2~ mass in place summary vectors for FIP regions when using the CO2STORE option: total mass in place, mass in gas phase, mass dissolved in water phase, mass in trapped gas phase and mass in mobile gas phase ([#5114](https://github.com/OPM/opm-simulators/pull/5114), [#3868](https://github.com/OPM/opm-common/pull/3868)). |
 | 6 | BGIP, BGIPL | Added support for block total gas in place (BGIP) and block gas in place in the water phase (BGIPL) for gas-water systems ([#5188](https://github.com/OPM/opm-simulators/pull/5188)). |
 | 7 | BPPO, BPPG and BPPW | Added support for output of block level datum depth corrected phase pressures ([#5240](https://github.com/OPM/opm-simulators/pull/5240), [#3959](https://github.com/OPM/opm-common/pull/3959), [#3958](https://github.com/OPM/opm-common/pull/3958)). |
-| 8 | FGKDI, FGKDM, FGKTR and FGKMO<br>RGKDI, RGKDM, RGKTR and RGKMO | The 11th Society of Petroleum Engineers Comparative Solution Project (http://spe.org/csp) defines the "immobile free-phase CO~2~" as "CO~2~ at saturations for which the non-wetting phase relative permeability equals zero". Field and Region level summary vectors have been added when using the [CO2STORE](#__RefHeading___Toc387968_1616145207) option based on this definition as follows ([#5281](https://github.com/OPM/opm-simulators/pull/5281), [#4010](https://github.com/OPM/opm-common/pull/4010)): Gas Moles in the Immobile Gas Phase (Non-wetting relative permeability equals zero), Gas Moles in the Mobile Gas Phase (Non-wetting relative permeability greater than zero), Gas Mass in the Immobile Gas Phase, and Gas Mass in the Mobile Gas Phase. |
+| 8 | FGKDI, FGKDM, FGKTR and FGKMO<br>RGKDI, RGKDM, RGKTR and RGKMO | The 11th Society of Petroleum Engineers Comparative Solution Project (http://spe.org/csp) defines the "immobile free-phase CO~2~" as "CO~2~ at saturations for which the non-wetting phase relative permeability equals zero". Field and Region level summary vectors have been added when using the CO2STORE option based on this definition as follows ([#5281](https://github.com/OPM/opm-simulators/pull/5281), [#4010](https://github.com/OPM/opm-common/pull/4010)): Gas Moles in the Immobile Gas Phase (Non-wetting relative permeability equals zero), Gas Moles in the Mobile Gas Phase (Non-wetting relative permeability greater than zero), Gas Mass in the Immobile Gas Phase, and Gas Mass in the Mobile Gas Phase. |
 
-Table A.3: New [SUMMARY](#__RefHeading___Toc43949_784232322) Keywords for the 2024-04 Release
+Table A.3: New SUMMARY Keywords for the 2024-04 Release
 
 Support has been added for the following initialization output as described by the comments in .
 
 | No. | Mnemonic | Comment |
 | --- | --- | --- |
-| 1 | [MULTX](#__RefHeading___Toc80283_1778172979), [MULTY](#__RefHeading___Toc80287_1778172979) and [MULTZ](#__RefHeading___Toc80291_1778172979)<br>[MULTX-](#__RefHeading___Toc80285_1778172979), [MULTY-](#__RefHeading___Toc80289_1778172979) and [MULTZ-](#__RefHeading___Toc80293_1778172979) | Added support for outputting transmissibility multiplier arrays to the [INIT](#__RefHeading___Toc45789_719036256) file. The [MULTX](#__RefHeading___Toc80283_1778172979), [MULTY](#__RefHeading___Toc80287_1778172979) and [MULTZ](#__RefHeading___Toc80291_1778172979) arrays are always written. If the first item of the [GRIDOPTS](#__RefHeading___Toc45741_719036256) keyword is NO then only the [MULTX-](#__RefHeading___Toc80285_1778172979), [MULTY-](#__RefHeading___Toc80289_1778172979) and [MULTZ-](#__RefHeading___Toc80293_1778172979) arrays that have be specified in the deck will be written. If the first item of the [GRIDOPTS](#__RefHeading___Toc45741_719036256) keyword is YES then all transmissibility multiplier arrays are written ([#3997](https://github.com/OPM/opm-common/pull/3997)). |
-| 2 | [SWATINIT](#__RefHeading___Toc323952_1728001293) | The simulator will now output the [SWATINIT](#__RefHeading___Toc323952_1728001293) array to [INIT](#__RefHeading___Toc45789_719036256) file if it exists in the input deck ([#3832](https://github.com/OPM/opm-common/pull/3832)). |
+| 1 | MULTX, MULTY and MULTZ<br>MULTX-, MULTY- and MULTZ- | Added support for outputting transmissibility multiplier arrays to the INIT file. The MULTX, MULTY and MULTZ arrays are always written. If the first item of the GRIDOPTS keyword is NO then only the MULTX-, MULTY- and MULTZ- arrays that have be specified in the deck will be written. If the first item of the GRIDOPTS keyword is YES then all transmissibility multiplier arrays are written ([#3997](https://github.com/OPM/opm-common/pull/3997)). |
+| 2 | SWATINIT | The simulator will now output the SWATINIT array to INIT file if it exists in the input deck ([#3832](https://github.com/OPM/opm-common/pull/3832)). |
 
 Table A.4: New Initialization Output for the 2024-04 Release
 
@@ -1690,14 +1690,14 @@ Supported has been added for the following restart output as described by the co
 
 | No. | Mnemonic | Comment |
 | --- | --- | --- |
-| 1 | RESIDUAL | Added option to output the residuals at the end of the time step. To activate this output the command line option *\--enable-opm-rst-file=true* should be specified and the mnemonic RESIDUAL should be added to the [RPTRST](#__RefHeading___Toc210154_2884651453) keyword ([#4937](https://github.com/OPM/opm-simulators/pull/4937)). |
-| 2 | XMFH2, YMFWAT | The option has been added to output the liquid phase H~2~ mole fraction and vapor phase water mole fraction (XMFH2 and YMFWAT) when using [H2STORE](#REF_HEADING_KEYWORD_H2STORE). To activate this output the command line option *\--enable-opm-rst-file=true* should be specified ([#4964](https://github.com/OPM/opm-simulators/pull/4964)). Previously the mnemonics XMFCO2 and YMFWAT were only available for [CO2STORE](#__RefHeading___Toc387968_1616145207). |
+| 1 | RESIDUAL | Added option to output the residuals at the end of the time step. To activate this output the command line option *\--enable-opm-rst-file=true* should be specified and the mnemonic RESIDUAL should be added to the RPTRST keyword ([#4937](https://github.com/OPM/opm-simulators/pull/4937)). |
+| 2 | XMFH2, YMFWAT | The option has been added to output the liquid phase H~2~ mole fraction and vapor phase water mole fraction (XMFH2 and YMFWAT) when using H2STORE. To activate this output the command line option *\--enable-opm-rst-file=true* should be specified ([#4964](https://github.com/OPM/opm-simulators/pull/4964)). Previously the mnemonics XMFCO2 and YMFWAT were only available for CO2STORE. |
 | 3 | RSWSOL | Support has been added for output of dissolved solvent to water ratio RSWSOL ([#4991,](https://github.com/OPM/opm-simulators/pull/4991) [#3764](https://github.com/OPM/opm-common/pull/3764), [#851](https://github.com/OPM/opm-models/pull/851)). |
 | 4 | FLOWS-, FLORES- | Support has been added for output of negative direction inter-block flows at surface conditions (FLOWS-) and at reservoir conditions (FLORES-) ([#5038](https://github.com/OPM/opm-simulators/pull/5038), [#3823](https://github.com/OPM/opm-common/pull/3823), [#854](https://github.com/OPM/opm-models/pull/854)). |
-| 5 | RPORV | Support has been added for output of pore volumes at reservoir conditions using the RPORV mnemonic of the [RPTRST](#__RefHeading___Toc210154_2884651453) keyword ([#5092](https://github.com/OPM/opm-simulators/pull/5092)). |
-| 6 | CONV | Added partial support for output of cells causing convergence problems for the residuals of the oil, water, gas, polymer, brine and solvent equations to the restart file using the CONV mnemonic of the [RPTRST](#__RefHeading___Toc210154_2884651453) keyword ([#5054](https://github.com/OPM/opm-simulators/pull/5054), [#5112](https://github.com/OPM/opm-simulators/pull/5112)). |
-| 7 | PCGW | Added support for outputting gas-water capillary pressure (Pcgw) to the restart file using the PCGW mnemonic of the [RPTRST](#__RefHeading___Toc210154_2884651453) keyword ([#5126](https://github.com/OPM/opm-simulators/pull/5126)). |
-| 8 | FIPOIL, FIPWAT, FIPGAS,<br>RFIPOIL, RFIPWAT, RFIPGAS | Added support for output of fluid in place arrays for oil, gas and water to the [RESTART](#__RefHeading___Toc135629_1317547213) file. The SFIPOIL, SFIPWAT and SFIPGAS are the surface conditions volumes for oil, water and gas respectively (these are aliases for FIPOIL, FIPWAT and FIPGAS). The RFIPOIL, RFIPWAT and RFIPGAS are the reservoir conditions volumes for oil, water and gas respectively ([#5224](https://github.com/OPM/opm-simulators/pull/5224), [#3952](https://github.com/OPM/opm-common/pull/3952)). |
+| 5 | RPORV | Support has been added for output of pore volumes at reservoir conditions using the RPORV mnemonic of the RPTRST keyword ([#5092](https://github.com/OPM/opm-simulators/pull/5092)). |
+| 6 | CONV | Added partial support for output of cells causing convergence problems for the residuals of the oil, water, gas, polymer, brine and solvent equations to the restart file using the CONV mnemonic of the RPTRST keyword ([#5054](https://github.com/OPM/opm-simulators/pull/5054), [#5112](https://github.com/OPM/opm-simulators/pull/5112)). |
+| 7 | PCGW | Added support for outputting gas-water capillary pressure (Pcgw) to the restart file using the PCGW mnemonic of the RPTRST keyword ([#5126](https://github.com/OPM/opm-simulators/pull/5126)). |
+| 8 | FIPOIL, FIPWAT, FIPGAS,<br>RFIPOIL, RFIPWAT, RFIPGAS | Added support for output of fluid in place arrays for oil, gas and water to the RESTART file. The SFIPOIL, SFIPWAT and SFIPGAS are the surface conditions volumes for oil, water and gas respectively (these are aliases for FIPOIL, FIPWAT and FIPGAS). The RFIPOIL, RFIPWAT and RFIPGAS are the reservoir conditions volumes for oil, water and gas respectively ([#5224](https://github.com/OPM/opm-simulators/pull/5224), [#3952](https://github.com/OPM/opm-common/pull/3952)). |
 
 Table A.5: New Restart Output for the 2024-04 Release
 
@@ -1705,13 +1705,13 @@ A.  1.  1.  ### Bug Fixes
 
 The following bug fixes and improvements have been incorporated into this release.
 
-3)  1)  1)  The simulator has been updated to use the applyRestartSwatInit() member function instead of directly mutating a data member of the EpsInfo structure. This way we defer the PCOW re-scaling for [SWATINIT](#__RefHeading___Toc323952_1728001293) to a context with a more complete view of the changes needed to convey the information to all components involved. With this change the simulator is mostly able to reproduce the base run in a restart run from the end of the historic period for a real field case that has strong [SWATINIT](#__RefHeading___Toc323952_1728001293) scaling of the oil-water capillary pressure function ([#4944](https://github.com/OPM/opm-simulators/pull/4944), [#3731](https://github.com/OPM/opm-common/pull/3731)).
+3)  1)  1)  The simulator has been updated to use the applyRestartSwatInit() member function instead of directly mutating a data member of the EpsInfo structure. This way we defer the PCOW re-scaling for SWATINIT to a context with a more complete view of the changes needed to convey the information to all components involved. With this change the simulator is mostly able to reproduce the base run in a restart run from the end of the historic period for a real field case that has strong SWATINIT scaling of the oil-water capillary pressure function ([#4944](https://github.com/OPM/opm-simulators/pull/4944), [#3731](https://github.com/OPM/opm-common/pull/3731)).
 
-        2)  The code was updated to include a new event to address an issue with a reported case where [WELOPEN](#__RefHeading___Toc268461_1366622701) failed to open a well previously shut due to an economic limit ([#4924](https://github.com/OPM/opm-simulators/pull/4924), [#3707](https://github.com/OPM/opm-common/pull/3707)).
+        2)  The code was updated to include a new event to address an issue with a reported case where WELOPEN failed to open a well previously shut due to an economic limit ([#4924](https://github.com/OPM/opm-simulators/pull/4924), [#3707](https://github.com/OPM/opm-common/pull/3707)).
 
         3)  The logger is now initialized before parsing ([#5007](https://github.com/OPM/opm-simulators/pull/5007)). Previously, uninitialized values would have been used when the parser logged some errors.
 
-        4)  Fixed an issue where [BCPROP](#REF_HEADING_KEYWORD_BCPROP) would be ignored if it was not set in the first time step. This update makes it possible to set [BCPROP](#REF_HEADING_KEYWORD_BCPROP) later in the schedule ([#4912](https://github.com/OPM/opm-simulators/pull/4912), [#833](https://github.com/OPM/opm-models/pull/833)).
+        4)  Fixed an issue where BCPROP would be ignored if it was not set in the first time step. This update makes it possible to set BCPROP later in the schedule ([#4912](https://github.com/OPM/opm-simulators/pull/4912), [#833](https://github.com/OPM/opm-models/pull/833)).
 
         5)  Previously, a well with shut-in instruction \"shut\" that changes to non-operable during an iteration will give the message well xxx gets SHUT during iteration, but no further actions are triggered. This is due to the flag changed_to_stopped_this_step\_ not being set. The simulator has been updated so that a non-operable well will give the message well xxx gets STOPPED during iteration (irrespective of it\'s shut-in instructions), and at the end of the time-step get closed according to it\'s shut/stop instruction (with accompanied message) ([#5014](https://github.com/OPM/opm-simulators/pull/5014), [#4902](https://github.com/OPM/opm-simulators/pull/4902)).
 
@@ -1725,7 +1725,7 @@ The following bug fixes and improvements have been incorporated into this releas
 
         10) Fixed the sign of the production rate for group pressure maintenance ([#5026](https://github.com/OPM/opm-simulators/pull/5026)).
 
-        11) Get a complete list of fluid in place ([FIP](#__RefHeading___Toc250560_252421755)) regions from FieldPropsManager rather than from SummaryConfig, which only holds regions with summary keywords ([#5034](https://github.com/OPM/opm-simulators/pull/5034), [#3813](https://github.com/OPM/opm-common/pull/3813)).
+        11) Get a complete list of fluid in place (FIP) regions from FieldPropsManager rather than from SummaryConfig, which only holds regions with summary keywords ([#5034](https://github.com/OPM/opm-simulators/pull/5034), [#3813](https://github.com/OPM/opm-common/pull/3813)).
 
         12) Previously an exception thrown by WetGasPVT::saturationPressure due to failure to converge within 20 iterations was only seen on one MPI rank and the others continued. The code now communicates the problem and throws on all MPI processes. This results in the time step being cut as a result and simulation continuing ([#5046](https://github.com/OPM/opm-simulators/pull/5046)).
 
@@ -1735,7 +1735,7 @@ The following bug fixes and improvements have been incorporated into this releas
 
         15) The code has been updated to only output FLOWS and FLORES for interior cells. This fixes an issue with parallel output of FLOWS and FLORES ([#5043](https://github.com/OPM/opm-simulators/pull/5043)).
 
-        16) The setting of solvent values has been made conditional on the [SOLVENT](#__RefHeading___Toc62787_1778172979) being active ([#5086](https://github.com/OPM/opm-simulators/pull/5086)).
+        16) The setting of solvent values has been made conditional on the SOLVENT being active ([#5086](https://github.com/OPM/opm-simulators/pull/5086)).
 
         17) Previously when assembling the acceleration pressure drop terms for multi-segment wells certain derivatives for reverse flow were skipped. The code has been rewritten to fix this issue and improves convergence in some cases ([#5040](https://github.com/OPM/opm-simulators/pull/5040)).
 
@@ -1747,19 +1747,19 @@ The following bug fixes and improvements have been incorporated into this releas
 
         21) A fix has been provided for a crash when cleaning up the Damaris mesh offset variable due to the shared memory buffer size being off by one ([#5109](https://github.com/OPM/opm-simulators/pull/5109)).
 
-        22) The simulator now supports at least NTFIP ([REGDIMS](#__RefHeading___Toc70161_327352552) keyword item 1) distinct regions for inter-region flow to avoid a possible segmentation failure ([#5117](https://github.com/OPM/opm-simulators/pull/5117)).
+        22) The simulator now supports at least NTFIP (REGDIMS keyword item 1) distinct regions for inter-region flow to avoid a possible segmentation failure ([#5117](https://github.com/OPM/opm-simulators/pull/5117)).
 
         23) A couple of changes have been made to fix network convergence issues. The lower bound on the network pressure update has been removed as this could lead to convergence issues. In addition, the convergence tolerance has been tightened by a factor of 10 for wells that are controlled under a dynamic THP-limit since the default (standard) well tolerance was not sufficiently strict to get network convergence in some cases ([#5128](https://github.com/OPM/opm-simulators/pull/5128)).
 
-        24) Previously the solvent production rate was not included in the total gas production rate when applying the gas production rate limit (GRAT) in the well control keyword [WCONPROD](#__RefHeading___Toc146754_4203985108). The gas production rate limit is now applied to the total gas production rate including both the gas and solvent pseudo components ([#5140](https://github.com/OPM/opm-simulators/pull/5140)).
+        24) Previously the solvent production rate was not included in the total gas production rate when applying the gas production rate limit (GRAT) in the well control keyword WCONPROD. The gas production rate limit is now applied to the total gas production rate including both the gas and solvent pseudo components ([#5140](https://github.com/OPM/opm-simulators/pull/5140)).
 
         25) A bug revealed by (#5124) in the local well control switching option where previously stopped wells would re-open during the local solve has been fixed ([#5129](https://github.com/OPM/opm-simulators/pull/5129)).
 
-        26) Previously, [NEXTSTEP](#__RefHeading___Toc323446_1841740821) was ignored if the user did not run OPM Flow explicitly setting the command line parameter *\--enable-tuning=true*. Now [NEXTSTEP](#__RefHeading___Toc323446_1841740821) will be applied regardless of which parameter value was set ([#5215](https://github.com/OPM/opm-simulators/pull/5215)).
+        26) Previously, NEXTSTEP was ignored if the user did not run OPM Flow explicitly setting the command line parameter *\--enable-tuning=true*. Now NEXTSTEP will be applied regardless of which parameter value was set ([#5215](https://github.com/OPM/opm-simulators/pull/5215)).
 
-        27) The handling of the [NEXTSTEP](#__RefHeading___Toc323446_1841740821) keyword in an [ACTIONX](#__RefHeading___Toc152227_2992482751) block has now been fixed ([#5222](https://github.com/OPM/opm-simulators/pull/5222)).
+        27) The handling of the NEXTSTEP keyword in an ACTIONX block has now been fixed ([#5222](https://github.com/OPM/opm-simulators/pull/5222)).
 
-        28) The code has been updated to ensure that the simulator does not advance beyond the current report step and that the next time step is not too small if the [NEXTSTEP](#__RefHeading___Toc323446_1841740821) keyword is used in an [ACTIONX](#__RefHeading___Toc152227_2992482751) block ([#5259](https://github.com/OPM/opm-simulators/pull/5259)).
+        28) The code has been updated to ensure that the simulator does not advance beyond the current report step and that the next time step is not too small if the NEXTSTEP keyword is used in an ACTIONX block ([#5259](https://github.com/OPM/opm-simulators/pull/5259)).
 
         29) Fixed an issue where previously the low parsing strictness command line option was not being respected when reprocessing the schedule section after the application of an action ([#5220](https://github.com/OPM/opm-simulators/pull/5220)).
 
@@ -1783,37 +1783,37 @@ The following bug fixes and improvements have been incorporated into this releas
 
         39) Fixed an issue where the send and receive buffers were the same which caused an MPICH error on MPICH based Red Hat Enterprise Linux 7/8 builds ([#5297](https://github.com/OPM/opm-simulators/pull/5297)).
 
-        40) Fixed a bug which caused an error whenever item 4 (PINCHCAL) of the [PINCH](#__RefHeading___Toc74261_2479612490) keyword was set to [ALL](#__RefHeading___Toc4420_421927891). The case where one of the pinched out cells has zero z-direction permeability (or z-direction transmissibility multiplier) is now supported. However, the [ALL](#__RefHeading___Toc4420_421927891) option is still not fully supported ([#707](https://github.com/OPM/opm-grid/pull/707), [#701](https://github.com/OPM/opm-grid/pull/701)).
+        40) Fixed a bug which caused an error whenever item 4 (PINCHCAL) of the PINCH keyword was set to ALL. The case where one of the pinched out cells has zero z-direction permeability (or z-direction transmissibility multiplier) is now supported. However, the ALL option is still not fully supported ([#707](https://github.com/OPM/opm-grid/pull/707), [#701](https://github.com/OPM/opm-grid/pull/701)).
 
         41) Fixed an integer overflow in the initial processing of grids with more than 134 million cells that would cause a segmentation fault ([#710](https://github.com/OPM/opm-grid/pull/710)).
 
-        42) The simulator now correctly allows for solvent flux when the dissolved gas in water option has been activated by the [DISGASW](#__RefHeading___Toc39767_22671168971) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section ([#866](https://github.com/OPM/opm-models/pull/866)).
+        42) The simulator now correctly allows for solvent flux when the dissolved gas in water option has been activated by the DISGASW keyword in the RUNSPEC section ([#866](https://github.com/OPM/opm-models/pull/866)).
 
         43) The 'meaning' variables are now initialized to avoid potential out-of-bounds dereferences ([#880](https://github.com/OPM/opm-models/pull/880)).
 
-        44) Fixed a bug where setting the saturation table number ([SATNUM](#__RefHeading___Toc71136_2752266063)) in the [COMPDAT](#__RefHeading___Toc97651_3261743917) keyword (item 7) to a value other than the cell [SATNUM](#__RefHeading___Toc71136_2752266063) resulted in a segmentation fault in two-phase cases. The simulator now checks which two-phase approach is active and sets the correct relative permeability parameters accordingly ([#3739](https://github.com/OPM/opm-common/pull/3739)).
+        44) Fixed a bug where setting the saturation table number (SATNUM) in the COMPDAT keyword (item 7) to a value other than the cell SATNUM resulted in a segmentation fault in two-phase cases. The simulator now checks which two-phase approach is active and sets the correct relative permeability parameters accordingly ([#3739](https://github.com/OPM/opm-common/pull/3739)).
 
-        45) Fixed an issue where the simulator interpreted the month 'FEB' in an [ACTIONX](#__RefHeading___Toc152227_2992482751) condition as a field-level summary vector and wrote a value of zero rather two (for February) to the restart file. This resulted in an unhelpful error message when later trying to perform a restart ([#3826](https://github.com/OPM/opm-common/pull/3826)).
+        45) Fixed an issue where the simulator interpreted the month 'FEB' in an ACTIONX condition as a field-level summary vector and wrote a value of zero rather two (for February) to the restart file. This resulted in an unhelpful error message when later trying to perform a restart ([#3826](https://github.com/OPM/opm-common/pull/3826)).
 
         46) The simulator now assumes that the reservoir density and internal energy of CO~2~ and H~2~ are not affected by their water content ([#3806](https://github.com/OPM/opm-common/pull/3806)). This avoids the use of calculations based on the ideal gas assumptions implemented in simpleHuDuanH20.hpp. The formulation is now as in the 11^th^ SPE CSP.
 
-        47) The simulator previously assumed that all UDQs loaded from the restart file had an UPDATE status of ON ([#3808](https://github.com/OPM/opm-common/pull/3808)). The simulator now inspects the actual update status and uses that to configure the [UDQ](#__RefHeading___Toc161095_2932703077) when restarting the simulation ([#3833](https://github.com/OPM/opm-common/pull/3833)).
+        47) The simulator previously assumed that all UDQs loaded from the restart file had an UPDATE status of ON ([#3808](https://github.com/OPM/opm-common/pull/3808)). The simulator now inspects the actual update status and uses that to configure the UDQ when restarting the simulation ([#3833](https://github.com/OPM/opm-common/pull/3833)).
 
-        48) Previously the simulator conflated history control with the [WHISTCTL](#__RefHeading___Toc268465_1366622701) keyword setting, thus failing to respect any control mode setting in the [WCONHIST](#__RefHeading___Toc134880_2055188184) keyword in the case of a simulation restart in the historic period. The [WHISTCTL](#__RefHeading___Toc268465_1366622701) keyword setting has been decoupled from that of the control mode setting specified in the [WCONHIST](#__RefHeading___Toc134880_2055188184) keyword thereby supporting both modes when a simulation is restarted in the historic period. This, in turn, fixes a simulation restart on a real field ([#3854](https://github.com/OPM/opm-common/pull/3854)).
+        48) Previously the simulator conflated history control with the WHISTCTL keyword setting, thus failing to respect any control mode setting in the WCONHIST keyword in the case of a simulation restart in the historic period. The WHISTCTL keyword setting has been decoupled from that of the control mode setting specified in the WCONHIST keyword thereby supporting both modes when a simulation is restarted in the historic period. This, in turn, fixes a simulation restart on a real field ([#3854](https://github.com/OPM/opm-common/pull/3854)).
 
-        49) Fixed output of the group hierarchy chart to the PRT and DBG files as requested by the [WELSPECS](#__RefHeading___Toc268463_1366622701) mnemonic of the [RPTSCHED](#__RefHeading___Toc268459_1366622701) keyword ([#3856](https://github.com/OPM/opm-common/pull/3856)).
+        49) Fixed output of the group hierarchy chart to the PRT and DBG files as requested by the WELSPECS mnemonic of the RPTSCHED keyword ([#3856](https://github.com/OPM/opm-common/pull/3856)).
 
         50) Corrected the units for region level CO~2~ summary vectors RGCDI, RGCDM and RWCD to be moles instead of surface volumes ([#3866](https://github.com/OPM/opm-common/pull/3866)).
 
-        51) Fixed support for the not equals operators '.ne.' and '!=' in [ACTIONX](#__RefHeading___Toc152227_2992482751) keywords ([#3893](https://github.com/OPM/opm-common/pull/3893)).
+        51) Fixed support for the not equals operators '.ne.' and '!=' in ACTIONX keywords ([#3893](https://github.com/OPM/opm-common/pull/3893)).
 
         52) Account for well and/or group efficiency factors when evaluating rates for non-default region sets, for example ROPR_ABC and ROPT_ABC ([#3955](https://github.com/OPM/opm-common/pull/3955)).
 
-        53) The code has been updated so that TSINIT (item 1) of the [TUNING](#__RefHeading___Toc146744_4203985108) keyword only applies to the next time step ([#3953](https://github.com/OPM/opm-common/pull/3953)).
+        53) The code has been updated so that TSINIT (item 1) of the TUNING keyword only applies to the next time step ([#3953](https://github.com/OPM/opm-common/pull/3953)).
 
-        54) Fixed the handling of the [MULTX](#__RefHeading___Toc80283_1778172979), [MULTX-](#__RefHeading___Toc80285_1778172979), [MULTY](#__RefHeading___Toc80287_1778172979), [MULTY-](#__RefHeading___Toc80289_1778172979), [MULTZ](#__RefHeading___Toc80291_1778172979), [MULTZ-](#__RefHeading___Toc80293_1778172979) keywords and [EQUALS](#__RefHeading___Toc296597_1576177388) MULT\* keywords in the [EDIT](#__RefHeading___Toc40641_784232322) section. Previously multiple occurrences of these keywords in the [EDIT](#__RefHeading___Toc40641_784232322) section would have been applied cumulatively. Now the [EDIT](#__RefHeading___Toc40641_784232322) section has its own set of multipliers which are applied to the ones in the [GRID](#__RefHeading___Toc38674_784232322) section when the end of the [EDIT](#__RefHeading___Toc40641_784232322) section is reached ([#4002](https://github.com/OPM/opm-common/pull/4002)).
+        54) Fixed the handling of the MULTX, MULTX-, MULTY, MULTY-, MULTZ, MULTZ- keywords and EQUALS MULT\* keywords in the EDIT section. Previously multiple occurrences of these keywords in the EDIT section would have been applied cumulatively. Now the EDIT section has its own set of multipliers which are applied to the ones in the GRID section when the end of the EDIT section is reached ([#4002](https://github.com/OPM/opm-common/pull/4002)).
 
-        55) Added a check that a keyword is valid for use with the [PYACTION](#__RefHeading___Toc393199_4211536922) keyword before it is inserted into the deck ([#4008](https://github.com/OPM/opm-common/pull/4008)).
+        55) Added a check that a keyword is valid for use with the PYACTION keyword before it is inserted into the deck ([#4008](https://github.com/OPM/opm-common/pull/4008)).
 
         56) Fixed the initialization of gas-water simulations with a transition zone ([#5293](https://github.com/OPM/opm-simulators/pull/5293)).
 
@@ -1827,13 +1827,13 @@ A.  1.  1.  ### Known Issues
 ```
 3)  1)  1)  There is an error with the RSM header for summary vectors whose NUMS entry in the SMSPEC file is derived from more than a single number source (e.g., single region or segment ID). This applies to all block vectors (BGPV, BOPV, BWPV, etc.), connection level quantities (COPT, etc.), and inter-region flows such as ROFT etc ([#3078](https://github.com/OPM/opm-common/issues/3078)). The work around is to plot the data in OPM ResInsight and right-click on the plot to view and copy the data.
 
-        2)  The [GDFILE](#__RefHeading___Toc139346_951517595) keyword in the [GRID](#__RefHeading___Toc38674_784232322) section loads a grid file in various formats, with the FMTOPT parameter setting the format type of the file. If the variable FMTOPT is omitted then the default is for binary file input for the commercial simulator; whereas, OPM Flow derives FMTOPT from the file extension (\*.EGRID or \*.FEGRID), making FMTOPT superfluous. However, if the extension is lower case then OPM Flow may incorrectly determine the file type. The work around is change the extension to upper case.
+        2)  The GDFILE keyword in the GRID section loads a grid file in various formats, with the FMTOPT parameter setting the format type of the file. If the variable FMTOPT is omitted then the default is for binary file input for the commercial simulator; whereas, OPM Flow derives FMTOPT from the file extension (\*.EGRID or \*.FEGRID), making FMTOPT superfluous. However, if the extension is lower case then OPM Flow may incorrectly determine the file type. The work around is change the extension to upper case.
 
-        3)  As per previous releases of the radial model, the [COORDSYS](#__RefHeading___Toc45759_719036256) keyword item three must be set to COMP to complete the circle, this has not been implemented in this release. Also there appears to be a bug for full radial models when a well goes on BHP control that causes the well not to respect the BHP constraint, this eventually causes the well to die prematurely. See [#2640](https://github.com/OPM/opm-common/pull/2640) for a discussion on the topic.
+        3)  As per previous releases of the radial model, the COORDSYS keyword item three must be set to COMP to complete the circle, this has not been implemented in this release. Also there appears to be a bug for full radial models when a well goes on BHP control that causes the well not to respect the BHP constraint, this eventually causes the well to die prematurely. See [#2640](https://github.com/OPM/opm-common/pull/2640) for a discussion on the topic.
 
-        4)  As in previous releases there are some issues with the [OPERATE](#__RefHeading___Toc64455_718313858) and [OPERATER](#__RefHeading___Toc155507_332691817) keywords associated with the input parsing; for various reasons a few of the fields require special case treatment in the grid processing, including (at least) [MULTZ](#__RefHeading___Toc80291_1778172979), [PORV](#__RefHeading___Toc96547_718313858) and [ACTNUM](#__RefHeading___Toc4410_421927891), and for those keywords the [OPERATE](#__RefHeading___Toc64455_718313858)/[OPERATER](#__RefHeading___Toc155507_332691817) keyword doe not work. The work around is to use the [MULTIPLY](#__RefHeading___Toc296609_1576177388) keyword instead.
+        4)  As in previous releases there are some issues with the OPERATE and OPERATER keywords associated with the input parsing; for various reasons a few of the fields require special case treatment in the grid processing, including (at least) MULTZ, PORV and ACTNUM, and for those keywords the OPERATE/OPERATER keyword doe not work. The work around is to use the MULTIPLY keyword instead.
 
-        5)  For the [UDQ](#__RefHeading___Toc161095_2932703077) ASSIGN operator after the terminating "/" normally any comments can be entered; however, if there is "/" within the comment field, as per:
+        5)  For the UDQ ASSIGN operator after the terminating "/" normally any comments can be entered; however, if there is "/" within the comment field, as per:
 
 *ASSIGN FUNGLYLD 1.196 / Condensate Yield (63.5/56.7)/(1.0 -- 0.065*)
 
@@ -1841,33 +1841,33 @@ then the simulator will abort. The work around is to manually place the comment 
 
 *ASSIGN FUNGLYLD 1.196 / \-- Condensate Yield (63.5/56.7)/(1.0 -- 0.06)*
 
-3)  1)  1)  At the moment, one cannot initialize tracers using the [EQUALS](#__RefHeading___Toc296597_1576177388) keyword. Instead use the array format, that is the keyword followed by the required number of values, or the [TVDP](#__RefHeading___Toc210170_2884651453) keyword in the [SOLUTION](#__RefHeading___Toc43947_784232322) section to set the initial tracer concentrations as a function of depth.
+3)  1)  1)  At the moment, one cannot initialize tracers using the EQUALS keyword. Instead use the array format, that is the keyword followed by the required number of values, or the TVDP keyword in the SOLUTION section to set the initial tracer concentrations as a function of depth.
 
-        2)  Currently, gas tracers cannot be used if the dissolved gas phase, as per the [DISGAS](#__RefHeading___Toc39767_2267116897) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section, is active in the model.
+        2)  Currently, gas tracers cannot be used if the dissolved gas phase, as per the DISGAS keyword in the RUNSPEC section, is active in the model.
 
         3)  The summary vector RTIPTHEA, that defines the energy in-place between the initial and the current time for regions, is not supported unlike the FTIPTHEA and BTIPTHEA vectors. Secondly, the error message:
 
-is incorrect, as the message indicates that it is being treated like a named region, as per the [FIP](#__RefHeading___Toc250560_252421755) keyword, when it is actually a [SUMMARY](#__RefHeading___Toc43949_784232322) vector ([#3870](https://github.com/OPM/opm-simulators/issues/3870)).
+is incorrect, as the message indicates that it is being treated like a named region, as per the FIP keyword, when it is actually a SUMMARY vector ([#3870](https://github.com/OPM/opm-simulators/issues/3870)).
 
 3)  1)  1)  If there are cells that are very distorted, which can occur near fault planes, then the simulator may abort because it cannot calculate the pore volume of such cells. The work around is to re-generate the grid in the static model, taking care that the cells around the fault planes are more or less orthogonal ([#2992](https://github.com/OPM/opm-common/issues/2992) and [#3770](https://github.com/OPM/opm-simulators/issues/3770)).
 
-        2)  Currently the [OPERATER](#__RefHeading___Toc155507_332691817) keyword in the [EDIT](#__RefHeading___Toc40641_784232322) section does not work with the [DEPTH](#__RefHeading___Toc58139_3701168388), [TRANX](#__RefHeading___Toc93085_718313858), [TRANY](#__RefHeading___Toc93087_718313858) and [TRANZ](#__RefHeading___Toc93089_718313858) property arrays ([#2994](https://github.com/OPM/opm-common/issues/2994) and [#748](https://github.com/OPM/opm-tests/pull/748)).
+        2)  Currently the OPERATER keyword in the EDIT section does not work with the DEPTH, TRANX, TRANY and TRANZ property arrays ([#2994](https://github.com/OPM/opm-common/issues/2994) and [#748](https://github.com/OPM/opm-tests/pull/748)).
 
-        3)  If a standard well is fully declared in an [ACTIONX](#__RefHeading___Toc152227_2992482751) block which is then activated at a later date, and later the well is modified to be a multi-segment well using the [WELSEGS](#__RefHeading___Toc97661_3261743917) and [COMPSEGS](#__RefHeading___Toc316604_3519154785) keywords, then this will cause the simulator to abort with an assert failure. The solution to this issue is to not use this type of work flow in declaring wells ([#2891](https://github.com/OPM/opm-common/issues/2891) and [#2895](https://github.com/OPM/opm-common/pull/2895)).
+        3)  If a standard well is fully declared in an ACTIONX block which is then activated at a later date, and later the well is modified to be a multi-segment well using the WELSEGS and COMPSEGS keywords, then this will cause the simulator to abort with an assert failure. The solution to this issue is to not use this type of work flow in declaring wells ([#2891](https://github.com/OPM/opm-common/issues/2891) and [#2895](https://github.com/OPM/opm-common/pull/2895)).
 
-        4)  Although the [ACTIONX](#__RefHeading___Toc152227_2992482751) [EXIT](#__RefHeading___Toc627737_1466963378) command works as expected, it does not write out the requested RSM file at the end of the run. However, the other [SUMMARY](#__RefHeading___Toc43949_784232322) and [RESTART](#__RefHeading___Toc135629_1317547213) files are written out ([#2877](https://github.com/OPM/opm-common/issues/2877)).
+        4)  Although the ACTIONX EXIT command works as expected, it does not write out the requested RSM file at the end of the run. However, the other SUMMARY and RESTART files are written out ([#2877](https://github.com/OPM/opm-common/issues/2877)).
 
-        5)  Although the [GCONSUMP](#__RefHeading___Toc188037_2026549522) keyword in the [SCHEDULE](#__RefHeading___Toc43945_784232322) section is fully implemented as documented, it is not possible to verify the output as the associated [SUMMARY](#__RefHeading___Toc43949_784232322) vectors are not written out, that is the [SUMMARY](#__RefHeading___Toc43949_784232322) sales gas vectors FGSR, FGST, GGSR and GGST, and fuel vectors FGCR, FGCT, GGCR, and GGCT have not been implemented ([#2679](https://github.com/OPM/opm-common/issues/2679)).
+        5)  Although the GCONSUMP keyword in the SCHEDULE section is fully implemented as documented, it is not possible to verify the output as the associated SUMMARY vectors are not written out, that is the SUMMARY sales gas vectors FGSR, FGST, GGSR and GGST, and fuel vectors FGCR, FGCT, GGCR, and GGCT have not been implemented ([#2679](https://github.com/OPM/opm-common/issues/2679)).
 
-        6)  There are small differences in the behavior of the [NEXTSTEP](#__RefHeading___Toc323446_1841740821) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section between OPM Flow and the commercial simulator that remain unresolved ([#3745](https://github.com/OPM/opm-simulators/issues/3745)).
+        6)  There are small differences in the behavior of the NEXTSTEP keyword in the RUNSPEC section between OPM Flow and the commercial simulator that remain unresolved ([#3745](https://github.com/OPM/opm-simulators/issues/3745)).
 
-        7)  **There is a unit handling issue associated with [OPERATE](#__RefHeading___Toc64455_718313858) keyword. If the [OPERATE](#__RefHeading___Toc64455_718313858)(X) parameter has units, as for example [PERMX](#__RefHeading___Toc45791_719036256), then the conversion is always done in SI units, despite the input deck declaring the deck to be fields units, as per [FIELD](#__RefHeading___Toc71850_2267116897) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section. Note that OPM Flow performs all of its calculations internally in SI and performs unit handling only when inputting the \*.DATA file and when outputting result files. Thanks to **[lrijkels](https://github.com/lrijkels)** for reporting the issue. See **[#4597](https://github.com/OPM/opm-simulators/issues/4597)** for details. **
+        7)  **There is a unit handling issue associated with OPERATE keyword. If the OPERATE(X) parameter has units, as for example PERMX, then the conversion is always done in SI units, despite the input deck declaring the deck to be fields units, as per FIELD keyword in the RUNSPEC section. Note that OPM Flow performs all of its calculations internally in SI and performs unit handling only when inputting the \*.DATA file and when outputting result files. Thanks to **[lrijkels](https://github.com/lrijkels)** for reporting the issue. See **[#4597](https://github.com/OPM/opm-simulators/issues/4597)** for details. **
 
-        8)  There is an issue associated with restarting from a restart file with the solution gas (Rs) maximum rate of increase, as defined by the [DRSDT](#__RefHeading___Toc117623_2179381650) keyword in the [SCHEDULE](#__RefHeading___Toc43945_784232322), that has been set to zero. This is because, the simulator does not save/restore this setting in simulator\'s restart files, which means that simulator misses the essential value zero upon restarting the case. As a work-around one can use the option *\--sched-restart=true*, when running the restart case. This will initialize the restarted simulation based on information from the complete [SCHEDULE](#__RefHeading___Toc43945_784232322) section, instead of just the parts that we\'re going to simulate and the rest from the restart file. Thanks to [goncalvesmachadoc](https://github.com/goncalvesmachadoc) for reporting the issue. See [#4272](https://github.com/OPM/opm-simulators/issues/4272) for details.
+        8)  There is an issue associated with restarting from a restart file with the solution gas (Rs) maximum rate of increase, as defined by the DRSDT keyword in the SCHEDULE, that has been set to zero. This is because, the simulator does not save/restore this setting in simulator\'s restart files, which means that simulator misses the essential value zero upon restarting the case. As a work-around one can use the option *\--sched-restart=true*, when running the restart case. This will initialize the restarted simulation based on information from the complete SCHEDULE section, instead of just the parts that we\'re going to simulate and the rest from the restart file. Thanks to [goncalvesmachadoc](https://github.com/goncalvesmachadoc) for reporting the issue. See [#4272](https://github.com/OPM/opm-simulators/issues/4272) for details.
 
         9)  OPM cannot be built with dune-fem version 2.9 or later ([#4934](https://github.com/OPM/opm-simulators/issues/4934)). Please use a previous version.
 
-        10) The simulator uses an irregular corner-point grid geometry with adjusted pore volumes to represent radial grids so it is not possible to create a full ring (360 degree disk) with only one cell in the theta direction (NY=1). The work around is to model a slice (say [DTHETA](#__RefHeading___Toc120096_2066951158)=60 degrees). Note that as the angle increases larger pore volume adjustments are required ([#4755](https://github.com/OPM/opm-simulators/issues/4755)).
+        10) The simulator uses an irregular corner-point grid geometry with adjusted pore volumes to represent radial grids so it is not possible to create a full ring (360 degree disk) with only one cell in the theta direction (NY=1). The work around is to model a slice (say DTHETA=60 degrees). Note that as the angle increases larger pore volume adjustments are required ([#4755](https://github.com/OPM/opm-simulators/issues/4755)).
 
         11) In some cases with the network option the simulator can wrongly report that a well has no THP constraints, for example
 
@@ -1883,21 +1883,21 @@ David started contributing to OPM in 2016 as *OPMUSER* on github and continued h
 
 The 2023-10 release consists of some new features and various improvements and bug fixes. Our main target was to support more keywords used for relevant fields and reduce differences between OPM flow and the commercial simulator. These improvements include:
 
--   Added support for temperature ([THERMAL](#__RefHeading___Toc137276_650382403)) plus salt precipitation ([PRECSALT](#__RefHeading___Toc332782_3149455253)) modeling in gas-water-brine (GAS-WATER-[BRINE](#__RefHeading___Toc162083_289573908)) systems.
+-   Added support for temperature (THERMAL) plus salt precipitation (PRECSALT) modeling in gas-water-brine (GAS-WATER-BRINE) systems.
 
--   Added support for modeling dissolved gas in water ([DISGASW](#__RefHeading___Toc39767_22671168971)) and vaporized water in the gas phase ([VAPWAT](#__RefHeading___Toc317543_3149455253)) in the thermal-gas-water simulator.
+-   Added support for modeling dissolved gas in water (DISGASW) and vaporized water in the gas phase (VAPWAT) in the thermal-gas-water simulator.
 
--   Support for modeling [FOAM](#__RefHeading___Toc171586_289573908) combined with [SOLVENT](#__RefHeading___Toc62787_1778172979).
+-   Support for modeling FOAM combined with SOLVENT.
 
--   Partial support for [WAGHYSTR](#__RefHeading___Toc207827_2026549522) keyword (Water-Alternating-Gas hysteresis).
+-   Partial support for WAGHYSTR keyword (Water-Alternating-Gas hysteresis).
 
 -   Improvements to many user-facing error messages.
 
 -   More graceful exits for problems in parallel runs.
 
--   Temperature is output to the [RESTART](#__RefHeading___Toc135629_1317547213) file if requested via [RPTRST](#__RefHeading___Toc210154_2884651453).
+-   Temperature is output to the RESTART file if requested via RPTRST.
 
--   Added support for WBP, WBP4, WBP5 and WBP9 in the [SUMMARY](#__RefHeading___Toc43949_784232322) section to output well block averaged pressures for open completions.
+-   Added support for WBP, WBP4, WBP5 and WBP9 in the SUMMARY section to output well block averaged pressures for open completions.
 
 -   Added support for initializing constant flux aquifers from a restart.
 
@@ -1943,51 +1943,51 @@ A.  1.  1.  ### New Features
 
 In addition to the above the following new features have been added to the simulator:
 
-3)  1)  1)  When the general well specification data is defined by the [WELSPECS](#__RefHeading___Toc268463_1366622701) keyword in the [SCHEDULE](#__RefHeading___Toc43945_784232322) section the well can now be assigned directly to the [FIELD](#__RefHeading___Toc71850_2267116897) group in item 2 GRPNAME ([#3485](https://github.com/OPM/opm-common/pull/3485) and [#4608](https://github.com/OPM/opm-simulators/pull/4608)). Previously there was a restriction preventing wells from being parented directly to [FIELD](#__RefHeading___Toc71850_2267116897). Although wells are now allowed to be parented directly to [FIELD](#__RefHeading___Toc71850_2267116897), this is discouraged and a warning message will be issued. Mixing wells and groups as children of a single group is still forbidden.
+3)  1)  1)  When the general well specification data is defined by the WELSPECS keyword in the SCHEDULE section the well can now be assigned directly to the FIELD group in item 2 GRPNAME ([#3485](https://github.com/OPM/opm-common/pull/3485) and [#4608](https://github.com/OPM/opm-simulators/pull/4608)). Previously there was a restriction preventing wells from being parented directly to FIELD. Although wells are now allowed to be parented directly to FIELD, this is discouraged and a warning message will be issued. Mixing wells and groups as children of a single group is still forbidden.
 
-        2)  Added support for dissolved gas in water ([DISGASW](#__RefHeading___Toc39767_22671168971)) in the gas-water simulator with salt precipitation ([PRECSALT](#__RefHeading___Toc332782_3149455253)) and vaporized water in the gas phase ([VAPWAT](#__RefHeading___Toc317543_3149455253)) ([#4623](https://github.com/OPM/opm-simulators/pull/4623)). However, input of gas solubility in water is not currently supported so this option is only useful in combination with [CO2STORE](#__RefHeading___Toc387968_1616145207).
+        2)  Added support for dissolved gas in water (DISGASW) in the gas-water simulator with salt precipitation (PRECSALT) and vaporized water in the gas phase (VAPWAT) ([#4623](https://github.com/OPM/opm-simulators/pull/4623)). However, input of gas solubility in water is not currently supported so this option is only useful in combination with CO2STORE.
 
-        3)  Added support for modeling dissolved gas in water ([DISGASW](#__RefHeading___Toc39767_22671168971)) and vaporized water in the gas phase ([VAPWAT](#__RefHeading___Toc317543_3149455253)) in the thermal-gas-water simulator ([#4661](https://github.com/OPM/opm-simulators/pull/4661)).
+        3)  Added support for modeling dissolved gas in water (DISGASW) and vaporized water in the gas phase (VAPWAT) in the thermal-gas-water simulator ([#4661](https://github.com/OPM/opm-simulators/pull/4661)).
 
-        4)  Added support for temperature ([THERMAL](#__RefHeading___Toc137276_650382403)) plus salt precipitation ([PRECSALT](#__RefHeading___Toc332782_3149455253)) modeling in gas-water-brine (GAS-WATER-[BRINE](#__RefHeading___Toc162083_289573908)) systems as specified in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section ([#4650](https://github.com/OPM/opm-simulators/pull/4650)). This has to date only been tested in combination with [CO2STORE](#__RefHeading___Toc387968_1616145207). Note that generally, if the [PRECSALT](#__RefHeading___Toc332782_3149455253) keyword has been activated in the input deck then the [VAPWAT](#__RefHeading___Toc317543_3149455253) keyword should also be activated.
+        4)  Added support for temperature (THERMAL) plus salt precipitation (PRECSALT) modeling in gas-water-brine (GAS-WATER-BRINE) systems as specified in the RUNSPEC section ([#4650](https://github.com/OPM/opm-simulators/pull/4650)). This has to date only been tested in combination with CO2STORE. Note that generally, if the PRECSALT keyword has been activated in the input deck then the VAPWAT keyword should also be activated.
 
-        5)  Added support for modeling foam ([FOAM](#__RefHeading___Toc171586_289573908)) plus solvent ([SOLVENT](#__RefHeading___Toc62787_1778172979)) in the simulator ([#4654](https://github.com/OPM/opm-simulators/pull/4654), [#3523](https://github.com/OPM/opm-common/pull/3523) and [#805](https://github.com/OPM/opm-models/pull/805)). In addition, gas or water is now allowed as the transport phase for the foam as specified by [FOAMOPTS](#__RefHeading___Toc224982_3519154785) item 1 (previously only gas was supported as the foam transport phase).
+        5)  Added support for modeling foam (FOAM) plus solvent (SOLVENT) in the simulator ([#4654](https://github.com/OPM/opm-simulators/pull/4654), [#3523](https://github.com/OPM/opm-common/pull/3523) and [#805](https://github.com/OPM/opm-models/pull/805)). In addition, gas or water is now allowed as the transport phase for the foam as specified by FOAMOPTS item 1 (previously only gas was supported as the foam transport phase).
 
-        6)  Added support for [WVFPDP](#__RefHeading___Toc1443515_4263943340) in the [SCHEDULE](#__RefHeading___Toc43945_784232322) section ([#4620](https://github.com/OPM/opm-models/pull/4620) and [#3504](https://github.com/OPM/opm-common/pull/3504)). The [WVFPDP](#__RefHeading___Toc1443515_4263943340) keyword modifies a well's Bottom-Hole Pressure ("BHP") estimated by the simulator by interpolation of the Vertical Flow Performance ("VFP") tables.
+        6)  Added support for WVFPDP in the SCHEDULE section ([#4620](https://github.com/OPM/opm-models/pull/4620) and [#3504](https://github.com/OPM/opm-common/pull/3504)). The WVFPDP keyword modifies a well's Bottom-Hole Pressure ("BHP") estimated by the simulator by interpolation of the Vertical Flow Performance ("VFP") tables.
 
-        7)  Added support for [GCONPROD](#__RefHeading___Toc146746_4203985108) item 7 [ACTION](#__RefHeading___Toc148342_63720426) equal to NONE in the [SCHEDULE](#__RefHeading___Toc43945_784232322) section, which specifies that no action is to be taken if the oil, water, gas or liquid rate constraints are violated. Previously only the RATE option was supported by the simulator ([#4658](https://github.com/OPM/opm-simulators/pull/4658)).
+        7)  Added support for GCONPROD item 7 ACTION equal to NONE in the SCHEDULE section, which specifies that no action is to be taken if the oil, water, gas or liquid rate constraints are violated. Previously only the RATE option was supported by the simulator ([#4658](https://github.com/OPM/opm-simulators/pull/4658)).
 
-        8)  Added partial support for [WAGHYSTR](#__RefHeading___Toc207827_2026549522) keyword in the [PROPS](#__RefHeading___Toc39329_784232322) section ([#4710](https://github.com/OPM/opm-simulators/pull/4710) and [#3542](https://github.com/OPM/opm-common/pull/3542)). This keyword defines the parameters for the Water-Alternating-Gas ("WAG") hysteresis option, when the hysteresis option has been activated by the HYSTER variable on the [SATOPTS](#__RefHeading___Toc37029_327352552) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section. Only gas phase hysteresis is currently supported by the [WAGHYSTR](#__RefHeading___Toc207827_2026549522) keyword. The residual oil modification fraction, which would only be active when the [STONE1](#__RefHeading___Toc210162_2884651453) three-phase oil relative permeability model is used, is not currently supported.
+        8)  Added partial support for WAGHYSTR keyword in the PROPS section ([#4710](https://github.com/OPM/opm-simulators/pull/4710) and [#3542](https://github.com/OPM/opm-common/pull/3542)). This keyword defines the parameters for the Water-Alternating-Gas ("WAG") hysteresis option, when the hysteresis option has been activated by the HYSTER variable on the SATOPTS keyword in the RUNSPEC section. Only gas phase hysteresis is currently supported by the WAGHYSTR keyword. The residual oil modification fraction, which would only be active when the STONE1 three-phase oil relative permeability model is used, is not currently supported.
 
-        9)  Support added for [PPCWMAX](#__RefHeading___Toc150617_332691817) to limit the maximum capillary pressure scaling when initializing the model using [SWATINIT](#__RefHeading___Toc323952_1728001293), and the option to modify the connate water saturation to match the input water saturation if the capillary pressure is exceeded ([#4707](https://github.com/OPM/opm-simulators/pull/4707) and [#3570](https://github.com/OPM/opm-common/pull/3570)).
+        9)  Support added for PPCWMAX to limit the maximum capillary pressure scaling when initializing the model using SWATINIT, and the option to modify the connate water saturation to match the input water saturation if the capillary pressure is exceeded ([#4707](https://github.com/OPM/opm-simulators/pull/4707) and [#3570](https://github.com/OPM/opm-common/pull/3570)).
 
-        10) Added support for [WINJMULT](#__RefHeading___Toc121402_332691817) in the [SCHEDULE](#__RefHeading___Toc43945_784232322) section to define pressure dependent injectivity multipliers for injection wells and can be used to approximate the change in injectivity due to hydraulic fracturing ([#4686](https://github.com/OPM/opm-simulators/pull/4686)).
+        10) Added support for WINJMULT in the SCHEDULE section to define pressure dependent injectivity multipliers for injection wells and can be used to approximate the change in injectivity due to hydraulic fracturing ([#4686](https://github.com/OPM/opm-simulators/pull/4686)).
 
-        11) Added partial support for [WPAVE](#__RefHeading___Toc121923_2556401936) and [WWPAVE](#__RefHeading___Toc1464916_4263943340) defining the method and parameters for calculating a well's block average pressures for either all wells or specific wells ([#4695](https://github.com/OPM/opm-simulators/pull/4695), [#4694](https://github.com/OPM/opm-simulators/pull/4694) and [#4693](https://github.com/OPM/opm-simulators/pull/4693)). Calculation of block averages pressures is currently only supported for OPEN completions (not for [ALL](#__RefHeading___Toc4420_421927891) completions) as specified in [WPAVE](#__RefHeading___Toc121923_2556401936) item 4 and [WWPAVE](#__RefHeading___Toc1464916_4263943340) item 5.
+        11) Added partial support for WPAVE and WWPAVE defining the method and parameters for calculating a well's block average pressures for either all wells or specific wells ([#4695](https://github.com/OPM/opm-simulators/pull/4695), [#4694](https://github.com/OPM/opm-simulators/pull/4694) and [#4693](https://github.com/OPM/opm-simulators/pull/4693)). Calculation of block averages pressures is currently only supported for OPEN completions (not for ALL completions) as specified in WPAVE item 4 and WWPAVE item 5.
 
-        12) Aquifer keywords have been enabled when [H2STORE](#REF_HEADING_KEYWORD_H2STORE) is specified in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section with brine modeled by the [OIL](#__RefHeading___Toc97439_1778172979) phase ([#4791](https://github.com/OPM/opm-simulators/pull/4791)). This is similar to the behavior when [CO2STORE](#__RefHeading___Toc387968_1616145207) is specified.
+        12) Aquifer keywords have been enabled when H2STORE is specified in the RUNSPEC section with brine modeled by the OIL phase ([#4791](https://github.com/OPM/opm-simulators/pull/4791)). This is similar to the behavior when CO2STORE is specified.
 
-        13) Added a model for formation damage due to suspended solids in the injection water ([#4346](https://github.com/OPM/opm-simulators/pull/4346) and [#3313](https://github.com/OPM/opm-common/pull/3313)). New OPM specific well keywords [WINJDAM](#REF_HEADING_KEYWORD_WINJDAM), [WINJFCNC](#REF_HEADING_KEYWORD_WINJFCNC) and [WINJCLN](#REF_HEADING_KEYWORD_WINJCLN) have been added to the [SCHEDULE](#__RefHeading___Toc43945_784232322) section. [WINJDAM](#REF_HEADING_KEYWORD_WINJDAM) sets up the filter cake properties for the specified water injection well, [WINJFCNC](#REF_HEADING_KEYWORD_WINJFCNC) defines the filtrate concentration in the injection water, and [WINJCLN](#REF_HEADING_KEYWORD_WINJCLN) specifies that a fraction of the filter cake has been cleaned up.
+        13) Added a model for formation damage due to suspended solids in the injection water ([#4346](https://github.com/OPM/opm-simulators/pull/4346) and [#3313](https://github.com/OPM/opm-common/pull/3313)). New OPM specific well keywords WINJDAM, WINJFCNC and WINJCLN have been added to the SCHEDULE section. WINJDAM sets up the filter cake properties for the specified water injection well, WINJFCNC defines the filtrate concentration in the injection water, and WINJCLN specifies that a fraction of the filter cake has been cleaned up.
 
-        14) User defined arguments (UDA) have been enabled for the [WINJFCNC](#REF_HEADING_KEYWORD_WINJFCNC) keyword item 2 (FCONCPPM) the injection concentration parameter ([#4763](https://github.com/OPM/opm-simulators/pull/4763) and [#3614](https://github.com/OPM/opm-common/pull/3614)).
+        14) User defined arguments (UDA) have been enabled for the WINJFCNC keyword item 2 (FCONCPPM) the injection concentration parameter ([#4763](https://github.com/OPM/opm-simulators/pull/4763) and [#3614](https://github.com/OPM/opm-common/pull/3614)).
 
-        15) Added partial support for [GRUPNET](#__RefHeading___Toc118319_1596574740), which defines the standard group network parameters used to model the flow and pressure behavior within the network ([#4760](https://github.com/OPM/opm-simulators/pull/4760), [#3609](https://github.com/OPM/opm-common/pull/3609), [#4815](https://github.com/OPM/opm-simulators/pull/4815) and [#3651](https://github.com/OPM/opm-common/pull/3651)). [GRUPNET](#__RefHeading___Toc118319_1596574740) item 5 OPTION1 equals NO only is supported (defines how the groups production target should be achieved). Item 6 OPTION2 equals NO or FLO is supported but ALQ is not supported (defines how gas lift gas flows through the group's pipeline). Item 7 OPTION3 equals NONE only is supported (defines if the ALQ-PIPE variable should be reset).
+        15) Added partial support for GRUPNET, which defines the standard group network parameters used to model the flow and pressure behavior within the network ([#4760](https://github.com/OPM/opm-simulators/pull/4760), [#3609](https://github.com/OPM/opm-common/pull/3609), [#4815](https://github.com/OPM/opm-simulators/pull/4815) and [#3651](https://github.com/OPM/opm-common/pull/3651)). GRUPNET item 5 OPTION1 equals NO only is supported (defines how the groups production target should be achieved). Item 6 OPTION2 equals NO or FLO is supported but ALQ is not supported (defines how gas lift gas flows through the group's pipeline). Item 7 OPTION3 equals NONE only is supported (defines if the ALQ-PIPE variable should be reset).
 
-        16) Added partial support for [GECON](#__RefHeading___Toc134876_2055188184) ([#4819](https://github.com/OPM/opm-simulators/pull/4819) and [#3657](https://github.com/OPM/opm-common/pull/3657)). Item 7 WORKOVER only supports NONE, workover procedures are not currently implemented. Item 8 ENDRUN only supports NO, end run is not currently implemented. Item 9 MXWELLS is not supported and must be defaulted.
+        16) Added partial support for GECON ([#4819](https://github.com/OPM/opm-simulators/pull/4819) and [#3657](https://github.com/OPM/opm-common/pull/3657)). Item 7 WORKOVER only supports NONE, workover procedures are not currently implemented. Item 8 ENDRUN only supports NO, end run is not currently implemented. Item 9 MXWELLS is not supported and must be defaulted.
 
-        17) Support has been added for the [CSKIN](#__RefHeading___Toc263614_1539708736) keyword in the [SCHEDULE](#__RefHeading___Toc43945_784232322) section to modify the connection skin factor ([#4871](https://github.com/OPM/opm-simulators/pull/4871) and [#3681](https://github.com/OPM/opm-common/pull/3681)).
+        17) Support has been added for the CSKIN keyword in the SCHEDULE section to modify the connection skin factor ([#4871](https://github.com/OPM/opm-simulators/pull/4871) and [#3681](https://github.com/OPM/opm-common/pull/3681)).
 
-        18) Support for [WSF](#__RefHeading___Toc524656_3603161511 Copy 1) and [GSF](#__RefHeading___Toc524656_3603161511) keywords in the [PROPS](#__RefHeading___Toc39329_784232322) section has been added for [H2STORE](#REF_HEADING_KEYWORD_H2STORE) runs (as for [CO2STORE](#__RefHeading___Toc387968_1616145207)) ([#4528](https://github.com/OPM/opm-simulators/pull/4528)). The [WSF](#__RefHeading___Toc524656_3603161511 Copy 1) and [GSF](#__RefHeading___Toc524656_3603161511) keywords define the water relative permeability data versus water saturation tables and the gas relative permeability data versus gas saturation tables for when only gas and water are present in the input deck. These keywords can only be used with either the [CO2STORE](#__RefHeading___Toc387968_1616145207) or [H2STORE](#REF_HEADING_KEYWORD_H2STORE) models.
+        18) Support for WSF and GSF keywords in the PROPS section has been added for H2STORE runs (as for CO2STORE) ([#4528](https://github.com/OPM/opm-simulators/pull/4528)). The WSF and GSF keywords define the water relative permeability data versus water saturation tables and the gas relative permeability data versus gas saturation tables for when only gas and water are present in the input deck. These keywords can only be used with either the CO2STORE or H2STORE models.
 
-        19) Support has been added for setting the [WGRUPCON](#__RefHeading___Toc121641_2412586160) keyword Item 2 STATUS in the [SCHEDULE](#__RefHeading___Toc43945_784232322) section equal to NO ([#4575](https://github.com/OPM/opm-simulators/pull/4575)).
+        19) Support has been added for setting the WGRUPCON keyword Item 2 STATUS in the SCHEDULE section equal to NO ([#4575](https://github.com/OPM/opm-simulators/pull/4575)).
 
-        20) Support has been added for setting the [PINCH](#__RefHeading___Toc74261_2479612490) item 2 PINCHOPT parameter equal to NOGAP in the [GRID](#__RefHeading___Toc38674_784232322) section. This parameter is now fully supported by the simulator. Previously only the default GAP option was supported ([#4603](https://github.com/OPM/opm-simulators/pull/4603)).
+        20) Support has been added for setting the PINCH item 2 PINCHOPT parameter equal to NOGAP in the GRID section. This parameter is now fully supported by the simulator. Previously only the default GAP option was supported ([#4603](https://github.com/OPM/opm-simulators/pull/4603)).
 
         21) Added support for initializing constant flux aquifers from a restart ([#4520](https://github.com/OPM/opm-simulators/pull/4520) and [#4519](https://github.com/OPM/opm-simulators/pull/4519)). In particular, form constant flux aquifer objects from the restart step\'s collection if available and properly initialize their total produced volume.
 
         22) Added support for gas-water-solvent systems ([#4568](https://github.com/OPM/opm-simulators/pull/4568) and [#4548](https://github.com/OPM/opm-simulators/pull/4548)).
 
-        23) Added partial support for setting items 11, 12 and 13 of [GCONPROD](#__RefHeading___Toc146746_4203985108) in the [SCHEDULE](#__RefHeading___Toc43945_784232322) section: ACTWAT, ACTGAS and ACTLIQ respectively define the action to be taken if the water rate (WRAT), gas rate (GRAT) and liquid rate (LRAT) constraints defined by [GCONPROD](#__RefHeading___Toc146746_4203985108) are violated. Supported options are now NONE or RATE. Options CON, +CON, WELL, and PLUG are not currently supported ([#4748](https://github.com/OPM/opm-simulators/pull/4748)).
+        23) Added partial support for setting items 11, 12 and 13 of GCONPROD in the SCHEDULE section: ACTWAT, ACTGAS and ACTLIQ respectively define the action to be taken if the water rate (WRAT), gas rate (GRAT) and liquid rate (LRAT) constraints defined by GCONPROD are violated. Supported options are now NONE or RATE. Options CON, +CON, WELL, and PLUG are not currently supported ([#4748](https://github.com/OPM/opm-simulators/pull/4748)).
 
         24) Added support for Non-linear Domain Decomposition (NLDD) as the non-linear solver.
 
@@ -1997,11 +1997,11 @@ A.  1.  1.  ### Improvements
 
 Improvements include:
 
-3)  1)  1)  The correct version of flow is now selected for two-phase gas-water systems with either water vaporized in the gas phase ([VAPWAT](#__RefHeading___Toc317543_3149455253)) and/or gas dissolved in the water phase ([DISGASW](#__RefHeading___Toc39767_22671168971)) as defined in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section ([#4592](https://github.com/OPM/opm-simulators/pull/4592)). Previously the wrong version of flow was selected for gas-water systems with water vaporized in the gas phase (but no gas dissolved in the water phase).
+3)  1)  1)  The correct version of flow is now selected for two-phase gas-water systems with either water vaporized in the gas phase (VAPWAT) and/or gas dissolved in the water phase (DISGASW) as defined in the RUNSPEC section ([#4592](https://github.com/OPM/opm-simulators/pull/4592)). Previously the wrong version of flow was selected for gas-water systems with water vaporized in the gas phase (but no gas dissolved in the water phase).
 
-        2)  The boundary conditions keyword [BC](#__RefHeading___Toc42110_36712116751) has been deprecated and been split into two parts: [BCCON](#REF_HEADING_KEYWORD_BCCON) in the [GRID](#__RefHeading___Toc38674_784232322) section where the block indices and direction are set, and [BCPROP](#REF_HEADING_KEYWORD_BCPROP) in the [SCHEDULE](#__RefHeading___Toc43945_784232322) section where the type and value of the boundary condition are set ([#3482](https://github.com/OPM/opm-common/pull/3482), [#802](https://github.com/OPM/opm-models/pull/802) and [#949](https://github.com/OPM/opm-tests/pull/949)).
+        2)  The boundary conditions keyword BC has been deprecated and been split into two parts: BCCON in the GRID section where the block indices and direction are set, and BCPROP in the SCHEDULE section where the type and value of the boundary condition are set ([#3482](https://github.com/OPM/opm-common/pull/3482), [#802](https://github.com/OPM/opm-models/pull/802) and [#949](https://github.com/OPM/opm-tests/pull/949)).
 
-        3)  The maximum number of allowable [EQLNUM](#__RefHeading___Toc73734_2752266063) regions has been increased from 255 to 65525 ([#4726](https://github.com/OPM/opm-simulators/pull/4726)).
+        3)  The maximum number of allowable EQLNUM regions has been increased from 255 to 65525 ([#4726](https://github.com/OPM/opm-simulators/pull/4726)).
 
         4)  A stricter convergence tolerance has been imposed on standard (not multi-segment) wells with a zero rate target. This change improves the results of a reported case with zero reservoir volume rate (RESV) control and potentially improves the material balance of the whole system ([#4572](https://github.com/OPM/opm-simulators/pull/4572)).
 
@@ -2013,17 +2013,17 @@ Improvements include:
 
         8)  The simulator has been updated to avoid requesting the ALQ value for injectors, the ALQ value is only requested for producers ([#4648](https://github.com/OPM/opm-simulators/pull/4648)).
 
-        9)  The simulator has been modified to output temperature information to the restart file if [TEMP](#__RefHeading___Toc146397_3544483072) is specified in the [RPTRST](#__RefHeading___Toc210154_2884651453) keyword or if [THERMAL](#__RefHeading___Toc137276_650382403) is set in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section even if the command line option *\--enable-opm-rst-file=false* is set ([#4646](https://github.com/OPM/opm-simulators/pull/4646)). The command line option *\--enable-opm-rst-file* is a Boolean value that controls the output of OPM specific data sets to the commercial simulator's restart file to enable restart of OPM Flow runs by OPM Flow (*true*), or not to output the data (*false*).
+        9)  The simulator has been modified to output temperature information to the restart file if TEMP is specified in the RPTRST keyword or if THERMAL is set in the RUNSPEC section even if the command line option *\--enable-opm-rst-file=false* is set ([#4646](https://github.com/OPM/opm-simulators/pull/4646)). The command line option *\--enable-opm-rst-file* is a Boolean value that controls the output of OPM specific data sets to the commercial simulator's restart file to enable restart of OPM Flow runs by OPM Flow (*true*), or not to output the data (*false*).
 
-        10) Update the calculation of immobile gas saturation to take into the account trapped saturation (calculated when the hysteresis model is used) in the calculation of mobile and immobile fluid volumes in place ([#4642](https://github.com/OPM/opm-simulators/pull/4642) and [#3517](https://github.com/OPM/opm-common/pull/3517)). The hysteresis model is activated by the specifying the HYSTER parameter of the [SATOPTS](#__RefHeading___Toc37029_327352552) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section.
+        10) Update the calculation of immobile gas saturation to take into the account trapped saturation (calculated when the hysteresis model is used) in the calculation of mobile and immobile fluid volumes in place ([#4642](https://github.com/OPM/opm-simulators/pull/4642) and [#3517](https://github.com/OPM/opm-common/pull/3517)). The hysteresis model is activated by the specifying the HYSTER parameter of the SATOPTS keyword in the RUNSPEC section.
 
-        11) An error message will now be generated if invalid region numbers [SATNUM](#__RefHeading___Toc71136_2752266063), [PVTNUM](#__RefHeading___Toc68366_2752266063), [IMBNUM](#__RefHeading___Toc129665_83452205) or [EQLNUM](#__RefHeading___Toc73734_2752266063) are input ([#4705](https://github.com/OPM/opm-simulators/pull/4705)). Valid region numbers are positive integers less than or equal to the maximum number of regions specified in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section.
+        11) An error message will now be generated if invalid region numbers SATNUM, PVTNUM, IMBNUM or EQLNUM are input ([#4705](https://github.com/OPM/opm-simulators/pull/4705)). Valid region numbers are positive integers less than or equal to the maximum number of regions specified in the RUNSPEC section.
 
-        12) Added setVapPars() at the start of the report step to properly handle oil vaporization parameters ([VAPPARS](#__RefHeading___Toc210172_2884651453)) updates in the [SCHEDULE](#__RefHeading___Toc43945_784232322) section ([#4677](https://github.com/OPM/opm-simulators/pull/4677)).
+        12) Added setVapPars() at the start of the report step to properly handle oil vaporization parameters (VAPPARS) updates in the SCHEDULE section ([#4677](https://github.com/OPM/opm-simulators/pull/4677)).
 
-        13) If vaporised water ([VAPWAT](#__RefHeading___Toc317543_3149455253)) is present in the model but the initial equilibrium vaporized water in gas ratio ([RVW](#__RefHeading___Toc537756_4287353749)) for an equilibration region is not explicitly defined by a value versus depth table ([RVWVD](#__RefHeading___Toc137367_13175472131)), and the datum depth is not at either the gas-oil contact (if oil is present) or the gas-water contact (if oil is not present) then the values of [RVW](#__RefHeading___Toc537756_4287353749) will be initialised to zero ([#4647](https://github.com/OPM/opm-simulators/pull/4647) and [#4688](https://github.com/OPM/opm-simulators/pull/4688)). This makes it easier to include [VAPWAT](#__RefHeading___Toc317543_3149455253) in [CO2STORE](#__RefHeading___Toc387968_1616145207) cases.
+        13) If vaporised water (VAPWAT) is present in the model but the initial equilibrium vaporized water in gas ratio (RVW) for an equilibration region is not explicitly defined by a value versus depth table (RVWVD), and the datum depth is not at either the gas-oil contact (if oil is present) or the gas-water contact (if oil is not present) then the values of RVW will be initialised to zero ([#4647](https://github.com/OPM/opm-simulators/pull/4647) and [#4688](https://github.com/OPM/opm-simulators/pull/4688)). This makes it easier to include VAPWAT in CO2STORE cases.
 
-        14) The mass balance limit (XXXMBE) from the keyword [TUNING](#__RefHeading___Toc146744_4203985108) is now used if it is explicitly specified (not defaulted) and the command line argument *\--enable-tuning=true* is used ([#4621](https://github.com/OPM/opm-simulators/pull/4621) and [#3522](https://github.com/OPM/opm-common/pull/3522)).
+        14) The mass balance limit (XXXMBE) from the keyword TUNING is now used if it is explicitly specified (not defaulted) and the command line argument *\--enable-tuning=true* is used ([#4621](https://github.com/OPM/opm-simulators/pull/4621) and [#3522](https://github.com/OPM/opm-common/pull/3522)).
 
         15) The simulator now gives a more informative error message if the input grid has no active cells at all. Often this points to an error in the input data and this change might help in finding the problem ([#4735](https://github.com/OPM/opm-simulators/pull/4735)).
 
@@ -2033,7 +2033,7 @@ Improvements include:
 
         18) Hydrostatic and acceleration pressure losses have been included for well segments representing an inflow control device (ICD) ([#4824](https://github.com/OPM/opm-simulators/pull/4824)). Valves may be placed in long segments with significant depth differences (for example, at branch inlets), where the hydrostatic contribution in particular may be significant.
 
-        19) An error message is now reported if a negative oil or water saturation is passed to the [RV](#__RefHeading___Toc137365_1317547213) and [RVW](#__RefHeading___Toc537756_4287353749) initialization routine ([#4675](https://github.com/OPM/opm-simulators/pull/4675)).
+        19) An error message is now reported if a negative oil or water saturation is passed to the RV and RVW initialization routine ([#4675](https://github.com/OPM/opm-simulators/pull/4675)).
 
         20) When approximately zero well rates are encountered during iterations (pre-convergence), gas/water fractions become highly inaccurate which in turn may lead to the solver getting stuck or the well getting shut prematurely. The code has been updated to switch to explicit VFP table lookup whenever the rate drops below the lowest value in the table. The logic around explicit lookup is also updated so that this approach also works for just opened wells ([#4669](https://github.com/OPM/opm-simulators/pull/4669)).
 
@@ -2043,17 +2043,17 @@ Improvements include:
 
         23) The two-point flux-approximation (TPFA) has been added as a linearizer for gas-oil cases with energy (with diffusion) and gas-oil diffusion ([#4825](https://github.com/OPM/opm-simulators/pull/4825) and [#4816](https://github.com/OPM/opm-simulators/pull/4816)). All energy cases now have diffusion enabled.
 
-        24) Added [RESTART](#__RefHeading___Toc135629_1317547213) file output for the geomechanical module ([#4803](https://github.com/OPM/opm-simulators/pull/4803) and [#4588](https://github.com/OPM/opm-simulators/pull/4588)).
+        24) Added RESTART file output for the geomechanical module ([#4803](https://github.com/OPM/opm-simulators/pull/4803) and [#4588](https://github.com/OPM/opm-simulators/pull/4588)).
 
         25) Relaxation factors slightly outside the interval \[0, 1\] in the standard well model are reset to the interval limits, while keeping the assertion for factors further outside the interval to possibly pick up failure cases ([#4862](https://github.com/OPM/opm-simulators/pull/4862)).
 
         26) Connections between reservoir cells and numerical aquifer cells, or between numerical aquifer cells when multiple such cells define a single numerical aquifer, are now always treated as NNCs for output purposes ([#4821](https://github.com/OPM/opm-simulators/pull/4821)).
 
-        27) Regional transmissibility multipliers such as those entered in the [MULTREGT](#__RefHeading___Toc296621_1576177388) keyword are now applied to explicit input non-neighbor connections ([NNC](#__RefHeading___Toc63285_718313858)). This now implements all known connection behaviors for inter-region connections. In the commercial simulator, if the region numbers specified in [MULTREGT](#__RefHeading___Toc296621_1576177388) items 1 and 2 are equal and positive then the transmissibilities within the region as well as any transmissibilities connecting any other regions are multiplied by the given value. The option to specify transmissibility multipliers in this way using [MULTREGT](#__RefHeading___Toc296621_1576177388) is not yet supported ([#4822](https://github.com/OPM/opm-simulators/pull/4822) and [#4821](https://github.com/OPM/opm-simulators/pull/4821)).
+        27) Regional transmissibility multipliers such as those entered in the MULTREGT keyword are now applied to explicit input non-neighbor connections (NNC). This now implements all known connection behaviors for inter-region connections. In the commercial simulator, if the region numbers specified in MULTREGT items 1 and 2 are equal and positive then the transmissibilities within the region as well as any transmissibilities connecting any other regions are multiplied by the given value. The option to specify transmissibility multipliers in this way using MULTREGT is not yet supported ([#4822](https://github.com/OPM/opm-simulators/pull/4822) and [#4821](https://github.com/OPM/opm-simulators/pull/4821)).
 
         28) The name of the missing OPM restart file is reported in the error message when it cannot be located ([#4870](https://github.com/OPM/opm-simulators/pull/4870)).
 
-3)  1)  1)  Added PRT file output when group economic criteria for production groups [GECON](#__RefHeading___Toc134876_2055188184) is activated ([#4866](https://github.com/OPM/opm-simulators/pull/4866)).
+3)  1)  1)  Added PRT file output when group economic criteria for production groups GECON is activated ([#4866](https://github.com/OPM/opm-simulators/pull/4866)).
 
         2)  Reduced repetitive output of network information when running in parallel ([#4879](https://github.com/OPM/opm-simulators/pull/4879)).
 
@@ -2071,92 +2071,92 @@ Improvements include:
 
         9)  Damaris was updated in version 1.8.0 to support the HDF5 *H5Sselect_elements()* capability to rewrite data in memory to another order on disk. This allows (MPI decomposed) local simulation data to be written back to its original global position on disk. To support this a new element was added to the Damaris XML \<variable\...\> type, named \"select-file\", along with some other options (not required by OPM Flow). This keyword is added to the basic in-built Damaris XML file of OPM Flow ([#4830](https://github.com/OPM/opm-simulators/pull/4830)).
 
-In addition, the following new [SUMMARY](#__RefHeading___Toc43949_784232322) keywords are now recognized as described by the comments in .
+In addition, the following new SUMMARY keywords are now recognized as described by the comments in .
 
 | No. | Summary<br>Keyword | Comment |
 | --- | --- | --- |
-| 1 | WBP, WBP4, WBP5 and WBP9 | Added support for [SUMMARY](#__RefHeading___Toc43949_784232322) vectors to output well block averaged pressures for open completions ([#4695](https://github.com/OPM/opm-simulators/pull/4695), [#4694](https://github.com/OPM/opm-simulators/pull/4694) and [#4693](https://github.com/OPM/opm-simulators/pull/4693)). |
-| 2 | WINJFVR, WINJFVT and WINJFC | Added support for [SUMMARY](#__RefHeading___Toc43949_784232322) keywords relating to filtration injection modelling ([#4790](https://github.com/OPM/opm-simulators/pull/4790), [#3628](https://github.com/OPM/opm-common/pull/3628) and [#3626](https://github.com/OPM/opm-common/pull/3626)). Added injection well [SUMMARY](#__RefHeading___Toc43949_784232322) vectors for filtrate volume injection rate (volume rate), filtrate volume injection total (volume), and filtrate injection concentration (ppm). |
-| 3 | CINJFVR, CINJFVT, CFCSKIN, CFCWIDTH, CFCPERM, CFCPORO, CFCRAD and CFCAOF | Added support for [SUMMARY](#__RefHeading___Toc43949_784232322) keywords relating to filtration injection modelling ([#4790](https://github.com/OPM/opm-simulators/pull/4790), [#3628](https://github.com/OPM/opm-common/pull/3628) and [#3626](https://github.com/OPM/opm-common/pull/3626)). Added injection well connection [SUMMARY](#__RefHeading___Toc43949_784232322) vectors for filtrate volume injection rate (volume rate), filtrate volume injection total (volume), skin factor due to filtration (dimensionless), thickness of filter cake (Length), permeability of filter cake (MD), porosity of filter cake (dimensionless), well bore radius used in the filtration modeling (Length), and well bore area of flow used in the filtration modeling (Area). |
-| 4 | SxDEN, SDENM and SMDEN | Added support for [SUMMARY](#__RefHeading___Toc43949_784232322) vectors to output fluid densities at the block and well segment levels ([#4744](https://github.com/OPM/opm-simulators/pull/4744), [#3594](https://github.com/OPM/opm-common/pull/3594) and [#3593](https://github.com/OPM/opm-common/pull/3593)). Added well segment [SUMMARY](#__RefHeading___Toc43949_784232322) vectors for phase density of phase x (segment conditions), fluid mixture density weighted by phase flowing fractions, and fluid mixture density weighted by phase flowing fractions with exponents. Phase x is one of O (oil), G (gas), or W (water). |
-| 5 | BxDEN and BDENx | Added support for [SUMMARY](#__RefHeading___Toc43949_784232322) vectors to output fluid densities at the block and well segment levels ([#4744](https://github.com/OPM/opm-simulators/pull/4744), [#3594](https://github.com/OPM/opm-common/pull/3594) and [#3593](https://github.com/OPM/opm-common/pull/3593)). Added block [SUMMARY](#__RefHeading___Toc43949_784232322) vectors for phase density of phase x. Phase x is one of O (oil), G (gas), or W (water). |
-| 6 | BFLOWI, BFLOWJ, and BFLOWK | Added support for [SUMMARY](#__RefHeading___Toc43949_784232322) vectors BFLOWI, BFLOWJ and BFLOWK to request block oil/gas/water flow rates at surface conditions ([#4867](https://github.com/OPM/opm-simulators/pull/4867), [#3675](https://github.com/OPM/opm-common/pull/3675) and [#827](https://github.com/OPM/opm-models/pull/827)). This does not require FLOWS to be specified in [RPTRST](#__RefHeading___Toc210154_2884651453). |
+| 1 | WBP, WBP4, WBP5 and WBP9 | Added support for SUMMARY vectors to output well block averaged pressures for open completions ([#4695](https://github.com/OPM/opm-simulators/pull/4695), [#4694](https://github.com/OPM/opm-simulators/pull/4694) and [#4693](https://github.com/OPM/opm-simulators/pull/4693)). |
+| 2 | WINJFVR, WINJFVT and WINJFC | Added support for SUMMARY keywords relating to filtration injection modelling ([#4790](https://github.com/OPM/opm-simulators/pull/4790), [#3628](https://github.com/OPM/opm-common/pull/3628) and [#3626](https://github.com/OPM/opm-common/pull/3626)). Added injection well SUMMARY vectors for filtrate volume injection rate (volume rate), filtrate volume injection total (volume), and filtrate injection concentration (ppm). |
+| 3 | CINJFVR, CINJFVT, CFCSKIN, CFCWIDTH, CFCPERM, CFCPORO, CFCRAD and CFCAOF | Added support for SUMMARY keywords relating to filtration injection modelling ([#4790](https://github.com/OPM/opm-simulators/pull/4790), [#3628](https://github.com/OPM/opm-common/pull/3628) and [#3626](https://github.com/OPM/opm-common/pull/3626)). Added injection well connection SUMMARY vectors for filtrate volume injection rate (volume rate), filtrate volume injection total (volume), skin factor due to filtration (dimensionless), thickness of filter cake (Length), permeability of filter cake (MD), porosity of filter cake (dimensionless), well bore radius used in the filtration modeling (Length), and well bore area of flow used in the filtration modeling (Area). |
+| 4 | SxDEN, SDENM and SMDEN | Added support for SUMMARY vectors to output fluid densities at the block and well segment levels ([#4744](https://github.com/OPM/opm-simulators/pull/4744), [#3594](https://github.com/OPM/opm-common/pull/3594) and [#3593](https://github.com/OPM/opm-common/pull/3593)). Added well segment SUMMARY vectors for phase density of phase x (segment conditions), fluid mixture density weighted by phase flowing fractions, and fluid mixture density weighted by phase flowing fractions with exponents. Phase x is one of O (oil), G (gas), or W (water). |
+| 5 | BxDEN and BDENx | Added support for SUMMARY vectors to output fluid densities at the block and well segment levels ([#4744](https://github.com/OPM/opm-simulators/pull/4744), [#3594](https://github.com/OPM/opm-common/pull/3594) and [#3593](https://github.com/OPM/opm-common/pull/3593)). Added block SUMMARY vectors for phase density of phase x. Phase x is one of O (oil), G (gas), or W (water). |
+| 6 | BFLOWI, BFLOWJ, and BFLOWK | Added support for SUMMARY vectors BFLOWI, BFLOWJ and BFLOWK to request block oil/gas/water flow rates at surface conditions ([#4867](https://github.com/OPM/opm-simulators/pull/4867), [#3675](https://github.com/OPM/opm-common/pull/3675) and [#827](https://github.com/OPM/opm-models/pull/827)). This does not require FLOWS to be specified in RPTRST. |
 
-Table A.7: New [SUMMARY](#__RefHeading___Toc43949_784232322) Keywords for the 2023-10 Release
+Table A.7: New SUMMARY Keywords for the 2023-10 Release
 
 A.  1.  1.  ### Bug Fixes
 
 The following bug fixes and improvements have been incorporated into this release.
 
-3)  1)  1)  Fixed the issue of incorrectly using the gas-oil contact depth for initialization of vaporized water ([RVW](#__RefHeading___Toc537756_4287353749)) in the special case of a two-phase gas-water system. The gas-water contact depth is now used in this case ([#4688](https://github.com/OPM/opm-simulators/pull/4688) and [#4647](https://github.com/OPM/opm-simulators/pull/4647)).
+3)  1)  1)  Fixed the issue of incorrectly using the gas-oil contact depth for initialization of vaporized water (RVW) in the special case of a two-phase gas-water system. The gas-water contact depth is now used in this case ([#4688](https://github.com/OPM/opm-simulators/pull/4688) and [#4647](https://github.com/OPM/opm-simulators/pull/4647)).
 
-        2)  Fixed a bug in the group pressure maintenance ([GPMAINT](#__RefHeading___Toc192979_2026549522)) code ([#4664](https://github.com/OPM/opm-simulators/pull/4664)). Previously, if negative group pressure maintenance rates were calculated, they would first be used to incorrectly update the [GPMAINT](#__RefHeading___Toc192979_2026549522) error integral, before the rates were later set to zero. Now the simulator only calculates rates for injectors if the pressure is below the regional pressure target (or for producers if the pressure is above the regional pressure target).
+        2)  Fixed a bug in the group pressure maintenance (GPMAINT) code ([#4664](https://github.com/OPM/opm-simulators/pull/4664)). Previously, if negative group pressure maintenance rates were calculated, they would first be used to incorrectly update the GPMAINT error integral, before the rates were later set to zero. Now the simulator only calculates rates for injectors if the pressure is below the regional pressure target (or for producers if the pressure is above the regional pressure target).
 
-        3)  Bug fixes related to the handling of gas dissolved in water ratio ([RSW](#REF_HEADING_KEYWORD_RSW_10_3)) and water vaporized in gas ratio ([RVW](#__RefHeading___Toc537756_4287353749)) in the standard well model ([#4591](https://github.com/OPM/opm-simulators/pull/4591)).
+        3)  Bug fixes related to the handling of gas dissolved in water ratio (RSW) and water vaporized in gas ratio (RVW) in the standard well model ([#4591](https://github.com/OPM/opm-simulators/pull/4591)).
 
-        4)  The max size of the next time step is now only used when specified in [TUNING](#__RefHeading___Toc146744_4203985108) or [NEXTSTEP](#__RefHeading___Toc323446_1841740821) ([#4660](https://github.com/OPM/opm-simulators/pull/4660)).
+        4)  The max size of the next time step is now only used when specified in TUNING or NEXTSTEP ([#4660](https://github.com/OPM/opm-simulators/pull/4660)).
 
-        5)  If the data file contains the [CPR](#__RefHeading___Toc27871_3671211675) keyword then the \"CPR\" preconditioner should be used unless it is overridden by a command line argument. Previously this was incorrectly overridden by the command line argument \--linear-solver-max-iter, the correct command line argument \--linear-solver is now used ([#4700](https://github.com/OPM/opm-simulators/pull/4700)).
+        5)  If the data file contains the CPR keyword then the \"CPR\" preconditioner should be used unless it is overridden by a command line argument. Previously this was incorrectly overridden by the command line argument \--linear-solver-max-iter, the correct command line argument \--linear-solver is now used ([#4700](https://github.com/OPM/opm-simulators/pull/4700)).
 
         6)  The user is now able to specify any number of threads, this prevents only one thread being used on some hardware where the number of processors would always be reported as one when using MPI and OpenMP (irrespective of the actual number). The behaviour is now: (a) if nothing is specified then 2 threads are used, (b) if OMP_NUM_THREADS is specified then this number is used regardless of the hardware and the command line argument \--threads-per-process is ignored, and (c) if \--threads-per-process is used and OMP_NUM_THREADS is not set then the number specified on the command line is used ([#4709](https://github.com/OPM/opm-simulators/pull/4709)). There is a check to make sure that the number of threads used by the linearizer is consistent ([#811](https://github.com/OPM/opm-models/pull/811)).
 
         7)  Fixed a bug related to indexing in the temperature boundary condition ([#4761](https://github.com/OPM/opm-simulators/pull/4761)).
 
-        8)  Gas dissolved in oil ([RS](#__RefHeading___Toc137361_1317547213)) and oil vaporized in gas ([RV](#__RefHeading___Toc137365_1317547213)) ratio initialized using value versus depth tables ([RSVD](#__RefHeading___Toc137363_1317547213), [RVVD](#__RefHeading___Toc137367_1317547213)) should be limited by their respective saturated values. Fixed a bug where this limit was not applied at depths outside the range of depths in the [RSVD](#__RefHeading___Toc137363_1317547213) or [RVVD](#__RefHeading___Toc137367_1317547213) table ([#4723](https://github.com/OPM/opm-simulators/pull/4723)).
+        8)  Gas dissolved in oil (RS) and oil vaporized in gas (RV) ratio initialized using value versus depth tables (RSVD, RVVD) should be limited by their respective saturated values. Fixed a bug where this limit was not applied at depths outside the range of depths in the RSVD or RVVD table ([#4723](https://github.com/OPM/opm-simulators/pull/4723)).
 
         9)  For producers where all perforations have zero rates the perforation mixture fraction is approximated using the (inverse formation volume factor times mobility) ratio, and weight the perforation rates using the well transmissibility. The perforation mixture fraction was previously approximated using only the mobility ratio ([#4681](https://github.com/OPM/opm-simulators/pull/4681)).
 
         10) A case under investigation has some cells containing only oil and water (zero gas saturation), which have zero relative permeability (and mobility) for all the three phases. This caused problems in part of the code which assumed the total mobility was non-zero. For perforations having zero mobility for all the phases, the simulator now uses a small value to generate small perforation rates for those perforations, at the same time, the simulator can use these rates to recover the mixing ratios for those perforations ([#4682](https://github.com/OPM/opm-simulators/pull/4682) and [#4681](https://github.com/OPM/opm-simulators/pull/4681)).
 
-        11) The correct formation volume factors are now used in the case of zero phase rates resulting in zero [RS](#__RefHeading___Toc137361_1317547213), [RV](#__RefHeading___Toc137365_1317547213), [RSW](#REF_HEADING_KEYWORD_RSW_10_3) or [RVW](#__RefHeading___Toc537756_4287353749). Previously the saturated formation volume factor was used in these cases ([#4590](https://github.com/OPM/opm-simulators/pull/4590)).
+        11) The correct formation volume factors are now used in the case of zero phase rates resulting in zero RS, RV, RSW or RVW. Previously the saturated formation volume factor was used in these cases ([#4590](https://github.com/OPM/opm-simulators/pull/4590)).
 
-        12) The reservoir volume rate constraint (RESV) in [GCONPROD](#__RefHeading___Toc146746_4203985108) was not honoured. This has been fixed ([#4687](https://github.com/OPM/opm-simulators/pull/4687)).
+        12) The reservoir volume rate constraint (RESV) in GCONPROD was not honoured. This has been fixed ([#4687](https://github.com/OPM/opm-simulators/pull/4687)).
 
         13) Previously, in the case of zero threshold pressure and zero pressure difference, the code would set the pressure difference explicitly to zero. This would also set any derivatives to zero, which could disconnect the corresponding matrix rows. The code no longer sets the pressure difference to zero when not necessary ([#4701](https://github.com/OPM/opm-simulators/pull/4701)).
 
         14) Code has been updated to avoid dividing by zero when scaling the well rates in updateWellStateRates() ([#4715](https://github.com/OPM/opm-simulators/pull/4715) and [#4649](https://github.com/OPM/opm-simulators/pull/4649)).
 
-        15) The code has been updated to avoid round off errors in phase saturations leading to the initialization of dissolved or vaporized fluid ratios (for example saturated [RS](#__RefHeading___Toc137361_1317547213)) with saturated values instead of taking values from the input ratio versus depth table (for example [RSVD](#__RefHeading___Toc137363_1317547213)) ([#4720](https://github.com/OPM/opm-simulators/pull/4720)).
+        15) The code has been updated to avoid round off errors in phase saturations leading to the initialization of dissolved or vaporized fluid ratios (for example saturated RS) with saturated values instead of taking values from the input ratio versus depth table (for example RSVD) ([#4720](https://github.com/OPM/opm-simulators/pull/4720)).
 
         16) Code has been updated to avoid writing beyond array limits ([#4753](https://github.com/OPM/opm-simulators/pull/4753)).
 
-        17) The well closure reason is now set to GROUP rather than ECONOMIC if a group economic constraint ([GECON](#__RefHeading___Toc134876_2055188184)) is reached. This prevents the closed well being reopened with [WTEST](#__RefHeading___Toc121925_2556401936) item 3 TEST equal to 'E' ([#4854](https://github.com/OPM/opm-simulators/pull/4854)).
+        17) The well closure reason is now set to GROUP rather than ECONOMIC if a group economic constraint (GECON) is reached. This prevents the closed well being reopened with WTEST item 3 TEST equal to 'E' ([#4854](https://github.com/OPM/opm-simulators/pull/4854)).
 
         18) The simulator now sets the well THP to be zero in the WellState only if there is no VFP table associated with the well ([#4932](https://github.com/OPM/opm-simulators/pull/4932)). Previously, this would be done if the well had no target THP or THP limit.
 
-        19) The code now checks whether [LIFTOPT](#__RefHeading___Toc118992_332691817) is active first to avoid unnecessarily running routines relating to gas lift optimization ([#4956](https://github.com/OPM/opm-simulators/pull/4956)).
+        19) The code now checks whether LIFTOPT is active first to avoid unnecessarily running routines relating to gas lift optimization ([#4956](https://github.com/OPM/opm-simulators/pull/4956)).
 
         20) MPI is now initialized before creating the communicator and a couple of fields are now set to ROOT_ONLY in *opmrst_inspect()* ([#4601](https://github.com/OPM/opm-simulators/pull/4601)).
 
         21) The *updateWaterMobilityWithPolymer()* method updates values, it does not rewrite them. Hence we have to feed it the scalar values not zeros. Scalar values are now used ([#4655](https://github.com/OPM/opm-simulators/pull/4655)).
 
-        22) The restriction on the length of the next timestep following an event will now be applied following production or injection updates ([WCONPROD](#__RefHeading___Toc146754_4203985108), [WCONINJE](#__RefHeading___Toc146750_4203985108) keywords) ([#4781](https://github.com/OPM/opm-simulators/pull/4781)). The maximum length of the next timestep following an event can be set using either the [TUNING](#__RefHeading___Toc146744_4203985108) keyword item 10 (TMAXWC) with the command line argument *\--enable-tuning=true*, or by using the command line argument *\--time-step-after-event-in-days=x* (where *x* is the number of days).
+        22) The restriction on the length of the next timestep following an event will now be applied following production or injection updates (WCONPROD, WCONINJE keywords) ([#4781](https://github.com/OPM/opm-simulators/pull/4781)). The maximum length of the next timestep following an event can be set using either the TUNING keyword item 10 (TMAXWC) with the command line argument *\--enable-tuning=true*, or by using the command line argument *\--time-step-after-event-in-days=x* (where *x* is the number of days).
 
         23) Added perforation data (perf_data) comparison in the equality operator for SingleWellState ([#4783](https://github.com/OPM/opm-simulators/pull/4783)).
 
-        24) Added check that rock compaction table indices ([ROCKNUM](#__RefHeading___Toc118210_2939291539)) are within the bounds of the tables defined by [ROCKTAB](#__RefHeading___Toc107256_3812137098) ([#4788](https://github.com/OPM/opm-simulators/pull/4788)).
+        24) Added check that rock compaction table indices (ROCKNUM) are within the bounds of the tables defined by ROCKTAB ([#4788](https://github.com/OPM/opm-simulators/pull/4788)).
 
         25) Code modified to avoid a possible segmentation fault in the cleanup routine if the simulator has not been set up ([#4794](https://github.com/OPM/opm-simulators/pull/4794)).
 
-        26) Fixed a bug where the code could attempt to access entries in a zero element array due to not dereferencing a pointer to inspect array elements when deciding whether to apply [TRANX](#__RefHeading___Toc93085_718313858), [TRANY](#__RefHeading___Toc93087_718313858), etc. keywords ([#4801](https://github.com/OPM/opm-simulators/pull/4801)).
+        26) Fixed a bug where the code could attempt to access entries in a zero element array due to not dereferencing a pointer to inspect array elements when deciding whether to apply TRANX, TRANY, etc. keywords ([#4801](https://github.com/OPM/opm-simulators/pull/4801)).
 
         27) Code has been modified to prevent slightly negative oil fractions in well segments occurring due to round-off. This could have lead to failure if the segment represented for example an autonomous Inflow Control Device (ICD) valve in a multi-segment well ([#4834](https://github.com/OPM/opm-simulators/pull/4834)).
 
-        28) Fixed a bug with the DIRICHLET option in the boundary condition property definition ([BCPROP](#REF_HEADING_KEYWORD_BCPROP)) not working in gas-water runs. Additionally, fixed a bug where [BCPROP](#REF_HEADING_KEYWORD_BCPROP) had to be defined at every report step ([#4835](https://github.com/OPM/opm-simulators/pull/4835)).
+        28) Fixed a bug with the DIRICHLET option in the boundary condition property definition (BCPROP) not working in gas-water runs. Additionally, fixed a bug where BCPROP had to be defined at every report step ([#4835](https://github.com/OPM/opm-simulators/pull/4835)).
 
         29) If a well was SHUT due to economic or physical reasons the well-state quantities were mostly set to zero (including the BHP). The code has been modified to set the BHP to the BHP limit when its value has not been initialized when under well target rate control ([#4841](https://github.com/OPM/opm-simulators/pull/4841)). This helps to prevent the Newton update from stagnating under certain circumstances (for example, a reported issue introduced by [#4772](https://github.com/OPM/opm-simulators/pull/4772)).
 
-        30) Fixed a bug which occurred when using non-neighbor connections ([NNC](#__RefHeading___Toc63285_718313858)) in thermal simulations ([#4900](https://github.com/OPM/opm-simulators/pull/4900)).
+        30) Fixed a bug which occurred when using non-neighbor connections (NNC) in thermal simulations ([#4900](https://github.com/OPM/opm-simulators/pull/4900)).
 
         31) Fixed computation of temperature for distributed wells ([#4888](https://github.com/OPM/opm-simulators/pull/4888)). This was not an issue for non-distributed wells.
 
-        32) Code has been modified to always allocate buffers for storing flows if BFLOWI, BFLOWJ or BFLOWK is requested. This fixes a segmentation fault that occurred if these keywords were requested without [RPTRST](#__RefHeading___Toc210154_2884651453) in the [SOLUTION](#__RefHeading___Toc43947_784232322) section ([#4904](https://github.com/OPM/opm-simulators/pull/4904)).
+        32) Code has been modified to always allocate buffers for storing flows if BFLOWI, BFLOWJ or BFLOWK is requested. This fixes a segmentation fault that occurred if these keywords were requested without RPTRST in the SOLUTION section ([#4904](https://github.com/OPM/opm-simulators/pull/4904)).
 
-        33) Code has been modified so that there will be no vertical connection between cells if the layers in between are inactive or collapsed unless the [PINCH](#__RefHeading___Toc74261_2479612490) keyword has been specified ([#4901](https://github.com/OPM/opm-simulators/pull/4901)).
+        33) Code has been modified so that there will be no vertical connection between cells if the layers in between are inactive or collapsed unless the PINCH keyword has been specified ([#4901](https://github.com/OPM/opm-simulators/pull/4901)).
 
         34) Fixed a bug which occurred in parallel runs where all processes other than rank zero would keep iterating beyond the maximum number of allowed iterations ([#4909](https://github.com/OPM/opm-simulators/pull/4909)).
 
-        35) Fixed a bug where regional multipliers ([MULTREGT](#__RefHeading___Toc296621_1576177388)) were applied twice to non-neighbor connections entered in [EDITNNC](#__RefHeading___Toc89569_718313858) ([#4921](https://github.com/OPM/opm-simulators/pull/4921)).
+        35) Fixed a bug where regional multipliers (MULTREGT) were applied twice to non-neighbor connections entered in EDITNNC ([#4921](https://github.com/OPM/opm-simulators/pull/4921)).
 
         36) Fixed a bug where if *\--enable-vtk-output=true* and *\--enable-write-all-solutions=false* (it is false by default), then Visualization Toolkit (VTK) files were written for all solutions. The code has been modified so that VTK files are only written for report steps (unless *--enable-write-all-solutions=true*) ([#4916](https://github.com/OPM/opm-simulators/pull/4916)).
 
@@ -2171,21 +2171,21 @@ A.  1.  1.  ### Known Issues
 ```
 3)  1)  1)  There is an error with the RSM header for summary vectors whose NUMS entry in the SMSPEC file is derived from more than a single number source (e.g., single region or segment ID). This applies to all block vectors (BGPV, BOPV, BWPV, etc.), connection level quantities (COPT, etc.), and inter-region flows such as ROFT etc ([#3078](https://github.com/OPM/opm-common/issues/3078)). The work around is to plot the data in OPM ResInsight and right-click on the plot to view and copy the data.
 
-        2)  OPM Flow does not support using LIQ as a well\'s preferred phase with the [WELSPECS](#__RefHeading___Toc268463_1366622701). keyword, that is [WELSPECS](#__RefHeading___Toc268463_1366622701)(TYPE) equals LIQ. This is a long-standing bug/omission in the simulator stemming from a somewhat naive internal notion of phases so we don\'t have an entry for a liquid phase, only for the distinct oil and water phases. For producing wells this mostly matters if you plot the WPI summary vector (productivity index for well\'s preferred phase). In the current treatment WPI will not have contributions from the water phase if the declared preferred phase is LIQ. For injecting wells WELSPECS\'s preferred phase doesn\'t really matter at all since the preferred phase is (typically) reset to the injected phase in [WCONINJE](#__RefHeading___Toc146750_4203985108)/[WCONINJH](#__RefHeading___Toc146752_4203985108) anyway. See issue [#3075](https://github.com/OPM/opm-common/issues/3075).
+        2)  OPM Flow does not support using LIQ as a well\'s preferred phase with the WELSPECS. keyword, that is WELSPECS(TYPE) equals LIQ. This is a long-standing bug/omission in the simulator stemming from a somewhat naive internal notion of phases so we don\'t have an entry for a liquid phase, only for the distinct oil and water phases. For producing wells this mostly matters if you plot the WPI summary vector (productivity index for well\'s preferred phase). In the current treatment WPI will not have contributions from the water phase if the declared preferred phase is LIQ. For injecting wells WELSPECS\'s preferred phase doesn\'t really matter at all since the preferred phase is (typically) reset to the injected phase in WCONINJE/WCONINJH anyway. See issue [#3075](https://github.com/OPM/opm-common/issues/3075).
 
-        3)  If the simulator finds well connection being declared as connections via the [COMPDAT](#__RefHeading___Toc97651_3261743917) keyword in the [SCHEDULE](#__RefHeading___Toc43945_784232322) section, then it writes out a warning message:
+        3)  If the simulator finds well connection being declared as connections via the COMPDAT keyword in the SCHEDULE section, then it writes out a warning message:
 
 However, the reported cell references are offset by minus one, meaning the correct warning messages should be:
 
 See issue [#3167](https://github.com/OPM/opm-common/issues/3167) for details.
 
-3)  1)  1)  The [GDFILE](#__RefHeading___Toc139346_951517595) keyword in the [GRID](#__RefHeading___Toc38674_784232322) section loads a grid file in various formats, with the FMTOPT parameter setting the format type of the file. If the variable FMTOPT is omitted then the default is for binary file input for the commercial simulator; whereas, OPM Flow derives FMTOPT from the file extension (\*.EGRID or \*.FEGRID), making FMTOPT superfluous. However, if the extension is lower case then OPM Flow may incorrectly determine the file type. The work around is change the extension to upper case.
+3)  1)  1)  The GDFILE keyword in the GRID section loads a grid file in various formats, with the FMTOPT parameter setting the format type of the file. If the variable FMTOPT is omitted then the default is for binary file input for the commercial simulator; whereas, OPM Flow derives FMTOPT from the file extension (\*.EGRID or \*.FEGRID), making FMTOPT superfluous. However, if the extension is lower case then OPM Flow may incorrectly determine the file type. The work around is change the extension to upper case.
 
-        2)  As per previous releases of the radial model, the [COORDSYS](#__RefHeading___Toc45759_719036256) keyword item three must be set to COMP to complete the circle, this has not been implemented in this release. Also there appears to be a bug for full radial models when a well goes on BHP control that causes the well not to respect the BHP constraint, this eventually causes the well to die prematurely. See [#2640](https://github.com/OPM/opm-common/pull/2640) for a discussion on the topic.
+        2)  As per previous releases of the radial model, the COORDSYS keyword item three must be set to COMP to complete the circle, this has not been implemented in this release. Also there appears to be a bug for full radial models when a well goes on BHP control that causes the well not to respect the BHP constraint, this eventually causes the well to die prematurely. See [#2640](https://github.com/OPM/opm-common/pull/2640) for a discussion on the topic.
 
-        3)  As in previous releases there are some issues with the [OPERATE](#__RefHeading___Toc64455_718313858) and [OPERATER](#__RefHeading___Toc155507_332691817) keywords associated with the input parsing; for various reasons a few of the fields require special case treatment in the grid processing, including (at least) [MULTZ](#__RefHeading___Toc80291_1778172979), [PORV](#__RefHeading___Toc96547_718313858) and [ACTNUM](#__RefHeading___Toc4410_421927891), and for those keywords the [OPERATE](#__RefHeading___Toc64455_718313858)/[OPERATER](#__RefHeading___Toc155507_332691817) keyword doe not work. The work around is to use the [MULTIPLY](#__RefHeading___Toc296609_1576177388) keyword instead.
+        3)  As in previous releases there are some issues with the OPERATE and OPERATER keywords associated with the input parsing; for various reasons a few of the fields require special case treatment in the grid processing, including (at least) MULTZ, PORV and ACTNUM, and for those keywords the OPERATE/OPERATER keyword doe not work. The work around is to use the MULTIPLY keyword instead.
 
-        4)  For the [UDQ](#__RefHeading___Toc161095_2932703077) ASSIGN operator after the terminating "/" normally any comments can be entered; however, if there is "/" within the comment field, as per:
+        4)  For the UDQ ASSIGN operator after the terminating "/" normally any comments can be entered; however, if there is "/" within the comment field, as per:
 
 *ASSIGN FUNGLYLD 1.196 / Condensate Yield (63.5/56.7)/(1.0 -- 0.065*)
 
@@ -2193,35 +2193,35 @@ then the simulator will abort. The work around is to manually place the comment 
 
 *ASSIGN FUNGLYLD 1.196 / \-- Condensate Yield (63.5/56.7)/(1.0 -- 0.06)*
 
-3)  1)  1)  At the moment, one cannot initialize tracers using the [EQUALS](#__RefHeading___Toc296597_1576177388) keyword. Instead use the array format, that is the keyword followed by the required number of values, or the [TVDP](#__RefHeading___Toc210170_2884651453) keyword in the [SOLUTION](#__RefHeading___Toc43947_784232322) section to set the initial tracer concentrations as a function of depth.
+3)  1)  1)  At the moment, one cannot initialize tracers using the EQUALS keyword. Instead use the array format, that is the keyword followed by the required number of values, or the TVDP keyword in the SOLUTION section to set the initial tracer concentrations as a function of depth.
 
-        2)  Currently, gas tracers cannot be used if the dissolved gas phase, as per the [DISGAS](#__RefHeading___Toc39767_2267116897) keyword in the RUNSPEC section, is active in the model.
+        2)  Currently, gas tracers cannot be used if the dissolved gas phase, as per the DISGAS keyword in the RUNSPEC section, is active in the model.
 
         3)  The summary vector RTIPTHEA, that defines the energy in-place between the initial and the current time for regions, is not supported unlike the FTIPTHEA and BTIPTHEA vectors. Secondly, the error message:
 
-is incorrect, as the message indicates that it is being treated like a named region, as per the [FIP](#__RefHeading___Toc250560_252421755) keyword, when it is actually a [SUMMARY](#__RefHeading___Toc43949_784232322) vector ([#3870](https://github.com/OPM/opm-simulators/issues/3870)).
+is incorrect, as the message indicates that it is being treated like a named region, as per the FIP keyword, when it is actually a SUMMARY vector ([#3870](https://github.com/OPM/opm-simulators/issues/3870)).
 
 3)  1)  1)  If there are cells that are very distorted, which can occur near fault planes, then the simulator may abort because it cannot calculate the pore volume of such cells. The work around is to re-generate the grid in the static model, taking care that the cells around the fault planes are more or less orthogonal ([#2992](https://github.com/OPM/opm-common/issues/2992) and [#3770](https://github.com/OPM/opm-simulators/issues/3770)).
 
-        2)  Currently the [OPERATER](#__RefHeading___Toc155507_332691817) keyword in the [EDIT](#__RefHeading___Toc40641_784232322) section does not work with the [DEPTH](#__RefHeading___Toc58139_3701168388), [TRANX](#__RefHeading___Toc93085_718313858), [TRANY](#__RefHeading___Toc93087_718313858) and [TRANZ](#__RefHeading___Toc93089_718313858) property arrays ([#2994](https://github.com/OPM/opm-common/issues/2994) and [#748](https://github.com/OPM/opm-tests/pull/748)).
+        2)  Currently the OPERATER keyword in the EDIT section does not work with the DEPTH, TRANX, TRANY and TRANZ property arrays ([#2994](https://github.com/OPM/opm-common/issues/2994) and [#748](https://github.com/OPM/opm-tests/pull/748)).
 
-        3)  If a standard well is fully declared in an [ACTIONX](#__RefHeading___Toc152227_2992482751) block which is then activated at a later date, and later the well is modified to be a multi-segment well using the [WELSEGS](#__RefHeading___Toc97661_3261743917) and [COMPSEGS](#__RefHeading___Toc316604_3519154785) keywords, then this will cause the simulator to abort with an assert failure. The solution to this issue is to not use this type of work flow in declaring wells ([#2891](https://github.com/OPM/opm-common/issues/2891) and [#2895](https://github.com/OPM/opm-common/pull/2895)).
+        3)  If a standard well is fully declared in an ACTIONX block which is then activated at a later date, and later the well is modified to be a multi-segment well using the WELSEGS and COMPSEGS keywords, then this will cause the simulator to abort with an assert failure. The solution to this issue is to not use this type of work flow in declaring wells ([#2891](https://github.com/OPM/opm-common/issues/2891) and [#2895](https://github.com/OPM/opm-common/pull/2895)).
 
-        4)  Although the [ACTIONX](#__RefHeading___Toc152227_2992482751) [EXIT](#__RefHeading___Toc627737_1466963378) command works as expected, it does not write out the requested RSM file at the end of the run. However, the other [SUMMARY](#__RefHeading___Toc43949_784232322) and [RESTART](#__RefHeading___Toc135629_1317547213) files are written out ([#2877](https://github.com/OPM/opm-common/issues/2877)).
+        4)  Although the ACTIONX EXIT command works as expected, it does not write out the requested RSM file at the end of the run. However, the other SUMMARY and RESTART files are written out ([#2877](https://github.com/OPM/opm-common/issues/2877)).
 
-        5)  Although the [GCONSUMP](#__RefHeading___Toc188037_2026549522) keyword in the [SCHEDULE](#__RefHeading___Toc43945_784232322) section is fully implemented as documented, it is not possible to verify the output as the associated [SUMMARY](#__RefHeading___Toc43949_784232322) vectors are not written out, that is the [SUMMARY](#__RefHeading___Toc43949_784232322) sales gas vectors FGSR, FGST, GGSR and GGST, and fuel vectors FGCR, FGCT, GGCR, and GGCT have not been implemented ([#2679](https://github.com/OPM/opm-common/issues/2679)).
+        5)  Although the GCONSUMP keyword in the SCHEDULE section is fully implemented as documented, it is not possible to verify the output as the associated SUMMARY vectors are not written out, that is the SUMMARY sales gas vectors FGSR, FGST, GGSR and GGST, and fuel vectors FGCR, FGCT, GGCR, and GGCT have not been implemented ([#2679](https://github.com/OPM/opm-common/issues/2679)).
 
-        6)  There are small differences in the behavior of the [NEXTSTEP](#__RefHeading___Toc323446_1841740821) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section between OPM Flow and the commercial simulator that remain unresolved ([#3745](https://github.com/OPM/opm-simulators/issues/3745)).
+        6)  There are small differences in the behavior of the NEXTSTEP keyword in the RUNSPEC section between OPM Flow and the commercial simulator that remain unresolved ([#3745](https://github.com/OPM/opm-simulators/issues/3745)).
 
-        7)  **There is a unit handling issue associated with [OPERATE](#__RefHeading___Toc64455_718313858) keyword. If the [OPERATE](#__RefHeading___Toc64455_718313858)(X) parameter has units, as for example [PERMX](#__RefHeading___Toc45791_719036256), then the conversion is always done in SI units, despite the input deck declaring the deck to be fields units, as per [FIELD](#__RefHeading___Toc71850_2267116897) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section. Note that OPM Flow performs all of its calculations internally in SI and performs unit handling only when inputting the \*.DATA file and when outputting result files. Thanks to **[lrijkels](https://github.com/lrijkels)** for reporting the issue. See **[#4597](https://github.com/OPM/opm-simulators/issues/4597)** for details. **
+        7)  **There is a unit handling issue associated with OPERATE keyword. If the OPERATE(X) parameter has units, as for example PERMX, then the conversion is always done in SI units, despite the input deck declaring the deck to be fields units, as per FIELD keyword in the RUNSPEC section. Note that OPM Flow performs all of its calculations internally in SI and performs unit handling only when inputting the \*.DATA file and when outputting result files. Thanks to **[lrijkels](https://github.com/lrijkels)** for reporting the issue. See **[#4597](https://github.com/OPM/opm-simulators/issues/4597)** for details. **
 
-        8)  There is an issue associated with restarting from a restart file with the solution gas (Rs) maximum rate of increase, as defined by the [DRSDT](#__RefHeading___Toc117623_2179381650) keyword in the [SCHEDULE](#__RefHeading___Toc43945_784232322), that has been set to zero. This is because, the simulator does not save/restore this setting in simulator\'s restart files, which means that simulator misses the essential value zero upon restarting the case. As a work-around one can use the option \--sched-restart=true, when running the restart case. This will initialize the restarted simulation based on information from the complete [SCHEDULE](#__RefHeading___Toc43945_784232322) section, instead of just the parts that we\'re going to simulate and the rest from the restart file. Thanks to [goncalvesmachadoc](https://github.com/goncalvesmachadoc) for reporting the issue. See [#4272](https://github.com/OPM/opm-simulators/issues/4272) for details.
+        8)  There is an issue associated with restarting from a restart file with the solution gas (Rs) maximum rate of increase, as defined by the DRSDT keyword in the SCHEDULE, that has been set to zero. This is because, the simulator does not save/restore this setting in simulator\'s restart files, which means that simulator misses the essential value zero upon restarting the case. As a work-around one can use the option \--sched-restart=true, when running the restart case. This will initialize the restarted simulation based on information from the complete SCHEDULE section, instead of just the parts that we\'re going to simulate and the rest from the restart file. Thanks to [goncalvesmachadoc](https://github.com/goncalvesmachadoc) for reporting the issue. See [#4272](https://github.com/OPM/opm-simulators/issues/4272) for details.
 
         9)  OPM cannot be built with dune-fem version 2.9 or later. Please use a previous version.
 
-        10) The simulator uses an irregular corner-point grid geometry with adjusted pore volumes to represent radial grids so it is not possible to create a full ring (360 degree disk) with only one cell in the theta direction (NY=1). The work around is to model a slice (say [DTHETA](#__RefHeading___Toc120096_2066951158)=60 degrees). Note that as the angle increases larger pore volume adjustments are required ([#4755](https://github.com/OPM/opm-simulators/issues/4755)).
+        10) The simulator uses an irregular corner-point grid geometry with adjusted pore volumes to represent radial grids so it is not possible to create a full ring (360 degree disk) with only one cell in the theta direction (NY=1). The work around is to model a slice (say DTHETA=60 degrees). Note that as the angle increases larger pore volume adjustments are required ([#4755](https://github.com/OPM/opm-simulators/issues/4755)).
 
-        11) In principle the [PYACTION](#__RefHeading___Toc393199_4211536922) code can control anything, however the simulator generally deals poorly with wells not explicitly controlled by the input file (for example opening or closing wells). It is recommended to utilize the normal [ACTIONX](#__RefHeading___Toc152227_2992482751) machinery for well controls by constructing an [ACTIONX](#__RefHeading___Toc152227_2992482751) block in the Python code and then passing that back to the Schedule object ([#4810](https://github.com/OPM/opm-simulators/issues/4810) and [#4813](https://github.com/OPM/opm-simulators/issues/4813)).
+        11) In principle the PYACTION code can control anything, however the simulator generally deals poorly with wells not explicitly controlled by the input file (for example opening or closing wells). It is recommended to utilize the normal ACTIONX machinery for well controls by constructing an ACTIONX block in the Python code and then passing that back to the Schedule object ([#4810](https://github.com/OPM/opm-simulators/issues/4810) and [#4813](https://github.com/OPM/opm-simulators/issues/4813)).
 
         12) If the *\--save-step* command line option is used to request the serialized state is saved to an .OPMRST file and HDF5 support is missing then an error is generated at the report step where the save was requested. This error should be generated during startup to save time and resources ([#4812](https://github.com/OPM/opm-simulators/issues/4812)).
 

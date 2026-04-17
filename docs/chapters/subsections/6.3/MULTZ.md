@@ -1,24 +1,24 @@
 ### MULTZ -- Multiply Cell Transmissibility in the +Z Direction
 
-| [RUNSPEC](#3.RUNSPEC SECTION|outline) | [GRID](#4.GRID SECTION|outline) | [EDIT](#5.EDIT SECTION|outline) | [PROPS](#6.PROPS SECTION|outline) | [REGIONS](#7.REGIONS SECTION|outline) | [SOLUTION](#8.SOLUTION SECTION|outline) | [SUMMARY](#9.SUMMARY SECTION|outline) | [SCHEDULE](#10.SCHEDULE SECTION|outline) |
+| RUNSPEC | GRID | EDIT | PROPS | REGIONS | SOLUTION | SUMMARY | SCHEDULE |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 
 #### Description
 
-[MULTZ](#__RefHeading___Toc80291_1778172979) multiples the transmissibility between two cell faces in the +Z direction for all the cells in the model via an array, that is the keyword sets the transmissibility multiplier of block (I, J, K) between the cells (I, J, K) and (I, J, K+1).
+MULTZ multiples the transmissibility between two cell faces in the +Z direction for all the cells in the model via an array, that is the keyword sets the transmissibility multiplier of block (I, J, K) between the cells (I, J, K) and (I, J, K+1).
 
-An alternative to defining the complete array is to use the [BOX](#__RefHeading___Toc42110_3671211675) keyword to define an area of the grid and then use the [MULTZ](#__RefHeading___Toc80291_1778172979) keyword to set the multipliers just for the area defined by the [BOX](#__RefHeading___Toc42110_3671211675) keyword (see the example).
+An alternative to defining the complete array is to use the BOX keyword to define an area of the grid and then use the MULTZ keyword to set the multipliers just for the area defined by the BOX keyword (see the example).
 
 The keyword can be used for all grid types, except for the Radial Grid geometry.
 
 | No. | Name | Description | Default |
 | --- | --- | --- | --- |
-| 1 | [MULTZ](#__RefHeading___Toc80291_1778172979)+ | [MULTZ](#__RefHeading___Toc80291_1778172979)+ is an array of real positive numbers assigning the transmissibility multipliers in the +Z direction to each cell face in the model.<br>Repeat counts may be used, for example 20\*100.0. | 1.0 |
-| Notes:<br>1)  The number of entries should correspond to the NX x NY x NZ parameters on the [DIMENS](#__RefHeading___Toc20387_2267116897) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section, unless the [BOX](#__RefHeading___Toc42110_3671211675) keyword defines a sub area of the grid, in which case the total number of entries should correspond to the number of cells defined by the [BOX](#__RefHeading___Toc42110_3671211675) statement.<br>2)  The keyword is terminated by a "/". |  |  |  |
+| 1 | MULTZ+ | MULTZ+ is an array of real positive numbers assigning the transmissibility multipliers in the +Z direction to each cell face in the model.<br>Repeat counts may be used, for example 20\*100.0. | 1.0 |
+| Notes:<br>1)  The number of entries should correspond to the NX x NY x NZ parameters on the DIMENS keyword in the RUNSPEC section, unless the BOX keyword defines a sub area of the grid, in which case the total number of entries should correspond to the number of cells defined by the BOX statement.<br>2)  The keyword is terminated by a "/". |  |  |  |
 
 Table 6.86: MULTZ Keyword Description
 
-See also the [MULTZ-](#__RefHeading___Toc80293_1778172979), [MULTX](#__RefHeading___Toc80283_1778172979), [MULTX-](#__RefHeading___Toc80285_1778172979), [MULTY](#__RefHeading___Toc80287_1778172979) and [MULTY-](#__RefHeading___Toc80289_1778172979) keywords for scaling transmissible between grid cells.
+See also the MULTZ-, MULTX, MULTX-, MULTY and MULTY- keywords for scaling transmissible between grid cells.
 
 #### Example
 
@@ -54,4 +54,4 @@ MULTZ
 
 ENDBOX
 
-The above example defines a 0.3 scaling multiplier for the 18 cells defined by the preceding [BOX](#__RefHeading___Toc42110_3671211675) statement. The [ENDBOX](#__RefHeading___Toc88719_1778172979) keyword resets the input box to the full grid.
+The above example defines a 0.3 scaling multiplier for the 18 cells defined by the preceding BOX statement. The ENDBOX keyword resets the input box to the full grid.

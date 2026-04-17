@@ -1,11 +1,11 @@
 ### GDFILE -- Load a Grid File
 
-| [RUNSPEC](#3.RUNSPEC SECTION|outline) | [GRID](#4.GRID SECTION|outline) | [EDIT](#5.EDIT SECTION|outline) | [PROPS](#6.PROPS SECTION|outline) | [REGIONS](#7.REGIONS SECTION|outline) | [SOLUTION](#8.SOLUTION SECTION|outline) | [SUMMARY](#9.SUMMARY SECTION|outline) | [SCHEDULE](#10.SCHEDULE SECTION|outline) |
+| RUNSPEC | GRID | EDIT | PROPS | REGIONS | SOLUTION | SUMMARY | SCHEDULE |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 
 #### Description
 
-The [GDFILE](#__RefHeading___Toc139346_951517595) keyword loads a GRID file that contains the structural data for the grid as a set of topological cuboidal cells, and EGRID files that contain structural and property data. Note OPM Flow only supports reading in EGRID files at this time.
+The GDFILE keyword loads a GRID file that contains the structural data for the grid as a set of topological cuboidal cells, and EGRID files that contain structural and property data. Note OPM Flow only supports reading in EGRID files at this time.
 
 | No. | Name | Description | Default |
 | --- | --- | --- | --- |
@@ -15,7 +15,7 @@ The [GDFILE](#__RefHeading___Toc139346_951517595) keyword loads a GRID file that
 
 Table 6.40: GDFILE Keyword Description
 
-See also the [GRIDFILE](#__RefHeading___Toc45785_719036256) keyword in the [GRID](#__RefHeading___Toc38674_784232322) section for exporting the GRID and EGRID files from the current simulation run.
+See also the GRIDFILE keyword in the GRID section for exporting the GRID and EGRID files from the current simulation run.
 
 #### Examples
 

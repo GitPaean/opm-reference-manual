@@ -1,11 +1,11 @@
 ### LIVEOIL -- Activate the Live Oil Phase (Oil with Free and Dissolved Gas)
 
-| [RUNSPEC](#3.RUNSPEC SECTION|outline) | [GRID](#4.GRID SECTION|outline) | [EDIT](#5.EDIT SECTION|outline) | [PROPS](#6.PROPS SECTION|outline) | [REGIONS](#7.REGIONS SECTION|outline) | [SOLUTION](#8.SOLUTION SECTION|outline) | [SUMMARY](#9.SUMMARY SECTION|outline) | [SCHEDULE](#10.SCHEDULE SECTION|outline) |
+| RUNSPEC | GRID | EDIT | PROPS | REGIONS | SOLUTION | SUMMARY | SCHEDULE |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 
 #### Description
 
-This keyword activates oil, free and dissolved gas in the model and therefore makes the oil phase live oil[^1] in the black-oil formulation, and is equivalent to setting the phases present in the model to be oil, dissolved gas, gas and water phases. Note if water is present in the model this needs to be explicitly stated via the [WATER](#__RefHeading___Toc38611_2267116897) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section (see also the [BLACKOIL](#__RefHeading___Toc121257_2318984819) and DEADOIL keywords in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section). The keyword is used by the commercial simulator's compositional [THERMAL](#__RefHeading___Toc137276_650382403) option to set the phases present in the model.
+This keyword activates oil, free and dissolved gas in the model and therefore makes the oil phase live oil[^1] in the black-oil formulation, and is equivalent to setting the phases present in the model to be oil, dissolved gas, gas and water phases. Note if water is present in the model this needs to be explicitly stated via the WATER keyword in the RUNSPEC section (see also the BLACKOIL and DEADOIL keywords in the RUNSPEC section). The keyword is used by the commercial simulator's compositional THERMAL option to set the phases present in the model.
 
 There is no data required for this keyword and there is no terminating "/" for this keyword.
 
@@ -23,7 +23,7 @@ The following example activates the black-oil phases in the model.
 
 LIVEOIL
 
-Alternatively one could explicitly declare the phases using the following keywords in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section.
+Alternatively one could explicitly declare the phases using the following keywords in the RUNSPEC section.
 
 \--
 

@@ -1,18 +1,18 @@
 ### GRAVCONS -- Re-Define Gravity Constant
 
-| [RUNSPEC](#3.RUNSPEC SECTION|outline) | [GRID](#4.GRID SECTION|outline) | [EDIT](#5.EDIT SECTION|outline) | [PROPS](#6.PROPS SECTION|outline) | [REGIONS](#7.REGIONS SECTION|outline) | [SOLUTION](#8.SOLUTION SECTION|outline) | [SUMMARY](#9.SUMMARY SECTION|outline) | [SCHEDULE](#10.SCHEDULE SECTION|outline) |
+| RUNSPEC | GRID | EDIT | PROPS | REGIONS | SOLUTION | SUMMARY | SCHEDULE |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 
 #### Description
 
-The [GRAVCONS](#__RefHeading___Toc449734_1414963541) keyword re-defines the gravity constant used in various calculations from the default value used by the simulator. Normally this keyword should not be used.
+The GRAVCONS keyword re-defines the gravity constant used in various calculations from the default value used by the simulator. Normally this keyword should not be used.
 
 This keyword is not supported by OPM Flow but would change the results if supported so the simulation will be stopped.
 
 | No. | Name | Description | Default |
 | --- | --- | --- | --- |
 | Field | Metric | Laboratory |  |
-| 1 | [GRAVCONS](#__RefHeading___Toc449734_1414963541) | [GRAVCONS](#__RefHeading___Toc449734_1414963541) is a positive real number number that defines the gravity constant used in various calculations. | Defined |
+| 1 | GRAVCONS | GRAVCONS is a positive real number number that defines the gravity constant used in various calculations. | Defined |
 | ft^2^psi/lb<br>0.00694 | m^2^bars/kg<br>0.0000981 | cm^2^atm/gm<br>0.000968 |  |
 | Notes:<br>1)  The keyword is terminated by a "/". |  |  |  |
 

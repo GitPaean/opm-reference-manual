@@ -1,30 +1,30 @@
 ### SPECROCK -- Define the Specific Heat of the Reservoir Rock
 
-| [RUNSPEC](#3.RUNSPEC SECTION|outline) | [GRID](#4.GRID SECTION|outline) | [EDIT](#5.EDIT SECTION|outline) | [PROPS](#6.PROPS SECTION|outline) | [REGIONS](#7.REGIONS SECTION|outline) | [SOLUTION](#8.SOLUTION SECTION|outline) | [SUMMARY](#9.SUMMARY SECTION|outline) | [SCHEDULE](#10.SCHEDULE SECTION|outline) |
+| RUNSPEC | GRID | EDIT | PROPS | REGIONS | SOLUTION | SUMMARY | SCHEDULE |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 
 #### Description
 
-[SPECROCK](#__RefHeading___Toc121481_83452205) defines the specific heat of the reservoir rock for various PVT regions in the model for when the [THERMAL](#__RefHeading___Toc137276_650382403) option has been activated in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section. The number of [SPECROCK](#__RefHeading___Toc121481_83452205) vector data sets is defined by the NTSFUN parameter on the [TABDIMS](#__RefHeading___Toc89327_327352552) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section and the allocation of the [SPECROCK](#__RefHeading___Toc121481_83452205) data sets to different grid blocks in the model is done via the [SATNUM](#__RefHeading___Toc71136_2752266063) keyword in the [REGIONS](#__RefHeading___Toc40648_784232322) section.
+SPECROCK defines the specific heat of the reservoir rock for various PVT regions in the model for when the THERMAL option has been activated in the RUNSPEC section. The number of SPECROCK vector data sets is defined by the NTSFUN parameter on the TABDIMS keyword in the RUNSPEC section and the allocation of the SPECROCK data sets to different grid blocks in the model is done via the SATNUM keyword in the REGIONS section.
 
-This keyword can only be used if OPM's Flow's thermal option has been activated by the [THERMAL](#__RefHeading___Toc137276_650382403) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section. Note this is different to the commercial simulator that uses the [TEMP](#__RefHeading___Toc146397_3544483072) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section to activate the black-oil thermal model.
+This keyword can only be used if OPM's Flow's thermal option has been activated by the THERMAL keyword in the RUNSPEC section. Note this is different to the commercial simulator that uses the TEMP keyword in the RUNSPEC section to activate the black-oil thermal model.
 
 | No. | Name | Description | Default |
 | --- | --- | --- | --- |
 | Field | Metric | Laboratory |  |
-| 1 | [TEMP](#__RefHeading___Toc146397_3544483072) | A columnar vector of real monotonically increasing down the column values that define the temperature for the corresponding rock specific heat values. | None |
+| 1 | TEMP | A columnar vector of real monotonically increasing down the column values that define the temperature for the corresponding rock specific heat values. | None |
 | ^o^F | ^o^C | ^o^C |  |
-| 2 | ROCKHEAT | ROCKHEAT is a columnar vector of positive real numbers defining the specific heat of the rock at the corresponding temperature, [TEMP](#__RefHeading___Toc146397_3544483072). | None |
+| 2 | ROCKHEAT | ROCKHEAT is a columnar vector of positive real numbers defining the specific heat of the rock at the corresponding temperature, TEMP. | None |
 | Btu/ft3/oR | kJ/m3/K | J/cc/K |  |
-| Notes:<br>1)  The keyword is followed by NTSFUN tables as declared on the [TABDIMS](#__RefHeading___Toc89327_327352552) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section.<br>2)  Each table must contain a minimum of two rows and a maximum of NSSFUN rows as declared on the [TABDIMS](#__RefHeading___Toc89327_327352552) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section.<br>3)  Each table is terminated by a "/" and there is no "/" terminator for the keyword. |  |  |  |
+| Notes:<br>1)  The keyword is followed by NTSFUN tables as declared on the TABDIMS keyword in the RUNSPEC section.<br>2)  Each table must contain a minimum of two rows and a maximum of NSSFUN rows as declared on the TABDIMS keyword in the RUNSPEC section.<br>3)  Each table is terminated by a "/" and there is no "/" terminator for the keyword. |  |  |  |
 
 Table 8.171: SPECROCK Keyword Description
 
-See also the [SPECHEAT](#__RefHeading___Toc121479_83452205) keyword to define the specific heat relationships for the oil, water and gas phases.
+See also the SPECHEAT keyword to define the specific heat relationships for the oil, water and gas phases.
 
 #### Example
 
-The example below defines three rock specific heat versus temperature tables assuming NTSFUN equals three and NSSFUN is greater than or equal to two on the [TABDIMS](#__RefHeading___Toc89327_327352552) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section.
+The example below defines three rock specific heat versus temperature tables assuming NTSFUN equals three and NSSFUN is greater than or equal to two on the TABDIMS keyword in the RUNSPEC section.
 
 \--
 

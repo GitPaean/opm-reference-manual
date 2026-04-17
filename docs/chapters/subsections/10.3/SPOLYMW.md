@@ -1,24 +1,24 @@
 ### SPOLYMW -- Define The Initial Equilibration Polymer Molecular Weights For All Grid Blocks
 
-| [RUNSPEC](#3.RUNSPEC SECTION|outline) | [GRID](#4.GRID SECTION|outline) | [EDIT](#5.EDIT SECTION|outline) | [PROPS](#6.PROPS SECTION|outline) | [REGIONS](#7.REGIONS SECTION|outline) | [SOLUTION](#8.SOLUTION SECTION|outline) | [SUMMARY](#9.SUMMARY SECTION|outline) | [SCHEDULE](#10.SCHEDULE SECTION|outline) |
+| RUNSPEC | GRID | EDIT | PROPS | REGIONS | SOLUTION | SUMMARY | SCHEDULE |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 
 #### Description
 
-The [SPOLYMW](#__RefHeading___Toc428289_1116899071) keyword defines the initial equilibration polymer molecular weights for all grid cells in the model and should only be be used with OPM Flow\'s Polymer Molecular Weight Transport option, together with the other standard equilibration keywords, in order to fully describe the initial state of the model.
+The SPOLYMW keyword defines the initial equilibration polymer molecular weights for all grid cells in the model and should only be be used with OPM Flow\'s Polymer Molecular Weight Transport option, together with the other standard equilibration keywords, in order to fully describe the initial state of the model.
 
-This keyword should only be used if the [POLYMER](#__RefHeading___Toc38609_2267116897) and [POLYMW](#__RefHeading___Toc38609_22671168971) keywords in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section are also activated.
+This keyword should only be used if the POLYMER and POLYMW keywords in the RUNSPEC section are also activated.
 
 | No. | Name | Description | Default |
 | --- | --- | --- | --- |
 | Field | Metric | Laboratory |  |
-| 1 | [SPOLYMW](#__RefHeading___Toc428289_1116899071) | [SPOLYMW](#__RefHeading___Toc428289_1116899071) is an array of real positive numbers that are greater than or equal to zero assigning the initial equilibration polymer molecular weights to each cell in the model. Repeat counts may be used, for example 20\*5.0 | 0,0 |
+| 1 | SPOLYMW | SPOLYMW is an array of real positive numbers that are greater than or equal to zero assigning the initial equilibration polymer molecular weights to each cell in the model. Repeat counts may be used, for example 20\*5.0 | 0,0 |
 | lb/lb-M | kg/kg-M | gm/gm-M |  |
-| Notes:<br>1)  The number of entries should correspond to the NX x NY x NZ parameters on the [DIMENS](#__RefHeading___Toc20387_2267116897) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section, unless the [BOX](#__RefHeading___Toc42110_3671211675) keyword defines a sub area of the grid, in which case the total number of entries should correspond to the number of cells defined by the [BOX](#__RefHeading___Toc42110_3671211675) statement.<br>2)  The keyword is terminated by a "/". |  |  |  |
+| Notes:<br>1)  The number of entries should correspond to the NX x NY x NZ parameters on the DIMENS keyword in the RUNSPEC section, unless the BOX keyword defines a sub area of the grid, in which case the total number of entries should correspond to the number of cells defined by the BOX statement.<br>2)  The keyword is terminated by a "/". |  |  |  |
 
 Table 10.52: SPOLYMW Keyword Description
 
-See also the [PBUB](#__RefHeading___Toc135619_1317547213), [PDEW](#__RefHeading___Toc135623_1317547213), [PRESSURE](#__RefHeading___Toc135627_1317547213), [RS](#__RefHeading___Toc137361_1317547213), [RV](#__RefHeading___Toc137365_1317547213), [SGAS](#__RefHeading___Toc137369_1317547213), [SOIL](#__RefHeading___Toc137371_1317547213) and [SWAT](#__RefHeading___Toc137373_1317547213) keywords to fully define the initial state of the model.
+See also the PBUB, PDEW, PRESSURE, RS, RV, SGAS, SOIL and SWAT keywords to fully define the initial state of the model.
 
 #### Example
 

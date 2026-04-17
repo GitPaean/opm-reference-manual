@@ -1,15 +1,15 @@
 ### WEFAC -- Define Well Efficiency
 
-| [RUNSPEC](#3.RUNSPEC SECTION|outline) | [GRID](#4.GRID SECTION|outline) | [EDIT](#5.EDIT SECTION|outline) | [PROPS](#6.PROPS SECTION|outline) | [REGIONS](#7.REGIONS SECTION|outline) | [SOLUTION](#8.SOLUTION SECTION|outline) | [SUMMARY](#9.SUMMARY SECTION|outline) | [SCHEDULE](#10.SCHEDULE SECTION|outline) |
+| RUNSPEC | GRID | EDIT | PROPS | REGIONS | SOLUTION | SUMMARY | SCHEDULE |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 
 #### Description
 
 Defines a well's efficiency or up-time as opposed to setting the efficiency at the group level.
 
-Note that wells are allocated to a group when they are specified by the [WELSPECS](#__RefHeading___Toc268463_1366622701) keyword and groups can also have efficiency factors.
+Note that wells are allocated to a group when they are specified by the WELSPECS keyword and groups can also have efficiency factors.
 
-| 1 | WELNAME | A character string of up to eight characters in length that defines the well name for which the well efficiency factor is being defined.<br>Note that the well name (WELNAME) must have been declared previously using the [WELSPECS](#__RefHeading___Toc268463_1366622701) keyword in the [SCHEDULE](#__RefHeading___Toc43945_784232322) section, otherwise an error may occur. | None |
+| 1 | WELNAME | A character string of up to eight characters in length that defines the well name for which the well efficiency factor is being defined.<br>Note that the well name (WELNAME) must have been declared previously using the WELSPECS keyword in the SCHEDULE section, otherwise an error may occur. | None |
 | --- | --- | --- | --- |
 | 2 | FACTOR | A real positive value greater than zero and less than or equal to one that defines the efficiency factor for the well. If a well's down time is 5% then FACTOR should be set to 0.95 (1.0 -- 0.05).<br>Note that well pressures and rates are calculated at their full flowing conditions but subject to any operating constraints, that is *without* the well efficiency being applied (FACTOR), in order to represent the actual flowing conditions in the field.<br>The effective rates and volumes are calculated by applying FACTOR when summing individual well rates to their group level and higher, including summing to the top most group FIELD. In terms of a well's cumulative production, FACTOR is applied to the well rate times the time interval for the time step. This ensures that correct effective volume is withdrawn from (or injected to) the reservoir.<br>This approach means that wells are effectively arbitrarily offline for a period during a time step, as opposed to all wells going offline concurrently. And thus the group and field rates and volumes are the effective rates and volumes for the field. | 1.0 |
 | dimensionless | dimensionless | dimensionless |  |
@@ -18,7 +18,7 @@ Note that wells are allocated to a group when they are specified by the [WELSPEC
 
 Table 12.84: WEFAC Keyword Description
 
-See also the [GEFAC](#__RefHeading___Toc268455_1366622701) keyword in the [SCHEDULE](#__RefHeading___Toc43945_784232322) section to set the efficiency at the group level, as opposed to applying the efficiency to individual wells.
+See also the GEFAC keyword in the SCHEDULE section to set the efficiency at the group level, as opposed to applying the efficiency to individual wells.
 
 #### Example
 

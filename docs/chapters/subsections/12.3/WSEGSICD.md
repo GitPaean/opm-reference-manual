@@ -1,20 +1,20 @@
 ### WSEGSICD -- Define Multi-Segment Well Spiral ICD Connections
 
-| [RUNSPEC](#3.RUNSPEC SECTION|outline) | [GRID](#4.GRID SECTION|outline) | [EDIT](#5.EDIT SECTION|outline) | [PROPS](#6.PROPS SECTION|outline) | [REGIONS](#7.REGIONS SECTION|outline) | [SOLUTION](#8.SOLUTION SECTION|outline) | [SUMMARY](#9.SUMMARY SECTION|outline) | [SCHEDULE](#10.SCHEDULE SECTION|outline) |
+| RUNSPEC | GRID | EDIT | PROPS | REGIONS | SOLUTION | SUMMARY | SCHEDULE |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 
 #### Description
 
-The [WSEGSICD](#__RefHeading___Toc124296_23127940) keyword defines a multi-segment well segment to be a spiral Inflow Control Device ("ICD") as part of a completion for a multi-segment well. Note that the well must have been previously defined by the [WELSPECS](#__RefHeading___Toc268463_1366622701) and [WELSEGS](#__RefHeading___Toc97661_3261743917) keywords in the [SCHEDULE](#__RefHeading___Toc43945_784232322) section and that the data for the keyword should be repeated for each multi-segment completion that contains a spiral ICD.
+The WSEGSICD keyword defines a multi-segment well segment to be a spiral Inflow Control Device ("ICD") as part of a completion for a multi-segment well. Note that the well must have been previously defined by the WELSPECS and WELSEGS keywords in the SCHEDULE section and that the data for the keyword should be repeated for each multi-segment completion that contains a spiral ICD.
 
 An ICD is a well completion component usually installed along the producing section of a well to minimize the unwanted water and gas breakthrough in an oil well, or early water production in a gas well, due to an uneven flow profile over the completed interval. Permeability variations over the producing interval cause the high permeability zones to produce higher quantities of fluids than the lower permeability zones and this uneven producing fluid profile may result in bypassed hydrocarbons. Secondly, for horizontal wells, the pressure loss from the "toe" to the "heel" of the well again results in an uneven fluid profile over the producing interval. In order to rectify this ICDs can be installed so that the well fluids have to flow through an ICD before entering the tubing; thus, creating an additional "designed" pressure loss.
 
 A spiral ICD is a type of frictional ICD that adds an additional pressure loss by directing the fluid along a "channel" (spiral/helix) before entering the tubing. The channel flow path is designed in such a manner as to create the desired pressure loss for a given ICD. By placing various ICD's over the production interval one can design a completion that results in a more uniform producing fluid profile throughout the length of the producing interval.
 
-| 1 | WELNAME | A character string of up to eight characters in length that defines the well name for which a multi-segment well is being defined.<br>Note that the well name (WELNAME) must have been declared previously using both the [WELSPECS](#__RefHeading___Toc268463_1366622701) and [WELSEGS](#__RefHeading___Toc97661_3261743917) keywords in the [SCHEDULE](#__RefHeading___Toc43945_784232322) section, otherwise an error may occur. | None |
+| 1 | WELNAME | A character string of up to eight characters in length that defines the well name for which a multi-segment well is being defined.<br>Note that the well name (WELNAME) must have been declared previously using both the WELSPECS and WELSEGS keywords in the SCHEDULE section, otherwise an error may occur. | None |
 | --- | --- | --- | --- |
-| 2 | ISEG1 | A positive integer greater than or equal to two and less than or equal to MXSEGS on the [WSEGDIMS](#__RefHeading___Toc104259_3115110868) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section that defines the start of a segment | None |
-| 3 | ISEG2 | A positive integer greater than or equal to two and not less then ISEG1 on this record and less than or equal to MXSEGS on the [WSEGDIMS](#__RefHeading___Toc104259_3115110868) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section, that defines the end of a segment | None |
+| 2 | ISEG1 | A positive integer greater than or equal to two and less than or equal to MXSEGS on the WSEGDIMS keyword in the RUNSPEC section that defines the start of a segment | None |
+| 3 | ISEG2 | A positive integer greater than or equal to two and not less then ISEG1 on this record and less than or equal to MXSEGS on the WSEGDIMS keyword in the RUNSPEC section, that defines the end of a segment | None |
 | 4 | ICDSTREN | A real positive value greater than zero that defines an empirical constant for the strength of the given ICD as determined from measurements using the calibrated fluid. | None |
 | psia(rft3/day)2 | barsa/(rm3/day)2 | atma/(rcc/hr)2 |  |
 | 5 | ICDLEN | A real value that defines the length of the ICD used in conjunction with NSCALFAC to calculate a scaling factor to be applied to the reservoir flow to adjust the flow through each ICD, that is:<br>1)  If NSCALFAC equals zero: then the scale factor is equal to the length of the ICD (ICDLEN) divided by the length of the tubing section, that is the parent of the ICDs, then this allows for the case when the ICD segment may represent a number of ICDs in parallel.<br>2)  If NSCALFAC equals one: then the scale factor is equal to the absolute value of ICDLEN.<br>3)  If NSCALFAC equals two: then the scale factor is equal to the length of ICDLEN, divided by the total length of the completions which supply the ICD.<br>NSCALFAC explicitly sets which of the above three options is used. If NSCALFAC is defaulted, then option 1) is used whenever ICDLEN is positive and option 2) when ICDLEN is negative. | Defined |
@@ -38,7 +38,7 @@ A spiral ICD is a type of frictional ICD that adds an additional pressure loss b
 
 Table 12.120: WSEGSICD Keyword Description
 
-The total number of wells should be defined via the [WELLDIMS](#__RefHeading___Toc82886_327352552) keyword and the number of multi-segment wells should be declared on the [WSEGDIMS](#__RefHeading___Toc104259_3115110868) keyword, both keywords are in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section. In addition, the [WELSPECS](#__RefHeading___Toc268463_1366622701) keyword should be used to define wells, the [COMPDAT](#__RefHeading___Toc97651_3261743917) keyword to define the well completions for both ordinary wells and multi-segment wells, and the [COMPSEGS](#__RefHeading___Toc316604_3519154785) keyword to define a multi-segment segment completions. Finally, the [WSEGSICD](#__RefHeading___Toc124296_23127940) keyword can then be use to define ICD connections for the well. All the aforementioned keywords are described in the [SCHEDULE](#__RefHeading___Toc43945_784232322) section.
+The total number of wells should be defined via the WELLDIMS keyword and the number of multi-segment wells should be declared on the WSEGDIMS keyword, both keywords are in the RUNSPEC section. In addition, the WELSPECS keyword should be used to define wells, the COMPDAT keyword to define the well completions for both ordinary wells and multi-segment wells, and the COMPSEGS keyword to define a multi-segment segment completions. Finally, the WSEGSICD keyword can then be use to define ICD connections for the well. All the aforementioned keywords are described in the SCHEDULE section.
 
 The equations used to calculate the pressure drop across the ICD are given below and illustrate how the pressure reduction is dependent on the density and viscosity of the fluid flowing through the device.
 
@@ -64,11 +64,11 @@ based on ICDLEN and NSCALFAC parameters in .
 
 In equation , αi represents the volume fraction of oil, water and gas at local conditions and ρi the density of the three phases. Similarity for equation , αi represents the volume fraction of oil, water and gas at local conditions and μi the viscosity of the three phases.
 
-See also the [WSEGAICD](#__RefHeading___Toc971419_4263943340) keyword in the [SCHEDULE](#__RefHeading___Toc43945_784232322) section for autonomous ICDs, that work in a similar fashion to how sprial ICDs work.
+See also the WSEGAICD keyword in the SCHEDULE section for autonomous ICDs, that work in a similar fashion to how sprial ICDs work.
 
 #### Example
 
-The following example defines one producing well segment oil well (OP01) using the [WELSPECS](#__RefHeading___Toc268463_1366622701), [WELSEGS](#__RefHeading___Toc97661_3261743917) [COMPDAT](#__RefHeading___Toc97651_3261743917) and [COMPSEGS](#__RefHeading___Toc316604_3519154785) keywords, followed by the [WSEGSICD](#__RefHeading___Toc124296_23127940) keyword to define the spiral inflow control devices for the well.
+The following example defines one producing well segment oil well (OP01) using the WELSPECS, WELSEGS COMPDAT and COMPSEGS keywords, followed by the WSEGSICD keyword to define the spiral inflow control devices for the well.
 
 \--
 

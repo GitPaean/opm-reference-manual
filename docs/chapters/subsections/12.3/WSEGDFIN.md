@@ -1,13 +1,13 @@
 ### WSEGDFIN -- Define Multi-Segment Well Drift Flux Slip Model Input Data
 
-| [RUNSPEC](#3.RUNSPEC SECTION|outline) | [GRID](#4.GRID SECTION|outline) | [EDIT](#5.EDIT SECTION|outline) | [PROPS](#6.PROPS SECTION|outline) | [REGIONS](#7.REGIONS SECTION|outline) | [SOLUTION](#8.SOLUTION SECTION|outline) | [SUMMARY](#9.SUMMARY SECTION|outline) | [SCHEDULE](#10.SCHEDULE SECTION|outline) |
+| RUNSPEC | GRID | EDIT | PROPS | REGIONS | SOLUTION | SUMMARY | SCHEDULE |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 
 #### Description
 
-The [WSEGDFIN](#__RefHeading___Toc978481_4263943340) keyword defines a multi-segment well's drift flux slip model parameters. A slip model[^1] and [^2] enables the different phases in the wellbore to flow at different velocities, for example gas will flow up the tubing at a higher velocity than oil and water. The option is activated by the FLOWOPT parameter on the [WELSEGS](#__RefHeading___Toc97661_3261743917) keyword in the [SCHEDULE](#__RefHeading___Toc43945_784232322) section; however, the slip model flow calculation is not available in OPM Flow.
+The WSEGDFIN keyword defines a multi-segment well's drift flux slip model parameters. A slip model[^1] and [^2] enables the different phases in the wellbore to flow at different velocities, for example gas will flow up the tubing at a higher velocity than oil and water. The option is activated by the FLOWOPT parameter on the WELSEGS keyword in the SCHEDULE section; however, the slip model flow calculation is not available in OPM Flow.
 
-See also the WSEGFMD keyword in the [SCHEDULE](#__RefHeading___Toc43945_784232322) section that sets which type of slip model should be used.
+See also the WSEGFMD keyword in the SCHEDULE section that sets which type of slip model should be used.
 
 This keyword is not supported by OPM Flow but would change the results if supported so the simulation will be stopped.
 

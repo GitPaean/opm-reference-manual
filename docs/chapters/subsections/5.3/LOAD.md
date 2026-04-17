@@ -1,10 +1,10 @@
 ### LOAD -- Load a SAVE File for a Fast Restart
 
-| [RUNSPEC](#3.RUNSPEC SECTION|outline) | [GRID](#4.GRID SECTION|outline) | [EDIT](#5.EDIT SECTION|outline) | [PROPS](#6.PROPS SECTION|outline) | [REGIONS](#7.REGIONS SECTION|outline) | [SOLUTION](#8.SOLUTION SECTION|outline) | [SUMMARY](#9.SUMMARY SECTION|outline) | [SCHEDULE](#10.SCHEDULE SECTION|outline) |
+| RUNSPEC | GRID | EDIT | PROPS | REGIONS | SOLUTION | SUMMARY | SCHEDULE |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 
 #### Description
 
-The [LOAD](#__RefHeading___Toc309839_2843394514) keyword loads a previously generated [SAVE](#__RefHeading___Toc55597_1778172979) file to enable a fast restart. A [SAVE](#__RefHeading___Toc55597_1778172979) file contains all the data from a previous run's [RUNSPEC](#__RefHeading___Toc55591_1778172979), [GRID](#__RefHeading___Toc38674_784232322), [EDIT](#__RefHeading___Toc40641_784232322), [PROPS](#__RefHeading___Toc39329_784232322) and [REGIONS](#__RefHeading___Toc40648_784232322) sections, and thus there is no need for the simulator to calculate various parameters, including grid block transmissibilities etc. This allows for the current run to restart quicker than a conventional restart run using the [RESTART](#__RefHeading___Toc135629_1317547213) keyword in the [SOLUTION](#__RefHeading___Toc43947_784232322) section via a [RESTART](#__RefHeading___Toc135629_1317547213) file (\*.UNRST or \*.FUNRST etc.). The keyword should be the first keyword in the input deck and the [RUNSPEC](#__RefHeading___Toc55591_1778172979), [GRID](#__RefHeading___Toc38674_784232322), [EDIT](#__RefHeading___Toc40641_784232322), [PROPS](#__RefHeading___Toc39329_784232322) and [REGIONS](#__RefHeading___Toc40648_784232322) sections should be deleted from the input deck.
+The LOAD keyword loads a previously generated SAVE file to enable a fast restart. A SAVE file contains all the data from a previous run's RUNSPEC, GRID, EDIT, PROPS and REGIONS sections, and thus there is no need for the simulator to calculate various parameters, including grid block transmissibilities etc. This allows for the current run to restart quicker than a conventional restart run using the RESTART keyword in the SOLUTION section via a RESTART file (\*.UNRST or \*.FUNRST etc.). The keyword should be the first keyword in the input deck and the RUNSPEC, GRID, EDIT, PROPS and REGIONS sections should be deleted from the input deck.
 
 This keyword is not supported by OPM Flow but would change the results if supported so the simulation will be stopped.

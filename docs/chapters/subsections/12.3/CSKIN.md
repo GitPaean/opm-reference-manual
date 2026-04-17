@@ -1,13 +1,13 @@
 ### CSKIN -- Re-Define Well Connection Skin Factors
 
-| [RUNSPEC](#3.RUNSPEC SECTION|outline) | [GRID](#4.GRID SECTION|outline) | [EDIT](#5.EDIT SECTION|outline) | [PROPS](#6.PROPS SECTION|outline) | [REGIONS](#7.REGIONS SECTION|outline) | [SOLUTION](#8.SOLUTION SECTION|outline) | [SUMMARY](#9.SUMMARY SECTION|outline) | [SCHEDULE](#10.SCHEDULE SECTION|outline) |
+| RUNSPEC | GRID | EDIT | PROPS | REGIONS | SOLUTION | SUMMARY | SCHEDULE |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 
 #### Description
 
-This keyword, [CSKIN](#__RefHeading___Toc263614_1539708736), is used to re-define a well's connection skin factors and as such will result in the well's connection transmissibility factors being updated accordingly. The well connections must already be defined using the [COMPDAT](#__RefHeading___Toc97651_3261743917) keyword in the [SCHEDULE](#__RefHeading___Toc43945_784232322) section before this keyword can be used.
+This keyword, CSKIN, is used to re-define a well's connection skin factors and as such will result in the well's connection transmissibility factors being updated accordingly. The well connections must already be defined using the COMPDAT keyword in the SCHEDULE section before this keyword can be used.
 
-| 1 | WELNAME | A character string of up to eight characters in length that defines the well name for which the well connection skin is being re-defined.<br>Note that the well name (WELNAME) must have been declared previously using the [WELSPECS](#__RefHeading___Toc268463_1366622701) keyword in the [SCHEDULE](#__RefHeading___Toc43945_784232322) section, otherwise an error may occur. | None |
+| 1 | WELNAME | A character string of up to eight characters in length that defines the well name for which the well connection skin is being re-defined.<br>Note that the well name (WELNAME) must have been declared previously using the WELSPECS keyword in the SCHEDULE section, otherwise an error may occur. | None |
 | --- | --- | --- | --- |
 | 2 | I | A positive integer greater than or equal to one and less than or equal to NX that defines the connection location in the I-direction.<br>If set to zero or defaulted with 1\* then connections in any I-direction location will be modified. | 0 |
 | 3 | J | A positive integer greater than or equal to one and less than or equal to NY that defines the connection location in the J-direction.<br>If set to zero or defaulted with 1\* then connections in any J-direction location will be modified. | 0 |

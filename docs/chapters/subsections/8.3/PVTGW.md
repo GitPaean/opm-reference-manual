@@ -1,11 +1,11 @@
 ### PVTGW -- Gas PVT Properties for Dry Gas with Vaporized Water
 
-| [RUNSPEC](#3.RUNSPEC SECTION|outline) | [GRID](#4.GRID SECTION|outline) | [EDIT](#5.EDIT SECTION|outline) | [PROPS](#6.PROPS SECTION|outline) | [REGIONS](#7.REGIONS SECTION|outline) | [SOLUTION](#8.SOLUTION SECTION|outline) | [SUMMARY](#9.SUMMARY SECTION|outline) | [SCHEDULE](#10.SCHEDULE SECTION|outline) |
+| RUNSPEC | GRID | EDIT | PROPS | REGIONS | SOLUTION | SUMMARY | SCHEDULE |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 
 #### Description
 
-[PVTGW](#__RefHeading___Toc355649_3149455253) defines the gas PVT properties for dry gas[^1] with vaporized water. This keyword should be used when the [VAPWAT](#__RefHeading___Toc317543_3149455253) keyword has be declared in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section indicating that that vaporized water is present in the dry gas phase. The keyword may be used for gas-water and oil-water-gas input decks that contain the dry gas and vaporized water phases.
+PVTGW defines the gas PVT properties for dry gas[^1] with vaporized water. This keyword should be used when the VAPWAT keyword has be declared in the RUNSPEC section indicating that that vaporized water is present in the dry gas phase. The keyword may be used for gas-water and oil-water-gas input decks that contain the dry gas and vaporized water phases.
 
 | 1 | PRESS | A real monotonically increasing down the column vector that defines the gas phase pressure, associated with the corresponding saturated water-gas ratio ("WGR") or Rw, the gas formation volume factor, and the gas viscosity for the stated saturated RWS.<br>For a given PRESS the variability of the gas formation volume factor and the gas viscosity with respect to the under-saturated Rw is optionally included as a sub table under RWU, FVFU and VISU columns, that is it is not necessary to repeat PRESS for each sub table entry. However, each sub table must be terminated by a "/".<br>The under saturated Rw entries are optional, except for perhaps the last PRESS entry to define the PVT properties above the initial saturation pressure. | None |  |
 | --- | --- | --- | --- | --- |
@@ -16,13 +16,13 @@
 | rb/Mscf | rm^3^/sm^3^ | rcc/scc |  |  |
 | 4 | VISS | VISU | VISS a columnar vector of real increasing down the column values that defines the corresponding gas phase viscosity for a given pressure (PRESS) and for a given RWS.<br>VISU a columnar vector of real decreasing from VISS down the column values that defines the corresponding gas phase viscosity for a given pressure (PRESS) and for a given RWU. | None |
 | cP | cP | cP |  |  |
-| Notes:<br>1)  The keyword is followed by NTPVT tables as declared on the [TABDIMS](#__RefHeading___Toc89327_327352552) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section.<br>2)  Each table must contain a minimum of two rows and a maximum of NPPVT rows and NRPVT Rw entries as declared on the [TABDIMS](#__RefHeading___Toc89327_327352552) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section.<br>3)  Apart from the PRES data there must be same number of entries for each column.<br>4)  Each sub table defining the under saturated gas properties must be terminated by "/".<br>5)  Each main table is terminated by a single "/" on a separate line and there is no "/" terminator for the keyword. |  |  |  |  |
+| Notes:<br>1)  The keyword is followed by NTPVT tables as declared on the TABDIMS keyword in the RUNSPEC section.<br>2)  Each table must contain a minimum of two rows and a maximum of NPPVT rows and NRPVT Rw entries as declared on the TABDIMS keyword in the RUNSPEC section.<br>3)  Apart from the PRES data there must be same number of entries for each column.<br>4)  Each sub table defining the under saturated gas properties must be terminated by "/".<br>5)  Each main table is terminated by a single "/" on a separate line and there is no "/" terminator for the keyword. |  |  |  |  |
 
 Table 8.118: PVTGW Keyword Description
 
 Note that provided the first table has been entered, subsequent tables may be defaulted, in this case the prior table is copied to the current table.
 
-See also the [PVTG](#__RefHeading___Toc104060_57619843) keyword in the [PROPS](#__RefHeading___Toc39329_784232322) section that defines the wet gas PVT for when vaporized oil is present in the gas phase. Alternatively, the [PVTGWO](#__RefHeading___Toc356776_4176551521) keyword in the [PROPS](#__RefHeading___Toc39329_784232322) section may be utilized instead of [PVTG](#__RefHeading___Toc104060_57619843) and [PVTGW](#__RefHeading___Toc355649_3149455253) to fully define the wet gas PVT properties, for when both vaporized oil and water are present in the gas phase.
+See also the PVTG keyword in the PROPS section that defines the wet gas PVT for when vaporized oil is present in the gas phase. Alternatively, the PVTGWO keyword in the PROPS section may be utilized instead of PVTG and PVTGW to fully define the wet gas PVT properties, for when both vaporized oil and water are present in the gas phase.
 
 #### Example
 
@@ -98,7 +98,7 @@ PVTGW
 
 / TABLE NO. 2
 
-The above example defines two dry gas PVT tables assuming NTPVT equals two and NPPVT is greater than or equal to eight on the [TABDIMS](#__RefHeading___Toc89327_327352552) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section.
+The above example defines two dry gas PVT tables assuming NTPVT equals two and NPPVT is greater than or equal to eight on the TABDIMS keyword in the RUNSPEC section.
 
 Notice that there is no terminating "/" for this keyword only for a table and a sub table.
 

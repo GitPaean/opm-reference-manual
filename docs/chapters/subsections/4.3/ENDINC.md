@@ -1,11 +1,11 @@
 ### ENDINC -- Define the End of an Include File
 
-| [RUNSPEC](#3.RUNSPEC SECTION|outline) | [GRID](#4.GRID SECTION|outline) | [EDIT](#5.EDIT SECTION|outline) | [PROPS](#6.PROPS SECTION|outline) | [REGIONS](#7.REGIONS SECTION|outline) | [SOLUTION](#8.SOLUTION SECTION|outline) | [SUMMARY](#9.SUMMARY SECTION|outline) | [SCHEDULE](#10.SCHEDULE SECTION|outline) |
+| RUNSPEC | GRID | EDIT | PROPS | REGIONS | SOLUTION | SUMMARY | SCHEDULE |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 
 #### Description
 
-This keyword marks the end of an include file specified on the [INCLUDE](#__RefHeading___Toc55749_2479612490) keyword. When the [ENDINC](#__RefHeading___Toc51671_2479612490) keyword is encountered in the [INCLUDE](#__RefHeading___Toc55749_2479612490) file, input data is read from the next keyword in the current file. Any keywords and data after the [ENDINC](#__RefHeading___Toc51671_2479612490) keyword in the [INCLUDE](#__RefHeading___Toc55749_2479612490) file are ignored.
+This keyword marks the end of an include file specified on the INCLUDE keyword. When the ENDINC keyword is encountered in the INCLUDE file, input data is read from the next keyword in the current file. Any keywords and data after the ENDINC keyword in the INCLUDE file are ignored.
 
 There is no data required for this keyword.
 
@@ -69,4 +69,4 @@ DATES
 
 /
 
-In the above example OPM Flow will process the data up to October 1, 2006 only, and return control to the file that called the [INCLUDE](#__RefHeading___Toc55749_2479612490) keyword, and then continue processing the input files. All keywords after the [ENDINC](#__RefHeading___Toc51671_2479612490) keyword in the [INCLUDE](#__RefHeading___Toc55749_2479612490) FILE will not be read or processed.
+In the above example OPM Flow will process the data up to October 1, 2006 only, and return control to the file that called the INCLUDE keyword, and then continue processing the input files. All keywords after the ENDINC keyword in the INCLUDE FILE will not be read or processed.

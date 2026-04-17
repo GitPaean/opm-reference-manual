@@ -1,15 +1,15 @@
 ### WDFAC -- Define Gas Flow Dependent Skin Factor
 
-| [RUNSPEC](#3.RUNSPEC SECTION|outline) | [GRID](#4.GRID SECTION|outline) | [EDIT](#5.EDIT SECTION|outline) | [PROPS](#6.PROPS SECTION|outline) | [REGIONS](#7.REGIONS SECTION|outline) | [SOLUTION](#8.SOLUTION SECTION|outline) | [SUMMARY](#9.SUMMARY SECTION|outline) | [SCHEDULE](#10.SCHEDULE SECTION|outline) |
+| RUNSPEC | GRID | EDIT | PROPS | REGIONS | SOLUTION | SUMMARY | SCHEDULE |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 
 #### Description
 
-The [WDFAC](#__RefHeading___Toc442057_2026549522) keyword defines a gas well's D-factor (flow dependent skin factor), which is normally derived from well tests or calculated analytically based on the coefficient of inertial resistance, usually known as *β*, in Forchheimer's flow equation^,[^1],\ [^2]\ ^and [^3].
+The WDFAC keyword defines a gas well's D-factor (flow dependent skin factor), which is normally derived from well tests or calculated analytically based on the coefficient of inertial resistance, usually known as *β*, in Forchheimer's flow equation^,[^1],\ [^2]\ ^and [^3].
 
 Internally the simulator evaluates a D-factor for each well connection by assuming the D-factors are inversely proportional to the connection transmissibility factors. This is done at the time the well D-factor is specified. If a connection is later closed then the well D-factor is likely to change but the connection D-factors for each of the remaining open connections should not be affected.
 
-| 1 | WELNAME | A character string of up to eight characters in length that defines the well name for which the well D-factor is being defined.<br>Note that the well name (WELNAME) must have been declared previously using the [WELSPECS](#__RefHeading___Toc268463_1366622701) keyword in the [SCHEDULE](#__RefHeading___Toc43945_784232322) section. | None |
+| 1 | WELNAME | A character string of up to eight characters in length that defines the well name for which the well D-factor is being defined.<br>Note that the well name (WELNAME) must have been declared previously using the WELSPECS keyword in the SCHEDULE section. | None |
 | --- | --- | --- | --- |
 | 2 | DFACTOR | A real positive value greater than or equal to zero that defines the D-factor for the well. | 0.0 |
 | day/Mscf | day/m^3^ | hour/scc |  |
@@ -17,7 +17,7 @@ Internally the simulator evaluates a D-factor for each well connection by assumi
 
 Table 12.3.259.1: WDFAC Keyword Description
 
-See also the [WDFACCOR](#__RefHeading___Toc48144_327352552) keyword in the [SCHEDULE](#__RefHeading___Toc43945_784232322) section that uses Dake's[^4] correlation to calculate the well D-factor; and the [COMPDAT](#__RefHeading___Toc97651_3261743917) keyword in the [SCHEDULE](#__RefHeading___Toc43945_784232322) section that can be used to specify the connection D-factors directly.
+See also the WDFACCOR keyword in the SCHEDULE section that uses Dake's[^4] correlation to calculate the well D-factor; and the COMPDAT keyword in the SCHEDULE section that can be used to specify the connection D-factors directly.
 
 #### Example
 

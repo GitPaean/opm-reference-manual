@@ -1,11 +1,11 @@
 ### PVDS -- Solvent PVT Properties for the Solvent Model
 
-| [RUNSPEC](#3.RUNSPEC SECTION|outline) | [GRID](#4.GRID SECTION|outline) | [EDIT](#5.EDIT SECTION|outline) | [PROPS](#6.PROPS SECTION|outline) | [REGIONS](#7.REGIONS SECTION|outline) | [SOLUTION](#8.SOLUTION SECTION|outline) | [SUMMARY](#9.SUMMARY SECTION|outline) | [SCHEDULE](#10.SCHEDULE SECTION|outline) |
+| RUNSPEC | GRID | EDIT | PROPS | REGIONS | SOLUTION | SUMMARY | SCHEDULE |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 
 #### Description
 
-[PVDS](#__RefHeading___Toc104058_57619843) defines the solvent PVT properties for use with [SOLVENT](#__RefHeading___Toc62787_1778172979) option. The solvent is treated as an additional dry gas phase within the model. This keyword should only be used if the [SOLVENT](#__RefHeading___Toc62787_1778172979) model has been invoked in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section.
+PVDS defines the solvent PVT properties for use with SOLVENT option. The solvent is treated as an additional dry gas phase within the model. This keyword should only be used if the SOLVENT model has been invoked in the RUNSPEC section.
 
 | No. | Name | Description | Default |
 | --- | --- | --- | --- |
@@ -16,7 +16,7 @@
 | rb/Mscf | rm^3^/sm^3^ | rcc/scc |  |
 | 3 | GVISC | A columnar vector of real increasing down the column values that defines the corresponding solvent phase viscosity. | None |
 | cP | cP | cP |  |
-| Notes:<br>1)  The keyword is followed by NTPVT tables as declared on the [TABDIMS](#__RefHeading___Toc89327_327352552) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section.<br>2)  Each table must contain a minimum of two rows and a maximum of NPPVT rows as declared on the [TABDIMS](#__RefHeading___Toc89327_327352552) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section.<br>3)  Each table is terminated by a "/" and there is no "/" terminator for the keyword. |  |  |  |
+| Notes:<br>1)  The keyword is followed by NTPVT tables as declared on the TABDIMS keyword in the RUNSPEC section.<br>2)  Each table must contain a minimum of two rows and a maximum of NPPVT rows as declared on the TABDIMS keyword in the RUNSPEC section.<br>3)  Each table is terminated by a "/" and there is no "/" terminator for the keyword. |  |  |  |
 
 Table 8.116: PVDS Keyword Description
 
@@ -108,6 +108,6 @@ PVDS
 
 6000.0 0.5837 0.0285 / TABLE N0. 02
 
-The above example defines two solvent PVT tables assuming NTPVT equals two and NPPVT is greater than or equal to 16 on the [TABDIMS](#__RefHeading___Toc89327_327352552) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section.
+The above example defines two solvent PVT tables assuming NTPVT equals two and NPPVT is greater than or equal to 16 on the TABDIMS keyword in the RUNSPEC section.
 
 There is no terminating "/" for this keyword.

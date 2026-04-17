@@ -1,11 +1,11 @@
 ### PRIORITY -- Activate and Define Well Prioritization Coefficients
 
-| [RUNSPEC](#3.RUNSPEC SECTION|outline) | [GRID](#4.GRID SECTION|outline) | [EDIT](#5.EDIT SECTION|outline) | [PROPS](#6.PROPS SECTION|outline) | [REGIONS](#7.REGIONS SECTION|outline) | [SOLUTION](#8.SOLUTION SECTION|outline) | [SUMMARY](#9.SUMMARY SECTION|outline) | [SCHEDULE](#10.SCHEDULE SECTION|outline) |
+| RUNSPEC | GRID | EDIT | PROPS | REGIONS | SOLUTION | SUMMARY | SCHEDULE |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 
 #### Description
 
-The [PRIORITY](#__RefHeading___Toc46726_327352552) keyword activates the Well Priority option and defines the coefficients in the well priority equation. Wells under group control are ranked based on their well potential in order to satisfy group controls. For example if a group's oil target is exceeded, then the group may shut-in the lease productive oil wells based on their well potential. The Priority option is an alternative form of ranking the wells based on the following equation:
+The PRIORITY keyword activates the Well Priority option and defines the coefficients in the well priority equation. Wells under group control are ranked based on their well potential in order to satisfy group controls. For example if a group's oil target is exceeded, then the group may shut-in the lease productive oil wells based on their well potential. The Priority option is an alternative form of ranking the wells based on the following equation:
 
 Where:
 

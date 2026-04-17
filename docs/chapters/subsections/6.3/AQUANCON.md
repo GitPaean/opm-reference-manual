@@ -1,15 +1,15 @@
 ### AQUANCON -- Define Analytical Connections to the Grid
 
-| [RUNSPEC](#3.RUNSPEC SECTION|outline) | [GRID](#4.GRID SECTION|outline) | [EDIT](#5.EDIT SECTION|outline) | [PROPS](#6.PROPS SECTION|outline) | [REGIONS](#7.REGIONS SECTION|outline) | [SOLUTION](#8.SOLUTION SECTION|outline) | [SUMMARY](#9.SUMMARY SECTION|outline) | [SCHEDULE](#10.SCHEDULE SECTION|outline) |
+| RUNSPEC | GRID | EDIT | PROPS | REGIONS | SOLUTION | SUMMARY | SCHEDULE |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 
 #### Description
 
-The [AQUANCON](#__RefHeading___Toc177536_3429068809) keyword defines how analytical aquifers are connected to the simulation grid, this includes the Carter-Tracy, Fetkovich and Constant Flux analytical aquifers, all of which are implemented in OPM Flow. Carter-Tracy analytical aquifers are characterized by the [AQUCT](#__RefHeading___Toc179876_3429068809) keyword in the [GRID](#__RefHeading___Toc38674_784232322) section and Fetkovich analytical aquifers are defined by the [AQUFETP](#__RefHeading___Toc4428_421927891) keyword in the [SOLUTION](#__RefHeading___Toc43947_784232322) section. Finally, the Constant Flux aquifer is defined by the [AQUFLUX](#__RefHeading___Toc202105_1310555686) keyword in [SOLUTION](#__RefHeading___Toc43947_784232322) section.
+The AQUANCON keyword defines how analytical aquifers are connected to the simulation grid, this includes the Carter-Tracy, Fetkovich and Constant Flux analytical aquifers, all of which are implemented in OPM Flow. Carter-Tracy analytical aquifers are characterized by the AQUCT keyword in the GRID section and Fetkovich analytical aquifers are defined by the AQUFETP keyword in the SOLUTION section. Finally, the Constant Flux aquifer is defined by the AQUFLUX keyword in SOLUTION section.
 
-Note that numerical aquifers are connected to the grid using the [AQUCON](#__RefHeading___Toc115431_846947960) keyword in the [GRID](#__RefHeading___Toc38674_784232322) section and that both aquifer types dimensions are declared by the [AQUDIMS](#__RefHeading___Toc10103_3701168388) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section.
+Note that numerical aquifers are connected to the grid using the AQUCON keyword in the GRID section and that both aquifer types dimensions are declared by the AQUDIMS keyword in the RUNSPEC section.
 
-| 1 | AQUID | AQUID is a positive integer greater than or equal to one and less than the maximum number of analytical aquifers as defined by the NANAQU variable on the [AQUDIMS](#__RefHeading___Toc10103_3701168388) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section, that defines the aquifer to be connected to the grid. | None |
+| 1 | AQUID | AQUID is a positive integer greater than or equal to one and less than the maximum number of analytical aquifers as defined by the NANAQU variable on the AQUDIMS keyword in the RUNSPEC section, that defines the aquifer to be connected to the grid. | None |
 | --- | --- | --- | --- |
 | 2 | I1 | A positive integer that defines the lower bound of the cells in the I-direction to be connected to the aquifer and must be greater than or equal to one and less than or equal to I2 and NX. | 1 |
 | 3 | I2 | A positive integer that defines the upper bound of the cells in the I-direction to be connected to the aquifer and must be greater than or equal to I1 and less than or equal to NX | NX |
@@ -23,7 +23,7 @@ Note that numerical aquifers are connected to the grid using the [AQUCON](#__Ref
 | 10 | AQUCOEF | AQUCOEF is a real positive values that scales the calculated connection between the aquifer and the cells declared on this record. | 1.0 |
 | dimensionless | dimensionless | dimensionless |  |
 | 11 | AQUOPT | AQUOPT is a character string that sets the cell face connection and should be set to one of the following:<br>1)  YES: Aquifer connections *can adjoin* to active cells allowing for connections inside the reservoir grid. It is not recommended to use this option without thoroughly checking the connections in the model.<br>2)  NO: Aquifer connections *cannot adjoin* to active cells preventing connections inside the reservoir grid. This is the recommended and the default value. | NO |
-| Notes:<br>1)  Where NX, NY and NZ are the dimensions of the model as defined on the [DIMENS](#__RefHeading___Toc20387_2267116897) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section.<br>2)  Each record must be terminated by a "/" and the keyword is terminated by a "/". |  |  |  |
+| Notes:<br>1)  Where NX, NY and NZ are the dimensions of the model as defined on the DIMENS keyword in the RUNSPEC section.<br>2)  Each record must be terminated by a "/" and the keyword is terminated by a "/". |  |  |  |
 
 Table 6.7: AQUANCON Keyword Description
 
@@ -59,4 +59,4 @@ AQUANCON
 
 /
 
-See the [AQUCT](#__RefHeading___Toc179876_3429068809) keyword in the [GRID](#__RefHeading___Toc38674_784232322) section for a complete example on defining and connecting a Carter-Tracy aquifer to a simulation grid.
+See the AQUCT keyword in the GRID section for a complete example on defining and connecting a Carter-Tracy aquifer to a simulation grid.

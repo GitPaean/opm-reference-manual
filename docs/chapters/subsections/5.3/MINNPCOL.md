@@ -1,15 +1,15 @@
 ### MINNPCOL -- Define the Minimum Number of Newton Iterations Used to Update Well Targets
 
-| [RUNSPEC](#3.RUNSPEC SECTION|outline) | [GRID](#4.GRID SECTION|outline) | [EDIT](#5.EDIT SECTION|outline) | [PROPS](#6.PROPS SECTION|outline) | [REGIONS](#7.REGIONS SECTION|outline) | [SOLUTION](#8.SOLUTION SECTION|outline) | [SUMMARY](#9.SUMMARY SECTION|outline) | [SCHEDULE](#10.SCHEDULE SECTION|outline) |
+| RUNSPEC | GRID | EDIT | PROPS | REGIONS | SOLUTION | SUMMARY | SCHEDULE |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 
 #### Description
 
-The [MINNPCOL](#__RefHeading___Toc451205_1352344891) keyword defines the *minimum* number of Newton iterations within a time step where the well production and injection targets may be updated, after which the well targets will be frozen until the time step calculations have converged and the time step is complete.
+The MINNPCOL keyword defines the *minimum* number of Newton iterations within a time step where the well production and injection targets may be updated, after which the well targets will be frozen until the time step calculations have converged and the time step is complete.
 
-The [MINNPCOL](#__RefHeading___Toc451205_1352344891) keyword has been deprecated and the [NUPCOL](#__RefHeading___Toc86969_4106839650) keyword should be used instead.
+The MINNPCOL keyword has been deprecated and the NUPCOL keyword should be used instead.
 
-Wells under group control may suffer from some dependency with other wells in the same group that are also under group control. This may cause oscillations in the production and injection well rates within the group. In order to avoid this, the [NUPCOL](#__RefHeading___Toc86969_4106839650) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section can be used to set the maximum number of Newton iterations within a time step, after which the group well rates are frozen until the time step has converged. Reducing the potential for well rate oscillations within the time step may result in the group targets and limits not being exactly met in this case. Increasing the value of [NUPCOL](#__RefHeading___Toc86969_4106839650), will improve the accuracy of the group targets and limits at the expense of computational efficiency. Here, the [MINNPCOL](#__RefHeading___Toc451205_1352344891) keyword sets the minimum number of Newton iterations within a timestep where the well production and injection targets may be updated.
+Wells under group control may suffer from some dependency with other wells in the same group that are also under group control. This may cause oscillations in the production and injection well rates within the group. In order to avoid this, the NUPCOL keyword in the RUNSPEC section can be used to set the maximum number of Newton iterations within a time step, after which the group well rates are frozen until the time step has converged. Reducing the potential for well rate oscillations within the time step may result in the group targets and limits not being exactly met in this case. Increasing the value of NUPCOL, will improve the accuracy of the group targets and limits at the expense of computational efficiency. Here, the MINNPCOL keyword sets the minimum number of Newton iterations within a timestep where the well production and injection targets may be updated.
 
 See also section [Running OPM Flow From The Command Line](#running-opm-flow-from-the-command-line) on how to set various other numerical control parameters for OPM Flow.
 
@@ -32,4 +32,4 @@ MINNPCOL
 
 3 /
 
-The above example sets the [MINNPCOL](#__RefHeading___Toc451205_1352344891) value to its default value of three.
+The above example sets the MINNPCOL value to its default value of three.

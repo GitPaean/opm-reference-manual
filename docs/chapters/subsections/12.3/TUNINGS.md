@@ -1,17 +1,17 @@
 ### TUNINGS -- Numerical Tuning Control for Individual LGRs
 
-| [RUNSPEC](#3.RUNSPEC SECTION|outline) | [GRID](#4.GRID SECTION|outline) | [EDIT](#5.EDIT SECTION|outline) | [PROPS](#6.PROPS SECTION|outline) | [REGIONS](#7.REGIONS SECTION|outline) | [SOLUTION](#8.SOLUTION SECTION|outline) | [SUMMARY](#9.SUMMARY SECTION|outline) | [SCHEDULE](#10.SCHEDULE SECTION|outline) |
+| RUNSPEC | GRID | EDIT | PROPS | REGIONS | SOLUTION | SUMMARY | SCHEDULE |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 
 #### Description
 
-[TUNINGS](#__RefHeading___Toc1647719_4250154414) defines the parameters used for controlling the commercial simulator's numerical convergence parameters for individual Local Grid Refinements (\"LGR\"). The keyword is similar to the [TUNINGL](#__RefHeading___Toc1647717_4250154414) keyword in the [SCHEDULE](#__RefHeading___Toc43945_784232322) section that applies the tuning parameters to the all LGRs, except for an additional first record that includes the [LGR](#__RefHeading___Toc55049_4106839650) name.
+TUNINGS defines the parameters used for controlling the commercial simulator's numerical convergence parameters for individual Local Grid Refinements (\"LGR\"). The keyword is similar to the TUNINGL keyword in the SCHEDULE section that applies the tuning parameters to the all LGRs, except for an additional first record that includes the LGR name.
 
 This keyword is not supported by OPM Flow but has no effect on the results so it will be ignored.
 
 See section [Running OPM Flow From The Command Line](#running-opm-flow-from-the-command-line) on how to invoke various numerical schemes via the OPM Flow command line interface.
 
-| 0-1 | LGRNAME | A character string of up to eight characters in length that defines the [LGR](#__RefHeading___Toc55049_4106839650) name for which the tuning data is being being defined. | None |
+| 0-1 | LGRNAME | A character string of up to eight characters in length that defines the LGR name for which the tuning data is being being defined. | None |
 | --- | --- | --- | --- |
 | 0-2 | / | Record terminated by a "/" | Not Applicable |
 | 1-1 | TSINIT | TSINT is a real positive value that defines the maximum length of the next time step.<br>Note that whenever the keyword is used TSINIT is always set back to the default value of one, unless explicitly over written. | 1.0 |
@@ -82,16 +82,16 @@ See section [Running OPM Flow From The Command Line](#running-opm-flow-from-the-
 | psia | barsa | atma |  |
 | 3-10 | XXXDPR | XXXDPR is a real positive value that stipulates the maximum tolerable pressure change within a time step. | 1.0 x 10^-6^ |
 | psia | barsa | atma |  |
-| 3-11 | MNWRFP | MNWRFP is a positive integer greater than one and less than NEWTMX that defines the minimum number of Newton iterations before invoking the bisection algorithm for when the polymer phase is active in the model via the [POLYMER](#__RefHeading___Toc38609_2267116897) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section. | 4 |
+| 3-11 | MNWRFP | MNWRFP is a positive integer greater than one and less than NEWTMX that defines the minimum number of Newton iterations before invoking the bisection algorithm for when the polymer phase is active in the model via the POLYMER keyword in the RUNSPEC section. | 4 |
 | dimensionless | dimensionless | dimensionless |  |
 | 3-12 | / | Record terminated by a "/" | Not Applicable |
 | Notes:<br>1)  The keyword consists of three records, with items 1-1 to 1-11 representing record one items, 2-1 to 2-14 record two and 3-1 to 3-12 representing record number three. Each of the records are terminated by a "/" and is explicitly shown in the above rows.<br>2)  There is no keyword terminating "/". |  |  |  |
 
 Table 12.70: TUNINGS Keyword Description
 
-Note that for record number two (items 2-1 to 2-13) the maximum values should always be greater than the associated target value; for example, XXXCNV should be greater than TRGCNV. Also note that the [TUNING](#__RefHeading___Toc146744_4203985108) keyword is stored on the restart files (see [[RPTRST -- Define Data to be Written to the RESTART File](#anchor-3)](#9.2.11.RPTRST – Define Data to be Written to the RESTART File|outline)) enabling the parameters to be utilized in a restart run without re-specifying the keyword.
+Note that for record number two (items 2-1 to 2-13) the maximum values should always be greater than the associated target value; for example, XXXCNV should be greater than TRGCNV. Also note that the TUNING keyword is stored on the restart files (see [RPTRST -- Define Data to be Written to the RESTART File](#anchor-3)) enabling the parameters to be utilized in a restart run without re-specifying the keyword.
 
-See also the [TUNINGL](#__RefHeading___Toc1647717_4250154414) keyword in the [SCHEDULE](#__RefHeading___Toc43945_784232322) section that sets the tuning parameters for all LGRs.
+See also the TUNINGL keyword in the SCHEDULE section that sets the tuning parameters for all LGRs.
 
 #### Example
 
@@ -111,4 +111,4 @@ OP01-LGR
 
 /
 
-The above example explicitly sets the default parameters for the [LGR](#__RefHeading___Toc55049_4106839650) named OP01-[LGR](#__RefHeading___Toc55049_4106839650)
+The above example explicitly sets the default parameters for the LGR named OP01-LGR

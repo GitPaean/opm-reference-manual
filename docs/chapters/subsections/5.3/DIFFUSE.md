@@ -1,11 +1,11 @@
 ### DIFFUSE -- Activate Molecular Diffusion Option
 
-| [RUNSPEC](#3.RUNSPEC SECTION|outline) | [GRID](#4.GRID SECTION|outline) | [EDIT](#5.EDIT SECTION|outline) | [PROPS](#6.PROPS SECTION|outline) | [REGIONS](#7.REGIONS SECTION|outline) | [SOLUTION](#8.SOLUTION SECTION|outline) | [SUMMARY](#9.SUMMARY SECTION|outline) | [SCHEDULE](#10.SCHEDULE SECTION|outline) |
+| RUNSPEC | GRID | EDIT | PROPS | REGIONS | SOLUTION | SUMMARY | SCHEDULE |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 
 #### Description
 
-The [DIFFUSE](#__RefHeading___Toc349951_1539708736) keyword activates OPM Flow's Molecular Diffusion option based on fluid and grid data (Sandve et al.[^1]), similar to the commercial simulator. For field-scale simulations diffusion is a sub-grid phenomenon and is typically not explicitly represented in the flow equations. However, for simulations on the laboratory scale diffusion plays a direct role and therefore needs to be explicitly represented in the flow equations. Diffusion coefficients that control the diffusion depend on temperature, pressure, and salinity. In OPM Flow, the diffusion coefficients are computed internally for pure water using McLachlan and Danckwerts[^2] and modified to account for salinity using Ratcliff and Holdcroft[^3]. The effect of the porous media on the diffusion is modeled using the relation suggested by Millington and Quirk[^4]. The coefficients can also be given for each PVT region as an input parameter using the [DIFFC](#__RefHeading___Toc314077_1539708736) keyword in the [PROPS](#__RefHeading___Toc39329_784232322) section.
+The DIFFUSE keyword activates OPM Flow's Molecular Diffusion option based on fluid and grid data (Sandve et al.[^1]), similar to the commercial simulator. For field-scale simulations diffusion is a sub-grid phenomenon and is typically not explicitly represented in the flow equations. However, for simulations on the laboratory scale diffusion plays a direct role and therefore needs to be explicitly represented in the flow equations. Diffusion coefficients that control the diffusion depend on temperature, pressure, and salinity. In OPM Flow, the diffusion coefficients are computed internally for pure water using McLachlan and Danckwerts[^2] and modified to account for salinity using Ratcliff and Holdcroft[^3]. The effect of the porous media on the diffusion is modeled using the relation suggested by Millington and Quirk[^4]. The coefficients can also be given for each PVT region as an input parameter using the DIFFC keyword in the PROPS section.
 
 There is no data required for this keyword and there is no terminating "/" for this keyword.
 

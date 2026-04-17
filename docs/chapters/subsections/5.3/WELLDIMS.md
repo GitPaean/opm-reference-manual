@@ -1,23 +1,23 @@
 ### WELLDIMS -- Define the Wells and Group Dimensions
 
-| [RUNSPEC](#3.RUNSPEC SECTION|outline) | [GRID](#4.GRID SECTION|outline) | [EDIT](#5.EDIT SECTION|outline) | [PROPS](#6.PROPS SECTION|outline) | [REGIONS](#7.REGIONS SECTION|outline) | [SOLUTION](#8.SOLUTION SECTION|outline) | [SUMMARY](#9.SUMMARY SECTION|outline) | [SCHEDULE](#10.SCHEDULE SECTION|outline) |
+| RUNSPEC | GRID | EDIT | PROPS | REGIONS | SOLUTION | SUMMARY | SCHEDULE |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 
 #### Description
 
-[WELLDIMS](#__RefHeading___Toc82886_327352552) defines various well and group dimensions for the run. The commercial simulator combines both the black-oil and compositional simulator variables on this keyword; however, although all the parameters are explained below only the black-oil parameters are used by OPM Flow.
+WELLDIMS defines various well and group dimensions for the run. The commercial simulator combines both the black-oil and compositional simulator variables on this keyword; however, although all the parameters are explained below only the black-oil parameters are used by OPM Flow.
 
 | 1 | MXWELS | A positive integer defining the maximum number of wells for this model. | 0 |
 | --- | --- | --- | --- |
 | 2 | MXCONS | A positive integer defining the maximum number of grid block connections per well for this model. | 0 |
 | 3 | MXGRPS | A positive integer defining the maximum number of groups for this model. | 0 |
-| 4 | MXGRPW | A positive integer defining the maximum number of wells that can belong to a group in the model and the maximum number of child groups in a group.<br>Note that MXGRPW sets both the maximum number of wells in a group *and* the maximum number of child groups in a group. The former applies to groups that contain wells and the latter applies to groups that contain other groups. See also the [GRUPTREE](#__RefHeading___Toc118321_1596574740) keyword in the [SCHEDULE](#__RefHeading___Toc43945_784232322) section to define group hierarchy. | 0 |
+| 4 | MXGRPW | A positive integer defining the maximum number of wells that can belong to a group in the model and the maximum number of child groups in a group.<br>Note that MXGRPW sets both the maximum number of wells in a group *and* the maximum number of child groups in a group. The former applies to groups that contain wells and the latter applies to groups that contain other groups. See also the GRUPTREE keyword in the SCHEDULE section to define group hierarchy. | 0 |
 | 5 | MXSTAGE | A positive integer defining the maximum number of stages per separator for this model.<br>This option is ignored by OPM Flow. | 5 |
 | 6 | MXSTRMS | A positive integer defining the maximum number of well streams for this model.<br>This option is ignored by OPM Flow. | 10 |
 | 7 | MXMIXS | A positive integer defining the maximum number of mixtures for this model.<br>This option is ignored by OPM Flow. | 5 |
 | 8 | MXSEPS | A positive integer defining the maximum number of separators for this model.<br>This option is ignored by OPM Flow. | 4 |
 | 9 | MXCOMPS | A positive integer defining the maximum number of mixture components in a mixture for the model.<br>This option is ignored by OPM Flow. | 3 |
-| 10 | MXDOCOMP | A positive integer defining the maximum number of well completions that can cross a parallel run domain boundary when the [PARALLEL](#__RefHeading___Toc88962_4106839650) option has been activated.<br>This option is ignored by OPM Flow. | 0 |
+| 10 | MXDOCOMP | A positive integer defining the maximum number of well completions that can cross a parallel run domain boundary when the PARALLEL option has been activated.<br>This option is ignored by OPM Flow. | 0 |
 | 11 | MXWSLIST | A positive integer defining the maximum number of well lists that a well may be concurrent belong to at one time for this model.<br>This option is ignored by OPM Flow. | 1 |
 | 12 | MXWLISTS | A positive integer defining the maximum number of dynamic well lists for this model.<br>This option is ignored by OPM Flow. | 1 |
 | 13 | MXWSECD | A positive integer defining the maximum number of secondary wells for this model.<br>This option is ignored by OPM Flow. | 10 |

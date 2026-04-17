@@ -1,11 +1,11 @@
 ### PERMFACT -- Permeability Multiplication Factor as a Function of Porosity Change
 
-| [RUNSPEC](#3.RUNSPEC SECTION|outline) | [GRID](#4.GRID SECTION|outline) | [EDIT](#5.EDIT SECTION|outline) | [PROPS](#6.PROPS SECTION|outline) | [REGIONS](#7.REGIONS SECTION|outline) | [SOLUTION](#8.SOLUTION SECTION|outline) | [SUMMARY](#9.SUMMARY SECTION|outline) | [SCHEDULE](#10.SCHEDULE SECTION|outline) |
+| RUNSPEC | GRID | EDIT | PROPS | REGIONS | SOLUTION | SUMMARY | SCHEDULE |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 
 #### Description
 
-[PERMFACT](#__RefHeading___Toc712146_1466963378) defines the permeability multiplication factor due to a change in porosity. The keyword is used in conjunction with OPM Flow's Salt Precipitation model, in which the pore space is reduced due to salt precipitating in the pore space, causing a reduction in porosity and an associated reduction in permeability. This keyword is also used for the [BIOFILM](#REF_HEADING_KEYWORD_BIOFILM) and [MICP](#__RefHeading___Toc383375_111689907) model, where the pore space is reduced due to biofilm formation, and for the [MICP](#__RefHeading___Toc383375_111689907) model, also due to calcite precipitation.
+PERMFACT defines the permeability multiplication factor due to a change in porosity. The keyword is used in conjunction with OPM Flow's Salt Precipitation model, in which the pore space is reduced due to salt precipitating in the pore space, causing a reduction in porosity and an associated reduction in permeability. This keyword is also used for the BIOFILM and MICP model, where the pore space is reduced due to biofilm formation, and for the MICP model, also due to calcite precipitation.
 
 | No. | Name | Description | Default |
 | --- | --- | --- | --- |
@@ -14,7 +14,7 @@
 | dimensionless | dimensionless | dimensionless |  |
 | 2 | PERMFAC | A real positive monotonically increasing columnar vector that defines the permeability (k) multiplier associated with POROFAC and used to scale a grid block\'s permeability due to the reduction in pore volume caused by salt precipitation. Where: | None |
 | dimensionless | dimensionless | dimensionless |  |
-| Notes:<br>1)  The keyword is followed by NTSFUN tables as declared on the [TABDIMS](#__RefHeading___Toc89327_327352552) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section.<br>2)  Each table must contain a minimum of two rows and a maximum of NSSFUN rows as declared on the [TABDIMS](#__RefHeading___Toc89327_327352552) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section.<br>3)  There must be same number of entries for each column.<br>4)  Each table is terminated by a single "/" and there is no "/" terminator for the keyword. |  |  |  |
+| Notes:<br>1)  The keyword is followed by NTSFUN tables as declared on the TABDIMS keyword in the RUNSPEC section.<br>2)  Each table must contain a minimum of two rows and a maximum of NSSFUN rows as declared on the TABDIMS keyword in the RUNSPEC section.<br>3)  There must be same number of entries for each column.<br>4)  Each table is terminated by a single "/" and there is no "/" terminator for the keyword. |  |  |  |
 
 Table 8.97: PERMFACT Keyword Description
 
@@ -32,11 +32,11 @@ k and = the actual permeability and porosity that changes due to the model dynam
 
 = a positive exponent.
 
-See also Kozeny-Carment (extended)[^1], [^2] and [^3] and Verma-Pruess[^4] for additional functional forms that can be used to derive the tabulated data that can be entered via the [PERMFACT](#__RefHeading___Toc712146_1466963378) keyword.
+See also Kozeny-Carment (extended)[^1], [^2] and [^3] and Verma-Pruess[^4] for additional functional forms that can be used to derive the tabulated data that can be entered via the PERMFACT keyword.
 
 #### Example
 
-The example below defines two [PERMFACT](#__RefHeading___Toc712146_1466963378) tables assuming NTSFUN equals two and NSSFUN is greater than or equal to five on the [TABDIMS](#__RefHeading___Toc89327_327352552) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section.
+The example below defines two PERMFACT tables assuming NTSFUN equals two and NSSFUN is greater than or equal to five on the TABDIMS keyword in the RUNSPEC section.
 
 \--
 
@@ -76,7 +76,7 @@ PERMFACT
 
 1.00 1.0000 / TABLE NO. 02
 
-Both tables use equation with Φc equal to zero and ɣ equal to 2.0. Note that [PERMFACT](#__RefHeading___Toc712146_1466963378) changes the permeability in all three dimensions, that is the [PERMX](#__RefHeading___Toc45791_719036256), [PERMY](#__RefHeading___Toc45793_719036256) and [PERMZ](#__RefHeading___Toc45795_719036256) arrays are all modified.
+Both tables use equation with Φc equal to zero and ɣ equal to 2.0. Note that PERMFACT changes the permeability in all three dimensions, that is the PERMX, PERMY and PERMZ arrays are all modified.
 
 [^1]: J. Kozeny, \"Ueber kapillare Leitung des Wassers im Boden.\" Sitzungsber Akad. Wiss., Wien, 136(2a): 271-306, 1927.
 

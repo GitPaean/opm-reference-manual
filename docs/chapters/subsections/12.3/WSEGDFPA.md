@@ -1,13 +1,13 @@
 ### WSEGDFPA -- Define Multi-Segment Well Drift Flux Slip Model Parameters
 
-| [RUNSPEC](#3.RUNSPEC SECTION|outline) | [GRID](#4.GRID SECTION|outline) | [EDIT](#5.EDIT SECTION|outline) | [PROPS](#6.PROPS SECTION|outline) | [REGIONS](#7.REGIONS SECTION|outline) | [SOLUTION](#8.SOLUTION SECTION|outline) | [SUMMARY](#9.SUMMARY SECTION|outline) | [SCHEDULE](#10.SCHEDULE SECTION|outline) |
+| RUNSPEC | GRID | EDIT | PROPS | REGIONS | SOLUTION | SUMMARY | SCHEDULE |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 
 #### Description
 
-This keyword, [WSEGDFPA](#__RefHeading___Toc978485_4263943340), enables modification of a multi-segment well's drift flux slip model default parameters used by the WSEGDFMA keyword in the [SCHEDULE](#__RefHeading___Toc43945_784232322) section to define the model. A slip model[^1] and [^2] enables the different phases in the wellbore to flow at different velocities, for example gas will flow up the tubing at a higher velocity than oil and water. The option is activated by the FLOWOPT parameter on the [WELSEGS](#__RefHeading___Toc97661_3261743917) keyword in the [SCHEDULE](#__RefHeading___Toc43945_784232322) section; however, the slip model flow calculation is not available in OPM Flow.
+This keyword, WSEGDFPA, enables modification of a multi-segment well's drift flux slip model default parameters used by the WSEGDFMA keyword in the SCHEDULE section to define the model. A slip model[^1] and [^2] enables the different phases in the wellbore to flow at different velocities, for example gas will flow up the tubing at a higher velocity than oil and water. The option is activated by the FLOWOPT parameter on the WELSEGS keyword in the SCHEDULE section; however, the slip model flow calculation is not available in OPM Flow.
 
-See also the [WSEGDFIN](#__RefHeading___Toc978481_4263943340) keyword that sets the slip model's input parameters and the [WSEGDFMD](#__RefHeading___Toc978483_4263943340) keyword that sets which drift flux slip model should be used. Note if the [WSEGDFPA](#__RefHeading___Toc978485_4263943340) keyword is used than it must be placed after the [WSEGDFMD](#__RefHeading___Toc978483_4263943340) keyword, but before the [WELSEGS](#__RefHeading___Toc97661_3261743917) keyword that defines a multi-segment well. All the aforementioned keywords are in the [SCHEDULE](#__RefHeading___Toc43945_784232322) section.
+See also the WSEGDFIN keyword that sets the slip model's input parameters and the WSEGDFMD keyword that sets which drift flux slip model should be used. Note if the WSEGDFPA keyword is used than it must be placed after the WSEGDFMD keyword, but before the WELSEGS keyword that defines a multi-segment well. All the aforementioned keywords are in the SCHEDULE section.
 
 This keyword is not supported by OPM Flow but would change the results if supported so the simulation will be stopped.
 

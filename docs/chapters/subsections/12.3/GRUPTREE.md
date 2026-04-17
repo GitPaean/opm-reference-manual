@@ -1,11 +1,11 @@
 ### GRUPTREE -- Define Group Tree Hierarchy
 
-| [RUNSPEC](#3.RUNSPEC SECTION|outline) | [GRID](#4.GRID SECTION|outline) | [EDIT](#5.EDIT SECTION|outline) | [PROPS](#6.PROPS SECTION|outline) | [REGIONS](#7.REGIONS SECTION|outline) | [SOLUTION](#8.SOLUTION SECTION|outline) | [SUMMARY](#9.SUMMARY SECTION|outline) | [SCHEDULE](#10.SCHEDULE SECTION|outline) |
+| RUNSPEC | GRID | EDIT | PROPS | REGIONS | SOLUTION | SUMMARY | SCHEDULE |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 
 #### Description
 
-[GRUPTREE](#__RefHeading___Toc118321_1596574740) defines the group hierarchy of groups that have been created by having wells assigned to them via the [WELSPECS](#__RefHeading___Toc268463_1366622701) keyword in the [SCHEDULE](#__RefHeading___Toc43945_784232322) section, By default three group levels are defined that sets the wells as level three, reporting directly to defined groups at level two, and the level two groups reporting to the FIELD group at level one. If a different configuration is required then the [GRUPTREE](#__RefHeading___Toc118321_1596574740) keyword should be used to define the group hierarchy by defining a lower level group that reports directly to a higher level group.
+GRUPTREE defines the group hierarchy of groups that have been created by having wells assigned to them via the WELSPECS keyword in the SCHEDULE section, By default three group levels are defined that sets the wells as level three, reporting directly to defined groups at level two, and the level two groups reporting to the FIELD group at level one. If a different configuration is required then the GRUPTREE keyword should be used to define the group hierarchy by defining a lower level group that reports directly to a higher level group.
 
 | No. | Name | Description | Default |
 | --- | --- | --- | --- |
@@ -17,7 +17,7 @@ Table 12.44: GRUPTREE Keyword Description
 
 A group hierarchy can have any number of levels but groups that have other groups as LOWER groups cannot also have wells for the HIGHER group. Thus, a group either contains wells or has LOWER groups
 
-See also the [GCONPROD](#__RefHeading___Toc146746_4203985108) and [GCONINJE](#__RefHeading___Toc134874_2055188184) for defining group production and injection volumes, and the [WELSPECS](#__RefHeading___Toc268463_1366622701) keywords to allocate wells to groups. All the aforementioned keywords are described in the [SCHEDULE](#__RefHeading___Toc43945_784232322) section.
+See also the GCONPROD and GCONINJE for defining group production and injection volumes, and the WELSPECS keywords to allocate wells to groups. All the aforementioned keywords are described in the SCHEDULE section.
 
 #### Examples
 

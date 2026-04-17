@@ -1,22 +1,22 @@
 ### SOF3 -- Oil Saturation Tables with Respect to Gas and Water (Format Type 2)
 
-| [RUNSPEC](#3.RUNSPEC SECTION|outline) | [GRID](#4.GRID SECTION|outline) | [EDIT](#5.EDIT SECTION|outline) | [PROPS](#6.PROPS SECTION|outline) | [REGIONS](#7.REGIONS SECTION|outline) | [SOLUTION](#8.SOLUTION SECTION|outline) | [SUMMARY](#9.SUMMARY SECTION|outline) | [SCHEDULE](#10.SCHEDULE SECTION|outline) |
+| RUNSPEC | GRID | EDIT | PROPS | REGIONS | SOLUTION | SUMMARY | SCHEDULE |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 
 #### Description
 
-The [SOF3](#__RefHeading___Toc106878_335817223) keyword defines the oil relative permeability versus oil saturation tables for when oil, gas and water are present in the input deck. The keyword should only be used if oil, gas and water are present in the input deck.
+The SOF3 keyword defines the oil relative permeability versus oil saturation tables for when oil, gas and water are present in the input deck. The keyword should only be used if oil, gas and water are present in the input deck.
 
 | No. | Name | Description | Default |
 | --- | --- | --- | --- |
 | Field | Metric | Laboratory |  |
-| 1 | [SOIL](#__RefHeading___Toc137371_1317547213) | A columnar vector of real monotonically increasing down the column values starting from zero and terminating at one, that defines the oil or the hydrocarbon solvent saturation.<br>The final entry should be at the connate water saturation, that is 1- Swc. | None |
+| 1 | SOIL | A columnar vector of real monotonically increasing down the column values starting from zero and terminating at one, that defines the oil or the hydrocarbon solvent saturation.<br>The final entry should be at the connate water saturation, that is 1- Swc. | None |
 | dimensionless | dimensionless | dimensionless |  |
 | 3 | KROW | A columnar vector of real values that are either equal or increasing down the column and that are greater than or equal to zero and less than or equal to one that defines the oil relative permeability with respect to oil and water saturation.<br>The first value in the column should be zero. | None |
 | dimensionless | dimensionless | dimensionless |  |
 | 4 | KROG | A columnar vector of real values that are either equal or increasing down the column and that are greater than or equal to zero and less than or equal to one that defines the oil relative permeability with respect to oil, gas and connate water saturation.<br>The first value in the column should be zero. | None |
 | dimensionless | dimensionless | dimensionless |  |
-| Notes:<br>1)  The keyword is followed by NTSFUN tables as declared on the [TABDIMS](#__RefHeading___Toc89327_327352552) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section.<br>2)  Each table must contain a minimum of two rows and a maximum of NSSFUN rows as declared on the [TABDIMS](#__RefHeading___Toc89327_327352552) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section.<br>3)  Each table is terminated by a "/" and there is no "/" terminator for the keyword. |  |  |  |
+| Notes:<br>1)  The keyword is followed by NTSFUN tables as declared on the TABDIMS keyword in the RUNSPEC section.<br>2)  Each table must contain a minimum of two rows and a maximum of NSSFUN rows as declared on the TABDIMS keyword in the RUNSPEC section.<br>3)  Each table is terminated by a "/" and there is no "/" terminator for the keyword. |  |  |  |
 
 Table 8.166: SOF3 Keyword Description
 
@@ -110,4 +110,4 @@ SOF3
 
 0.85 1.000000 1.00000 / TABLE NO. 2
 
-The example defines two [SOF3](#__RefHeading___Toc106878_335817223) tables for when oil, gas and water are present in the input deck.
+The example defines two SOF3 tables for when oil, gas and water are present in the input deck.

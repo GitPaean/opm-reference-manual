@@ -1,11 +1,11 @@
 ### EXTRAPMS -- Activate Extrapolation Warning Messages
 
-| [RUNSPEC](#3.RUNSPEC SECTION|outline) | [GRID](#4.GRID SECTION|outline) | [EDIT](#5.EDIT SECTION|outline) | [PROPS](#6.PROPS SECTION|outline) | [REGIONS](#7.REGIONS SECTION|outline) | [SOLUTION](#8.SOLUTION SECTION|outline) | [SUMMARY](#9.SUMMARY SECTION|outline) | [SCHEDULE](#10.SCHEDULE SECTION|outline) |
+| RUNSPEC | GRID | EDIT | PROPS | REGIONS | SOLUTION | SUMMARY | SCHEDULE |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 
 #### Description
 
-The [EXTRAPMS](#__RefHeading___Toc45777_719036256) keyword activates extrapolation warning messages for when OPM Flow extrapolates the PVT or VFP tables. Frequent extrapolation warning messages should be investigated and resolved as this would indicate possible incorrect data and may result in the simulator extrapolating to unrealistic values.
+The EXTRAPMS keyword activates extrapolation warning messages for when OPM Flow extrapolates the PVT or VFP tables. Frequent extrapolation warning messages should be investigated and resolved as this would indicate possible incorrect data and may result in the simulator extrapolating to unrealistic values.
 
 | No. | Name | Description | Default |
 | --- | --- | --- | --- |

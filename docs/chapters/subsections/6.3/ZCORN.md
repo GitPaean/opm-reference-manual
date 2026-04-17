@@ -1,24 +1,24 @@
 ### ZCORN -- Define the Depth of Each Corner-Point of a Grid Block
 
-| [RUNSPEC](#3.RUNSPEC SECTION|outline) | [GRID](#4.GRID SECTION|outline) | [EDIT](#5.EDIT SECTION|outline) | [PROPS](#6.PROPS SECTION|outline) | [REGIONS](#7.REGIONS SECTION|outline) | [SOLUTION](#8.SOLUTION SECTION|outline) | [SUMMARY](#9.SUMMARY SECTION|outline) | [SCHEDULE](#10.SCHEDULE SECTION|outline) |
+| RUNSPEC | GRID | EDIT | PROPS | REGIONS | SOLUTION | SUMMARY | SCHEDULE |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 
 #### Description
 
-[ZCORN](#__RefHeading___Toc45757_7190362561) defines the depth of each corner point of a grid block on the pillars defining the reservoir grid. A total of 8 x NX x NY x NZ values are needed to fully define all the depths in the model. The depths specifying the top of the first layer are entered first with one point for each pillar for each grid block. The points are entered with the X axis cycling fastest. Next come the depths of the bottom of the first layer. The top of layer two follows etc.
+ZCORN defines the depth of each corner point of a grid block on the pillars defining the reservoir grid. A total of 8 x NX x NY x NZ values are needed to fully define all the depths in the model. The depths specifying the top of the first layer are entered first with one point for each pillar for each grid block. The points are entered with the X axis cycling fastest. Next come the depths of the bottom of the first layer. The top of layer two follows etc.
 
 The keyword can be only used be used with Irregular Corner-Point Grids.
 
 | No. | Name | Description | Default |
 | --- | --- | --- | --- |
 | Field | Metric | Laboratory |  |
-| 1 | [ZCORN](#__RefHeading___Toc45757_7190362561) | An array of depths with 8 depths for each cell, for a total of 8 x Nx x NY x NZ entries | None |
+| 1 | ZCORN | An array of depths with 8 depths for each cell, for a total of 8 x Nx x NY x NZ entries | None |
 | feet | metres | cm |  |
-| Notes:<br>1)  Regular Cartesian and Radial grid keywords cannot be used with this keyword, that is: [DR](#__RefHeading___Toc113051_2066951158), [DRV](#__RefHeading___Toc91991_705534506), [DTHETA](#__RefHeading___Toc120096_2066951158), [DTHETAV](#__RefHeading___Toc19322_3701168388), [DX](#__RefHeading___Toc92905_705534506), [DXV](#__RefHeading___Toc55931_3701168388), [DY](#__RefHeading___Toc45767_719036256), [DYV](#__RefHeading___Toc55933_3701168388), [DZ](#__RefHeading___Toc45769_719036256), [DZV](#__RefHeading___Toc55601_3701168388), [INRAD](#__RefHeading___Toc19324_3701168388), and [TOPS](#__RefHeading___Toc55283_3701168388).<br>2)  The keyword is terminated by a "/". |  |  |  |
+| Notes:<br>1)  Regular Cartesian and Radial grid keywords cannot be used with this keyword, that is: DR, DRV, DTHETA, DTHETAV, DX, DXV, DY, DYV, DZ, DZV, INRAD, and TOPS.<br>2)  The keyword is terminated by a "/". |  |  |  |
 
 Table 6.131: ZCORN Keyword Description
 
-See also the [SPECGRID](#__RefHeading___Toc45797_7190362561), [COORD](#__RefHeading___Toc45757_719036256) and [COORDSYS](#__RefHeading___Toc45759_719036256) keywords to fully define an Irregular Corner-Point Grid.
+See also the SPECGRID, COORD and COORDSYS keywords to fully define an Irregular Corner-Point Grid.
 
 #### Example
 

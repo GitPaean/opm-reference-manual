@@ -1,11 +1,11 @@
 ### PLYSHEAR -- Activate and Define Polymer Shearing Parameters
 
-| [RUNSPEC](#3.RUNSPEC SECTION|outline) | [GRID](#4.GRID SECTION|outline) | [EDIT](#5.EDIT SECTION|outline) | [PROPS](#6.PROPS SECTION|outline) | [REGIONS](#7.REGIONS SECTION|outline) | [SOLUTION](#8.SOLUTION SECTION|outline) | [SUMMARY](#9.SUMMARY SECTION|outline) | [SCHEDULE](#10.SCHEDULE SECTION|outline) |
+| RUNSPEC | GRID | EDIT | PROPS | REGIONS | SOLUTION | SUMMARY | SCHEDULE |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 
 #### Description
 
-The [PLYSHEAR](#__RefHeading___Toc110218_2939291539) keyword activates and defines the polymer shear thinning-thickening option for when the polymer option has been activated by the [POLYMER](#__RefHeading___Toc38609_2267116897) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section.
+The PLYSHEAR keyword activates and defines the polymer shear thinning-thickening option for when the polymer option has been activated by the POLYMER keyword in the RUNSPEC section.
 
 This keyword is not supported by OPM Flow but would change the results if supported so the simulation will be stopped.
 
@@ -16,7 +16,7 @@ This keyword is not supported by OPM Flow but would change the results if suppor
 | feet/day | m/day | cm/hour |  |
 | 2 | VISFAC | A columnar vector of real values that defines a factor that scales the effective water and polymer viscosities for when shear thinning-thickening of the polymer occurs.<br>Normally VISFAC value for the first row in the table should be one. | None |
 | dimensionless | dimensionless | dimensionless |  |
-| Notes:<br>1)  The keyword is followed by NTPVT tables as declared on the [TABDIMS](#__RefHeading___Toc89327_327352552) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section.<br>2)  Each table must contain a minimum of two rows and a maximum of NPPVT rows as declared on the [TABDIMS](#__RefHeading___Toc89327_327352552) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section.<br>3)  Each table is terminated by a "/" and there is no "/" terminator for the keyword. |  |  |  |
+| Notes:<br>1)  The keyword is followed by NTPVT tables as declared on the TABDIMS keyword in the RUNSPEC section.<br>2)  Each table must contain a minimum of two rows and a maximum of NPPVT rows as declared on the TABDIMS keyword in the RUNSPEC section.<br>3)  Each table is terminated by a "/" and there is no "/" terminator for the keyword. |  |  |  |
 
 Table 8.106: PLYSHEAR Keyword Description
 
@@ -62,4 +62,4 @@ PLYSHEAR
 
 8.0 0.650 / TABLE NO. 02
 
-The above example activates the polymer shear thinning-thickening option and defines two polymer shear thinning-thickening tables, based on the NTPVT variable on the [TABDIMS](#__RefHeading___Toc89327_327352552) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section being equal to two and NPPVT variable on the same keyword being greater than or equal to six.
+The above example activates the polymer shear thinning-thickening option and defines two polymer shear thinning-thickening tables, based on the NTPVT variable on the TABDIMS keyword in the RUNSPEC section being equal to two and NPPVT variable on the same keyword being greater than or equal to six.

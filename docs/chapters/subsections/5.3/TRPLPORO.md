@@ -1,11 +1,11 @@
 ### TRPLPORO -- Activate the Triple Porosity Model Option
 
-| [RUNSPEC](#3.RUNSPEC SECTION|outline) | [GRID](#4.GRID SECTION|outline) | [EDIT](#5.EDIT SECTION|outline) | [PROPS](#6.PROPS SECTION|outline) | [REGIONS](#7.REGIONS SECTION|outline) | [SOLUTION](#8.SOLUTION SECTION|outline) | [SUMMARY](#9.SUMMARY SECTION|outline) | [SCHEDULE](#10.SCHEDULE SECTION|outline) |
+| RUNSPEC | GRID | EDIT | PROPS | REGIONS | SOLUTION | SUMMARY | SCHEDULE |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 
 #### Description
 
-The [TRPLPORO](#__RefHeading___Toc1613912_4250154414) keyword activates the Triple Porosity Model option that models matrix, fractures and vuggy porosity for carbonate reservoirs, and specifies the number of matrix porosity systems
+The TRPLPORO keyword activates the Triple Porosity Model option that models matrix, fractures and vuggy porosity for carbonate reservoirs, and specifies the number of matrix porosity systems
 
 This keyword is not supported by OPM Flow but would change the results if supported so the simulation will be stopped.
 
@@ -16,7 +16,7 @@ This keyword is not supported by OPM Flow but would change the results if suppor
 
 Table 5.49: TRPLPORO Keyword Description
 
-Note the keyword cannot be used in conjunction with the [NMATRIX](#__RefHeading___Toc244469_718033703) keyword, which is also in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section.
+Note the keyword cannot be used in conjunction with the NMATRIX keyword, which is also in the RUNSPEC section.
 
 #### Example
 

@@ -1,23 +1,23 @@
 ### JFUNC -- Activate the Leverett J-function Option
 
-| [RUNSPEC](#3.RUNSPEC SECTION|outline) | [GRID](#4.GRID SECTION|outline) | [EDIT](#5.EDIT SECTION|outline) | [PROPS](#6.PROPS SECTION|outline) | [REGIONS](#7.REGIONS SECTION|outline) | [SOLUTION](#8.SOLUTION SECTION|outline) | [SUMMARY](#9.SUMMARY SECTION|outline) | [SCHEDULE](#10.SCHEDULE SECTION|outline) |
+| RUNSPEC | GRID | EDIT | PROPS | REGIONS | SOLUTION | SUMMARY | SCHEDULE |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 
 #### Description
 
-The [JFUNC](#__RefHeading___Toc86297_3218818441) keyword activates the Leverett-J-Function[^1] option which is a commonly used technique to normalize capillary pressure based on laboratory measured core plugs porosity and permeability values and the resulting capillary pressure data. The keyword performs the calculation based on the parameters on the this keyword combined with a cells porosity and permeability to perform the scaling globally.
+The JFUNC keyword activates the Leverett-J-Function[^1] option which is a commonly used technique to normalize capillary pressure based on laboratory measured core plugs porosity and permeability values and the resulting capillary pressure data. The keyword performs the calculation based on the parameters on the this keyword combined with a cells porosity and permeability to perform the scaling globally.
 
-The keyword should only be used if end-point scaling is switched on using the [ENDSCALE](#__RefHeading___Toc68146_2267116897) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section.
+The keyword should only be used if end-point scaling is switched on using the ENDSCALE keyword in the RUNSPEC section.
 
-| 1 | JFOPT | A character string that defines which capillary data sets the J-Function option should be applied to, based on the following options:<br>1)  [WATER](#__RefHeading___Toc38611_2267116897): apply the J-Function option to the water-oil capillary pressure data only.<br>2)  [GAS](#__RefHeading___Toc38607_2267116897): apply the J-Function option to the gas-oil capillary pressure data only.<br>3)  BOTH: apply the J-Function option to the water-oil and the gas-oil capillary pressure data. | BOTH |
+| 1 | JFOPT | A character string that defines which capillary data sets the J-Function option should be applied to, based on the following options:<br>1)  WATER: apply the J-Function option to the water-oil capillary pressure data only.<br>2)  GAS: apply the J-Function option to the gas-oil capillary pressure data only.<br>3)  BOTH: apply the J-Function option to the water-oil and the gas-oil capillary pressure data. | BOTH |
 | --- | --- | --- | --- |
-| 2 | OWSTEN | A positive real number that defines oil-water surface tension used to de-normalized J-Function data entered in the [PROPS](#__RefHeading___Toc39329_784232322) section. | None |
+| 2 | OWSTEN | A positive real number that defines oil-water surface tension used to de-normalized J-Function data entered in the PROPS section. | None |
 | dynes/cm | dynes/cm | dynes/cm |  |
-| 3 | OGSTEN | A positive real number that defines oil-gas surface tension used to de-normalized J-Function data entered in the [PROPS](#__RefHeading___Toc39329_784232322) section. | None |
+| 3 | OGSTEN | A positive real number that defines oil-gas surface tension used to de-normalized J-Function data entered in the PROPS section. | None |
 | dynes/cm | dynes/cm | dynes/cm |  |
 | 4 | ALPHA | A positive real value that defines an alternative power value for the porosity term in the J-Function equation, that is instead of use instead in the transformation. | 0.5 |
 | 5 | BETA | A positive real number that defines an alternative power value for the permeability term in the J-Function equation, that is instead of use instead in the transformation. | 0.5 |
-| 6 | PERM | PERM is a character string that sets the permeability array to be used in the transform, based on the following options:<br>1)  X: use the [PERMX](#__RefHeading___Toc45791_719036256) array.<br>2)  XY: use the average of the [PERMX](#__RefHeading___Toc45791_719036256) and [PERMY](#__RefHeading___Toc45793_719036256) arrays.<br>3)  Y: use the [PERMY](#__RefHeading___Toc45793_719036256) array.<br>4)  Z: use the [PERMZ](#__RefHeading___Toc45795_719036256) array.<br>5)  U: use the [PERMJFUN](#__RefHeading___Toc757292_2928331029) array | XY |
+| 6 | PERM | PERM is a character string that sets the permeability array to be used in the transform, based on the following options:<br>1)  X: use the PERMX array.<br>2)  XY: use the average of the PERMX and PERMY arrays.<br>3)  Y: use the PERMY array.<br>4)  Z: use the PERMZ array.<br>5)  U: use the PERMJFUN array | XY |
 | Notes:<br>1)  The keyword is terminated by a "/". |  |  |  |
 
 Table 6.53: JFUNC Keyword Description
@@ -62,9 +62,9 @@ k = permeability, (m^2^)
 
 β = permeability value
 
-The [JFUNC](#__RefHeading___Toc86297_3218818441) keyword allows the data entered as capillary pressure in the saturation tables, for example, by using the [SGFN](#__RefHeading___Toc106868_335817223) and [SWFN](#__RefHeading___Toc106882_335817223) keywords in the [PROPS](#__RefHeading___Toc39329_784232322) section to be treated as J-functions instead, and to de-normalize these curves for each active cell in the model using the options and values defined with the [JFUNC](#__RefHeading___Toc86297_3218818441) keyword combined with a cells porosity and permeability values.
+The JFUNC keyword allows the data entered as capillary pressure in the saturation tables, for example, by using the SGFN and SWFN keywords in the PROPS section to be treated as J-functions instead, and to de-normalize these curves for each active cell in the model using the options and values defined with the JFUNC keyword combined with a cells porosity and permeability values.
 
-See also the [JFUNCR](#__RefHeading___Toc257142_2369005893) keyword in the [GRID](#__RefHeading___Toc38674_784232322) section that performs similar calculations based on the J-Function parameters being declared by saturation table number.
+See also the JFUNCR keyword in the GRID section that performs similar calculations based on the J-Function parameters being declared by saturation table number.
 
 #### Example
 
@@ -80,7 +80,7 @@ JFUNC
 
 WATER 22.5 1\* 0.5 0.5 XY /
 
-The above example results in the oil-water capillary pressure data entered on the [SWFN](#__RefHeading___Toc106882_335817223) keyword in the [PROPS](#__RefHeading___Toc39329_784232322) section being treated as J-Functions, and that the J-Function should be de-normalized using an oil-water surface density of 22.5 dynes/cm, using the default power values and the average of the [PERMX](#__RefHeading___Toc45791_719036256) and [PERMY](#__RefHeading___Toc45793_719036256) values for each grid block.
+The above example results in the oil-water capillary pressure data entered on the SWFN keyword in the PROPS section being treated as J-Functions, and that the J-Function should be de-normalized using an oil-water surface density of 22.5 dynes/cm, using the default power values and the average of the PERMX and PERMY values for each grid block.
 
 [^1]: Leverett, M. C.; "Capillary Behaviour in Porous Solids", Trans. AIME (1941) 142, 152-168.
 

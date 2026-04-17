@@ -1,24 +1,24 @@
 ### WSF -- Water Saturation Function Tables (Gas-Water Systems)
 
-| [RUNSPEC](#3.RUNSPEC SECTION|outline) | [GRID](#4.GRID SECTION|outline) | [EDIT](#5.EDIT SECTION|outline) | [PROPS](#6.PROPS SECTION|outline) | [REGIONS](#7.REGIONS SECTION|outline) | [SOLUTION](#8.SOLUTION SECTION|outline) | [SUMMARY](#9.SUMMARY SECTION|outline) | [SCHEDULE](#10.SCHEDULE SECTION|outline) |
+| RUNSPEC | GRID | EDIT | PROPS | REGIONS | SOLUTION | SUMMARY | SCHEDULE |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 
 #### Description
 
-The [WSF](#__RefHeading___Toc524656_3603161511 Copy 1) keyword defines the water relative permeability data versus water saturation tables for when only gas and water are present in the input deck. This keyword should only be used if the gas and water phases are present in the run, and can therefore also be used with the [CO2STORE](#__RefHeading___Toc387968_1616145207) and [H2STORE](#REF_HEADING_KEYWORD_H2STORE) models. In addition, the keyword must be used in conjunction with the [GSF](#__RefHeading___Toc524656_3603161511) keyword in the [PROPS](#__RefHeading___Toc39329_784232322) section, that defines the gas relative permeability and gas-water capillary pressure data versus gas saturation for gas-water systems.
+The WSF keyword defines the water relative permeability data versus water saturation tables for when only gas and water are present in the input deck. This keyword should only be used if the gas and water phases are present in the run, and can therefore also be used with the CO2STORE and H2STORE models. In addition, the keyword must be used in conjunction with the GSF keyword in the PROPS section, that defines the gas relative permeability and gas-water capillary pressure data versus gas saturation for gas-water systems.
 
 | No. | Name | Description | Default |
 | --- | --- | --- | --- |
 | Field | Metric | Laboratory |  |
-| 1 | [SWAT](#__RefHeading___Toc137373_1317547213) | A columnar vector of real values monotonically increasing down the column starting from the connate water saturation and terminating at one, that defines the water saturation. | None |
+| 1 | SWAT | A columnar vector of real values monotonically increasing down the column starting from the connate water saturation and terminating at one, that defines the water saturation. | None |
 | dimensionless | dimensionless | dimensionless |  |
-| 2 | [KRW](#__RefHeading___Toc97397_621662414) | A columnar vector of real values that are either equal or increasing down the column and that are greater than or equal to zero and less than or equal to one that defines the water relative permeability with respect to water saturation.<br>Note that the first entry in the column must be zero. | None |
+| 2 | KRW | A columnar vector of real values that are either equal or increasing down the column and that are greater than or equal to zero and less than or equal to one that defines the water relative permeability with respect to water saturation.<br>Note that the first entry in the column must be zero. | None |
 | dimensionless | dimensionless | dimensionless |  |
-| Notes:<br>1)  The keyword is followed by NTSFUN tables as declared on the [TABDIMS](#__RefHeading___Toc89327_327352552) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section.<br>2)  Each table must contain a minimum of two rows and a maximum of NSSFUN rows as declared on the [TABDIMS](#__RefHeading___Toc89327_327352552) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section.<br>3)  Each table is terminated by a "/" and there is no "/" terminator for the keyword. |  |  |  |
+| Notes:<br>1)  The keyword is followed by NTSFUN tables as declared on the TABDIMS keyword in the RUNSPEC section.<br>2)  Each table must contain a minimum of two rows and a maximum of NSSFUN rows as declared on the TABDIMS keyword in the RUNSPEC section.<br>3)  Each table is terminated by a "/" and there is no "/" terminator for the keyword. |  |  |  |
 
 Table 8.200: WSF Keyword Description
 
-See also the [[GSF - Gas Saturation Tables versus Gas Saturation (Gas-Water and CO2STORE Systems)](#anchor-1)](#8.3.78.GSF - Gas Saturation Tables versus Gas Saturation (Gas-Water and CO2STORE Systems)|outline) keyword in the [PROPS](#__RefHeading___Toc39329_784232322) section, that defines the gas relative permeability and gas-water capillary pressure data as a function of gas saturation, for when only the gas and water water phases are present in the model.
+See also the [GSF - Gas Saturation Tables versus Gas Saturation (Gas-Water and CO2STORE Systems)](#anchor-1) keyword in the PROPS section, that defines the gas relative permeability and gas-water capillary pressure data as a function of gas saturation, for when only the gas and water water phases are present in the model.
 
 #### Example
 
@@ -134,4 +134,4 @@ WSF
 
 1.000000 0.9000 / TABLE NO. 01
 
-The example defines two [WSF](#__RefHeading___Toc524656_3603161511 Copy 1) tables for use when only gas and water are present in the run.
+The example defines two WSF tables for use when only gas and water are present in the run.

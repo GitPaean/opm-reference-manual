@@ -1,24 +1,24 @@
 ### COALNUM -- Define the Coal Region Numbers
 
-| [RUNSPEC](#3.RUNSPEC SECTION|outline) | [GRID](#4.GRID SECTION|outline) | [EDIT](#5.EDIT SECTION|outline) | [PROPS](#6.PROPS SECTION|outline) | [REGIONS](#7.REGIONS SECTION|outline) | [SOLUTION](#8.SOLUTION SECTION|outline) | [SUMMARY](#9.SUMMARY SECTION|outline) | [SCHEDULE](#10.SCHEDULE SECTION|outline) |
+| RUNSPEC | GRID | EDIT | PROPS | REGIONS | SOLUTION | SUMMARY | SCHEDULE |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 
 #### Description
 
-The [COALNUM](#__RefHeading___Toc82393_1778172979) keyword defines the coal region numbers for each grid block used with the Coal Bed Methane option ("CBM"). OPM Flow does not have a CBM option; however, the keyword is documented here for completeness.
+The COALNUM keyword defines the coal region numbers for each grid block used with the Coal Bed Methane option ("CBM"). OPM Flow does not have a CBM option; however, the keyword is documented here for completeness.
 
 This keyword is not supported by OPM Flow but would change the results if supported so the simulation will be stopped.
 
 | No. | Name | Description | Default |
 | --- | --- | --- | --- |
-| 1 | [COALNUM](#__RefHeading___Toc82393_1778172979) | [COALNUM](#__RefHeading___Toc82393_1778172979) defines an array of positive integers assigning a grid cell to a particular coal region.<br>The maximum number of [COALNUM](#__RefHeading___Toc82393_1778172979) regions is set by the NTCREG variable on [REGDIMS](#__RefHeading___Toc70161_327352552) keywords in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section. | 1 |
-| Notes:<br>1)  A total of NX x NY x NZ integer values, as defined by the [DIMENS](#__RefHeading___Toc20387_2267116897) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section, must be specified for the array.<br>2)  If a cell is not assigned a [COALNUM](#__RefHeading___Toc82393_1778172979) region then the default value of 1 will be used.<br>3)  [COALNUM](#__RefHeading___Toc82393_1778172979) value of 0 sets the cell be a non-coal region.<br>4)  The keyword is terminated by a "/". |  |  |  |
+| 1 | COALNUM | COALNUM defines an array of positive integers assigning a grid cell to a particular coal region.<br>The maximum number of COALNUM regions is set by the NTCREG variable on REGDIMS keywords in the RUNSPEC section. | 1 |
+| Notes:<br>1)  A total of NX x NY x NZ integer values, as defined by the DIMENS keyword in the RUNSPEC section, must be specified for the array.<br>2)  If a cell is not assigned a COALNUM region then the default value of 1 will be used.<br>3)  COALNUM value of 0 sets the cell be a non-coal region.<br>4)  The keyword is terminated by a "/". |  |  |  |
 
 Table 6.13: COALNUM Keyword Description
 
 #### Example
 
-The example below sets three [COALNUM](#__RefHeading___Toc82393_1778172979) regions for a 4 x 5 x 2 model.
+The example below sets three COALNUM regions for a 4 x 5 x 2 model.
 
 \--
 

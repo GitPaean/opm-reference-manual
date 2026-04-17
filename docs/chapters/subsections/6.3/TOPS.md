@@ -1,18 +1,18 @@
 ### TOPS -- Define the Depth at the Center of the Top Face for Each Cell
 
-| [RUNSPEC](#3.RUNSPEC SECTION|outline) | [GRID](#4.GRID SECTION|outline) | [EDIT](#5.EDIT SECTION|outline) | [PROPS](#6.PROPS SECTION|outline) | [REGIONS](#7.REGIONS SECTION|outline) | [SOLUTION](#8.SOLUTION SECTION|outline) | [SUMMARY](#9.SUMMARY SECTION|outline) | [SCHEDULE](#10.SCHEDULE SECTION|outline) |
+| RUNSPEC | GRID | EDIT | PROPS | REGIONS | SOLUTION | SUMMARY | SCHEDULE |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 
 #### Description
 
-[TOPS](#__RefHeading___Toc55283_3701168388) defines the depth of the top face of each cell in the model.
+TOPS defines the depth of the top face of each cell in the model.
 
 It can only be used with the Cartesian Regular Grid or Radial Grid models.
 
 | No. | Name | Description | Default |
 | --- | --- | --- | --- |
 | Field | Metric | Laboratory |  |
-| 1 | [TOPS](#__RefHeading___Toc55283_3701168388) | [TOPS](#__RefHeading___Toc55283_3701168388) is an array of real numbers defining the depth at the top face of each cell in the model. One can either just enter the [TOPS](#__RefHeading___Toc55283_3701168388) for the first layer only based on NX x NY entries and OPM Flow will calculate the remaining [TOPS](#__RefHeading___Toc55283_3701168388) based on either [DZ](#__RefHeading___Toc45769_719036256) or [DZV](#__RefHeading___Toc55601_3701168388). Alternatively NX x NY x NZ [TOPS](#__RefHeading___Toc55283_3701168388) may be entered for each cell in the model.<br>See the [DIMENS](#__RefHeading___Toc20387_2267116897) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section for the definition of NX, NY and NZ.<br>Repeat counts may be used, for example 10\*5201.0. | None |
+| 1 | TOPS | TOPS is an array of real numbers defining the depth at the top face of each cell in the model. One can either just enter the TOPS for the first layer only based on NX x NY entries and OPM Flow will calculate the remaining TOPS based on either DZ or DZV. Alternatively NX x NY x NZ TOPS may be entered for each cell in the model.<br>See the DIMENS keyword in the RUNSPEC section for the definition of NX, NY and NZ.<br>Repeat counts may be used, for example 10\*5201.0. | None |
 | feet | m | cm |  |
 | Notes:<br>1)  The keyword is terminated by a "/". |  |  |  |
 
@@ -22,7 +22,7 @@ See also the DEPTHS keyword to define the structural depth for the cells.
 
 #### Examples
 
-The example below defines the [TOPS](#__RefHeading___Toc55283_3701168388) of the cells for each cell for NX = 5, NY = 5 and NZ = 3 model, as well as the X and Y direction cells sizes.
+The example below defines the TOPS of the cells for each cell for NX = 5, NY = 5 and NZ = 3 model, as well as the X and Y direction cells sizes.
 
 \--
 
@@ -52,7 +52,7 @@ DYV
 
 A second example is shown on the following page.
 
-This example defines the same grid as before but with the [TOPS](#__RefHeading___Toc55283_3701168388) keyword only defining the top layer and [DZV](#__RefHeading___Toc55601_3701168388) keyword defining the cells thickness.
+This example defines the same grid as before but with the TOPS keyword only defining the top layer and DZV keyword defining the cells thickness.
 
 \--
 

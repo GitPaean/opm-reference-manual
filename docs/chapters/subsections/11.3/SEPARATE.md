@@ -1,15 +1,15 @@
 ### SEPARATE -- Activate the Separate RSM File Output Option
 
-| [RUNSPEC](#3.RUNSPEC SECTION|outline) | [GRID](#4.GRID SECTION|outline) | [EDIT](#5.EDIT SECTION|outline) | [PROPS](#6.PROPS SECTION|outline) | [REGIONS](#7.REGIONS SECTION|outline) | [SOLUTION](#8.SOLUTION SECTION|outline) | [SUMMARY](#9.SUMMARY SECTION|outline) | [SCHEDULE](#10.SCHEDULE SECTION|outline) |
+| RUNSPEC | GRID | EDIT | PROPS | REGIONS | SOLUTION | SUMMARY | SCHEDULE |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 
 #### Description
 
-This keyword activates the writing out of the [SUMMARY](#__RefHeading___Toc43949_784232322) file date in a columnar format to the RSM file, if the [RUNSUM](#__RefHeading___Toc210156_2884651453) keyword has also been activated in the [SUMMARY](#__RefHeading___Toc43949_784232322) section. Both the [SEPARATE](#__RefHeading___Toc210158_2884651453) and the [RUNSUM](#__RefHeading___Toc210156_2884651453) keywords need to be invoked. If the [SEPARATE](#__RefHeading___Toc210158_2884651453) option is not activated then the RSM output is directed to the end of the PRT file. Normally the both the [SEPARATE](#__RefHeading___Toc210158_2884651453) and [RUNSUM](#__RefHeading___Toc210156_2884651453) keywords are invoked in the same run to enable easy loading of the data into Microsoft\'s EXCEL or LibreOffice's CALC spreadsheet programs.
+This keyword activates the writing out of the SUMMARY file date in a columnar format to the RSM file, if the RUNSUM keyword has also been activated in the SUMMARY section. Both the SEPARATE and the RUNSUM keywords need to be invoked. If the SEPARATE option is not activated then the RSM output is directed to the end of the PRT file. Normally the both the SEPARATE and RUNSUM keywords are invoked in the same run to enable easy loading of the data into Microsoft\'s EXCEL or LibreOffice's CALC spreadsheet programs.
 
 There is no data required for this keyword and there is no terminating "/" for this keyword.
 
-See also the [EXCEL](#__RefHeading___Toc210148_2884651453), [RPTONLY](#__RefHeading___Toc210150_2884651453) and [RUNSUM](#__RefHeading___Toc210156_2884651453) keywords in the [SUMMARY](#__RefHeading___Toc43949_784232322) section.
+See also the EXCEL, RPTONLY and RUNSUM keywords in the SUMMARY section.
 
 #### Example
 

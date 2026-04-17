@@ -1,21 +1,21 @@
 ### COMPSEGS -- Define Well Connections for Multi-Segment Wells
 
-| [RUNSPEC](#3.RUNSPEC SECTION|outline) | [GRID](#4.GRID SECTION|outline) | [EDIT](#5.EDIT SECTION|outline) | [PROPS](#6.PROPS SECTION|outline) | [REGIONS](#7.REGIONS SECTION|outline) | [SOLUTION](#8.SOLUTION SECTION|outline) | [SUMMARY](#9.SUMMARY SECTION|outline) | [SCHEDULE](#10.SCHEDULE SECTION|outline) |
+| RUNSPEC | GRID | EDIT | PROPS | REGIONS | SOLUTION | SUMMARY | SCHEDULE |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 
 #### Description
 
-This keyword defines how a multi-segment well is connected to the reservoir by allocating each well connection to a well segement. Note that the well must have previously been defined as a multi-segment well using the [WELSEGS](#__RefHeading___Toc97661_3261743917) keyword in the [SCHEDULE](#__RefHeading___Toc43945_784232322) section and the well connections must have previously been defined via the [COMPDAT](#__RefHeading___Toc97651_3261743917) keyword in the [SCHEDULE](#__RefHeading___Toc43945_784232322) section.
+This keyword defines how a multi-segment well is connected to the reservoir by allocating each well connection to a well segement. Note that the well must have previously been defined as a multi-segment well using the WELSEGS keyword in the SCHEDULE section and the well connections must have previously been defined via the COMPDAT keyword in the SCHEDULE section.
 
-The [COMPSEGS](#__RefHeading___Toc316604_3519154785) keyword should be repeated for each multi-segment well in the model.
+The COMPSEGS keyword should be repeated for each multi-segment well in the model.
 
-| 1-1 | WELNAME | A character string of up to eight characters in length that defines the well name for which a multi-segment well is being defined.<br>Note that the well name (WELNAME) must have been declared previously using the [WELSPECS](#__RefHeading___Toc268463_1366622701) keyword in the [SCHEDULE](#__RefHeading___Toc43945_784232322) section, otherwise an error may occur. | None |
+| 1-1 | WELNAME | A character string of up to eight characters in length that defines the well name for which a multi-segment well is being defined.<br>Note that the well name (WELNAME) must have been declared previously using the WELSPECS keyword in the SCHEDULE section, otherwise an error may occur. | None |
 | --- | --- | --- | --- |
 | 1-2 | / | Record terminated by a "/" | Not Applicable |
 | 2-1 | I | A positive integer greater than or equal to one and less than or equal to NX that defines the connection location in the I-direction. | None |
 | 2-2 | J | A positive integer greater than or equal to one and less than or equal to NY that defines the connection location in the J-direction. | None |
 | 2-3 | K | A positive integer greater than or equal to one and less than or equal to NZ that defines the connection location in the K-direction. | None |
-| 2-4 | IBRANCH | A positive integer greater than or equal to one and less than or equal to MXBRAN on [WSEGDIMS](#__RefHeading___Toc104259_3115110868) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section that defines the branch number of the defined I, J and K connection. | None |
+| 2-4 | IBRANCH | A positive integer greater than or equal to one and less than or equal to MXBRAN on WSEGDIMS keyword in the RUNSPEC section that defines the branch number of the defined I, J and K connection. | None |
 | 2-5 | LENGTH1 | A real positive value that defines the length of the tubing from the tubing reference point (for example Measure Depth Relative to Kelly Bushing, MDRKB) to the *start* of the connection in the I, J, K cell. | None |
 | feet | m | cm |  |
 | 2-6 | LENGTH2 | A real positive value that defines the length of the tubing from the tubing reference point to the *end* of the connection in the I, J, K cell. |  |
@@ -29,17 +29,17 @@ The [COMPSEGS](#__RefHeading___Toc316604_3519154785) keyword should be repeated 
 | 2-11 | ISEG | A real positive value that defines the segment number to assign to this range of connections. If this value is defaulted then each connection is assigned to the segment with the nodal point nearest to the centre of the connection.<br>Currently this option is not supported by OPM Flow. | None |
 | feet | m | cm |  |
 | 2-12 | / | Record terminated by a "/" | Not Applicable |
-| Notes:<br>1)  Each multi-segment wells must be defined by a separate [COMPSEGS](#__RefHeading___Toc316604_3519154785) keyword that consists of two records, with entries 1-1 to 1-2 representing record one items and 2-1 to 2-12 representing record number two items in the "No." column in this table.<br>2)  Record number two of the keyword, items 2-1 to 2-12 can be repeated up to a maximum of MXCONS times as declared on the [WELLDIMS](#__RefHeading___Toc82886_327352552) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section.<br>3)  Each of the records are terminated by a "/" and is explicitly shown in the above rows and the keyword should be terminated by a "/". |  |  |  |
+| Notes:<br>1)  Each multi-segment wells must be defined by a separate COMPSEGS keyword that consists of two records, with entries 1-1 to 1-2 representing record one items and 2-1 to 2-12 representing record number two items in the "No." column in this table.<br>2)  Record number two of the keyword, items 2-1 to 2-12 can be repeated up to a maximum of MXCONS times as declared on the WELLDIMS keyword in the RUNSPEC section.<br>3)  Each of the records are terminated by a "/" and is explicitly shown in the above rows and the keyword should be terminated by a "/". |  |  |  |
 
 Table 12.17: COMPSEGS Keyword Description
 
-The maximum number of wells and completions should be defined via the [WELLDIMS](#__RefHeading___Toc82886_327352552) keyword and the maximum number of multi-segment wells, segments and branches should be declared on the [WSEGDIMS](#__RefHeading___Toc104259_3115110868) keyword, both keywords are in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section.
+The maximum number of wells and completions should be defined via the WELLDIMS keyword and the maximum number of multi-segment wells, segments and branches should be declared on the WSEGDIMS keyword, both keywords are in the RUNSPEC section.
 
-See also the [WELSPECS](#__RefHeading___Toc268463_1366622701) keyword to define wells, the [COMPDAT](#__RefHeading___Toc97651_3261743917) keyword to define the well connections for both standard wells and multi-segment wells, and the [COMPSEGL](#__RefHeading___Toc97659_3261743917) keyword to define multi-segment connections in a [LGR](#__RefHeading___Toc55049_4106839650). All the aforementioned keywords are described in the [SCHEDULE](#__RefHeading___Toc43945_784232322) section.
+See also the WELSPECS keyword to define wells, the COMPDAT keyword to define the well connections for both standard wells and multi-segment wells, and the COMPSEGL keyword to define multi-segment connections in a LGR. All the aforementioned keywords are described in the SCHEDULE section.
 
 #### Example
 
-The following example defines the completions for two multi-segment oil production wells (OP01 and OP02) using the [COMPSEGS](#__RefHeading___Toc316604_3519154785) keyword.
+The following example defines the completions for two multi-segment oil production wells (OP01 and OP02) using the COMPSEGS keyword.
 
 \-- COMPLETION SEGMENT SPECIFICATION DATA
 
@@ -129,4 +129,4 @@ OP02 /
 
 /
 
-Note that the [COMPDAT](#__RefHeading___Toc97651_3261743917) keyword in the [SCHEDULE](#__RefHeading___Toc43945_784232322) section must also be defined for these two wells.
+Note that the COMPDAT keyword in the SCHEDULE section must also be defined for these two wells.

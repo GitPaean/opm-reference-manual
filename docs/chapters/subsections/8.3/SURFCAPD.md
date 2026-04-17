@@ -1,10 +1,10 @@
 ### SURFCAPD -- Capillary Number versus Miscibility Tables
 
-| [RUNSPEC](#3.RUNSPEC SECTION|outline) | [GRID](#4.GRID SECTION|outline) | [EDIT](#5.EDIT SECTION|outline) | [PROPS](#6.PROPS SECTION|outline) | [REGIONS](#7.REGIONS SECTION|outline) | [SOLUTION](#8.SOLUTION SECTION|outline) | [SUMMARY](#9.SUMMARY SECTION|outline) | [SCHEDULE](#10.SCHEDULE SECTION|outline) |
+| RUNSPEC | GRID | EDIT | PROPS | REGIONS | SOLUTION | SUMMARY | SCHEDULE |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 
 #### Description
 
-The [SURFCAPD](#__RefHeading___Toc883741_4250154414) keyword defines the relationship between the log of the capillary number and the level of miscibility, for when the Surfactant option has been activated by the [SURFACT](#__RefHeading___Toc863854_4250154414) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section. A value of zero for the level of miscibility means fully immiscible conditions and consequently a value of one implies fully miscible conditions.
+The SURFCAPD keyword defines the relationship between the log of the capillary number and the level of miscibility, for when the Surfactant option has been activated by the SURFACT keyword in the RUNSPEC section. A value of zero for the level of miscibility means fully immiscible conditions and consequently a value of one implies fully miscible conditions.
 
 This keyword is not supported by OPM Flow but would change the results if supported so the simulation will be stopped.

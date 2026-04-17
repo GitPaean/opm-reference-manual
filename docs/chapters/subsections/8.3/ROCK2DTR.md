@@ -1,30 +1,30 @@
 ### ROCK2DTR -- Transmissibility Compaction versus Pressure and Sw Tables
 
-| [RUNSPEC](#3.RUNSPEC SECTION|outline) | [GRID](#4.GRID SECTION|outline) | [EDIT](#5.EDIT SECTION|outline) | [PROPS](#6.PROPS SECTION|outline) | [REGIONS](#7.REGIONS SECTION|outline) | [SOLUTION](#8.SOLUTION SECTION|outline) | [SUMMARY](#9.SUMMARY SECTION|outline) | [SCHEDULE](#10.SCHEDULE SECTION|outline) |
+| RUNSPEC | GRID | EDIT | PROPS | REGIONS | SOLUTION | SUMMARY | SCHEDULE |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 
 #### Description
 
-The [ROCK2DTR](#__RefHeading___Toc180656_4194303431) keyword defines rock compressibility transmissibility multipliers as a function of pressure and water saturation ("Sw") for when the rock compaction option has been invoked by the [ROCKCOMP](#__RefHeading___Toc55593_1778172979) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section. The pressure values are defined on this keyword and the water saturations are declared on the associated [ROCKWNOD](#__RefHeading___Toc189921_4194303431) keyword in the [PROPS](#__RefHeading___Toc39329_784232322) section
+The ROCK2DTR keyword defines rock compressibility transmissibility multipliers as a function of pressure and water saturation ("Sw") for when the rock compaction option has been invoked by the ROCKCOMP keyword in the RUNSPEC section. The pressure values are defined on this keyword and the water saturations are declared on the associated ROCKWNOD keyword in the PROPS section
 
-The rock compaction pore volume and transmissibility multipliers, entered via the [ROCKTAB](#__RefHeading___Toc107256_3812137098), [ROCK2D](#__RefHeading___Toc174483_4194303431) and [ROCK2DTR](#__RefHeading___Toc180656_4194303431) keywords, are applied to the pore pressure, unless the [OVERBURD](#__RefHeading___Toc162159_4194303431) keyword in [PROPS](#__RefHeading___Toc39329_784232322) section is included in the input deck. When the [OVERBURD](#__RefHeading___Toc162159_4194303431) keyword is present the multipliers are applied to the effective pore volume pressure, that is. If the keyword is not present in the input deck then the overburden pressure is set to zero.
+The rock compaction pore volume and transmissibility multipliers, entered via the ROCKTAB, ROCK2D and ROCK2DTR keywords, are applied to the pore pressure, unless the OVERBURD keyword in PROPS section is included in the input deck. When the OVERBURD keyword is present the multipliers are applied to the effective pore volume pressure, that is. If the keyword is not present in the input deck then the overburden pressure is set to zero.
 
 This keyword should only be used if compaction option has been enabled.
 
 | 1 | PRESS | A columnar vector of real monotonically increasing down the column values that defines the corresponding overburden pressure for the subsequent MULT columnar vector. | None |
 | --- | --- | --- | --- |
 | psia | bars | atm |  |
-| 2 | MULT | A columnar vector of real equal or decreasing down the column values that are less than or equal to one, that defines the rock compressibility transmissibility multipliers corresponding to PRESS and for each water saturation entry in the [ROCKWNOD](#__RefHeading___Toc189921_4194303431) keyword. | None |
+| 2 | MULT | A columnar vector of real equal or decreasing down the column values that are less than or equal to one, that defines the rock compressibility transmissibility multipliers corresponding to PRESS and for each water saturation entry in the ROCKWNOD keyword. | None |
 | dimensionless | dimensionless | dimensionless |  |
-| Notes:<br>1)  The keyword is followed by NTROCC tables as declared on the [ROCKCOMP](#__RefHeading___Toc55593_1778172979) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section.<br>2)  Each table must contain a minimum of two rows and a maximum of NSSFUN rows as declared on the [TABDIMS](#__RefHeading___Toc89327_327352552) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section.<br>3)  Each table is terminated by a "/" and there is no "/" terminator for the keyword. |  |  |  |
+| Notes:<br>1)  The keyword is followed by NTROCC tables as declared on the ROCKCOMP keyword in the RUNSPEC section.<br>2)  Each table must contain a minimum of two rows and a maximum of NSSFUN rows as declared on the TABDIMS keyword in the RUNSPEC section.<br>3)  Each table is terminated by a "/" and there is no "/" terminator for the keyword. |  |  |  |
 
 Table 8.127: ROCK2DTR Keyword Description
 
-See also the [OVERBURD](#__RefHeading___Toc162159_4194303431), [ROCKTAB](#__RefHeading___Toc107256_3812137098), [ROCK2D](#__RefHeading___Toc174483_4194303431), and [ROCKWNOD](#__RefHeading___Toc189921_4194303431) keywords in the [PROPS](#__RefHeading___Toc39329_784232322) section.
+See also the OVERBURD, ROCKTAB, ROCK2D, and ROCKWNOD keywords in the PROPS section.
 
 #### Example
 
-The following example defines two rock compressibility transmissibility compaction tables, assuming NTROCC is equal to two on the [ROCKCOMP](#__RefHeading___Toc55593_1778172979) keyword and NSSFUN is greater than or equal to four on the [TABDIMS](#__RefHeading___Toc89327_327352552) keyword.
+The following example defines two rock compressibility transmissibility compaction tables, assuming NTROCC is equal to two on the ROCKCOMP keyword and NSSFUN is greater than or equal to four on the TABDIMS keyword.
 
 \--
 

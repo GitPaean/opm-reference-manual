@@ -1,31 +1,31 @@
 ### HM -- History Match Region Gradient Parameters
 
-| [RUNSPEC](#3.RUNSPEC SECTION|outline) | [GRID](#4.GRID SECTION|outline) | [EDIT](#5.EDIT SECTION|outline) | [PROPS](#6.PROPS SECTION|outline) | [REGIONS](#7.REGIONS SECTION|outline) | [SOLUTION](#8.SOLUTION SECTION|outline) | [SUMMARY](#9.SUMMARY SECTION|outline) | [SCHEDULE](#10.SCHEDULE SECTION|outline) |
+| RUNSPEC | GRID | EDIT | PROPS | REGIONS | SOLUTION | SUMMARY | SCHEDULE |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 
 #### Description
 
-The [HM](#__RefHeading___Toc267495_373485663) series of keywords in the REGION section defines the history match gradient regions and sub-regions, for when the History Match Gradient option has been activated by the [HMDIMS](#__RefHeading___Toc207753_4219267791) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section.
+The HM series of keywords in the REGION section defines the history match gradient regions and sub-regions, for when the History Match Gradient option has been activated by the HMDIMS keyword in the RUNSPEC section.
 
 This keyword is not supported by OPM Flow but has no effect on the results so it will be ignored.
 
 For grid properties, the region name (or region property array) is based on the property arrays defined in .
 
-| [PERMX](#__RefHeading___Toc45791_719036256) | HMPERMX | Permeability multipliers in the x-direction. |
+| PERMX | HMPERMX | Permeability multipliers in the x-direction. |
 | --- | --- | --- |
 | PERMXY | HMPRMXY | Permeability multipliers in the x-direction and y-direction |
 | pERMY | HMPERMY | Permeability multipliers in the y-direction. |
-| [PERMZ](#__RefHeading___Toc45795_719036256) | HMPERMZ | Permeability multipliers in the z-direction. |
-| [PORV](#__RefHeading___Toc96547_718313858) | HMPORV | Pore volume multiplier |
-| [SIGMA](#__RefHeading___Toc695245_516898843) | HMSIGMA | Dual porosity and/or dual permeability [SIGMA](#__RefHeading___Toc695245_516898843) multiplier |
-| [TRANX](#__RefHeading___Toc93085_718313858) | HMTRANX | Transmissibility multipliers in the x-direction. |
+| PERMZ | HMPERMZ | Permeability multipliers in the z-direction. |
+| PORV | HMPORV | Pore volume multiplier |
+| SIGMA | HMSIGMA | Dual porosity and/or dual permeability SIGMA multiplier |
+| TRANX | HMTRANX | Transmissibility multipliers in the x-direction. |
 | TRANXY | HMTRNXY | Transmissibility multipliers in the x-direction and y-direction |
-| [TRANY](#__RefHeading___Toc93087_718313858) | HMTRANY | Transmissibility multipliers in the y-direction. |
-| [TRANZ](#__RefHeading___Toc93089_718313858) | HMTRANZ | Transmissibility multipliers in the z-direction. |
+| TRANY | HMTRANY | Transmissibility multipliers in the y-direction. |
+| TRANZ | HMTRANZ | Transmissibility multipliers in the z-direction. |
 
-Table 9.6: [HM](#__RefHeading___Toc267495_373485663) Region Grid Gradient Parameter Keyword List
+Table 9.6: HM Region Grid Gradient Parameter Keyword List
 
-In addition, if the End-Point Scaling option has been activated by the [ENDSCALE](#__RefHeading___Toc68146_2267116897) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section, then the history match gradient regions and sub-regions for the end-point data can be specified. In this the keyword consists of the first two characters of "HM" followed by the end-point keyword (), for example, HMSWL.
+In addition, if the End-Point Scaling option has been activated by the ENDSCALE keyword in the RUNSPEC section, then the history match gradient regions and sub-regions for the end-point data can be specified. In this the keyword consists of the first two characters of "HM" followed by the end-point keyword (), for example, HMSWL.
 
 | Saturation | HMSWL | Connate water saturation, that is the smallest water saturation in a water saturation function table. |
 | --- | --- | --- |
@@ -45,4 +45,4 @@ In addition, if the End-Point Scaling option has been activated by the [ENDSCALE
 | HMKRORG | Relative permeability of oil at the critical gas saturation. |  |
 | Capillary<br>Pressure | HMSGLPC | Capillary pressure connate gas saturation, that is the smallest gas saturation in a gas saturation function table. |
 
-Table 9.7: [HM](#__RefHeading___Toc267495_373485663) Region End-Point Gradient Parameter Keyword List
+Table 9.7: HM Region End-Point Gradient Parameter Keyword List

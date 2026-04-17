@@ -1,11 +1,11 @@
 ### STONE1 -- Activate Stone's First Three Phase Oil Relative Permeability Model
 
-| [RUNSPEC](#3.RUNSPEC SECTION|outline) | [GRID](#4.GRID SECTION|outline) | [EDIT](#5.EDIT SECTION|outline) | [PROPS](#6.PROPS SECTION|outline) | [REGIONS](#7.REGIONS SECTION|outline) | [SOLUTION](#8.SOLUTION SECTION|outline) | [SUMMARY](#9.SUMMARY SECTION|outline) | [SCHEDULE](#10.SCHEDULE SECTION|outline) |
+| RUNSPEC | GRID | EDIT | PROPS | REGIONS | SOLUTION | SUMMARY | SCHEDULE |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 
 #### Description
 
-This keyword activates Stone's[^1] first three phase oil relative permeability model as modified by Aziz and Settari[^2]. If the [STONE1](#__RefHeading___Toc210162_2884651453) and [STONE2](#__RefHeading___Toc210166_2884651453) keywords are not present in the input deck then the default three phase oil relative permeability model is employed. The [STONE1](#__RefHeading___Toc210162_2884651453) keyword should only be used in three phase runs containing the oil, gas and water phases.
+This keyword activates Stone's[^1] first three phase oil relative permeability model as modified by Aziz and Settari[^2]. If the STONE1 and STONE2 keywords are not present in the input deck then the default three phase oil relative permeability model is employed. The STONE1 keyword should only be used in three phase runs containing the oil, gas and water phases.
 
 There is no data required for this keyword.
 

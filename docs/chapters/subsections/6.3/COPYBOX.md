@@ -1,62 +1,62 @@
 ### COPYBOX -- Copy Array Data Defined by a Box
 
-| [RUNSPEC](#3.RUNSPEC SECTION|outline) | [GRID](#4.GRID SECTION|outline) | [EDIT](#5.EDIT SECTION|outline) | [PROPS](#6.PROPS SECTION|outline) | [REGIONS](#7.REGIONS SECTION|outline) | [SOLUTION](#8.SOLUTION SECTION|outline) | [SUMMARY](#9.SUMMARY SECTION|outline) | [SCHEDULE](#10.SCHEDULE SECTION|outline) |
+| RUNSPEC | GRID | EDIT | PROPS | REGIONS | SOLUTION | SUMMARY | SCHEDULE |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 
 #### Description
 
-The [COPYBOX](#__RefHeading___Toc297205_3519154785) keyword copies an array (or part of an array) to another part of the same array. The array can be real or integer depending on the array type; however, the array that can be operated on is dependent on which section the [COPYBOX](#__RefHeading___Toc297205_3519154785) keyword is being used.
+The COPYBOX keyword copies an array (or part of an array) to another part of the same array. The array can be real or integer depending on the array type; however, the array that can be operated on is dependent on which section the COPYBOX keyword is being used.
 
 This keyword is not supported by OPM Flow but would change the results if supported so the simulation will be stopped.
 
 | 1 | ARRAY-1 | The name of the array to be copied<br>This is the keyword name identifying the property and is up to eight characters in length and enclosed in quotes. | None |
 | --- | --- | --- | --- |
-| 2 | I1 | A positive integer that defines the [SOURCE](#REF_HEADING_KEYWORD_SOURCE_12_3) lower bound of the array in the I-direction to be modified must be greater than or equal 1 and less than or equal to I2 and NX. | 1 |
-| 3 | I2 | A positive integer that defines the [SOURCE](#REF_HEADING_KEYWORD_SOURCE_12_3) upper bound of the array in the I-direction to be modified must be greater than or equal to II and less than or equal to NX | NX |
-| 4 | J1 | A positive integer that defines the [SOURCE](#REF_HEADING_KEYWORD_SOURCE_12_3) lower bound of the array in the J-direction to be modified must be greater than or equal 1 and less than or equal to J2 and NY. | 1 |
-| 5 | J2 | A positive integer that defines the [SOURCE](#REF_HEADING_KEYWORD_SOURCE_12_3) upper bound of the array in the J-direction to be modified must be greater than or equal to JI and less than or equal to NY. | NY |
-| 6 | K1 | A positive integer that defines the [SOURCE](#REF_HEADING_KEYWORD_SOURCE_12_3) lower bound of the array in the K-direction to be modified must be greater than or equal to one and less than or equal to K2 and NZ. | 1 |
-| 7 | K2 | A positive integer that defines the [SOURCE](#REF_HEADING_KEYWORD_SOURCE_12_3) upper bound of the array in the K-direction to be modified must be greater than or equal to KI and less than or equal to NZ. | NZ |
+| 2 | I1 | A positive integer that defines the SOURCE lower bound of the array in the I-direction to be modified must be greater than or equal 1 and less than or equal to I2 and NX. | 1 |
+| 3 | I2 | A positive integer that defines the SOURCE upper bound of the array in the I-direction to be modified must be greater than or equal to II and less than or equal to NX | NX |
+| 4 | J1 | A positive integer that defines the SOURCE lower bound of the array in the J-direction to be modified must be greater than or equal 1 and less than or equal to J2 and NY. | 1 |
+| 5 | J2 | A positive integer that defines the SOURCE upper bound of the array in the J-direction to be modified must be greater than or equal to JI and less than or equal to NY. | NY |
+| 6 | K1 | A positive integer that defines the SOURCE lower bound of the array in the K-direction to be modified must be greater than or equal to one and less than or equal to K2 and NZ. | 1 |
+| 7 | K2 | A positive integer that defines the SOURCE upper bound of the array in the K-direction to be modified must be greater than or equal to KI and less than or equal to NZ. | NZ |
 | 8 | I3 | A positive integer that defines the DESTINATION lower bound of the array in the I-direction to be modified must be greater than or equal 1 and less than or equal to I2 and NX. | 1 |
 | 9 | I4 | A positive integer that defines the DESTINATION upper bound of the array in the I-direction to be modified must be greater than or equal to II and less than or equal to NX | NX |
 | 10 | J3 | A positive integer that defines the DESTINATION lower bound of the array in the J-direction to be modified must be greater than or equal 1 and less than or equal to J2 and NY. | 1 |
 | 11 | J4 | A positive integer that defines the DESTINATION upper bound of the array in the J-direction to be modified must be greater than or equal to JI and less than or equal to NY. | NY |
 | 12 | K3 | A positive integer that defines the DESTINATION lower bound of the array in the K-direction to be modified must be greater than or equal to one and less than or equal to K2 and NZ. | 1 |
 | 13 | K4 | A positive integer that defines the DESTINATION upper bound of the array in the K-direction to be modified must be greater than or equal to KI and less than or equal to NZ. | NZ |
-| Notes:<br>1)  Where NX, NY and NZ are the dimensions of the model as defined on the [DIMENS](#__RefHeading___Toc20387_2267116897) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section.<br>2)  Each record must be terminated by a "/" and the keyword is terminated by a "/". |  |  |  |
+| Notes:<br>1)  Where NX, NY and NZ are the dimensions of the model as defined on the DIMENS keyword in the RUNSPEC section.<br>2)  Each record must be terminated by a "/" and the keyword is terminated by a "/". |  |  |  |
 
 Table 6.18: COPYBOX Keyword Description
 
-Note that the [SOURCE](#REF_HEADING_KEYWORD_SOURCE_12_3) and DESTINATION arrays must be of the same size in all dimensions and the applicable arrays for each section are defined in .
+Note that the SOURCE and DESTINATION arrays must be of the same size in all dimensions and the applicable arrays for each section are defined in .
 
-| [GRID](#__RefHeading___Toc38674_784232322) | [EDIT](#__RefHeading___Toc40641_784232322) | [PROPS](#__RefHeading___Toc39329_784232322) | [REGIONS](#__RefHeading___Toc40648_784232322) | [SOLUTION](#__RefHeading___Toc43947_784232322) | [SUMMARY](#__RefHeading___Toc43949_784232322) | [SCHEDULE](#__RefHeading___Toc43945_784232322) |
+| GRID | EDIT | PROPS | REGIONS | SOLUTION | SUMMARY | SCHEDULE |
 | --- | --- | --- | --- | --- | --- | --- |
-| [DX](#__RefHeading___Toc92905_705534506) |  | [SWL](#__RefHeading___Toc22881_7842323221) | [ENDNUM](#__RefHeading___Toc123125_83452205) |  |  |  |
-| [DY](#__RefHeading___Toc45767_719036256) |  | [SWCR](#__RefHeading___Toc27248_784232322) | [EQLNUM](#__RefHeading___Toc73734_2752266063) |  |  |  |
-| [DZ](#__RefHeading___Toc45769_719036256) |  | [SWU](#__RefHeading___Toc22883_7842323221) | [FIPNUM](#__RefHeading___Toc77229_2752266063) |  |  |  |
-| [PERMX](#__RefHeading___Toc45791_719036256) |  | [SGL](#__RefHeading___Toc22881_784232322) | [IMBNUM](#__RefHeading___Toc129665_83452205) |  |  |  |
-| [PERMY](#__RefHeading___Toc45793_719036256) |  | [SGCR](#__RefHeading___Toc20428_784232322) | [MISCNUM](#__RefHeading___Toc129667_83452205) |  |  |  |
-| [PERMZ](#__RefHeading___Toc45795_719036256) |  | [SGU](#__RefHeading___Toc22883_784232322) | [PVTNUM](#__RefHeading___Toc68366_2752266063) |  |  |  |
-| [MULTX](#__RefHeading___Toc80283_1778172979) |  | [KRW](#__RefHeading___Toc97397_621662414) | [ROCKNUM](#__RefHeading___Toc118210_2939291539) |  |  |  |
-| [MULTY](#__RefHeading___Toc80287_1778172979) |  | [KRO](#__RefHeading___Toc97395_621662414) | [SATNUM](#__RefHeading___Toc71136_2752266063) |  |  |  |
-| [MULTZ](#__RefHeading___Toc80291_1778172979) |  | [KRG](#__RefHeading___Toc97393_621662414) | [WH2NUM](#__RefHeading___Toc1046874_487874538) |  |  |  |
-| [DR](#__RefHeading___Toc113051_2066951158) |  | [PCG](#__RefHeading___Toc77040_621662414) |  |  |  |  |
-| [DTHETA](#__RefHeading___Toc120096_2066951158) |  | [PCW](#__RefHeading___Toc84164_621662414) |  |  |  |  |
-| [PERMR](#__RefHeading___Toc19328_3701168388) |  |  |  |  |  |  |
-| [PERMTHT](#__RefHeading___Toc114309_23127940) |  |  |  |  |  |  |
-| [DZNET](#__RefHeading___Toc272339_1772380413) |  |  |  |  |  |  |
-| [PORO](#__RefHeading___Toc45797_719036256) |  |  |  |  |  |  |
-| [NTG](#__RefHeading___Toc33334_784232322) |  |  |  |  |  |  |
-| [FLUXNUM](#__RefHeading___Toc45781_719036256) |  |  |  |  |  |  |
-| [MULTNUM](#__RefHeading___Toc61329_2752266063) |  |  |  |  |  |  |
-| [MPFANUM](#__RefHeading___Toc586676_3181922006) |  |  |  |  |  |  |
-| [DIFFX](#__RefHeading___Toc355041_1539708736) |  |  |  |  |  |  |
-| [DIFFY](#__RefHeading___Toc355043_1539708736) |  |  |  |  |  |  |
-| [DIFFZ](#__RefHeading___Toc355045_1539708736) |  |  |  |  |  |  |
-| [DIFFR](#__RefHeading___Toc344610_1539708736) |  |  |  |  |  |  |
-| [DIFFTHT](#__RefHeading___Toc349891_1539708736) |  |  |  |  |  |  |
+| DX |  | SWL | ENDNUM |  |  |  |
+| DY |  | SWCR | EQLNUM |  |  |  |
+| DZ |  | SWU | FIPNUM |  |  |  |
+| PERMX |  | SGL | IMBNUM |  |  |  |
+| PERMY |  | SGCR | MISCNUM |  |  |  |
+| PERMZ |  | SGU | PVTNUM |  |  |  |
+| MULTX |  | KRW | ROCKNUM |  |  |  |
+| MULTY |  | KRO | SATNUM |  |  |  |
+| MULTZ |  | KRG | WH2NUM |  |  |  |
+| DR |  | PCG |  |  |  |  |
+| DTHETA |  | PCW |  |  |  |  |
+| PERMR |  |  |  |  |  |  |
+| PERMTHT |  |  |  |  |  |  |
+| DZNET |  |  |  |  |  |  |
+| PORO |  |  |  |  |  |  |
+| NTG |  |  |  |  |  |  |
+| FLUXNUM |  |  |  |  |  |  |
+| MULTNUM |  |  |  |  |  |  |
+| MPFANUM |  |  |  |  |  |  |
+| DIFFX |  |  |  |  |  |  |
+| DIFFY |  |  |  |  |  |  |
+| DIFFZ |  |  |  |  |  |  |
+| DIFFR |  |  |  |  |  |  |
+| DIFFTHT |  |  |  |  |  |  |
 
-Table 6.19: [COPYBOX](#__RefHeading___Toc297205_3519154785) Keyword Applicable Arrays by Section
+Table 6.19: COPYBOX Keyword Applicable Arrays by Section
 
 #### Example
 
@@ -74,4 +74,4 @@ PERMX 1\* 1\* 1\* 1\* 12 14 1\* 1\* 1\* 1\* 15 17 / PERMX
 
 /
 
-The above example copies all the [PORO](#__RefHeading___Toc45797_719036256) and [PERMX](#__RefHeading___Toc45791_719036256) values in layers 12 to 14 to layers 15 and 17.
+The above example copies all the PORO and PERMX values in layers 12 to 14 to layers 15 and 17.

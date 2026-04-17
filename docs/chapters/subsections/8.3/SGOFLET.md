@@ -2,21 +2,21 @@
 
 ### SGOFLET -- Gas-Oil LET Relative Permeability Functions
 
-| [RUNSPEC](#3.RUNSPEC SECTION|outline) | [GRID](#4.GRID SECTION|outline) | [EDIT](#5.EDIT SECTION|outline) | [PROPS](#6.PROPS SECTION|outline) | [REGIONS](#7.REGIONS SECTION|outline) | [SOLUTION](#8.SOLUTION SECTION|outline) | [SUMMARY](#9.SUMMARY SECTION|outline) | [SCHEDULE](#10.SCHEDULE SECTION|outline) |
+| RUNSPEC | GRID | EDIT | PROPS | REGIONS | SOLUTION | SUMMARY | SCHEDULE |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 
 #### Description
 
-[SGOFLET](#__RefHeading___Toc398952_3017686537) defines the relative permeability and capillary pressure parameters for the gas-oil LET family of models. Both the gas and oil phases should be made active in the model via the [GAS](#__RefHeading___Toc38607_2267116897) and [OIL](#__RefHeading___Toc97439_1778172979) keywords in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section. See section [Saturation Table Generation - LET Functions](#saturation-table-generation---let-functions) and Lomeland et al.[^1],[^2] [^3] and [^4] for further information on the model.
+SGOFLET defines the relative permeability and capillary pressure parameters for the gas-oil LET family of models. Both the gas and oil phases should be made active in the model via the GAS and OIL keywords in the RUNSPEC section. See section [Saturation Table Generation - LET Functions](#saturation-table-generation---let-functions) and Lomeland et al.[^1],[^2] [^3] and [^4] for further information on the model.
 
-The keyword is used as a replacement for the [SGOF](#__RefHeading___Toc106870_335817223) keyword for three-phase oil-gas-water systems, and the LET series of keywords cannot be combined with the standard set of relative permeability keywords.
+The keyword is used as a replacement for the SGOF keyword for three-phase oil-gas-water systems, and the LET series of keywords cannot be combined with the standard set of relative permeability keywords.
 
-| 1 | [SGL](#__RefHeading___Toc22881_784232322) | [SGL](#__RefHeading___Toc22881_784232322) is a real positive number less than one that defines the connate gas saturation, that is smallest gas saturation in the LET function. | 0,0 |
+| 1 | SGL | SGL is a real positive number less than one that defines the connate gas saturation, that is smallest gas saturation in the LET function. | 0,0 |
 | --- | --- | --- | --- |
 | dimensionless | dimensionless | dimensionless |  |
-| 2 | [SGCR](#__RefHeading___Toc20428_784232322) | [SGCR](#__RefHeading___Toc20428_784232322) is a real positive number greater than or equal to [SGL](#__RefHeading___Toc22881_784232322) and less than one, that defines the critical gas saturation, that is the largest gas saturation for which the gas relative permeability is zero. | 0,0 |
+| 2 | SGCR | SGCR is a real positive number greater than or equal to SGL and less than one, that defines the critical gas saturation, that is the largest gas saturation for which the gas relative permeability is zero. | 0,0 |
 | dimensionless | dimensionless | dimensionless |  |
-| 3 | L[GAS](#__RefHeading___Toc38607_2267116897) | LGAS is a real positive number that defines the LET Lower empirical parameter Lg for the gas phase with the associated oil phase in the LET relative permeability equation. | 1,0 |
+| 3 | LGAS | LGAS is a real positive number that defines the LET Lower empirical parameter Lg for the gas phase with the associated oil phase in the LET relative permeability equation. | 1,0 |
 | dimensionless | dimensionless | dimensionless |  |
 | 4 | EGAS | EGAS is a real positive number that defines the LET Elevation empirical parameter Eg for the gas phase with the associated oil phase in the LET relative permeability equation. | 1,0 |
 | dimensionless | dimensionless | dimensionless |  |
@@ -26,15 +26,15 @@ The keyword is used as a replacement for the [SGOF](#__RefHeading___Toc106870_33
 | dimensionless | dimensionless | dimensionless |  |
 | 7 | SORG | SORG is a real positive number less than one that defines the residual oil saturation in a gas-oil system in the LET equations. | 0,0 |
 | dimensionless | dimensionless | dimensionless |  |
-| 8 | [SOGCR](#__RefHeading___Toc30434_784232322) | [SOGCR](#__RefHeading___Toc30434_784232322) is a real positive number less than one that defines critical oil-in-gas saturation, that is the largest oil saturation for which the oil relative permeability is zero in a gas-oil system. | 0,0 |
+| 8 | SOGCR | SOGCR is a real positive number less than one that defines critical oil-in-gas saturation, that is the largest oil saturation for which the oil relative permeability is zero in a gas-oil system. | 0,0 |
 | dimensionless | dimensionless | dimensionless |  |
-| 9 | L[OIL](#__RefHeading___Toc97439_1778172979) | LOIL is a real positive number that defines the LET Lower empirical parameter Lo for the oil phase with the associated gas phase in the LET relative permeability equation. | 1,0 |
+| 9 | LOIL | LOIL is a real positive number that defines the LET Lower empirical parameter Lo for the oil phase with the associated gas phase in the LET relative permeability equation. | 1,0 |
 | dimensionless | dimensionless | dimensionless |  |
-| 10 | E[OIL](#__RefHeading___Toc97439_1778172979) | EOIL is a real positive number that defines the LET Elevation empirical parameter Eo for the oil phase with the associated gas phase in the LET relative permeability equation. | 1,0 |
+| 10 | EOIL | EOIL is a real positive number that defines the LET Elevation empirical parameter Eo for the oil phase with the associated gas phase in the LET relative permeability equation. | 1,0 |
 | dimensionless | dimensionless | dimensionless |  |
-| 11 | T[OIL](#__RefHeading___Toc97439_1778172979) | TOIL is a real positive number that defines the LET Top empirical parameter To for the oil phase with the associated gas phase in the LET relative permeability equation. | 1,0 |
+| 11 | TOIL | TOIL is a real positive number that defines the LET Top empirical parameter To for the oil phase with the associated gas phase in the LET relative permeability equation. | 1,0 |
 | dimensionless | dimensionless | dimensionless |  |
-| 12 | KRT[OIL](#__RefHeading___Toc97439_1778172979) | KRTOIL is a real positive number less than or equal to one, that defines the relative permeability of oil at the residual oil saturation, Krot in the LET relative permeability equation. | 1,0 |
+| 12 | KRTOIL | KRTOIL is a real positive number less than or equal to one, that defines the relative permeability of oil at the residual oil saturation, Krot in the LET relative permeability equation. | 1,0 |
 | dimensionless | dimensionless | dimensionless |  |
 | 13 | LPC | LPC is a real positive number that defines the gas-oil LET Lower empirical parameter L in the LET capillary pressure equation. | 1,0 |
 | dimensionless | dimensionless | dimensionless |  |
@@ -42,11 +42,11 @@ The keyword is used as a replacement for the [SGOF](#__RefHeading___Toc106870_33
 | dimensionless | dimensionless | dimensionless |  |
 | 15 | TPC | TPC is a real positive number that defines the gas-oil LET Top empirical parameter T in the LET capillary pressure equation. | 1,0 |
 | dimensionless | dimensionless | dimensionless |  |
-| 16 | PCIR | PCIR is a real positive number that defines the gas-oil capillary pressure at connate water saturation ([SWL](#__RefHeading___Toc22881_7842323221)) in the LET capillary pressure equations. | 0,0 |
+| 16 | PCIR | PCIR is a real positive number that defines the gas-oil capillary pressure at connate water saturation (SWL) in the LET capillary pressure equations. | 0,0 |
 | psia | bars | atm |  |
 | 17 | PCIT | PCIT is a real positive number that defines the gas-oil threshold capillary pressure at the maximum water saturation in the LET capillary pressure equations. | 0,0 |
 | psia | bars | atm |  |
-| Notes:<br>1)  The keyword is followed by NTSFUN definitions as declared on the [TABDIMS](#__RefHeading___Toc89327_327352552) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section, with each definition consisting of the above 17 LET parameters.<br>2)  Each table is terminated by a "/" and there is no "/" terminator for the keyword. |  |  |  |
+| Notes:<br>1)  The keyword is followed by NTSFUN definitions as declared on the TABDIMS keyword in the RUNSPEC section, with each definition consisting of the above 17 LET parameters.<br>2)  Each table is terminated by a "/" and there is no "/" terminator for the keyword. |  |  |  |
 
 Table 8.152: SGOFLET Keyword Description
 
@@ -54,11 +54,11 @@ Note there a two versions of the LET functions, LET for two-phase flowing condit
 
 The functions are dependent on the drainage and imbibition cycle of the wetting phase as well as drainage and inhibition cycle number, since a reservoir may undergo several flooding events. To account for this the system defines the flooding event using the three saturations: Sw, So, and Sg together with the state of the three saturations during the flooding event. The saturation state can be Increasing, Decreasing, or Constant, for a given flooding event cycle number (n). Thus, Sw(D), So(I), Sg(C)1or DIC1, means the water phase is decreasing, the oil phase is increasing and the gas phase is constant for the primary or first cycle (n equals one). This is case for when oil is migrating into the reservoir rock and displacing the initial water contained with the reservoir.
 
-See also the [SGWFLET](#__RefHeading___Toc548127_947687768), and [SWOFLET](#__RefHeading___Toc398954_3017686537) keywords in this section.
+See also the SGWFLET, and SWOFLET keywords in this section.
 
 #### Example
 
-The following example uses the [SGOFLET](#__RefHeading___Toc398952_3017686537) keyword to define two relative gas-oil relative permeability tables, based on NTSFUN equals two on the [TABDIMS](#__RefHeading___Toc89327_327352552) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section.
+The following example uses the SGOFLET keyword to define two relative gas-oil relative permeability tables, based on NTSFUN equals two on the TABDIMS keyword in the RUNSPEC section.
 
 \--
 
@@ -88,7 +88,7 @@ SGOFLET
 
 1\* 1\* 1\* 1\* 1\* / TABLE NO. 02
 
-Here the [SGOFLET](#__RefHeading___Toc398952_3017686537) keyword parameters are all set to their default values.
+Here the SGOFLET keyword parameters are all set to their default values.
 
 [^1]: Lomeland F., Ebeltoft E. and Thomas W.H., 2005. A New Versatile Relative Permeability Correlation. Paper SCA2005-32 presented at the International Symposium of the Society of Core Analysts held in Toronto, Canada, 21-25 August, 2005.
 

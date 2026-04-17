@@ -1,11 +1,11 @@
 ### UDTDIMS -- Define the Dimensions of the User Defined Tables
 
-| [RUNSPEC](#3.RUNSPEC SECTION|outline) | [GRID](#4.GRID SECTION|outline) | [EDIT](#5.EDIT SECTION|outline) | [PROPS](#6.PROPS SECTION|outline) | [REGIONS](#7.REGIONS SECTION|outline) | [SOLUTION](#8.SOLUTION SECTION|outline) | [SUMMARY](#9.SUMMARY SECTION|outline) | [SCHEDULE](#10.SCHEDULE SECTION|outline) |
+| RUNSPEC | GRID | EDIT | PROPS | REGIONS | SOLUTION | SUMMARY | SCHEDULE |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 
 #### Description
 
-This keyword defines the dimensions of the User Defined Tables ("UDT") used by OPM Flow that can be used as lookup tables when assigning values to User Defined Quantities (\"[UDQ](#__RefHeading___Toc161095_2932703077)\") using the [UDQ](#__RefHeading___Toc161095_2932703077) keyword in the [SCHEDULE](#__RefHeading___Toc43945_784232322) section. UDTs are defined by the [UDT](#__RefHeading___Toc1674916_4250154414) keyword in the [SCHEDULE](#__RefHeading___Toc43945_784232322) section.
+This keyword defines the dimensions of the User Defined Tables ("UDT") used by OPM Flow that can be used as lookup tables when assigning values to User Defined Quantities (\"UDQ\") using the UDQ keyword in the SCHEDULE section. UDTs are defined by the UDT keyword in the SCHEDULE section.
 
 | 1 | MXUDT | MXUDT is a positive integer that defines the maximum number of User Defined Tables | 0 |
 | --- | --- | --- | --- |
@@ -32,4 +32,4 @@ UDTDIMS
 
 3 20 3 2 /
 
-In the above example the maximum number of [UDT](#__RefHeading___Toc1674916_4250154414) tables is set to three and the maximum number of rows for each table is 20, the maximum number of interpolation points in any given dimension is set to three and the maximum number of dimensions is defined as two.
+In the above example the maximum number of UDT tables is set to three and the maximum number of rows for each table is 20, the maximum number of interpolation points in any given dimension is set to three and the maximum number of dimensions is defined as two.

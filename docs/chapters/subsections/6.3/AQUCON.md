@@ -1,13 +1,13 @@
 ### AQUCON -- Define Numerical Aquifer Connections to the Grid
 
-| [RUNSPEC](#3.RUNSPEC SECTION|outline) | [GRID](#4.GRID SECTION|outline) | [EDIT](#5.EDIT SECTION|outline) | [PROPS](#6.PROPS SECTION|outline) | [REGIONS](#7.REGIONS SECTION|outline) | [SOLUTION](#8.SOLUTION SECTION|outline) | [SUMMARY](#9.SUMMARY SECTION|outline) | [SCHEDULE](#10.SCHEDULE SECTION|outline) |
+| RUNSPEC | GRID | EDIT | PROPS | REGIONS | SOLUTION | SUMMARY | SCHEDULE |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 
 #### Description
 
-[AQUCON](#__RefHeading___Toc115431_846947960) keyword defines how numerical aquifers are connected to the simulation grid and these type of aquifers are characterized by the [AQUNUM](#__RefHeading___Toc4430_421927891) keyword in the [GRID](#__RefHeading___Toc38674_784232322) section. Analytical aquifers are connected to the simulation grid by the [AQUANCON](#__RefHeading___Toc177536_3429068809) keyword in the [GRID](#__RefHeading___Toc38674_784232322) section, this includes the Carter-Tracy and Fetkovich analytical aquifers, both of which are implemented in OPM Flow. Both aquifer types dimensions are declared by the [AQUDIMS](#__RefHeading___Toc10103_3701168388) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section.
+AQUCON keyword defines how numerical aquifers are connected to the simulation grid and these type of aquifers are characterized by the AQUNUM keyword in the GRID section. Analytical aquifers are connected to the simulation grid by the AQUANCON keyword in the GRID section, this includes the Carter-Tracy and Fetkovich analytical aquifers, both of which are implemented in OPM Flow. Both aquifer types dimensions are declared by the AQUDIMS keyword in the RUNSPEC section.
 
-| 1 | AQUID | AQUID is a positive integer greater than or equal to one and less than or equal to the maximum number of numerical aquifers as defined by the MXNAQN variable on the [AQUDIMS](#__RefHeading___Toc10103_3701168388) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section, that defines the aquifer to be connected to the grid. | None |
+| 1 | AQUID | AQUID is a positive integer greater than or equal to one and less than or equal to the maximum number of numerical aquifers as defined by the MXNAQN variable on the AQUDIMS keyword in the RUNSPEC section, that defines the aquifer to be connected to the grid. | None |
 | --- | --- | --- | --- |
 | 2 | I1 | A positive integer that defines the lower bound of the cells in the I-direction to be connected to the aquifer and must be greater than or equal to one and less than or equal to I2 and NX. | 1 |
 | 3 | I2 | A positive integer that defines the upper bound of the cells in the I-direction to be connected to the aquifer and must be greater than or equal to I1 and less than or equal to NX | NX |
@@ -18,12 +18,12 @@
 | 8 | AQUFACE | AQUFACE is a character string that sets the connection "face" of the cells declared by this record and should be set to one of the following:<br>1)  X+, Y+, or Z+ for the positive direction, or X-, Y- or Z- for the negative direction transmissibilities.<br>2)  I+, J+, or K+ for the positive direction, or I-, J- or K- for the negative direction transmissibilities. | None |
 | 9 | AQUMULT | AQUMULT is a positive real number greater than or equal to zero that scales the OPM Flow calculated transmissibility between the AQUID aquifer and the grid cell connections defined by this record.<br>The default value of one sets the transmissibility between the aquifer and grid cells to the OPM Flow calculated value. | 1.0 |
 | dimensionless | dimensionless | dimensionless |  |
-| 10 | AQUOPT1 | AQUOPT1 is a defined integer value set to either zero or one, that defines the area to be used in calculating the connection transmissibility between the aquifer and the grid cells:<br>1)  A value of zero means the cross-sectional defined on the [AQUNUM](#__RefHeading___Toc4430_421927891) keyword will be used, whereas,<br>2)  A value of one means the cross-sectional defined by the grid cell connections defined by this record will be used. | 0 |
+| 10 | AQUOPT1 | AQUOPT1 is a defined integer value set to either zero or one, that defines the area to be used in calculating the connection transmissibility between the aquifer and the grid cells:<br>1)  A value of zero means the cross-sectional defined on the AQUNUM keyword will be used, whereas,<br>2)  A value of one means the cross-sectional defined by the grid cell connections defined by this record will be used. | 0 |
 | dimensionless | dimensionless | dimensionless |  |
 | 11 | AQUOPT2 | AQUOPT2 is a character string that sets the cell face connection and should be set to one of the following:<br>1)  YES: Aquifer connections *can adjoin* to active cells allowing for connections inside the reservoir grid. It is not recommended to use this option without thoroughly checking the connections in the model.<br>2)  NO: Aquifer connections *cannot adjoin* to active cells preventing connections inside the reservoir grid. This is the recommended and the default value. | NO |
 | 12 | VEOPT1 | Vertical Equilibrium Option Number 1-- Not Used | 1 |
 | 13 | VEOPT2 | Vertical Equilibrium Option Number 2-- Not Used | 1 |
-| Notes:<br>1)  Where NX, NY and NZ are the dimensions of the model as defined on the [DIMENS](#__RefHeading___Toc20387_2267116897) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section.<br>2)  Each record must be terminated by a "/" and the keyword is terminated by a "/". |  |  |  |
+| Notes:<br>1)  Where NX, NY and NZ are the dimensions of the model as defined on the DIMENS keyword in the RUNSPEC section.<br>2)  Each record must be terminated by a "/" and the keyword is terminated by a "/". |  |  |  |
 
 Table 6.8: AQUCON Keyword Description
 
@@ -59,4 +59,4 @@ AQUCON
 
 /
 
-See the [AQUNUM](#__RefHeading___Toc4430_421927891) keyword in the [GRID](#__RefHeading___Toc38674_784232322) section for a complete example on defining and connecting a numerical aquifer to a simulation grid.
+See the AQUNUM keyword in the GRID section for a complete example on defining and connecting a numerical aquifer to a simulation grid.

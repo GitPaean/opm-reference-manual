@@ -1,11 +1,11 @@
 ### PVTGWO -- Gas PVT Properties for Wet Gas with Vaporized Water and Oil
 
-| [RUNSPEC](#3.RUNSPEC SECTION|outline) | [GRID](#4.GRID SECTION|outline) | [EDIT](#5.EDIT SECTION|outline) | [PROPS](#6.PROPS SECTION|outline) | [REGIONS](#7.REGIONS SECTION|outline) | [SOLUTION](#8.SOLUTION SECTION|outline) | [SUMMARY](#9.SUMMARY SECTION|outline) | [SCHEDULE](#10.SCHEDULE SECTION|outline) |
+| RUNSPEC | GRID | EDIT | PROPS | REGIONS | SOLUTION | SUMMARY | SCHEDULE |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 
 #### Description
 
-[PVTGWO](#__RefHeading___Toc356776_4176551521) defines the gas PVT properties for wet gas[^1] with vaporized water and oil. This keyword should be used when the [VAPOIL](#__RefHeading___Toc56610_2267116897) and [VAPWAT](#__RefHeading___Toc317543_3149455253) keywords have been declared in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section indicating that vaporized oil and water are present in the wet gas phase. The keyword may be used for oil-water-gas input decks that contain the wet gas with vaporized oil and water phases.
+PVTGWO defines the gas PVT properties for wet gas[^1] with vaporized water and oil. This keyword should be used when the VAPOIL and VAPWAT keywords have been declared in the RUNSPEC section indicating that vaporized oil and water are present in the wet gas phase. The keyword may be used for oil-water-gas input decks that contain the wet gas with vaporized oil and water phases.
 
 This keyword is not supported by OPM Flow but would change the results if supported so the simulation will be stopped.
 
@@ -20,11 +20,11 @@ This keyword is not supported by OPM Flow but would change the results if suppor
 | rb/Mscf | rm^3^/sm^3^ | rcc/scc |  |  |
 | 5 | VISS | VISU | VISS a columnar vector of real increasing down the column values that defines the corresponding gas phase viscosity for a given pressure (PRESS) and for a given RWS and RVS.<br>VISU a columnar vector of real decreasing from VISS down the column values that defines the corresponding gas phase viscosity for a given pressure (PRESS) and for a given RWU and RVU. | None |
 | cP | cP | cP |  |  |
-| Notes:<br>1)  The keyword is followed by NTPVT tables as declared on the [TABDIMS](#__RefHeading___Toc89327_327352552) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section.<br>2)  Each table must contain a minimum of two rows and a maximum of NPPVT rows and NRPVT Rw entries as declared on the [TABDIMS](#__RefHeading___Toc89327_327352552) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section.<br>3)  Apart from the PRES data there must be same number of entries for each column.<br>4)  Each sub table defining the under saturated gas properties must be terminated by "/".<br>5)  Each main table is terminated by a single "/" on a separate line and there is no "/" terminator for the keyword. |  |  |  |  |
+| Notes:<br>1)  The keyword is followed by NTPVT tables as declared on the TABDIMS keyword in the RUNSPEC section.<br>2)  Each table must contain a minimum of two rows and a maximum of NPPVT rows and NRPVT Rw entries as declared on the TABDIMS keyword in the RUNSPEC section.<br>3)  Apart from the PRES data there must be same number of entries for each column.<br>4)  Each sub table defining the under saturated gas properties must be terminated by "/".<br>5)  Each main table is terminated by a single "/" on a separate line and there is no "/" terminator for the keyword. |  |  |  |  |
 
 Table 8.3.232.1: PVTGWO Keyword Description
 
-See also the [PVTG](#__RefHeading___Toc104060_57619843) keyword in the [PROPS](#__RefHeading___Toc39329_784232322) section that defines the wet gas PVT properties when vaporized oil is present in the gas phase, and the [PVTGW](#__RefHeading___Toc355649_3149455253) keyword in the [PROPS](#__RefHeading___Toc39329_784232322) section that defines the dry gas PVT properties when vaporized water is present in the gas phase. As an alternative to using the [PVTGWO](#__RefHeading___Toc356776_4176551521) keyword, the [PVTGW](#__RefHeading___Toc355649_3149455253) and [PVTG](#__RefHeading___Toc104060_57619843) keywords may be combined to fully define the wet gas PVT properties if both vaporized water and vaporized oil are present in the gas phase.
+See also the PVTG keyword in the PROPS section that defines the wet gas PVT properties when vaporized oil is present in the gas phase, and the PVTGW keyword in the PROPS section that defines the dry gas PVT properties when vaporized water is present in the gas phase. As an alternative to using the PVTGWO keyword, the PVTGW and PVTG keywords may be combined to fully define the wet gas PVT properties if both vaporized water and vaporized oil are present in the gas phase.
 
 #### Example
 
@@ -100,7 +100,7 @@ PVTGWO
 
 / TABLE NO. 2
 
-The above example defines two wet PVT tables assuming NTPVT equals two and NPPVT is greater than or equal to eight on the [TABDIMS](#__RefHeading___Toc89327_327352552) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section.
+The above example defines two wet PVT tables assuming NTPVT equals two and NPPVT is greater than or equal to eight on the TABDIMS keyword in the RUNSPEC section.
 
 Notice that there is no terminating "/" for this keyword only for a table and a sub table.
 

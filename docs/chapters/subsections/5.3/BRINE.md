@@ -1,13 +1,13 @@
 ### BRINE -- Activate Brine Tracking Option
 
-| [RUNSPEC](#3.RUNSPEC SECTION|outline) | [GRID](#4.GRID SECTION|outline) | [EDIT](#5.EDIT SECTION|outline) | [PROPS](#6.PROPS SECTION|outline) | [REGIONS](#7.REGIONS SECTION|outline) | [SOLUTION](#8.SOLUTION SECTION|outline) | [SUMMARY](#9.SUMMARY SECTION|outline) | [SCHEDULE](#10.SCHEDULE SECTION|outline) |
+| RUNSPEC | GRID | EDIT | PROPS | REGIONS | SOLUTION | SUMMARY | SCHEDULE |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 
 #### Description
 
-The [BRINE](#__RefHeading___Toc162083_289573908) keyword activates the standard Brine Tracking model and optionally defines the water phase to have various salinities if the [ECLMC](#__RefHeading___Toc206960_803326780) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section has been used to activate the Multi-Component Brine model, that allows for the water phase to have multiple water salinities. Note that the Multi-Component Brine model is not supported by OPM Flow.
+The BRINE keyword activates the standard Brine Tracking model and optionally defines the water phase to have various salinities if the ECLMC keyword in the RUNSPEC section has been used to activate the Multi-Component Brine model, that allows for the water phase to have multiple water salinities. Note that the Multi-Component Brine model is not supported by OPM Flow.
 
-| 1 | SALTS | An optional character vector string that defines the salts to be tracked for when the Multi-Component Brine model has been activated by the [ECLMC](#__RefHeading___Toc206960_803326780) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section.<br>SALTS should be set to one or more of the following salt chemical formulae: | None |
+| 1 | SALTS | An optional character vector string that defines the salts to be tracked for when the Multi-Component Brine model has been activated by the ECLMC keyword in the RUNSPEC section.<br>SALTS should be set to one or more of the following salt chemical formulae: | None |
 | --- | --- | --- | --- |
 | Salt Name | Salt Chemical Formulae |  |  |
 | Sodium Chloride | NaCl |  |  |
@@ -22,12 +22,12 @@ The [BRINE](#__RefHeading___Toc162083_289573908) keyword activates the standard 
 | Potassium Sulfate | K~2~SO~4~ |  |  |
 | Calcium Sulfate | CaSO~4~ |  |  |
 | Magnesium Sulfate | MgSO~4~ |  |  |
-| Note that the [ECLMC](#__RefHeading___Toc206960_803326780) option is currently not available in OPM Flow, so only the [BRINE](#__RefHeading___Toc162083_289573908) keyword without the optional [SALT](#__RefHeading___Toc593214_516898843) variables should be declared in the input deck. |  |  |  |
-| Notes:<br>1)  There is no data required for this keyword if the standard Brine Tracking option is being activated and there should be no terminating "/" in this case. However, if the Multi-Component Brine Tracking option has been invoked by the [ECLMC](#__RefHeading___Toc206960_803326780) keyword, a list of SALTS must be supplied and in this case.<br>2)  The keyword is terminated by a "/". |  |  |  |
+| Note that the ECLMC option is currently not available in OPM Flow, so only the BRINE keyword without the optional SALT variables should be declared in the input deck. |  |  |  |
+| Notes:<br>1)  There is no data required for this keyword if the standard Brine Tracking option is being activated and there should be no terminating "/" in this case. However, if the Multi-Component Brine Tracking option has been invoked by the ECLMC keyword, a list of SALTS must be supplied and in this case.<br>2)  The keyword is terminated by a "/". |  |  |  |
 
 Table 5.6: BRINE Keyword Description
 
-See also the [PRECSALT](#__RefHeading___Toc332782_3149455253) and [VAPWAT](#__RefHeading___Toc317543_3149455253) keywords in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section that activates OPM Flow's Salt Precipitation model, and the [PVTWSALT](#__RefHeading___Toc331848_501926209) keyword in the [PROPS](#__RefHeading___Toc39329_784232322) section to define the water properties with respect to salt concentration.
+See also the PRECSALT and VAPWAT keywords in the RUNSPEC section that activates OPM Flow's Salt Precipitation model, and the PVTWSALT keyword in the PROPS section to define the water properties with respect to salt concentration.
 
 #### Example
 

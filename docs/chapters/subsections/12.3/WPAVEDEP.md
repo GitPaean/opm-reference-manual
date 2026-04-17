@@ -1,21 +1,21 @@
 ### WPAVEDEP -- Define Well Reference Depth for Pressure Calculations
 
-| [RUNSPEC](#3.RUNSPEC SECTION|outline) | [GRID](#4.GRID SECTION|outline) | [EDIT](#5.EDIT SECTION|outline) | [PROPS](#6.PROPS SECTION|outline) | [REGIONS](#7.REGIONS SECTION|outline) | [SOLUTION](#8.SOLUTION SECTION|outline) | [SUMMARY](#9.SUMMARY SECTION|outline) | [SCHEDULE](#10.SCHEDULE SECTION|outline) |
+| RUNSPEC | GRID | EDIT | PROPS | REGIONS | SOLUTION | SUMMARY | SCHEDULE |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 
 #### Description
 
-The [WPAVEDEP](#__RefHeading___Toc121639_2412586160) keyword defines the reference depth to be used to calculate and report grid block average bottom-hole pressures for a well. This keyword can be used to override the values entered or defaulted on the [WELSPECS](#__RefHeading___Toc268463_1366622701) keyword in the [SCHEDULE](#__RefHeading___Toc43945_784232322) section. The simulator corrects the grid block calculated pressures to a well's reference depth using the hydrostatic well of the producing fluids.
+The WPAVEDEP keyword defines the reference depth to be used to calculate and report grid block average bottom-hole pressures for a well. This keyword can be used to override the values entered or defaulted on the WELSPECS keyword in the SCHEDULE section. The simulator corrects the grid block calculated pressures to a well's reference depth using the hydrostatic well of the producing fluids.
 
-| 1 | WELNAME | A character string of up to eight characters in length that defines the well name for which the well and well connection status data is being defined.<br>Note that the well name (WELNAME) must have been declared previously using the [WELSPECS](#__RefHeading___Toc268463_1366622701) keyword in the [SCHEDULE](#__RefHeading___Toc43945_784232322) section, otherwise an error may occur. | None |
+| 1 | WELNAME | A character string of up to eight characters in length that defines the well name for which the well and well connection status data is being defined.<br>Note that the well name (WELNAME) must have been declared previously using the WELSPECS keyword in the SCHEDULE section, otherwise an error may occur. | None |
 | --- | --- | --- | --- |
-| 2 | BHPREF | A real value that defines the reference depth for reporting the bottom-hole pressure for the well. Ideally this value should be set to the midpoint of the perforations as defined by the [COMPDAT](#__RefHeading___Toc97651_3261743917) keyword in the [SCHEDULE](#__RefHeading___Toc43945_784232322) section.<br>If defaulted by 1\* or set to a value less than or equal to zero, then the mid-point of shallowest connection defined by the [COMPDAT](#__RefHeading___Toc97651_3261743917) keyword will be used. | Mid-point of shallowest connection defined by the [COMPDAT](#__RefHeading___Toc97651_3261743917) keyword |
+| 2 | BHPREF | A real value that defines the reference depth for reporting the bottom-hole pressure for the well. Ideally this value should be set to the midpoint of the perforations as defined by the COMPDAT keyword in the SCHEDULE section.<br>If defaulted by 1\* or set to a value less than or equal to zero, then the mid-point of shallowest connection defined by the COMPDAT keyword will be used. | Mid-point of shallowest connection defined by the COMPDAT keyword |
 | feet | m | cm |  |
 | Notes:<br>1)  The keyword is followed by any number of records with each record terminated by a "/" and the keyword should be terminated by a "/". |  |  |  |
 
 Table 12.109: WPAVDEP Keyword Description
 
-See also the [WELSPECS](#__RefHeading___Toc268463_1366622701) keyword that defines a well, the [COMPDAT](#__RefHeading___Toc97651_3261743917) keyword to define a well's connections, and the [WPAVE](#__RefHeading___Toc121923_2556401936) for defining how the average bottom-hole pressure should be calculated. All the aforementioned keywords are described in the [SCHEDULE](#__RefHeading___Toc43945_784232322) section.
+See also the WELSPECS keyword that defines a well, the COMPDAT keyword to define a well's connections, and the WPAVE for defining how the average bottom-hole pressure should be calculated. All the aforementioned keywords are described in the SCHEDULE section.
 
 #### Example
 

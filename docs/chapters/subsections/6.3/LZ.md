@@ -1,26 +1,26 @@
 ### LZ -- Dual Porosity Viscous Displacement Z Direction Matrix Size for All Cells
 
-| [RUNSPEC](#3.RUNSPEC SECTION|outline) | [GRID](#4.GRID SECTION|outline) | [EDIT](#5.EDIT SECTION|outline) | [PROPS](#6.PROPS SECTION|outline) | [REGIONS](#7.REGIONS SECTION|outline) | [SOLUTION](#8.SOLUTION SECTION|outline) | [SUMMARY](#9.SUMMARY SECTION|outline) | [SCHEDULE](#10.SCHEDULE SECTION|outline) |
+| RUNSPEC | GRID | EDIT | PROPS | REGIONS | SOLUTION | SUMMARY | SCHEDULE |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 
 #### Description
 
-The [LZ](#__RefHeading___Toc499453_3181922006) keyword defines the size of "representative" matrix grid blocks in the Z direction via an array in dual porosity and dual permeability runs, for when the [VISCD](#__RefHeading___Toc486166_3181922006) keyword has been used in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section to activate the dual porosity viscous displacement option. In addition, either the [DUALPORO](#__RefHeading___Toc241173_1772380413) or [DUALPERM](#__RefHeading___Toc241171_1772380413) keyword should be entered in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section to activate the dual porosity or dual permeability models. The [VISCD](#__RefHeading___Toc486166_3181922006) option is used to model the viscous displacement of fluids from the matrix by the fracture pressure gradient, for when the fracture system has a more moderate permeability, and flow to and from the matrix caused by the fracture pressure gradient acts as an additional production mechanism.
+The LZ keyword defines the size of "representative" matrix grid blocks in the Z direction via an array in dual porosity and dual permeability runs, for when the VISCD keyword has been used in the RUNSPEC section to activate the dual porosity viscous displacement option. In addition, either the DUALPORO or DUALPERM keyword should be entered in the RUNSPEC section to activate the dual porosity or dual permeability models. The VISCD option is used to model the viscous displacement of fluids from the matrix by the fracture pressure gradient, for when the fracture system has a more moderate permeability, and flow to and from the matrix caused by the fracture pressure gradient acts as an additional production mechanism.
 
 This keyword is not supported by OPM Flow but would change the results if supported so the simulation will be stopped.
 
 | No. | Name | Description | Default |
 | --- | --- | --- | --- |
 | Field | Metric | Laboratory |  |
-| 1 | [LZ](#__RefHeading___Toc499453_3181922006) | [LZ](#__RefHeading___Toc499453_3181922006) is an array of real numbers describing the "representative" cell size in the Z direction for each cell in the model.<br>Repeat counts may be used, for example 10\*100.0. | 0 |
+| 1 | LZ | LZ is an array of real numbers describing the "representative" cell size in the Z direction for each cell in the model.<br>Repeat counts may be used, for example 10\*100.0. | 0 |
 | feet | m | cm |  |
-| Notes:<br>1)  The number of entries should correspond to the NX x NY x (NZ/2) parameters on the [DIMENS](#__RefHeading___Toc20387_2267116897) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section, unless the [BOX](#__RefHeading___Toc42110_3671211675) keyword defines a sub area of the grid, in which case the total number of entries should correspond to the number of cells defined by the [BOX](#__RefHeading___Toc42110_3671211675) statement.<br>2)  The keyword is terminated by a "/". |  |  |  |
+| Notes:<br>1)  The number of entries should correspond to the NX x NY x (NZ/2) parameters on the DIMENS keyword in the RUNSPEC section, unless the BOX keyword defines a sub area of the grid, in which case the total number of entries should correspond to the number of cells defined by the BOX statement.<br>2)  The keyword is terminated by a "/". |  |  |  |
 
 Table 6.57: LZ Keyword Description
 
-If the [VISCD](#__RefHeading___Toc486166_3181922006) keyword has been used to activate the Dual Porosity Viscous Displacement option and [LZ](#__RefHeading___Toc499453_3181922006) has not been specified then [LZ](#__RefHeading___Toc499453_3181922006) is set to zero in the calculation of the viscous displacement term.
+If the VISCD keyword has been used to activate the Dual Porosity Viscous Displacement option and LZ has not been specified then LZ is set to zero in the calculation of the viscous displacement term.
 
-See also the [LX](#__RefHeading___Toc499449_3181922006), [LY](#__RefHeading___Toc499451_3181922006) and [LTOSIGMA](#__RefHeading___Toc528401_3181922006) keywords in the [GRID](#__RefHeading___Toc38674_784232322) section.
+See also the LX, LY and LTOSIGMA keywords in the GRID section.
 
 #### Example
 
@@ -56,4 +56,4 @@ LZ
 
 ENDBOX
 
-The example defines a subset of the grid and the size of the "representative" matrix cells in the Y direction to 15.0 ft.; after which the [ENDBOX](#__RefHeading___Toc88719_1778172979) keyword resets the input to be the full grid.
+The example defines a subset of the grid and the size of the "representative" matrix cells in the Y direction to 15.0 ft.; after which the ENDBOX keyword resets the input to be the full grid.

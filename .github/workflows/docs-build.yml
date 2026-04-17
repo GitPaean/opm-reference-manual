@@ -69,6 +69,8 @@ jobs:
       # 6. Build the MkDocs site (HTML)
       # ------------------------------------------------------------------
       - name: Build MkDocs site
+        env:
+          ENABLE_PDF_EXPORT: "1"
         run: mkdocs build --strict
 
       # ------------------------------------------------------------------

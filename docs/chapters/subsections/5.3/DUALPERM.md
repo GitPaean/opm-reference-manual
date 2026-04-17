@@ -1,11 +1,11 @@
 ### DUALPERM -- Activate Dual Permeability Model
 
-| [RUNSPEC](#3.RUNSPEC SECTION|outline) | [GRID](#4.GRID SECTION|outline) | [EDIT](#5.EDIT SECTION|outline) | [PROPS](#6.PROPS SECTION|outline) | [REGIONS](#7.REGIONS SECTION|outline) | [SOLUTION](#8.SOLUTION SECTION|outline) | [SUMMARY](#9.SUMMARY SECTION|outline) | [SCHEDULE](#10.SCHEDULE SECTION|outline) |
+| RUNSPEC | GRID | EDIT | PROPS | REGIONS | SOLUTION | SUMMARY | SCHEDULE |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 
 #### Description
 
-The [DUALPERM](#__RefHeading___Toc241171_1772380413) keyword activates the Dual Permeability option and the Dual Porosity option for the run. In a dual porosity system flow occurs between the matrix and the fracture only, whereas in a dual permeability system flow also occurs between the matrix grid blocks[^1], [^2], [^3], [^4] and [^5].
+The DUALPERM keyword activates the Dual Permeability option and the Dual Porosity option for the run. In a dual porosity system flow occurs between the matrix and the fracture only, whereas in a dual permeability system flow also occurs between the matrix grid blocks[^1], [^2], [^3], [^4] and [^5].
 
 This keyword is not supported by OPM Flow but would change the results if supported so the simulation will be stopped.
 

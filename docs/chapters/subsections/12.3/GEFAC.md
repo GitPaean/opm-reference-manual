@@ -1,15 +1,15 @@
 ### GEFAC -- Define Group Efficiency
 
-| [RUNSPEC](#3.RUNSPEC SECTION|outline) | [GRID](#4.GRID SECTION|outline) | [EDIT](#5.EDIT SECTION|outline) | [PROPS](#6.PROPS SECTION|outline) | [REGIONS](#7.REGIONS SECTION|outline) | [SOLUTION](#8.SOLUTION SECTION|outline) | [SUMMARY](#9.SUMMARY SECTION|outline) | [SCHEDULE](#10.SCHEDULE SECTION|outline) |
+| RUNSPEC | GRID | EDIT | PROPS | REGIONS | SOLUTION | SUMMARY | SCHEDULE |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 
 #### Description
 
 Defines a group's efficiency or up-time factor as opposed to setting the efficiency factors for individual wells.
 
-Note that wells are allocated to a group when they are specified by the [WELSPECS](#__RefHeading___Toc268463_1366622701) keyword and wells can also have efficiency factors.
+Note that wells are allocated to a group when they are specified by the WELSPECS keyword and wells can also have efficiency factors.
 
-| 1 | GRPNAME | A character string of up to eight characters in length that defines the group name for which the group efficiency factor is being defined. The group named FIELD is the top most group and cannot have an efficiency factor set.<br>Note that the group hierarchy should be defined by the [GRUPTREE](#__RefHeading___Toc118321_1596574740) keyword when there is more than one level of groups, otherwise all the groups will sit directly under the FIELD group in the group tree hierarchy. | None |
+| 1 | GRPNAME | A character string of up to eight characters in length that defines the group name for which the group efficiency factor is being defined. The group named FIELD is the top most group and cannot have an efficiency factor set.<br>Note that the group hierarchy should be defined by the GRUPTREE keyword when there is more than one level of groups, otherwise all the groups will sit directly under the FIELD group in the group tree hierarchy. | None |
 | --- | --- | --- | --- |
 | 2 | FACTOR | A real positive value less than or equal to one that defines the efficiency factor for the group.<br>If a group's down time is 5% then FACTOR should be set to 0.95 (1.0 -- 0.05). | 1.0 |
 | dimensionless | dimensionless | dimensionless |  |
@@ -18,7 +18,7 @@ Note that wells are allocated to a group when they are specified by the [WELSPEC
 
 Table 12.38: GEFAC Keyword Description
 
-See also the [WEFAC](#__RefHeading___Toc48856_327352552) and [NEFAC](#__RefHeading___Toc299702_1841740821) keywords in the [SCHEDULE](#__RefHeading___Toc43945_784232322) section to define the efficiency factor for a well or a node.
+See also the WEFAC and NEFAC keywords in the SCHEDULE section to define the efficiency factor for a well or a node.
 
 #### Example
 

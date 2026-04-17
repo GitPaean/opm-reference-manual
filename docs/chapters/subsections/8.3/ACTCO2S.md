@@ -1,18 +1,18 @@
 ### ACTCO2S -- Activity Model for CO2
 
-| [RUNSPEC](#3.RUNSPEC SECTION|outline) | [GRID](#4.GRID SECTION|outline) | [EDIT](#5.EDIT SECTION|outline) | [PROPS](#6.PROPS SECTION|outline) | [REGIONS](#7.REGIONS SECTION|outline) | [SOLUTION](#8.SOLUTION SECTION|outline) | [SUMMARY](#9.SUMMARY SECTION|outline) | [SCHEDULE](#10.SCHEDULE SECTION|outline) |
+| RUNSPEC | GRID | EDIT | PROPS | REGIONS | SOLUTION | SUMMARY | SCHEDULE |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 
 #### Description
 
-The keyword [ACTCO2S](#REF_HEADING_KEYWORD_ACTCO2S) specifies the activity model for salting-out effects when calculating mutual solubility in the CO2 storage module which is activated by the [CO2STORE](#__RefHeading___Toc387968_1616145207) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section.
+The keyword ACTCO2S specifies the activity model for salting-out effects when calculating mutual solubility in the CO2 storage module which is activated by the CO2STORE keyword in the RUNSPEC section.
 
 | No. | Name | Description | Default |
 | --- | --- | --- | --- |
 | 1 | ACTMODEL | A positive integer value selecting the activity model for the salting-out effect. The choices are:<br>1)  The Rumpf et al.[^1] model as detailed in the paper by Spycher and Pruess[^2]. The model was calibrated in the P-T range 5 to 96 bar and 40 to 160°C, and was shown in Spycher and Pruess^^ to be accurate in the P-T range 1 to 600 bar and 12 to 100°C. Note that this model requires a (fixed-point) iteration procedure to compute solubility, but usually converges within few iterations.<br>2)  The Duan and Sun[^3] model as detailed in the paper by Spycher and Pruess[^4]. The model was recalibrated to the P-T range 1 to 600 bar and 12 to 300°C, and was shown to be accurate within the same range. Note that above 99°C a (fixed-point) iteration procedure is required to compute solubility, while below 99°C the computations are done in a direct manner without needing iterations.<br>3)  The Duan and Sun^^ model as detailed in the paper by Spycher and Pruess^^. The model was calibrated to the P-T range 0 to 2000 bar and 0 to 260°C, and was shown in Spycher and Pruess^^ to be accurate in the P-T range 1 to 600 bar and 12 to 100°C. Note that no iterations are required to compute the solubility. | 3 |
 | Notes:<br>1)  The keyword is terminated by a "/". |  |  |  |
 
-Table 8.3.1.1: [ACTCO2S](#REF_HEADING_KEYWORD_ACTCO2S) Keyword Description
+Table 8.3.1.1: ACTCO2S Keyword Description
 
 #### Example
 

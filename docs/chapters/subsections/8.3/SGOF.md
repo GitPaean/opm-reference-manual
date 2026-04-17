@@ -1,30 +1,30 @@
 ### SGOF -- Gas-Oil Saturation Tables versus Gas (Format Type 1)
 
-| [RUNSPEC](#3.RUNSPEC SECTION|outline) | [GRID](#4.GRID SECTION|outline) | [EDIT](#5.EDIT SECTION|outline) | [PROPS](#6.PROPS SECTION|outline) | [REGIONS](#7.REGIONS SECTION|outline) | [SOLUTION](#8.SOLUTION SECTION|outline) | [SUMMARY](#9.SUMMARY SECTION|outline) | [SCHEDULE](#10.SCHEDULE SECTION|outline) |
+| RUNSPEC | GRID | EDIT | PROPS | REGIONS | SOLUTION | SUMMARY | SCHEDULE |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 
 #### Description
 
-The [SGOF](#__RefHeading___Toc106870_335817223) keyword defines the oil and gas relative permeability and oil-gas capillary versus gas saturation tables for when oil and gas are present in the input deck. This keyword should only be used if both oil and gas are present in the run.
+The SGOF keyword defines the oil and gas relative permeability and oil-gas capillary versus gas saturation tables for when oil and gas are present in the input deck. This keyword should only be used if both oil and gas are present in the run.
 
 | No. | Name | Description | Default |
 | --- | --- | --- | --- |
 | Field | Metric | Laboratory |  |
-| 1 | [SGAS](#__RefHeading___Toc137369_1317547213) | A columnar vector of real monotonically increasing down the column values starting from zero and terminating at one, that defines the gas saturation. | None |
+| 1 | SGAS | A columnar vector of real monotonically increasing down the column values starting from zero and terminating at one, that defines the gas saturation. | None |
 | dimensionless | dimensionless | dimensionless |  |
-| 2 | [KRG](#__RefHeading___Toc97393_621662414) | A columnar vector of real values that are either equal or increasing down the column and that are greater than or equal to zero and less than or equal to one that defines the gas relative permeability. | None |
+| 2 | KRG | A columnar vector of real values that are either equal or increasing down the column and that are greater than or equal to zero and less than or equal to one that defines the gas relative permeability. | None |
 | dimensionless | dimensionless | dimensionless |  |
-| 3 | [KRO](#__RefHeading___Toc97395_621662414) | A columnar vector of real values that are either equal or decreasing down the column and that are greater than or equal to zero and less than or equal to one that defines the oil relative permeability with respect to gas and connate water saturation.<br>When water is active in the run, the first entry the column, that is at krog(Sg = 0), must be the same as the first entry in the corresponding [SWOF](#__RefHeading___Toc45811_7190362561) table, that is at krow(So = 1 - Swco).<br>The last value in the column should be zero. | None |
+| 3 | KRO | A columnar vector of real values that are either equal or decreasing down the column and that are greater than or equal to zero and less than or equal to one that defines the oil relative permeability with respect to gas and connate water saturation.<br>When water is active in the run, the first entry the column, that is at krog(Sg = 0), must be the same as the first entry in the corresponding SWOF table, that is at krow(So = 1 - Swco).<br>The last value in the column should be zero. | None |
 | dimensionless | dimensionless | dimensionless |  |
 | 4 | PCOG | A columnar vector of real values that are either equal or increasing down the column that defines the oil-gas relative capillary pressure. | None |
 | psia | bars | atm |  |
-| Notes:<br>1)  The keyword is followed by NTSFUN tables as declared on the [TABDIMS](#__RefHeading___Toc89327_327352552) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section.<br>2)  Each table must contain a minimum of two rows and a maximum of NSSFUN rows as declared on the [TABDIMS](#__RefHeading___Toc89327_327352552) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section.<br>3)  Each table is terminated by a "/" and there is no "/" terminator for the keyword. |  |  |  |
+| Notes:<br>1)  The keyword is followed by NTSFUN tables as declared on the TABDIMS keyword in the RUNSPEC section.<br>2)  Each table must contain a minimum of two rows and a maximum of NSSFUN rows as declared on the TABDIMS keyword in the RUNSPEC section.<br>3)  Each table is terminated by a "/" and there is no "/" terminator for the keyword. |  |  |  |
 
 Table 8.151: SGOF Keyword Description
 
 #### Example
 
-The following example is based on NTSFUN equals two on the [TABDIMS](#__RefHeading___Toc89327_327352552) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section.
+The following example is based on NTSFUN equals two on the TABDIMS keyword in the RUNSPEC section.
 
 \--
 
@@ -118,4 +118,4 @@ SGOF
 
 0.80000 0.900000 0.00000 0.0000 / TABLE No. 02
 
-The example defines two [SGOF](#__RefHeading___Toc106870_335817223) tables for use when oil, gas and water are present in the run.
+The example defines two SGOF tables for use when oil, gas and water are present in the run.

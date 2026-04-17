@@ -1,20 +1,20 @@
 ### DRSDTCON -- CO2 Convective Dissolution Parameters
 
-| [RUNSPEC](#3.RUNSPEC SECTION|outline) | [GRID](#4.GRID SECTION|outline) | [EDIT](#5.EDIT SECTION|outline) | [PROPS](#6.PROPS SECTION|outline) | [REGIONS](#7.REGIONS SECTION|outline) | [SOLUTION](#8.SOLUTION SECTION|outline) | [SUMMARY](#9.SUMMARY SECTION|outline) | [SCHEDULE](#10.SCHEDULE SECTION|outline) |
+| RUNSPEC | GRID | EDIT | PROPS | REGIONS | SOLUTION | SUMMARY | SCHEDULE |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 
 #### Description
 
-The [DRSDTCON](#__RefHeading___Toc481925_1297399298) keyword defines the parameters that control the convective dissolution of carbon dioxide (CO~2~) into the in-situ brine within a grid cell, as described by Mykkeltvedt *et al*.[^1], based on an assumption of vertical equilibrium. The keyword internally causes the simulator to calculate the solution gas-oil ratio (R~s~), normally controlled by the DRSDT1 parameter on the [DRSDT](#__RefHeading___Toc117623_2179381650) keyword in the [SCHEDULE](#__RefHeading___Toc43945_784232322) section, making the [DRSDT](#__RefHeading___Toc117623_2179381650) keyword redundant.
+The DRSDTCON keyword defines the parameters that control the convective dissolution of carbon dioxide (CO~2~) into the in-situ brine within a grid cell, as described by Mykkeltvedt *et al*.[^1], based on an assumption of vertical equilibrium. The keyword internally causes the simulator to calculate the solution gas-oil ratio (R~s~), normally controlled by the DRSDT1 parameter on the DRSDT keyword in the SCHEDULE section, making the DRSDT keyword redundant.
 
-The keyword should only be used if the [CO2STORE](#__RefHeading___Toc387968_1616145207) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section has been activated to model CO~2~ storage via OPM Flow's CO~2~-Brine PVT model. Note that the [CO2STORE](#__RefHeading___Toc387968_1616145207) keyword must be used together with either: (1) the [GAS](#__RefHeading___Toc38607_2267116897), [WATER](#__RefHeading___Toc38611_2267116897) and [DISGASW](#__RefHeading___Toc39767_22671168971) keywords (or alternatively the [GASWAT](#__RefHeading___Toc38607_2267116897 Copy 1) and [DISGASW](#__RefHeading___Toc39767_22671168971) keywords), or (2) the [GAS](#__RefHeading___Toc38607_2267116897), [OIL](#__RefHeading___Toc97439_1778172979) and [DISGAS](#__RefHeading___Toc39767_2267116897) keywords in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section. See the [CO2STORE](#__RefHeading___Toc387968_1616145207) keyword for details.
+The keyword should only be used if the CO2STORE keyword in the RUNSPEC section has been activated to model CO~2~ storage via OPM Flow's CO~2~-Brine PVT model. Note that the CO2STORE keyword must be used together with either: (1) the GAS, WATER and DISGASW keywords (or alternatively the GASWAT and DISGASW keywords), or (2) the GAS, OIL and DISGAS keywords in the RUNSPEC section. See the CO2STORE keyword for details.
 
-The [DRSDTCON](#__RefHeading___Toc481925_1297399298) keyword is an OPM Flow specific keyword.
+The DRSDTCON keyword is an OPM Flow specific keyword.
 
 | No. | Name | Description | Default |
 | --- | --- | --- | --- |
 | Field | Metric | Laboratory |  |
-| 1 | CHI | A real positive value (**) that defines the proportionality constant related to the maximum rate of increase of CO~2~ solution gas-oil ratio (*R*~*s*~) in the Linear regime.<br>A value of zero means that convective dissolution of CO~2~ into in-situ brine does not occur and free CO~2~ cannot dissolve into the brine. Alternatively, a non-zero value of CHI allows convective dissolution of CO~2~.<br>Note if the [CO2STORE](#__RefHeading___Toc387968_1616145207) keyword is present but the [DRSDTCON](#__RefHeading___Toc481925_1297399298) keyword is absent from the input deck, then this results in instantaneous dissolution of CO~2~ into the available undersaturated in-situ brine. | 0.04 |
+| 1 | CHI | A real positive value (**) that defines the proportionality constant related to the maximum rate of increase of CO~2~ solution gas-oil ratio (*R*~*s*~) in the Linear regime.<br>A value of zero means that convective dissolution of CO~2~ into in-situ brine does not occur and free CO~2~ cannot dissolve into the brine. Alternatively, a non-zero value of CHI allows convective dissolution of CO~2~.<br>Note if the CO2STORE keyword is present but the DRSDTCON keyword is absent from the input deck, then this results in instantaneous dissolution of CO~2~ into the available undersaturated in-situ brine. | 0.04 |
 | dimensionless | dimensionless | dimensionless |  |
 | 1 | PSI | A real positive value (**) that defines the normalised CO~2~ solution gas-oil ratio () at the transition between the Linear and the Steady-State regimes. | 0.34 |
 | dimensionless | dimensionless | dimensionless |  |
@@ -45,7 +45,7 @@ Where:
 
 *S*~*o*~ = oil saturation.
 
-This is followed by the Linear phase where the finger speed is assumed to be relatively constant and therefore it is reasonable to assume that the CO~2~ gas-oil ratio will increase at a constant rate (Linear regime). The maximum dissolution rate, as per the [DRSDT](#__RefHeading___Toc117623_2179381650) keyword in the [SCHEDULE](#__RefHeading___Toc43945_784232322) section during the Linear regime (*F*~*lin*~) is given by:
+This is followed by the Linear phase where the finger speed is assumed to be relatively constant and therefore it is reasonable to assume that the CO~2~ gas-oil ratio will increase at a constant rate (Linear regime). The maximum dissolution rate, as per the DRSDT keyword in the SCHEDULE section during the Linear regime (*F*~*lin*~) is given by:
 
 Where:
 
@@ -75,7 +75,7 @@ The values of CHI, PSI and OMEGA can either be estimated from fine-scale simulat
 
 #### Example
 
-The example below is similar to that shown under the [CO2STORE](#__RefHeading___Toc387968_1616145207) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section. In the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section one declares that the carbon dioxide storage model is active for the run to account for both carbon dioxide and water phase solubility using OPM Flow's CO~2~-Brine PVT model.
+The example below is similar to that shown under the CO2STORE keyword in the RUNSPEC section. In the RUNSPEC section one declares that the carbon dioxide storage model is active for the run to account for both carbon dioxide and water phase solubility using OPM Flow's CO~2~-Brine PVT model.
 
 \-- ==============================================================================
 
@@ -127,7 +127,7 @@ DISGASW
 
 VAPWAT
 
-The second part of the example sets the maximum dissolution rate for convective CO~2~ mixing via the [DRSDTCON](#__RefHeading___Toc481925_1297399298) keyword in the [SCHEDULE](#__RefHeading___Toc43945_784232322) section using the base case parameters calculated by Mykkeltvedt *et al* from fine-scale simulations.
+The second part of the example sets the maximum dissolution rate for convective CO~2~ mixing via the DRSDTCON keyword in the SCHEDULE section using the base case parameters calculated by Mykkeltvedt *et al* from fine-scale simulations.
 
 \-- ==============================================================================
 
@@ -153,7 +153,7 @@ DRSDTCON
 
 0.04 0.34 3.0E-09 ALL /
 
-See also the [CO2STORE](#__RefHeading___Toc387968_1616145207) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section for further information on OPM Flow's CO~2~ storage facility.
+See also the CO2STORE keyword in the RUNSPEC section for further information on OPM Flow's CO~2~ storage facility.
 
 [^1]: Mykkeltvedt, T.S., Sandve, T.H. & Gasda, S.E. New Sub-grid Model for Convective Mixing in Field-Scale CO~2~ Storage Simulation. Transp Porous Med 152, 9 (2025). https://doi.org/10.1007/s11242-024-02141-5
 

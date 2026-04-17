@@ -1,17 +1,17 @@
 ### DATE -- Activate the DATE Option for the SUMMARY File
 
-| [RUNSPEC](#3.RUNSPEC SECTION|outline) | [GRID](#4.GRID SECTION|outline) | [EDIT](#5.EDIT SECTION|outline) | [PROPS](#6.PROPS SECTION|outline) | [REGIONS](#7.REGIONS SECTION|outline) | [SOLUTION](#8.SOLUTION SECTION|outline) | [SUMMARY](#9.SUMMARY SECTION|outline) | [SCHEDULE](#10.SCHEDULE SECTION|outline) |
+| RUNSPEC | GRID | EDIT | PROPS | REGIONS | SOLUTION | SUMMARY | SCHEDULE |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 
 #### Description
 
-This keyword activates the writing out of the date of each time step to the [SUMMARY](#__RefHeading___Toc43949_784232322) file. Normally only the time in days and decimal years are written out to the [SUMMARY](#__RefHeading___Toc43949_784232322) file, activating the [DATE](#__RefHeading___Toc210146_2884651453) option also results in the [DATE](#__RefHeading___Toc210146_2884651453) being written out to the [SUMMARY](#__RefHeading___Toc43949_784232322) file as well. This option is normally used when the [RUNSUM](#__RefHeading___Toc210156_2884651453) keyword in the [SUMMARY](#__RefHeading___Toc43949_784232322) section has been activated to produce a RSM file.
+This keyword activates the writing out of the date of each time step to the SUMMARY file. Normally only the time in days and decimal years are written out to the SUMMARY file, activating the DATE option also results in the DATE being written out to the SUMMARY file as well. This option is normally used when the RUNSUM keyword in the SUMMARY section has been activated to produce a RSM file.
 
 There is no data required for this keyword and there is no terminating "/" for this keyword.
 
 #### Example
 
-The following example shows an example RSM file output when the [DATE](#__RefHeading___Toc210146_2884651453) option has not been activated.
+The following example shows an example RSM file output when the DATE option has not been activated.
 
 \-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--
 
@@ -41,7 +41,7 @@ DAYS YEARS PSIA STB/DAY STB
 
 .......................................................
 
-And activating the [SUMMARY](#__RefHeading___Toc43949_784232322) file [DATE](#__RefHeading___Toc210146_2884651453) option with:
+And activating the SUMMARY file DATE option with:
 
 \--
 

@@ -1,15 +1,15 @@
 ### GSATINJE -- Define Group Satellite Injection Rates
 
-| [RUNSPEC](#3.RUNSPEC SECTION|outline) | [GRID](#4.GRID SECTION|outline) | [EDIT](#5.EDIT SECTION|outline) | [PROPS](#6.PROPS SECTION|outline) | [REGIONS](#7.REGIONS SECTION|outline) | [SOLUTION](#8.SOLUTION SECTION|outline) | [SUMMARY](#9.SUMMARY SECTION|outline) | [SCHEDULE](#10.SCHEDULE SECTION|outline) |
+| RUNSPEC | GRID | EDIT | PROPS | REGIONS | SOLUTION | SUMMARY | SCHEDULE |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 
 #### Description
 
-The [GSATINJE](#__RefHeading___Toc116596_332691817) keyword defines a satellite group's oil, gas and water injection rates in the model. Satellite groups are not connected to the reservoir model and therefore have no wells or subordinate groups associated with them, they are nevertheless connected to other higher level groups and higher level groups within a network model (if activated). Thus, they provide a means to "add-in" outside injection and production to the model without modeling the "add-in" reservoirs.
+The GSATINJE keyword defines a satellite group's oil, gas and water injection rates in the model. Satellite groups are not connected to the reservoir model and therefore have no wells or subordinate groups associated with them, they are nevertheless connected to other higher level groups and higher level groups within a network model (if activated). Thus, they provide a means to "add-in" outside injection and production to the model without modeling the "add-in" reservoirs.
 
 The keyword is used to define injection rates into the model from other sources (fields, reservoirs etc.) that are not defined in the current run. For example, if Fields A, B and C are all producing through a common plant, but only Field A is being modeled in the current input deck, then injection and production from Fields B and C can be incorporated into the model in order to meet the plant injection rates for Field A. Note in this case the import rates from Fields B and C are fixed, and therefore Field A would act like a "swing" injector to match the overall injection requirement.
 
-| 1 | GRPNAME | A character string of up to eight characters in length that defines the satellite group name for which the group injection rates are being defined. The group named FIELD is the top most group and should not be used to define a satellite group.<br>Note that the group hierarchy should be defined by the [GRUPTREE](#__RefHeading___Toc118321_1596574740) keyword in the [SCHEDULE](#__RefHeading___Toc43945_784232322) section, when there is more than one level of groups, otherwise all the groups will sit directly under the FIELD group in the group tree hierarchy.<br>Note that a satellite group cannot have subordinate groups or wells. | None |
+| 1 | GRPNAME | A character string of up to eight characters in length that defines the satellite group name for which the group injection rates are being defined. The group named FIELD is the top most group and should not be used to define a satellite group.<br>Note that the group hierarchy should be defined by the GRUPTREE keyword in the SCHEDULE section, when there is more than one level of groups, otherwise all the groups will sit directly under the FIELD group in the group tree hierarchy.<br>Note that a satellite group cannot have subordinate groups or wells. | None |
 | --- | --- | --- | --- |
 | 2 | TYPE | A defined character string that specifies the type of injection fluid. TYPE should be set to one of the following character strings:<br>1)  GAS: for gas injection.<br>2)  OIL: for oil injection.<br>3)  WAT: for water injection.<br>If the satellite group injects more than one phase then the rates should be specified in separate records. | None |
 | 3 | RATE | A positive real value that defines the surface injection rate for the phase declared by the TYPE variable. | 0.0 |
@@ -21,7 +21,7 @@ The keyword is used to define injection rates into the model from other sources 
 
 *Table 12.45: GSATINJE Keyword Description*
 
-See also the [GSATPROD](#__RefHeading___Toc202038_870710203) and [GRUPTREE](#__RefHeading___Toc118321_1596574740) keywords to define satellite production rates and the group hierarchy, respectively. For non-satellite groups see the [GCONINJE](#__RefHeading___Toc134874_2055188184) and [GCONPROD](#__RefHeading___Toc146746_4203985108) keywords. All the aforementioned keywords are in the [SCHEDULE](#__RefHeading___Toc43945_784232322) section.
+See also the GSATPROD and GRUPTREE keywords to define satellite production rates and the group hierarchy, respectively. For non-satellite groups see the GCONINJE and GCONPROD keywords. All the aforementioned keywords are in the SCHEDULE section.
 
 #### Example
 
@@ -175,4 +175,4 @@ FLD-B WAT 10E3 1\* 1\* /
 
 /
 
-Here FLD-B will supplement FLD-A's water re-injection rate by 10,000 stb/d, subject to a maximum field water injection rate of 35,000 stb/d on the [GCONINJE](#__RefHeading___Toc134874_2055188184) keyword. This means that FLD-A's maximum water injection rate cannot exceed 25,000 stb/d. In terms of oil rates, [GCONPROD](#__RefHeading___Toc146746_4203985108) defines a maximum oil rate of 20,000 stb/d of which 5,000 stb/d is from FLD-B. If any of the constraints on the [GCONINJE](#__RefHeading___Toc134874_2055188184) and [GCONPROD](#__RefHeading___Toc146746_4203985108) keywords are violated, then the appropriate action will occur only for FLD-A, in order to ensure the group constraints are honored.
+Here FLD-B will supplement FLD-A's water re-injection rate by 10,000 stb/d, subject to a maximum field water injection rate of 35,000 stb/d on the GCONINJE keyword. This means that FLD-A's maximum water injection rate cannot exceed 25,000 stb/d. In terms of oil rates, GCONPROD defines a maximum oil rate of 20,000 stb/d of which 5,000 stb/d is from FLD-B. If any of the constraints on the GCONINJE and GCONPROD keywords are violated, then the appropriate action will occur only for FLD-A, in order to ensure the group constraints are honored.

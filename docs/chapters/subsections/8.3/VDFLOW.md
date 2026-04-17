@@ -1,13 +1,13 @@
 ### VDFLOW -- Velocity Dependent Flow Coefficient for Grid Block Flow (Grid)
 
-| [RUNSPEC](#3.RUNSPEC SECTION|outline) | [GRID](#4.GRID SECTION|outline) | [EDIT](#5.EDIT SECTION|outline) | [PROPS](#6.PROPS SECTION|outline) | [REGIONS](#7.REGIONS SECTION|outline) | [SOLUTION](#8.SOLUTION SECTION|outline) | [SUMMARY](#9.SUMMARY SECTION|outline) | [SCHEDULE](#10.SCHEDULE SECTION|outline) |
+| RUNSPEC | GRID | EDIT | PROPS | REGIONS | SOLUTION | SUMMARY | SCHEDULE |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 
 #### Description
 
-[VDFLOW](#__RefHeading___Toc530429_487874538) activates non-Darcy flow between grid blocks and defines a constant non-Darcy flow coefficient for the whole grid, the coefficient only applies to the gas phase. The coefficient is normally derived from well tests or calculated analytically based on the coefficient of inertial resistance, usually known as β, in Forchheimer's flow equation,[^1], [^2] and [^3]. Dake[^4], in chapter eight, reports a typical value of β to be 10.07 cm-1.
+VDFLOW activates non-Darcy flow between grid blocks and defines a constant non-Darcy flow coefficient for the whole grid, the coefficient only applies to the gas phase. The coefficient is normally derived from well tests or calculated analytically based on the coefficient of inertial resistance, usually known as β, in Forchheimer's flow equation,[^1], [^2] and [^3]. Dake[^4], in chapter eight, reports a typical value of β to be 10.07 cm-1.
 
-See also the [VDFLOWR](#__RefHeading___Toc530431_487874538) keyword in the [PROPS](#__RefHeading___Toc39329_784232322) section that allows the non-Darcy coefficient to be entered for individual regions, and the [WDFAC](#__RefHeading___Toc442057_2026549522) and [WDFACCOR](#__RefHeading___Toc48144_327352552) keywords in the [SCHEDULE](#__RefHeading___Toc43945_784232322) section that assigns the non-Darcy coefficient to well connections.
+See also the VDFLOWR keyword in the PROPS section that allows the non-Darcy coefficient to be entered for individual regions, and the WDFAC and WDFACCOR keywords in the SCHEDULE section that assigns the non-Darcy coefficient to well connections.
 
 This keyword is not supported by OPM Flow but would change the results if supported so the simulation will be stopped.
 

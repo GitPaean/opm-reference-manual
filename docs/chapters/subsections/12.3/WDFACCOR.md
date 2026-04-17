@@ -1,13 +1,13 @@
 ### WDFACCOR -- Gas Flow Dependent Skin Factor (Correlation)
 
-| [RUNSPEC](#3.RUNSPEC SECTION|outline) | [GRID](#4.GRID SECTION|outline) | [EDIT](#5.EDIT SECTION|outline) | [PROPS](#6.PROPS SECTION|outline) | [REGIONS](#7.REGIONS SECTION|outline) | [SOLUTION](#8.SOLUTION SECTION|outline) | [SUMMARY](#9.SUMMARY SECTION|outline) | [SCHEDULE](#10.SCHEDULE SECTION|outline) |
+| RUNSPEC | GRID | EDIT | PROPS | REGIONS | SOLUTION | SUMMARY | SCHEDULE |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 
 #### Description
 
-[WDFACCOR](#__RefHeading___Toc48144_327352552) keyword defines the parameters to calculate a gas well's connection D-factors (flow dependent skin factor) for each connection based on a correlation for the coefficient of inertial resistance, usually known as *β*, in Forchheimer's flow equation[^1]^,[^2],\ [^3]\ ^and [^4]. This keyword uses Dake's correlation to calculate the D-factor.
+WDFACCOR keyword defines the parameters to calculate a gas well's connection D-factors (flow dependent skin factor) for each connection based on a correlation for the coefficient of inertial resistance, usually known as *β*, in Forchheimer's flow equation[^1]^,[^2],\ [^3]\ ^and [^4]. This keyword uses Dake's correlation to calculate the D-factor.
 
-| 1 | WELNAME | A character string of up to eight characters in length that defines the well name for which the well D-factor correlation is being defined.<br>Note that the well name (WELNAME) must have been declared previously using the [WELSPECS](#__RefHeading___Toc268463_1366622701) keyword in the [SCHEDULE](#__RefHeading___Toc43945_784232322) section. | None |
+| 1 | WELNAME | A character string of up to eight characters in length that defines the well name for which the well D-factor correlation is being defined.<br>Note that the well name (WELNAME) must have been declared previously using the WELSPECS keyword in the SCHEDULE section. | None |
 | --- | --- | --- | --- |
 | 2 | A | A real value greater than or equal to zero that defines the coefficient A in the D-factor correlation. | 0.0 |
 | cP.day.ft^2^/mD/Mscf | cP.day.m^2^/mD/sm^3^ | cP.hour.cm^2^/mD/scc |  |
@@ -37,7 +37,7 @@ Where:
 
 Note that since is dependent on pressure the D-factor will also vary with pressure.
 
-See also the [WDFAC](#__RefHeading___Toc442057_2026549522) keyword in the [SCHEDULE](#__RefHeading___Toc43945_784232322) section that can be used to specify the well D-factor; and the [COMPDAT](#__RefHeading___Toc97651_3261743917) keyword in the [SCHEDULE](#__RefHeading___Toc43945_784232322) section that can be used to specify the connection D-factors directly.
+See also the WDFAC keyword in the SCHEDULE section that can be used to specify the well D-factor; and the COMPDAT keyword in the SCHEDULE section that can be used to specify the connection D-factors directly.
 
 #### Examples
 

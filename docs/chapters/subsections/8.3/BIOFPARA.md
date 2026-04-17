@@ -1,11 +1,11 @@
 ### BIOFPARA -- Define Properties for Models with Biofilms
 
-| [RUNSPEC](#3.RUNSPEC SECTION|outline) | [GRID](#4.GRID SECTION|outline) | [EDIT](#5.EDIT SECTION|outline) | [PROPS](#6.PROPS SECTION|outline) | [REGIONS](#7.REGIONS SECTION|outline) | [SOLUTION](#8.SOLUTION SECTION|outline) | [SUMMARY](#9.SUMMARY SECTION|outline) | [SCHEDULE](#10.SCHEDULE SECTION|outline) |
+| RUNSPEC | GRID | EDIT | PROPS | REGIONS | SOLUTION | SUMMARY | SCHEDULE |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 
 #### Description
 
-The [BIOFPARA](#REF_HEADING_KEYWORD_BIOFPARA) keyword defines parameters for models including biofilms. For the parameters, biomass means both suspended microbes in the water phase (labeled as microbial) and biofilm. Currently the two available models with biofilm effects are the [BIOFILM](#REF_HEADING_KEYWORD_BIOFILM) and the [MICP](#__RefHeading___Toc383375_111689907) model. See Landa-Marbán et al[^1] and [^2] for further information on the [MICP](#__RefHeading___Toc383375_111689907) model parameters, which are also used in the [BIOFILM](#REF_HEADING_KEYWORD_BIOFILM) model.
+The BIOFPARA keyword defines parameters for models including biofilms. For the parameters, biomass means both suspended microbes in the water phase (labeled as microbial) and biofilm. Currently the two available models with biofilm effects are the BIOFILM and the MICP model. See Landa-Marbán et al[^1] and [^2] for further information on the MICP model parameters, which are also used in the BIOFILM model.
 
 | 1 | DENSBIOF | A real positive value that defines the density of the biofilm. | None |
 | --- | --- | --- | --- |
@@ -34,13 +34,13 @@ The [BIOFPARA](#REF_HEADING_KEYWORD_BIOFPARA) keyword defines parameters for mod
 | lb/rft^3^ | kg/rm^3^ | gm/rcc |  |
 | 13 | YIELURCA | A real value that defines the yield coefficient in the calcite precipitation term (units of produced calcite over units of urea utilization). | None |
 | dimensionless | dimensionless | dimensionless |  |
-| Notes:<br>1)  The keyword is followed by NTSFUN vectors as declared on the [TABDIMS](#__RefHeading___Toc89327_327352552) keyword in the [RUNSPEC](#__RefHeading___Toc55591_1778172979) section.<br>2)  Items 10 to 13 are only relevant for the [MICP](#__RefHeading___Toc383375_111689907) model.<br>3)  Each record is terminated by a "/" and there is no "/" terminator for the keyword. |  |  |  |
+| Notes:<br>1)  The keyword is followed by NTSFUN vectors as declared on the TABDIMS keyword in the RUNSPEC section.<br>2)  Items 10 to 13 are only relevant for the MICP model.<br>3)  Each record is terminated by a "/" and there is no "/" terminator for the keyword. |  |  |  |
 
 Table 8.87: BIOFPARA Keyword Description
 
 #### Example
 
-The example below is based on metric units, with NTSFUN equal to two on the [TABDIMS](#__RefHeading___Toc89327_327352552) keyword.
+The example below is based on metric units, with NTSFUN equal to two on the TABDIMS keyword.
 
 \--
 

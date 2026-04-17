@@ -1,11 +1,11 @@
 ### COORD -- Define a Set of Coordinates Lines for a Reservoir Grid
 
-| [RUNSPEC](#3.RUNSPEC SECTION|outline) | [GRID](#4.GRID SECTION|outline) | [EDIT](#5.EDIT SECTION|outline) | [PROPS](#6.PROPS SECTION|outline) | [REGIONS](#7.REGIONS SECTION|outline) | [SOLUTION](#8.SOLUTION SECTION|outline) | [SUMMARY](#9.SUMMARY SECTION|outline) | [SCHEDULE](#10.SCHEDULE SECTION|outline) |
+| RUNSPEC | GRID | EDIT | PROPS | REGIONS | SOLUTION | SUMMARY | SCHEDULE |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 
 #### Description
 
-[COORD](#__RefHeading___Toc45757_719036256) defines a set of coordinate lines or pillars for a reservoir grid via an array. A total of 6 x (NX+1) x (NY+1) values must be specified for each coordinate data set (or reservoir). For multiple reservoirs, where [NUMRES](#__RefHeading___Toc81021_4106839650) is greater than one, there must be 6 x (NX+1) x (NY+1) x [NUMRES](#__RefHeading___Toc81021_4106839650) values. In OPM Flow [NUMRES](#__RefHeading___Toc81021_4106839650) can only be set to one.
+COORD defines a set of coordinate lines or pillars for a reservoir grid via an array. A total of 6 x (NX+1) x (NY+1) values must be specified for each coordinate data set (or reservoir). For multiple reservoirs, where NUMRES is greater than one, there must be 6 x (NX+1) x (NY+1) x NUMRES values. In OPM Flow NUMRES can only be set to one.
 
 For Cartesian geometry, each line is defined by the (x, y, z) coordinates of two distinct points on the line. The lines are entered with I cycling fastest then J. For radial geometry, each line is defined by the (r, theta, z) coordinates of two distinct points on the line. The lines are entered with R cycling fastest then THETA.
 
@@ -21,11 +21,11 @@ The keyword can only be used with Irregular Corner-Point Grids.
 | 5 | Y2-Column | Base Y coordinate |  |
 | 6 | Z2-Column | Base Z coordinate |  |
 |  | feet | metres | cm |
-| Notes:<br>1)  THETA values are in degrees for all units.<br>2)  Regular Cartesian and Radial grid keywords cannot be used with this keyword, that is: [DR](#__RefHeading___Toc113051_2066951158), [DRV](#__RefHeading___Toc91991_705534506), [DTHETA](#__RefHeading___Toc120096_2066951158), [DTHETAV](#__RefHeading___Toc19322_3701168388), [DX](#__RefHeading___Toc92905_705534506), [DXV](#__RefHeading___Toc55931_3701168388), [DY](#__RefHeading___Toc45767_719036256), [DYV](#__RefHeading___Toc55933_3701168388), [DZ](#__RefHeading___Toc45769_719036256), [INRAD](#__RefHeading___Toc19324_3701168388), and [TOPS](#__RefHeading___Toc55283_3701168388).<br>3)  The keyword is terminated by a "/". |  |  |  |
+| Notes:<br>1)  THETA values are in degrees for all units.<br>2)  Regular Cartesian and Radial grid keywords cannot be used with this keyword, that is: DR, DRV, DTHETA, DTHETAV, DX, DXV, DY, DYV, DZ, INRAD, and TOPS.<br>3)  The keyword is terminated by a "/". |  |  |  |
 
 Table 6.14: COORD Keyword Description
 
-See also the [SPECGRID](#__RefHeading___Toc45797_7190362561), [COORDSYS](#__RefHeading___Toc45759_719036256) and [ZCORN](#__RefHeading___Toc45757_7190362561) keywords to fully define an Irregular Corner-Point Grid.
+See also the SPECGRID, COORDSYS and ZCORN keywords to fully define an Irregular Corner-Point Grid.
 
 #### Example
 
@@ -69,4 +69,4 @@ COORD
 
 /
 
-The above example defines vertical coordinate lines for a regular 3 by 2 grid with [DX](#__RefHeading___Toc92905_705534506) equal to 100 and [DY](#__RefHeading___Toc45767_719036256) equal to 200.
+The above example defines vertical coordinate lines for a regular 3 by 2 grid with DX equal to 100 and DY equal to 200.

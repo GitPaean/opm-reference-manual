@@ -8,7 +8,7 @@ OPMRUN is graphical user interface to Flow that has similar functionality to the
 
 -   Runs under Linux and Windows 10. For Windows 10 OPM Flow is run via the Windows Subsystem for Linux ("WSL").
 
--   Allows simulation jobs to be queued and run in either foreground (under OPMRUN), or in background in a xterm terminal session in Lunux or WSL under Windows 10. Jobs in the queue can be set to run in [NOSIM](#__RefHeading___Toc27585_2267116897) mode or RUN mode.
+-   Allows simulation jobs to be queued and run in either foreground (under OPMRUN), or in background in a xterm terminal session in Lunux or WSL under Windows 10. Jobs in the queue can be set to run in NOSIM mode or RUN mode.
 
 -   Foreground jobs can be killed from OPMRUN, with the option of killing all the jobs in the queue.
 
@@ -20,11 +20,11 @@ Various additional simulation input generation and conversion utilities are avai
 
 -   Keywords, a keyword generator based on the Apache Velocity Template Language ("VTL"). The templates can therefore also be used with any editor that supports VTL, jEdit for example. There is one template per keyword, with the formatting the same as the OPM Flow manual. Over 450 templates are currently implemented. One can also customize the existing templates as well as creating User defined templates. The keywords are examples, one still has to edit the resulting deck with the actual required data, but the format with comments should make this a straight forward process.
 
--   A Production Schedule application that takes a comma delimited CSV file containing historical production and injection data and converts the data to an OPM Flow [SCHEDULE](#__RefHeading___Toc43945_784232322) file using the [WCONHIST](#__RefHeading___Toc134880_2055188184) series of keywords. Currently only production data is supported.
+-   A Production Schedule application that takes a comma delimited CSV file containing historical production and injection data and converts the data to an OPM Flow SCHEDULE file using the WCONHIST series of keywords. Currently only production data is supported.
 
 -   Sensitivities application that generates sensitivity cases based on a \"Base\" case file. The Base file contains \"Factors\" (variable names), \$X01, \$X02, etc., that are substituted with user defined values using the data entered and the type of Sensitivity Scenario selected.
 
--   A Well Specification application that uses the standard well export files from OPM ResInsight to reformat the data in a more user-friendly manner for the [WELSPECS](#__RefHeading___Toc268463_1366622701) and [COMPDAT](#__RefHeading___Toc97651_3261743917) keywords. Optionally, the application can generate the [COMPLUMP](#__RefHeading___Toc97655_3261743917) keyword based on the OPM ResInsight layers file, with one completion per defined reservoir layer.
+-   A Well Specification application that uses the standard well export files from OPM ResInsight to reformat the data in a more user-friendly manner for the WELSPECS and COMPDAT keywords. Optionally, the application can generate the COMPLUMP keyword based on the OPM ResInsight layers file, with one completion per defined reservoir layer.
 
 -   Calling OPM ResInsight and loading the currently selected job into OPM ResInsight for viewing.
 
@@ -102,7 +102,7 @@ A.  1.  1.  ### Run Jobs in Queue with Various Options
 
 Selecting the Run Jobs button displays the Select Run Option dialog box shown in and .
 
-On the Select Run Dialog, the Run in No Simulation Mode option is equivalent to setting the [NOSIM](#__RefHeading___Toc27585_2267116897) option in the input deck for all jobs in the queue (see section [[5.3.96](#anchor-9)](#5.2.32.NOSIM – Activates the No Simulation Mode for Data File Checking|outline)[](#5.2.32.NOSIM – Activates the No Simulation Mode for Data File Checking|outline)[[NOSIM -- Activate the No Simulation Mode for Data File Checking](#anchor-9)](#5.2.32.NOSIM – Activates the No Simulation Mode for Data File Checking|outline) and the \--enable-dry-run command line parameter in [Table 2.1](#anchor-10) in section [2.2 Running OPM Flow From The Command Line](#2.2.Running OPM Flow From The Command Line |outline)). This allows for checking all the jobs at once.
+On the Select Run Dialog, the Run in No Simulation Mode option is equivalent to setting the NOSIM option in the input deck for all jobs in the queue (see section [5.3.96](#anchor-9)[NOSIM -- Activate the No Simulation Mode for Data File Checking](#anchor-9) and the \--enable-dry-run command line parameter in [Table 2.1](#anchor-10) in section 2.2 Running OPM Flow From The Command Line). This allows for checking all the jobs at once.
 
 Selecting Run in Standard Simulation Mode will run all the jobs in the queue sequentially, with the OPM Flow terminal output directed to OPM Flow Output Element, as shown in . The terminal output is also directed to a \*.LOG file as well, similar to what the commercial simulator does.
 
@@ -192,7 +192,7 @@ Where the *Open* and *Save* options load and save a file, and the *Properties *d
 
 The Edit Menu provides some basic standard editing facilities
 
-Next, the Generate Menu options allows one to generate a complete section of keywords, as described below. These options are equivalent to selecting the equivalent section keyword ([RUNSPEC](#__RefHeading___Toc55591_1778172979), [GRID](#__RefHeading___Toc38674_784232322), etc.) in the *Keyword Element Area*.
+Next, the Generate Menu options allows one to generate a complete section of keywords, as described below. These options are equivalent to selecting the equivalent section keyword (RUNSPEC, GRID, etc.) in the *Keyword Element Area*.
 
 Finally, the Help Menu option display the Keyword Help information ():
 
@@ -202,27 +202,27 @@ As mentioned previously, the tool uses the Apache Velocity Template Language (\"
 
 #### Keywords: File Imports
 
-If a keyword requires a file, for example, the [INCLUDE](#__RefHeading___Toc55749_2479612490) and [LOAD](#__RefHeading___Toc309839_2843394514) keywords, then a dialog box is presented to enable the file to be selected. The application will also allow one to select the file name format, after the file has been selected.
+If a keyword requires a file, for example, the INCLUDE and LOAD keywords, then a dialog box is presented to enable the file to be selected. The application will also allow one to select the file name format, after the file has been selected.
 
 Note that COMMENT template is not an actual keyword, but a comment block to make the deck more readable for the user.
 
 #### Keywords: Section Standard Set of Keywords
 
-Selecting a Generate Menu option or a Section keyword ([RUNSPEC](#__RefHeading___Toc55591_1778172979), [GRID](#__RefHeading___Toc38674_784232322), [EDIT](#__RefHeading___Toc40641_784232322), [PROPS](#__RefHeading___Toc39329_784232322), [SOLUTION](#__RefHeading___Toc43947_784232322), [SUMMARY](#__RefHeading___Toc43949_784232322), and [SCHEDULE](#__RefHeading___Toc43945_784232322)) in the *Keyword Element Area* will give an option to generate a representative set of keywords for that section, as per the [RUNSPEC](#__RefHeading___Toc55591_1778172979) example in .
+Selecting a Generate Menu option or a Section keyword (RUNSPEC, GRID, EDIT, PROPS, SOLUTION, SUMMARY, and SCHEDULE) in the *Keyword Element Area* will give an option to generate a representative set of keywords for that section, as per the RUNSPEC example in .
 
 One can therefore generate a complete input deck in a matter of minutes; however, you still have to edit the generated input deck with your actual data.
 
 #### Keywords: SUMMARY Section Variables
 
-For the [SUMMARY](#__RefHeading___Toc43949_784232322) section keyword, one can also generate various sets of summary variables based on the options being used in the model. Note that not all the variables are currently available in OPM Flow, but additional variables are added at each release.
+For the SUMMARY section keyword, one can also generate various sets of summary variables based on the options being used in the model. Note that not all the variables are currently available in OPM Flow, but additional variables are added at each release.
 
-For [SUMMARY](#__RefHeading___Toc43949_784232322) variables not recognized by OPM Flow, the simulator will issue a warning message and ignore those variables not implemented.
+For SUMMARY variables not recognized by OPM Flow, the simulator will issue a warning message and ignore those variables not implemented.
 
 #### Keywords: SCHEDULE Section Keywords and Date Schedule
 
-For the [SCHEDULE](#__RefHeading___Toc43945_784232322) Section keyword, one can also generate a representative set of [SCHEDULE](#__RefHeading___Toc43945_784232322) keywords, plus a date schedule from a start year to an end year, using Annual, Quarterly, or Monthly time steps.
+For the SCHEDULE Section keyword, one can also generate a representative set of SCHEDULE keywords, plus a date schedule from a start year to an end year, using Annual, Quarterly, or Monthly time steps.
 
-This option also writes a standard report using the [RPTSCHED](#__RefHeading___Toc268459_1366622701) keyword at the beginning of each year which is subsequently switch off for the intermediate Quarterly and Monthly time steps. A final report is written at the end of the run.
+This option also writes a standard report using the RPTSCHED keyword at the beginning of each year which is subsequently switch off for the intermediate Quarterly and Monthly time steps. A final report is written at the end of the run.
 
 #### Keywords: DATA (Sets) Option
 
@@ -248,13 +248,13 @@ The Template Help option displays a brief introduction to VTL for further refere
 
 A.  1.  1.  ### OPMRUN Tools: Simulator Input/Production Schedule
 
-The *Tools/Simulator Input/Production Schedule* application takes a comma delimited CSV file containing historical production and injection data and converts the data to an OPM Flow [SCHEDULE](#__RefHeading___Toc43945_784232322) file using the [WCONHIST](#__RefHeading___Toc134880_2055188184) series of keywords. An example input file is shown below:
+The *Tools/Simulator Input/Production Schedule* application takes a comma delimited CSV file containing historical production and injection data and converts the data to an OPM Flow SCHEDULE file using the WCONHIST series of keywords. An example input file is shown below:
 
 The first row in the input file is a header row that declares the data type for a column, the example shows typical Oil Field Manager ("OFM") header variable names, but various variable names can be used to define the data type.
 
 The tool can convert daily production data to a: daily production schedule, monthly average, or monthly on-stream average production schedule, as shown below:
 
-Notice that the application checks various variable names for the column headers. For example for the BHP data, the column names can be: bhp, bottom-hole pressure, BHP, or BOTTOM-HOLE [PRESSURE](#__RefHeading___Toc135627_1317547213).
+Notice that the application checks various variable names for the column headers. For example for the BHP data, the column names can be: bhp, bottom-hole pressure, BHP, or BOTTOM-HOLE PRESSURE.
 
 A sample of the generated output file is shown in .
 
@@ -270,7 +270,7 @@ The next step is to define the \"Factors\" and the factor values. A total of 20 
 
 Previously saved factor data can be loaded via the *Load* button, as shown below:
 
-Selecting a Factor Description row allows one to define a description for the factor variable, so for \$X01 in the above figure the description is [GRID](#__RefHeading___Toc38674_784232322) - [PERMX](#__RefHeading___Toc45791_719036256). When selecting a Factor Description, a popup dialog will be displayed to enter the data, and if one right-clicks on the popup\'s Factor Description field one can select a description for one of the pre-defined descriptions as illustrated in the next figure.
+Selecting a Factor Description row allows one to define a description for the factor variable, so for \$X01 in the above figure the description is GRID - PERMX. When selecting a Factor Description, a popup dialog will be displayed to enter the data, and if one right-clicks on the popup\'s Factor Description field one can select a description for one of the pre-defined descriptions as illustrated in the next figure.
 
 After the Sensitivity Factors have been entered one can then select the Sensitivity Scenario that one wishes to use generate the sensitivity cases. In the example in figure the *Factorial: Low, Best and High Box-Behnken *DOE (Design of Experiments) has been selected. Selecting the *Generate* button, runs a series of checks, and if there are no errors the program will inquire if you wish to generate the set of cases ().
 
@@ -280,7 +280,7 @@ This allows the user to load the queue file into OPMRUN and to run all the jobs.
 
 A.  1.  1.  ### OPMRUN Tools: Simulator Input/Well Specification
 
-This tool, *Tools/Simulator Input/Well Specification*, uses the standard well export files from OPM ResInsight to reformat the data in a more user-friendly manner for the [WELSPECS](#__RefHeading___Toc268463_1366622701) and [COMPDAT](#__RefHeading___Toc97651_3261743917) keywords. Optionally, the application can generate the [COMPLUMP](#__RefHeading___Toc97655_3261743917) keyword based on the OPM ResInsight layers file, with one completion per defined reservoir layer.
+This tool, *Tools/Simulator Input/Well Specification*, uses the standard well export files from OPM ResInsight to reformat the data in a more user-friendly manner for the WELSPECS and COMPDAT keywords. Optionally, the application can generate the COMPLUMP keyword based on the OPM ResInsight layers file, with one completion per defined reservoir layer.
 
 An example OPM ResInsight Exported Well Completion File Format(\*.exp) is shown in
 
@@ -290,13 +290,13 @@ The application also can generate a well a OPM ResInsight perforation file with 
 
 The application user interface is shown in . Note that in the *Output Header *options are used for comments only, no unit conversion is performed.
 
-In terms of output, the next figure shows the resulting well completion file to be used with OPM Flow, showing the [WELSPECS](#__RefHeading___Toc268463_1366622701) and [COMPDAT](#__RefHeading___Toc97651_3261743917) keywords (the [COMPLUMP](#__RefHeading___Toc97655_3261743917) keyword is not shown in this example)
+In terms of output, the next figure shows the resulting well completion file to be used with OPM Flow, showing the WELSPECS and COMPDAT keywords (the COMPLUMP keyword is not shown in this example)
 
 The final figure for this tool shows the resulting generated OPM ResInsight perforation file.
 
 A.  1.  1.  ### OPMRUN Tools: ResInsight
 
-This option, *Tools/ResInsigh*t, loads the currently selected job into OPM ResInsight for viewing, this done via a Python sub-process call in OPMRUN, rather than using OPM ResInsight's Python [API](#__RefHeading___Toc4422_421927891).
+This option, *Tools/ResInsigh*t, loads the currently selected job into OPM ResInsight for viewing, this done via a Python sub-process call in OPMRUN, rather than using OPM ResInsight's Python API.
 
 A.  1.  1.  ### OPMRUN Tools: Well Trajectory Conversion
 

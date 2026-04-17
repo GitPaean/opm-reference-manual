@@ -1,11 +1,11 @@
 ### START -- Simulation Start Date
 
-| [RUNSPEC](#3.RUNSPEC SECTION|outline) | [GRID](#4.GRID SECTION|outline) | [EDIT](#5.EDIT SECTION|outline) | [PROPS](#6.PROPS SECTION|outline) | [REGIONS](#7.REGIONS SECTION|outline) | [SOLUTION](#8.SOLUTION SECTION|outline) | [SUMMARY](#9.SUMMARY SECTION|outline) | [SCHEDULE](#10.SCHEDULE SECTION|outline) |
+| RUNSPEC | GRID | EDIT | PROPS | REGIONS | SOLUTION | SUMMARY | SCHEDULE |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 
 #### Description
 
-This keyword sets the start date for the simulation switches. If the [DATES](#__RefHeading___Toc117621_2179381650) keyword is to be used during the simulation, then a start date should be entered.
+This keyword sets the start date for the simulation switches. If the DATES keyword is to be used during the simulation, then a start date should be entered.
 
 | No. | Name | Description | Default |
 | --- | --- | --- | --- |
