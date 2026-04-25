@@ -5466,7 +5466,7 @@ Updated with AFR/TSA Rev-D comments and new keywords.</dc:description><meta:init
       <table:table-cell table:style-name="Table1921.A2" table:number-columns-spanned="2" office:value-type="string">
        <text:p text:style-name="P100"><text:a xlink:type="simple" xlink:href="#0.0.0.CO2SOL" text:style-name="Internet_20_link" text:visited-style-name="Visited_20_Internet_20_Link"><text:bookmark-ref text:reference-format="text" text:ref-name="REF_HEADING_KEYWORD_CO2SOL">CO2SOL – Activate Dissolved CO2 in the Water Phase</text:bookmark-ref></text:a>.</text:p>
        <text:p text:style-name="P102">This is an OPM Flow implementation that is different to the commercial simulator. The keyword is a compositional keyword in the commercial simulator but has been implemented in OPM Flow’s black-oil model.</text:p>
-       <text:p text:style-name="P102">The keyword actives the carbon dioxide storage model for the run to account for both carbon dioxide and water phase solubility the simulators CO2-Brine PVT model.</text:p>
+       <text:p text:style-name="P102">The keyword activates the carbon dioxide storage model for the run to account for both carbon dioxide and water phase solubility using the simulator’s CO2-Brine PVT model.</text:p>
       </table:table-cell>
       <table:covered-table-cell/>
       <table:table-cell table:style-name="Table1921.E2" office:value-type="string">
@@ -5483,7 +5483,7 @@ Updated with AFR/TSA Rev-D comments and new keywords.</dc:description><meta:init
       <table:table-cell table:style-name="Table1921.A2" table:number-columns-spanned="2" office:value-type="string">
        <text:p text:style-name="P100"><text:a xlink:type="simple" xlink:href="#5.2.16.CO2STORE – Activate the CO2 Storage Model|outline" text:style-name="Internet_20_link" text:visited-style-name="Visited_20_Internet_20_Link"><text:bookmark-ref text:reference-format="text" text:ref-name="__RefHeading___Toc387968_1616145207">Error: Reference source not found</text:bookmark-ref></text:a>.</text:p>
        <text:p text:style-name="P102">This is an OPM Flow implementation that is different to the commercial simulator, the keyword is a compositional keyword in the commercial simulator but has been implemented in OPM Flow’s black-oil model.</text:p>
-       <text:p text:style-name="P102">The keyword actives the carbon dioxide storage model for the run to account for both carbon dioxide and water phase solubility the simulators CO2-Brine PVT model.</text:p>
+       <text:p text:style-name="P102">The keyword activates the carbon dioxide storage model for the run to account for both carbon dioxide and water phase solubility using the simulator’s CO2-Brine PVT model.</text:p>
       </table:table-cell>
       <table:covered-table-cell/>
       <table:table-cell table:style-name="Table1921.E2" office:value-type="string">
@@ -6122,7 +6122,7 @@ Updated with AFR/TSA Rev-D comments and new keywords.</dc:description><meta:init
       </table:table-cell>
       <table:table-cell table:style-name="Table1921.A2" table:number-columns-spanned="2" office:value-type="string">
        <text:p text:style-name="_40_Table_20_Contents"><text:span text:style-name="Internet_20_link"><text:a xlink:type="simple" xlink:href="#0.0.0.H2SOL" text:style-name="Internet_20_link" text:visited-style-name="Visited_20_Internet_20_Link"><text:bookmark-ref text:reference-format="text" text:ref-name="REF_HEADING_KEYWORD_H2SOL">H2SOL – Activate Dissolved H2 in the Water Phase</text:bookmark-ref></text:a></text:span>.</text:p>
-       <text:p text:style-name="_40_Table_20_Contents">The keyword actives the dissolved hydrogen in the water phase, where hydrogen is represented by the <text:a xlink:href="#__RefHeading___Toc62787_1778172979">SOLVENT</text:a> pseudo component.</text:p>
+       <text:p text:style-name="_40_Table_20_Contents">The keyword activates the dissolved hydrogen in the water phase, where hydrogen is represented by the <text:a xlink:href="#__RefHeading___Toc62787_1778172979">SOLVENT</text:a> pseudo component.</text:p>
       </table:table-cell>
       <table:covered-table-cell/>
       <table:table-cell table:style-name="Table1921.E2" office:value-type="string">
@@ -6138,7 +6138,7 @@ Updated with AFR/TSA Rev-D comments and new keywords.</dc:description><meta:init
       </table:table-cell>
       <table:table-cell table:style-name="Table1921.A2" table:number-columns-spanned="2" office:value-type="string">
        <text:p text:style-name="P174"><text:span text:style-name="Internet_20_link"><text:bookmark-ref text:reference-format="text" text:ref-name="REF_HEADING_KEYWORD_H2STORE">Error: Reference source not found</text:bookmark-ref></text:span>.</text:p>
-       <text:p text:style-name="P174">The keyword actives the hydrogen storage model for the run to account for both hydrogen and water phase solubility using the simulator’s H2-Brine PVT model.</text:p>
+       <text:p text:style-name="P174">The keyword activates the hydrogen storage model for the run to account for both hydrogen and water phase solubility using the simulator’s H2-Brine PVT model.</text:p>
       </table:table-cell>
       <table:covered-table-cell/>
       <table:table-cell table:style-name="Table1921.E2" office:value-type="string">
