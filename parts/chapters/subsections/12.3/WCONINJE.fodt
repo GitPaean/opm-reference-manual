@@ -4876,7 +4876,7 @@ Updated with AFR/TSA Rev-D comments and new keywords.</dc:description><meta:init
       </table:table-cell>
       <table:table-cell table:style-name="Table118.C2" office:value-type="string">
        <text:p text:style-name="P37">Liquid sm<text:span text:style-name="T28">3</text:span>/day</text:p>
-       <text:p text:style-name="P45">Gas sm3/day</text:p>
+       <text:p text:style-name="P45">Gas sm<text:span text:style-name="T28">3</text:span>/day</text:p>
       </table:table-cell>
       <table:table-cell table:style-name="Table118.C2" office:value-type="string">
        <text:p text:style-name="P37">Liquid scc/hour</text:p>

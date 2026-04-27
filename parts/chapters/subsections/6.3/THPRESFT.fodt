@@ -4347,7 +4347,7 @@ Updated with AFR/TSA Rev-D comments and new keywords.</dc:description><meta:init
       </table:table-cell>
       <table:table-cell table:style-name="Table918.C3" table:number-columns-spanned="3" office:value-type="string">
        <text:p text:style-name="P4097">FLTNAME is a character string enclosed in quotes with a maximum length of eight characters, that defines the name of the fault.</text:p>
-       <text:p text:style-name="P3431">FLTNAME must have been previously defined using the <text:a xlink:href="#__RefHeading___Toc45779_719036256">FAULTS</text:a> keyword in the GROD section, otherwise an error will occur.</text:p>
+       <text:p text:style-name="P3431">FLTNAME must have been previously defined using the <text:a xlink:href="#__RefHeading___Toc45779_719036256">FAULTS</text:a> keyword in the <text:a xlink:href="#__RefHeading___Toc38674_784232322">GRID</text:a> section, otherwise an error will occur.</text:p>
       </table:table-cell>
       <table:covered-table-cell/>
       <table:covered-table-cell/>
