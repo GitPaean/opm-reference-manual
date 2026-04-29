@@ -1,0 +1,57 @@
+name: Build Markdown manual
+
+on:
+  pull_request:
+    paths:
+      - 'parts/**'
+      - 'docs/**'
+      - 'mkdocs.yml'
+      - 'scripts/python/**'
+      - '.github/workflows/build-md-manual.yml'
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install lxml click pyyaml mkdocs mkdocs-material \
+            'pymdown-extensions>=10.0'
+          pip install -e ./scripts/python --no-deps
+
+      - name: Convert sample of FODT files to Markdown
+        # We convert only files that already have a committed .md output to
+        # keep the CI fast (the exhaustive bulk conversion is intended to
+        # run as a scheduled job or once per release).
+        run: |
+          mapfile -t targets < <(find docs -name '*.md' \
+            ! -path 'docs/index.md' \
+            ! -path 'docs/_templates/*' \
+            -printf '%P\n' \
+            | sed 's|\.md$|.fodt|' \
+            | sed 's|^|parts/|' \
+            | xargs -I{} bash -c 'test -f {} && echo {}')
+          if [ ${#targets[@]} -eq 0 ]; then
+            echo "No committed sample pages found; skipping conversion check."
+            exit 0
+          fi
+          python -m fodt.fodt2md.cli convert-all $(printf -- '--only %s ' "${targets[@]}") --workers 2
+
+      - name: Build static site
+        run: mkdocs build --strict
+
+      - name: Upload site artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: opm-flow-reference-manual-html
+          path: site
+          retention-days: 14

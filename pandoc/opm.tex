@@ -1,0 +1,75 @@
+% Pandoc LaTeX template for the OPM Flow Reference Manual.
+% Inspired by Pandoc's default template; trimmed and tuned for a long
+% reference book with monospace Eclipse DATA listings, formulas and tables.
+
+\documentclass[11pt,a4paper,oneside,openright]{book}
+
+\usepackage{ifxetex,ifluatex}
+\usepackage{lmodern}
+\ifxetex
+  \usepackage{fontspec}
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+  \setmainfont{Latin Modern Roman}
+  \setsansfont{Latin Modern Sans}
+  \setmonofont{Latin Modern Mono}
+\fi
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{longtable,booktabs}
+\usepackage{array}
+\usepackage{xcolor}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage[hidelinks,colorlinks=true,linkcolor=Maroon,urlcolor=Maroon,citecolor=Maroon]{hyperref}
+\usepackage[margin=2.2cm,bottom=2.5cm]{geometry}
+
+% Pandoc plumbing -----------------------------------------------------------
+\providecommand{\tightlist}{\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\providecommand{\pandocbounded}[1]{#1}
+\providecommand{\real}[1]{#1}
+\providecommand{\passthrough}[1]{\lstset{mathescape=false}#1\lstset{mathescape=true}}
+
+% Code listings (highlight setup is injected by pandoc when present) -------
+$if(highlighting-macros)$
+$highlighting-macros$
+$endif$
+
+% Headers / footers --------------------------------------------------------
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LE,RO]{\thepage}
+\fancyhead[RE]{\nouppercase{\leftmark}}
+\fancyhead[LO]{\nouppercase{\rightmark}}
+\renewcommand{\headrulewidth}{0.4pt}
+
+% Title ---------------------------------------------------------------------
+\title{$if(title)$$title$$else$OPM Flow Reference Manual$endif$}
+\author{$if(author)$$author$$else$The Open Porous Media Initiative$endif$}
+\date{$if(date)$$date$$else$\today$endif$}
+
+\begin{document}
+\frontmatter
+\begin{titlepage}
+  \centering
+  \vspace*{4cm}
+  {\Huge\bfseries OPM Flow\par}
+  \vspace{0.6cm}
+  {\LARGE Reference Manual\par}
+  \vfill
+  {\large The Open Porous Media Initiative\par}
+  {\small Generated \today\par}
+\end{titlepage}
+
+$if(toc)$
+\tableofcontents
+\clearpage
+$endif$
+
+\mainmatter
+$body$
+
+\backmatter
+\end{document}

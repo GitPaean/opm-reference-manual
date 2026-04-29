@@ -1,0 +1,96 @@
+site_name: OPM Flow Reference Manual
+site_description: >-
+  The reference manual for the OPM Flow black-oil reservoir simulator,
+  rendered from the canonical LibreOffice (.fodt) sources.
+site_url: https://opm-project.org/opm-reference-manual/
+repo_url: https://github.com/GitPaean/opm-reference-manual
+repo_name: opm-reference-manual
+edit_uri: ""
+
+docs_dir: docs
+
+theme:
+  name: material
+  custom_dir: overrides
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - navigation.tabs
+    - navigation.sections
+    - navigation.indexes
+    - navigation.top
+    - navigation.footer
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+    - content.tabs.link
+    - toc.follow
+  icon:
+    repo: fontawesome/brands/github
+
+extra_css:
+  - assets/css/opm.css
+
+extra_javascript:
+  - assets/js/mathjax.js
+  - https://polyfill.io/v3/polyfill.min.js?features=es6
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+
+markdown_extensions:
+  - abbr
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+      toc_depth: 4
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.details
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+
+plugins:
+  - search
+
+# Files in docs/ that should be excluded from the rendered site.
+exclude_docs: |
+  _templates/
+  links_report.json
+
+# The site navigation is generated from docs/ by the fodt2md hook so we
+# don't have to maintain a 1500-entry hand-written tree. The hook lives in
+# scripts/python/src/fodt/fodt2md/nav.py
+hooks:
+  - scripts/python/src/fodt/fodt2md/nav.py
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/OPM/opm-common
+  generator: false
