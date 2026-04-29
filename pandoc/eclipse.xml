@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Minimal Pandoc/KDE syntax definition for Eclipse / OPM Flow DATA files.
+  Highlights:
+    * line comments starting with --
+    * the canonical RUNSPEC/GRID/EDIT/PROPS/REGIONS/SOLUTION/SUMMARY/SCHEDULE
+      section names as keywords
+    * a small representative subset of OPM Flow keywords (the converter does
+      not depend on this list being exhaustive — unknown identifiers simply
+      render as plain text)
+    * single-quoted strings used for filenames in INCLUDE blocks
+    * the trailing record-terminator slash (/)
+-->
+<language name="Eclipse" section="Sources" version="1" kateversion="5.62"
+          extensions="*.DATA;*.data;*.inc"
+          author="opm-reference-manual"
+          license="LGPL">
+  <highlighting>
+    <list name="sections">
+      <item>RUNSPEC</item>
+      <item>GRID</item>
+      <item>EDIT</item>
+      <item>PROPS</item>
+      <item>REGIONS</item>
+      <item>SOLUTION</item>
+      <item>SUMMARY</item>
+      <item>SCHEDULE</item>
+      <item>END</item>
+    </list>
+    <list name="keywords">
+      <item>INCLUDE</item>
+      <item>DIMENS</item>
+      <item>OIL</item>
+      <item>WATER</item>
+      <item>GAS</item>
+      <item>DISGAS</item>
+      <item>VAPOIL</item>
+      <item>METRIC</item>
+      <item>FIELD</item>
+      <item>LAB</item>
+      <item>START</item>
+      <item>TITLE</item>
+      <item>WELLDIMS</item>
+      <item>TABDIMS</item>
+      <item>EQLDIMS</item>
+      <item>NSTACK</item>
+      <item>UNIFOUT</item>
+      <item>UNIFIN</item>
+      <item>NOECHO</item>
+      <item>ECHO</item>
+      <item>DX</item>
+      <item>DY</item>
+      <item>DZ</item>
+      <item>TOPS</item>
+      <item>PORO</item>
+      <item>PERMX</item>
+      <item>PERMY</item>
+      <item>PERMZ</item>
+      <item>NTG</item>
+      <item>ACTNUM</item>
+      <item>SPECGRID</item>
+      <item>WELLSPECS</item>
+      <item>COMPDAT</item>
+      <item>WCONPROD</item>
+      <item>WCONINJE</item>
+      <item>TSTEP</item>
+      <item>DATES</item>
+    </list>
+    <contexts>
+      <context name="Normal" attribute="Normal Text" lineEndContext="#stay">
+        <Detect2Chars attribute="Comment" context="Comment" char="-" char1="-"/>
+        <DetectChar attribute="String" context="String" char="'"/>
+        <RegExpr attribute="Slash" String="/\s*$" context="#stay"/>
+        <keyword attribute="Section" context="#stay" String="sections"/>
+        <keyword attribute="Keyword" context="#stay" String="keywords"/>
+        <RegExpr attribute="Number" String="-?[0-9]+(\.[0-9]+)?([eE][+-]?[0-9]+)?" context="#stay"/>
+      </context>
+      <context name="Comment" attribute="Comment" lineEndContext="#pop"/>
+      <context name="String" attribute="String" lineEndContext="#stay">
+        <DetectChar attribute="String" context="#pop" char="'"/>
+      </context>
+    </contexts>
+    <itemDatas>
+      <itemData name="Normal Text" defStyleNum="dsNormal"/>
+      <itemData name="Section" defStyleNum="dsKeyword" bold="1" color="#4a148c"/>
+      <itemData name="Keyword" defStyleNum="dsKeyword" color="#0d47a1"/>
+      <itemData name="Comment" defStyleNum="dsComment" italic="1" color="#5a3a1a"/>
+      <itemData name="String" defStyleNum="dsString" color="#1b5e20"/>
+      <itemData name="Number" defStyleNum="dsDecVal" color="#b71c1c"/>
+      <itemData name="Slash" defStyleNum="dsControlFlow" bold="1"/>
+    </itemDatas>
+  </highlighting>
+  <general>
+    <comments>
+      <comment name="singleLine" start="--"/>
+    </comments>
+    <keywords casesensitive="1"/>
+  </general>
+</language>

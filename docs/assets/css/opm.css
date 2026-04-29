@@ -1,0 +1,81 @@
+/* Custom styles for the OPM Flow Reference Manual.
+ *
+ * Tunes the Material theme for the long-form, table-heavy nature of the
+ * manual: tighter typography for keyword pages, distinct styling for
+ * Eclipse DATA fenced code blocks, zebra-striped tables and slightly
+ * larger formula sizing. */
+
+:root {
+  --opm-eclipse-bg: #fbf9f4;
+  --opm-eclipse-fg: #5a3a1a;
+  --opm-keyword-accent: #4a148c;
+}
+
+[data-md-color-scheme="slate"] {
+  --opm-eclipse-bg: #1f1c19;
+  --opm-eclipse-fg: #e9c597;
+}
+
+/* Body typography ---------------------------------------------------------*/
+.md-typeset {
+  font-size: 0.78rem;
+  line-height: 1.55;
+}
+
+.md-typeset h1,
+.md-typeset h2 {
+  font-weight: 600;
+  letter-spacing: -0.005em;
+}
+
+.md-typeset h3 {
+  color: var(--opm-keyword-accent);
+  border-bottom: 1px solid var(--md-default-fg-color--lightest);
+  padding-bottom: 0.2em;
+}
+
+/* Tables ------------------------------------------------------------------*/
+.md-typeset table:not([class]) {
+  font-size: 0.74rem;
+}
+
+.md-typeset table:not([class]) tbody tr:nth-child(even) {
+  background: var(--md-default-fg-color--lightest);
+}
+
+.md-typeset table:not([class]) th {
+  background: var(--md-primary-fg-color);
+  color: var(--md-primary-bg-color);
+  font-weight: 600;
+}
+
+/* Eclipse DATA fenced code blocks ----------------------------------------*/
+.md-typeset .highlight pre code.language-eclipse,
+.md-typeset pre code.language-eclipse {
+  background: var(--opm-eclipse-bg);
+  color: var(--opm-eclipse-fg);
+  font-size: 0.78rem;
+  line-height: 1.4;
+  border-left: 3px solid var(--opm-keyword-accent);
+}
+
+.md-typeset .highlight:has(.language-eclipse) {
+  background: var(--opm-eclipse-bg);
+}
+
+/* Math --------------------------------------------------------------------*/
+.md-typeset mjx-container[jax="CHTML"][display="true"] {
+  font-size: 1.05em;
+  margin: 1em 0;
+}
+
+/* Image figures from FODT extraction --------------------------------------*/
+.md-typeset img[src*="_images/"] {
+  display: block;
+  margin: 1em auto;
+  max-width: 100%;
+  background: white;
+  padding: 0.25em;
+  border: 1px solid var(--md-default-fg-color--lightest);
+  border-radius: 0.2em;
+}

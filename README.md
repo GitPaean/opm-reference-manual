@@ -55,6 +55,26 @@ You may have to wait some minutes for the update to complete.
 You can now export the manual to PDF. From the `File` menu, select "Export As" → "Export as PDF…",
 and click the "Export" button in the dialog, then choose a filename for the PDF file.
 
+## Browsing/building the Markdown manual
+
+The manual is also available as a Markdown tree under [`docs/`](docs/),
+auto-generated from the canonical FODT files by the
+[`fodt2md`](scripts/python/src/fodt/fodt2md/) tool. The same Markdown
+sources are used to build a static [MkDocs](https://www.mkdocs.org/) site
+and a single-file PDF.
+
+```bash
+pip install -e ./scripts/python
+pip install mkdocs mkdocs-material 'pymdown-extensions>=10.0'
+fodt2md convert-all     # rebuild docs/ from parts/
+mkdocs serve            # preview at http://127.0.0.1:8000
+fodt2md build-html      # ./site
+fodt2md build-pdf       # ./dist/opm-flow-reference-manual.pdf  (needs pandoc + xelatex)
+```
+
+See [`scripts/python/docs/Markdown-Migration.md`](scripts/python/docs/Markdown-Migration.md)
+for the full developer guide.
+
 ## Further information
 
 For further information please see the following READMEs:
@@ -63,3 +83,5 @@ For further information please see the following READMEs:
   documents correctly with the correct fonts (e.g. using docker)
 - [scripts/python/README.md](scripts/python/README.md) for information about the scripts
   used for splitting the original document.
+- [scripts/python/docs/Markdown-Migration.md](scripts/python/docs/Markdown-Migration.md) for the FODT → Markdown
+  pipeline and how to build the HTML site / PDF book.

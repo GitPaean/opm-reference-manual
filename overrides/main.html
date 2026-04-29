@@ -1,0 +1,20 @@
+<!--
+  Material theme override that decorates keyword pages (those whose source
+  FODT lives under parts/chapters/subsections/) with a "Keyword" badge in
+  the page header. This relies on attr_list to put a hint in the front
+  matter; if the page doesn't have one we fall through to the default.
+-->
+{% extends "base.html" %}
+
+{% block content %}
+  {% if page and page.meta and page.meta.source and "subsections/" in page.meta.source %}
+    <div class="md-content__inner md-typeset">
+      <span style="display:inline-block;background:var(--md-primary-fg-color);color:var(--md-primary-bg-color);
+                   padding:0.1em 0.6em;border-radius:0.4em;font-size:0.7rem;font-weight:600;
+                   letter-spacing:0.05em;margin-bottom:0.6em;">
+        OPM Flow Keyword
+      </span>
+    </div>
+  {% endif %}
+  {{ super() }}
+{% endblock %}
